@@ -8,599 +8,291 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
-/* ═══════════════════════════════════════════════════════
-   TAIWAN TRIP 2026 — Modern UI v4
-   Design: Clean, bright, mobile-first, 2-panel fixed
-   ═══════════════════════════════════════════════════════ */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{font-size:14px;scroll-behavior:smooth}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:112%}
 :root{
-  /* Brand */
-  --pri:#4f46e5;--pri-l:#eef2ff;--pri-d:#3730a3;
-  --acc:#f59e0b;--acc-l:#fffbeb;
-  --ok:#10b981;--ok-l:#ecfdf5;
-  --red:#ef4444;--red-l:#fef2f2;
-  --blue:#3b82f6;--blue-l:#eff6ff;
-  --purple:#8b5cf6;
-  /* Neutral */
-  --bg:#f8fafc;--card:#ffffff;
-  --txt:#0f172a;--txt2:#64748b;--txt3:#94a3b8;
-  --bdr:#e2e8f0;--bdr2:#f1f5f9;
-  /* People */
-  --sa:#6366f1;--bi:#ec4899;--ty:#14b8a6;
-  /* Shadow */
-  --sh:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
-  --sh-md:0 4px 6px -1px rgba(0,0,0,.08),0 2px 4px -1px rgba(0,0,0,.06);
-  --sh-lg:0 10px 15px -3px rgba(0,0,0,.08),0 4px 6px -2px rgba(0,0,0,.05);
-  /* Radius */
-  --r:12px;--r-sm:8px;--r-lg:16px;
+  --pri:#1a73e8;--pri-l:#e8f0fe;--acc:#ff6b35;--ok:#34a853;
+  --warn:#fbbc04;--bg:#f5f6f8;--card:#fff;--txt:#202124;
+  --txt2:#5f6368;--bdr:#e0e0e0;--sh:0 2px 8px rgba(0,0,0,.08);--r:14px;
+  --del:#dc3545;--sa:#667eea;--bi:#f5576c;--ty:#34a853
 }
-body{
-  font-family:'Inter',system-ui,-apple-system,sans-serif;
-  background:var(--bg);color:var(--txt);
-  line-height:1.6;-webkit-font-smoothing:antialiased;
-}
-
-/* ── APP SHELL ── */
-.app-shell{display:flex;flex-direction:column;height:100dvh;overflow:hidden}
-
-/* ── TOP BAR ── */
-.topbar{
-  background:linear-gradient(135deg,var(--pri-d) 0%,var(--pri) 60%,var(--purple) 100%);
-  color:#fff;padding:12px 16px;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-shrink:0;z-index:100;
-  box-shadow:0 2px 8px rgba(79,70,229,.4);
-}
-.topbar-left h1{font-size:1rem;font-weight:800;letter-spacing:-.3px}
-.topbar-left p{font-size:.72rem;opacity:.75;margin-top:1px}
-.topbar-right{display:flex;align-items:center;gap:8px}
-.db-badge{
-  font-size:.65rem;padding:3px 10px;border-radius:20px;font-weight:700;
-  background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);
-  backdrop-filter:blur(4px);
-}
-.db-badge.ok{background:rgba(16,185,129,.25);border-color:rgba(16,185,129,.5)}
-.db-badge.err{background:rgba(239,68,68,.25);border-color:rgba(239,68,68,.5)}
-
-
-
-
-/* ── DAY NAV ── */
-.day-nav{
-  background:var(--card);border-bottom:1px solid var(--bdr);
-  display:flex;overflow-x:auto;padding:5px 10px;gap:4px;flex-shrink:0;
-  scrollbar-width:none;-webkit-overflow-scrolling:touch;
-}
-.day-nav::-webkit-scrollbar{display:none}
-.dnb{
-  flex-shrink:0;padding:4px 11px;border-radius:16px;
-  font-size:.7rem;font-weight:600;cursor:pointer;
-  border:1.5px solid var(--bdr);background:var(--card);
-  color:var(--txt2);transition:all .15s;white-space:nowrap;
-}
-.dnb:hover{border-color:var(--pri);color:var(--pri);background:var(--pri-l)}
-.dnb.on{background:var(--pri);color:#fff;border-color:var(--pri);box-shadow:0 2px 8px rgba(79,70,229,.3)}
-.dnb.sp{border-color:var(--bdr);color:var(--txt2)}
-.dnb.sp.on{background:var(--acc);color:#fff;border-color:var(--acc);box-shadow:0 2px 8px rgba(245,158,11,.3)}
-
-/* ── MAIN LAYOUT ── */
-.body-area{
-  display:flex;flex:1;overflow:hidden;
-}
-/* LEFT SIDEBAR — fixed width, always visible on desktop */
-.sidebar{
-  width:300px;flex-shrink:0;
-  border-right:1px solid var(--bdr);
-  overflow-y:auto;background:var(--card);
-  display:flex;flex-direction:column;
-}
-/* MAIN CONTENT */
-.main-content{
-  flex:1;overflow-y:auto;
-  background:var(--bg);
-}
-.content-inner{padding:16px;max-width:700px;margin:0 auto}
-
-/* Mobile: hide sidebar, show bottom nav */
-@media(max-width:767px){
-  .sidebar{display:none}
-  .body-area{flex-direction:column}
-  .main-content{flex:1;overflow-y:auto;padding-bottom:12px}
-  
-  
-  
-  
-}
-@media(min-width:768px){}
-
-/* ── SIDEBAR SECTIONS ── */
-.sb-map{position:relative;height:220px;flex-shrink:0}
-.sb-map #map{height:100%;width:100%}
-.map-overlay-legend{
-  position:absolute;bottom:8px;left:8px;right:8px;
-  display:flex;gap:4px;flex-wrap:wrap;z-index:10;
-}
-.mol-btn{
-  font-size:.62rem;padding:2px 7px;border-radius:12px;
-  background:rgba(255,255,255,.92);border:1px solid rgba(0,0,0,.12);
-  font-weight:600;cursor:pointer;backdrop-filter:blur(4px);
-  transition:all .15s;box-shadow:0 1px 3px rgba(0,0,0,.1);
-}
-.mol-btn.on{background:var(--pri);color:#fff;border-color:var(--pri)}
-
-.sb-section{padding:14px;border-top:1px solid var(--bdr2)}
-.sb-section-title{
-  font-size:.72rem;font-weight:700;text-transform:uppercase;
-  letter-spacing:.8px;color:var(--txt3);margin-bottom:10px;
-  display:flex;align-items:center;justify-content:space-between;
-}
-.sb-section-title span{color:var(--pri);font-size:.72rem;font-weight:700;text-transform:none;letter-spacing:0}
-
-/* ── TASK ROWS ── */
-.task-row{
-  display:flex;align-items:flex-start;gap:8px;
-  padding:6px 0;border-bottom:1px solid var(--bdr2);
-}
-.task-row:last-of-type{border-bottom:none}
-.task-cb{width:16px;height:16px;accent-color:var(--pri);cursor:pointer;flex-shrink:0;margin-top:2px}
-.task-text{
-  flex:1;font-size:.8rem;line-height:1.4;cursor:pointer;
-  background:transparent;border:none;color:var(--txt);
-  font-family:inherit;padding:0;outline:none;word-break:break-word;
-}
-.task-text.done{text-decoration:line-through;color:var(--txt3)}
-.task-text[contenteditable=true]{
-  background:var(--pri-l);border-radius:4px;padding:1px 5px;
-  outline:2px solid var(--pri);
-}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:80px}
+.hdr{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:14px 16px 10px;position:sticky;top:0;z-index:1001;box-shadow:0 4px 16px rgba(0,0,0,.18)}
+.hdr h1{font-size:1.1rem;font-weight:800}
+.hdr-chips{display:flex;gap:6px;margin-top:5px;flex-wrap:wrap;align-items:center}
+.hdr-chips span{background:rgba(255,255,255,.18);padding:2px 8px;border-radius:16px;font-size:.68rem}
+.db-badge{font-size:.65rem;padding:2px 8px;border-radius:10px;font-weight:700;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3)}
+.db-badge.ok{background:rgba(52,168,83,.4)}.db-badge.err{background:rgba(220,53,69,.4)}
+.fl-ban{background:var(--pri-l);border-left:4px solid var(--pri);padding:10px 14px;margin:10px 10px 0;border-radius:0 10px 10px 0;font-size:.78rem;color:var(--txt2)}
+.fl-ban h3{font-size:.8rem;color:var(--pri);margin-bottom:4px;font-weight:700}
+.fl-ban hr{border:none;border-top:1px dashed #ccc;margin:6px 0}
+.fl-warn{font-size:.72rem;color:var(--acc);margin-top:4px;font-weight:600}
+.nav{display:flex;overflow-x:auto;padding:7px 10px;gap:5px;background:var(--card);border-bottom:1px solid var(--bdr);position:sticky;top:62px;z-index:1000;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nb{flex-shrink:0;padding:5px 11px;border:2px solid var(--bdr);border-radius:20px;background:var(--card);cursor:pointer;font-size:.73rem;font-weight:700;transition:all .15s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.nb.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.nb.sp{border-color:var(--acc);color:var(--acc)}.nb.sp.on{background:var(--acc);color:#fff}
+.main{max-width:1200px;margin:0 auto;padding:10px}
+.grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:768px){.grid{grid-template-columns:1fr 1fr}}
+.map-wrap{border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);height:200px}
+@media(min-width:768px){.map-wrap{height:340px}}
+#map{height:100%;width:100%}
+.map-legend{display:flex;gap:5px;margin-top:7px;flex-wrap:wrap}
+.map-legend span{font-size:.67rem;padding:3px 8px;border-radius:12px;cursor:pointer;border:1.5px solid var(--bdr);background:var(--card);font-weight:600;transition:all .15s}
+.map-legend span.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+@media(min-width:768px){.left-panel{position:sticky;top:118px;max-height:calc(100vh - 130px);overflow-y:auto}}
+.dcl-panel{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:12px 14px;margin-top:10px}
+.dcl-title{font-size:.85rem;font-weight:800;color:var(--pri);margin-bottom:6px}
+.dcl-prog{font-size:.72rem;color:var(--ok);font-weight:700;margin-bottom:5px}
+.dcl-bar{height:5px;background:var(--bdr);border-radius:3px;overflow:hidden;margin-bottom:8px}
+.dcl-bar-fill{height:100%;background:linear-gradient(90deg,var(--ok),var(--pri));border-radius:3px;transition:width .3s}
+.task-row{display:flex;align-items:flex-start;gap:6px;padding:5px 0;border-bottom:1px solid #f3f3f3}
+.task-row:last-child{border-bottom:none}
+.task-cb{width:17px;height:17px;accent-color:var(--pri);cursor:pointer;flex-shrink:0;margin-top:2px}
+.task-text{flex:1;font-size:.78rem;line-height:1.4;cursor:pointer;background:transparent;border:none;color:var(--txt);font-family:inherit;padding:0;outline:none;word-break:break-word}
+.task-text.done{text-decoration:line-through;color:var(--txt2)}
+.task-text[contenteditable=true]{background:var(--pri-l);border-radius:4px;padding:1px 4px;outline:1px solid var(--pri)}
 .task-actions{display:flex;gap:2px;opacity:0;transition:opacity .15s;flex-shrink:0}
 .task-row:hover .task-actions,.task-row:focus-within .task-actions{opacity:1}
-.task-btn{
-  border:none;background:none;cursor:pointer;font-size:.7rem;
-  padding:2px 4px;border-radius:4px;color:var(--txt3);line-height:1;
-}
-.task-btn:hover{background:var(--bdr2)}
-.task-btn.del:hover{background:var(--red-l);color:var(--red)}
-.add-task-row{display:flex;gap:6px;margin-top:8px}
-.add-task-inp{
-  flex:1;font-size:.78rem;border:1.5px solid var(--bdr);border-radius:8px;
-  padding:5px 10px;font-family:inherit;outline:none;background:var(--bg);
-  transition:border-color .15s;
-}
+.task-btn{border:none;background:none;cursor:pointer;font-size:.72rem;padding:2px 4px;border-radius:4px;color:var(--txt2);line-height:1}
+.task-btn:hover{background:var(--bg)}
+.task-btn.del:hover{background:#fde;color:var(--del)}
+.add-task-row{display:flex;gap:6px;margin-top:8px;padding-top:6px;border-top:1px dashed var(--bdr)}
+.add-task-inp{flex:1;font-size:.78rem;border:1px solid var(--bdr);border-radius:6px;padding:5px 8px;font-family:inherit;outline:none;background:var(--bg)}
 .add-task-inp:focus{border-color:var(--pri);background:#fff}
-.add-task-btn{
-  font-size:.75rem;background:var(--pri);color:#fff;border:none;
-  border-radius:8px;padding:5px 12px;cursor:pointer;font-weight:600;
-  transition:background .15s;
-}
-.add-task-btn:hover{background:var(--pri-d)}
-
-/* Progress bar */
-.prog-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-.prog-bar{flex:1;height:5px;background:var(--bdr);border-radius:3px;overflow:hidden}
-.prog-fill{height:100%;background:linear-gradient(90deg,var(--ok),var(--pri));border-radius:3px;transition:width .4s ease}
-.prog-label{font-size:.7rem;font-weight:600;color:var(--txt3);white-space:nowrap}
-
-/* ── BOOKING LINKS (sidebar) ── */
-.bk-row{
-  display:flex;align-items:center;gap:6px;
-  padding:6px 8px;border-radius:var(--r-sm);
-  background:var(--bg);margin-bottom:5px;
-  border:1.5px dashed var(--bdr);transition:border-color .15s;
-}
-.bk-row.has-url{border-style:solid;border-color:var(--ok-l);background:var(--ok-l)}
-.bk-label{font-size:.72rem;font-weight:600;flex-shrink:0;max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--txt2)}
-.bk-input{
-  flex:1;font-size:.7rem;border:none;background:transparent;
-  outline:none;color:var(--pri);font-family:inherit;min-width:0;
-}
-.bk-input::placeholder{color:var(--txt3)}
-.bk-open{
-  font-size:.65rem;color:var(--ok);font-weight:700;text-decoration:none;
-  flex-shrink:0;padding:2px 7px;border-radius:6px;
-  background:#d1fae5;white-space:nowrap;
-}
-.bk-del{background:none;border:none;cursor:pointer;color:var(--txt3);font-size:.7rem;padding:2px;flex-shrink:0}
-.bk-del:hover{color:var(--red)}
-
-/* ── MAIN CONTENT CARDS ── */
-.cd{
-  background:var(--card);border-radius:var(--r);
-  box-shadow:var(--sh);padding:16px;margin-bottom:14px;
-  border:1px solid var(--bdr2);
-}
-.cd-t{
-  font-size:.95rem;font-weight:700;margin-bottom:12px;
-  display:flex;align-items:center;gap:7px;color:var(--txt);
-}
-
-/* Day header */
-.day-hdr{
-  border-radius:var(--r);padding:16px;margin-bottom:14px;
-  color:#fff;position:relative;overflow:hidden;
-}
-.day-hdr::before{
-  content:'';position:absolute;top:-30px;right:-30px;
-  width:120px;height:120px;border-radius:50%;
-  background:rgba(255,255,255,.08);
-}
-.day-hdr.blue{background:linear-gradient(135deg,#1e40af,#3b82f6)}
-.day-hdr.green{background:linear-gradient(135deg,#065f46,#10b981)}
-.day-hdr.orange{background:linear-gradient(135deg,#92400e,#f59e0b)}
-.day-hdr.purple{background:linear-gradient(135deg,#4c1d95,#8b5cf6)}
-.day-hdr.red{background:linear-gradient(135deg,#991b1b,#ef4444)}
-.day-hdr.indigo{background:linear-gradient(135deg,#312e81,#6366f1)}
-.day-hdr h2{font-size:1.05rem;font-weight:800;margin-bottom:3px}
-.day-hdr p{font-size:.78rem;opacity:.85}
-.day-hdr-chip{
-  display:inline-flex;align-items:center;gap:4px;
-  background:rgba(255,255,255,.18);backdrop-filter:blur(4px);
-  padding:3px 10px;border-radius:20px;font-size:.7rem;font-weight:600;margin-top:8px;
-}
-
-/* Route button */
-.rt-btn{
-  display:inline-flex;align-items:center;gap:5px;color:#fff;
-  padding:6px 14px;border-radius:20px;font-size:.75rem;font-weight:600;
-  text-decoration:none;margin:0 6px 12px 0;
-  box-shadow:var(--sh-md);transition:transform .15s,box-shadow .15s;
-}
-.rt-btn:hover{transform:translateY(-1px);box-shadow:var(--sh-lg)}
-.rt-btn.grn{background:linear-gradient(135deg,#059669,#10b981)}
-.rt-btn.blu{background:linear-gradient(135deg,#1d4ed8,#3b82f6)}
-.rt-btn.org{background:linear-gradient(135deg,#d97706,#f59e0b)}
-.rt-btn.pur{background:linear-gradient(135deg,#6d28d9,#8b5cf6)}
-.rt-btn.red{background:linear-gradient(135deg,#b91c1c,#ef4444)}
-
-/* ── TIMELINE ── */
-.tl{position:relative;padding-left:24px}
-.tl::before{
-  content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;
-  background:linear-gradient(to bottom,var(--pri),var(--acc));
-  border-radius:2px;opacity:.3;
-}
-.ti{
-  position:relative;margin-bottom:14px;
-  padding:12px 14px;background:var(--card);
-  border-radius:var(--r);box-shadow:var(--sh);
-  border:1px solid var(--bdr2);
-  border-left:3px solid var(--pri);
-  transition:box-shadow .15s;
-}
-.ti:hover{box-shadow:var(--sh-md)}
-.ti::before{
-  content:'';position:absolute;left:-19px;top:16px;
-  width:10px;height:10px;border-radius:50%;
-  background:var(--pri);border:2px solid var(--card);
-  box-shadow:0 0 0 2px var(--pri);
-}
-.ti.ev{border-left-color:var(--acc)}
-.ti.ev::before{background:var(--acc);box-shadow:0 0 0 2px var(--acc)}
-.ti.hotel-ti{border-left-color:var(--ok)}
-.ti.hotel-ti::before{background:var(--ok);box-shadow:0 0 0 2px var(--ok)}
-.ti-t{
-  font-size:.68rem;font-weight:700;text-transform:uppercase;
-  letter-spacing:.5px;color:var(--txt3);margin-bottom:4px;
-}
-.ti-p{
-  font-size:.9rem;font-weight:700;color:var(--txt);
-  display:flex;align-items:flex-start;gap:6px;flex-wrap:wrap;margin-bottom:4px;
-}
-.ti-sub{
-  font-size:.72rem;color:var(--txt3);font-weight:400;
-  display:block;margin-top:2px;
-}
-.ti-d{font-size:.8rem;color:var(--txt2);line-height:1.5}
-.ti-c{
-  display:inline-flex;align-items:center;gap:4px;
-  font-size:.72rem;font-weight:600;color:var(--ok);
-  margin-top:5px;background:var(--ok-l);
-  padding:2px 8px;border-radius:10px;
-}
-.ti-tip{
-  font-size:.72rem;color:var(--acc);margin-top:5px;
-  font-style:italic;display:flex;align-items:flex-start;gap:4px;
-}
-.ti-note{
-  font-size:.73rem;margin-top:6px;
-  background:var(--pri-l);color:var(--pri-d);
-  padding:5px 10px;border-radius:6px;
-  border-left:3px solid var(--pri);line-height:1.4;
-}
-.ti-note.warn{background:var(--red-l);color:#991b1b;border-left-color:var(--red)}
-
-/* Inline booking inside timeline */
-.ti-bk{
-  display:flex;align-items:center;gap:7px;margin-top:8px;
-  padding:6px 10px;background:var(--pri-l);border-radius:8px;
-  border:1.5px dashed var(--pri);transition:all .15s;
-}
-.ti-bk.filled{background:var(--ok-l);border-color:var(--ok);border-style:solid}
+.add-task-btn{font-size:.75rem;background:var(--pri);color:#fff;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-weight:700}
+.bk-section{margin-top:10px;padding-top:8px;border-top:1px dashed var(--bdr)}
+.bk-title{font-size:.78rem;font-weight:700;color:var(--txt2);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+.bk-row{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+.bk-label{font-size:.73rem;font-weight:700;flex-shrink:0;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bk-input{flex:1;font-size:.71rem;border:1px solid var(--bdr);border-radius:5px;padding:4px 6px;font-family:inherit;outline:none;color:var(--pri);background:#fff;min-width:0}
+.bk-input:focus{border-color:var(--pri)}
+.bk-input::placeholder{color:#bbb}
+.bk-open{font-size:.68rem;color:var(--pri);text-decoration:none;flex-shrink:0;padding:3px 6px;border-radius:4px;border:1px solid var(--bdr);white-space:nowrap}
+.bk-del{font-size:.7rem;background:none;border:none;cursor:pointer;color:#ccc;padding:2px;flex-shrink:0}
+.bk-del:hover{color:var(--del)}
+.add-bk-row{display:flex;gap:5px;margin-top:6px}
+.add-bk-inp{flex:1;font-size:.72rem;border:1px solid var(--bdr);border-radius:6px;padding:4px 8px;font-family:inherit;outline:none;background:var(--bg)}
+.add-bk-inp:focus{border-color:var(--pri);background:#fff}
+.add-bk-btn{font-size:.72rem;background:var(--ok);color:#fff;border:none;border-radius:6px;padding:4px 10px;cursor:pointer;font-weight:700}
+.cd{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:14px;margin-bottom:12px}
+.cd-t{font-size:1rem;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.tl{position:relative;padding-left:20px}
+.tl::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--pri),var(--acc));border-radius:2px}
+.ti{position:relative;margin-bottom:14px;padding:10px 12px;background:var(--bg);border-radius:8px;border-left:3px solid var(--pri)}
+.ti::before{content:'';position:absolute;left:-17px;top:14px;width:8px;height:8px;border-radius:50%;background:var(--pri);border:2px solid #fff;box-shadow:0 0 0 2px var(--pri)}
+.ti.ev{border-left-color:var(--acc)}.ti.ev::before{background:var(--acc);box-shadow:0 0 0 2px var(--acc)}
+.ti.hotel-ti{border-left-color:#e67e22}.ti.hotel-ti::before{background:#e67e22;box-shadow:0 0 0 2px #e67e22}
+.ti-t{font-size:.7rem;color:var(--txt2);font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+.ti-p{font-size:.9rem;font-weight:800;margin:3px 0;display:flex;align-items:flex-start;gap:5px;flex-wrap:wrap}
+.ti-sub{font-size:.72rem;color:var(--txt2);font-weight:400;display:block;margin-top:1px}
+.ti-d{font-size:.8rem;color:var(--txt2);margin-top:2px}
+.ti-c{font-size:.73rem;color:var(--ok);font-weight:700;margin-top:4px}
+.ti-tip{font-size:.73rem;color:var(--acc);margin-top:3px;font-style:italic}
+.ti-note{font-size:.73rem;color:#6200ea;margin-top:4px;background:#f3e5ff;padding:4px 8px;border-radius:5px;border-left:3px solid #6200ea}
+/* INLINE BOOKING LINK */
+.ti-bk{display:flex;align-items:center;gap:6px;margin-top:7px;padding:5px 8px;background:rgba(26,115,232,.06);border-radius:6px;border:1px dashed var(--pri)}
 .ti-bk-label{font-size:.7rem;font-weight:700;color:var(--pri);flex-shrink:0;white-space:nowrap}
-.ti-bk.filled .ti-bk-label{color:var(--ok)}
-.ti-bk-input{
-  flex:1;font-size:.7rem;border:none;background:transparent;
-  outline:none;color:var(--txt);font-family:inherit;min-width:0;
-}
-.ti-bk-input::placeholder{color:var(--txt3)}
-.ti-bk-open{
-  font-size:.65rem;font-weight:700;color:var(--ok);text-decoration:none;
-  flex-shrink:0;background:#d1fae5;padding:2px 8px;border-radius:6px;white-space:nowrap;
-}
-
-/* ── INLINE PHOTO/FOOD LINKS ── */
-.il-group{
-  margin-top:10px;padding-top:8px;
-  border-top:1px dashed var(--bdr);
-  display:flex;flex-direction:column;gap:3px;
-}
-.il-link{
-  display:flex;align-items:flex-start;gap:8px;
-  text-decoration:none;padding:5px 8px;border-radius:8px;
-  transition:background .12s;
-}
-.il-link:hover{background:var(--bdr2)}
+.ti-bk-input{flex:1;font-size:.7rem;border:none;background:transparent;outline:none;color:var(--txt);font-family:inherit;min-width:0}
+.ti-bk-input::placeholder{color:#bbb}
+.ti-bk-open{font-size:.68rem;color:var(--pri);text-decoration:none;flex-shrink:0;padding:2px 6px;border-radius:4px;border:1px solid var(--pri);white-space:nowrap}
+/* INLINE LINKS */
+.il-group{margin-top:8px;border-top:1px dashed var(--bdr);padding-top:6px;display:flex;flex-direction:column;gap:3px}
+.il-link{display:flex;align-items:flex-start;gap:7px;text-decoration:none;padding:4px 6px;border-radius:6px;transition:background .12s}
+.il-link:hover{background:rgba(0,0,0,.04)}
 .il-icon{font-size:.9rem;flex-shrink:0;margin-top:1px}
-.il-name{font-size:.75rem;font-weight:600;display:block}
-.il-tip{font-size:.67rem;color:var(--txt3);display:block;margin-top:1px}
-.il-photo .il-name{color:#7c3aed}
-.il-food .il-name{color:#d97706}
-
-/* ── RANK BADGE ── */
-.rb{
-  display:inline-flex;align-items:center;justify-content:center;
-  min-width:22px;height:22px;border-radius:50%;
-  background:linear-gradient(135deg,var(--acc),#f97316);
-  color:#fff;font-size:.65rem;font-weight:800;
-  flex-shrink:0;cursor:pointer;transition:transform .15s;
-  box-shadow:0 2px 4px rgba(245,158,11,.4);
-}
+.il-name{font-size:.75rem;font-weight:700;display:block}
+.il-tip{font-size:.68rem;color:var(--txt2);display:block;margin-top:1px}
+.il-photo .il-name{color:#6200ea}
+.il-food .il-name{color:var(--acc)}
+.rb{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#ff6b35,#ff9f1c);color:#fff;font-size:.65rem;font-weight:900;flex-shrink:0;cursor:pointer;transition:transform .15s}
 .rb:hover{transform:scale(1.2)}
-
-/* ── NOTES ── */
-.nt{
-  border-radius:var(--r-sm);padding:10px 12px;margin-bottom:10px;
-  font-size:.78rem;line-height:1.5;
-}
-.nt.warn{background:#fef3c7;border-left:4px solid var(--acc);color:#78350f}
-.nt.dng{background:var(--red-l);border-left:4px solid var(--red);color:#7f1d1d}
-.nt.inf{background:var(--pri-l);border-left:4px solid var(--pri);color:var(--pri-d)}
-.nt b{display:block;margin-bottom:3px;font-weight:700;font-size:.76rem}
-
-/* ── MUST DO ── */
-.md-city-hdr{
-  display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:700;
-  padding:9px 12px;border-radius:var(--r-sm);margin-bottom:8px;margin-top:4px;
-}
-.md-city-hdr.taipei{background:var(--pri-l);color:var(--pri-d)}
-.md-city-hdr.newtaipei{background:#fef3c7;color:#78350f}
-.md-city-hdr.hualien{background:var(--ok-l);color:#065f46}
-.md-city-hdr.taichung{background:#f3e8ff;color:#4c1d95}
-.md-city-hdr.food{background:#fff7ed;color:#9a3412}
-.md-i{
-  display:flex;align-items:flex-start;gap:8px;
-  padding:8px 4px;border-bottom:1px solid var(--bdr2);font-size:.82rem;
-}
-.md-i:last-child{border-bottom:none}
+.dh{color:#fff;padding:14px 16px;border-radius:var(--r);margin-bottom:12px;background:linear-gradient(135deg,var(--pri),#4a90d9)}
+.dh h2{font-size:1.05rem;font-weight:800}
+.dh p{font-size:.8rem;opacity:.9;margin-top:3px}
+.dh-tr{display:inline-block;background:rgba(255,255,255,.2);padding:3px 8px;border-radius:10px;font-size:.7rem;margin-top:6px}
+.dh.red{background:linear-gradient(135deg,#dc3545,#c82333)}
+.nt{border-radius:8px;padding:10px 12px;margin-bottom:8px;font-size:.8rem;border-left:4px solid var(--warn);background:#fff3cd}
+.nt.dng{background:#f8d7da;border-left-color:#dc3545}
+.nt.inf{background:var(--pri-l);border-left-color:var(--pri)}
+.nt b{display:block;margin-bottom:3px;font-size:.76rem}
+.rt-btn{display:inline-flex;align-items:center;gap:5px;color:#fff;padding:6px 14px;border-radius:20px;font-size:.75rem;font-weight:700;text-decoration:none;margin:0 6px 10px 0;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.rt-btn.grn{background:#34a853}.rt-btn.blu{background:#1a73e8}.rt-btn.org{background:#e67e22}.rt-btn.pur{background:#764ba2}.rt-btn.red{background:#dc3545}
+.tbl{width:100%;border-collapse:collapse;font-size:.8rem}
+.tbl th,.tbl td{padding:7px 8px;text-align:left;border-bottom:1px solid var(--bdr)}
+.tbl th{background:var(--bg);font-weight:700;font-size:.7rem;text-transform:uppercase;color:var(--txt2);cursor:pointer;user-select:none}
+.tbl th.sorted .sa{opacity:1;color:var(--pri)}
+.tbl th .sa{font-size:.6rem;margin-left:2px;opacity:.5}
+.tbl-tot{font-weight:800;color:var(--pri)}
+/* MUST DO */
+.md-city{margin-bottom:18px}
+.md-city-hdr{display:flex;align-items:center;gap:8px;font-size:.95rem;font-weight:800;margin-bottom:10px;padding:8px 12px;background:var(--pri-l);border-radius:8px;border-left:4px solid var(--pri)}
+.md-i{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid #f3f3f3;font-size:.82rem}
 .md-i input{width:18px;height:18px;accent-color:var(--pri);cursor:pointer;flex-shrink:0;margin-top:2px}
-.md-i.ck label{text-decoration:line-through;color:var(--txt3)}
+.md-i.ck label{text-decoration:line-through;color:var(--txt2)}
 .md-i label{cursor:pointer;flex:1}
-.md-name{font-weight:600;display:block;color:var(--txt)}
-.md-addr{font-size:.68rem;color:var(--txt3);margin-top:2px;display:block}
+.md-name{font-weight:700;display:block}
+.md-addr{font-size:.7rem;color:var(--txt2);margin-top:2px;display:block}
 .md-sub{font-size:.7rem;color:var(--txt2);display:block;margin-top:1px}
-.md-gmap{
-  color:var(--pri);font-size:.85rem;flex-shrink:0;
-  text-decoration:none;margin-top:2px;opacity:.7;
-}
-.md-gmap:hover{opacity:1}
-.md-prog{font-size:.75rem;font-weight:600;color:var(--txt2);margin-bottom:6px}
+.md-gmap{color:var(--pri);font-size:.8rem;flex-shrink:0;text-decoration:none;margin-top:2px}
+.md-prog{font-size:.8rem;font-weight:700;color:var(--ok);margin-bottom:6px}
 .md-prog-bar{height:6px;background:var(--bdr);border-radius:3px;overflow:hidden;margin-bottom:14px}
 .md-prog-fill{height:100%;background:linear-gradient(90deg,var(--ok),var(--pri));border-radius:3px;transition:width .3s}
-
-/* ── TABLE ── */
-.tbl{width:100%;border-collapse:collapse;font-size:.8rem}
-.tbl th,.tbl td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--bdr2)}
-.tbl th{background:var(--bg);font-weight:700;font-size:.7rem;text-transform:uppercase;letter-spacing:.4px;color:var(--txt3);cursor:pointer;user-select:none}
-.tbl th:hover{color:var(--pri)}
-.tbl th.sorted .sa{opacity:1;color:var(--pri)}
-.tbl th .sa{font-size:.6rem;margin-left:2px;opacity:.4}
-.tbl tr:hover td{background:var(--bg)}
-.tbl-tot{font-weight:800;color:var(--pri)}
-
-/* ── OVERVIEW ROUTE LIST ── */
-.route-row{
-  display:flex;gap:8px;padding:9px 0;
-  border-bottom:1px solid var(--bdr2);align-items:center;flex-wrap:wrap;
-}
-.route-row:last-child{border-bottom:none}
-.route-date{font-size:.78rem;font-weight:700;color:var(--txt);min-width:60px}
-.route-desc{font-size:.78rem;color:var(--txt2);flex:1}
-
-/* ── MISC ── */
+/* BUDGET */
+.budget-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.bud-person{text-align:center;padding:10px;border-radius:10px;background:var(--bg)}
+.bud-person.sa{border-top:3px solid var(--sa)}.bud-person.bi{border-top:3px solid var(--bi)}.bud-person.ty{border-top:3px solid var(--ty)}
+.bud-name{font-size:.85rem;font-weight:800}
+.bud-est{font-size:.75rem;color:var(--txt2)}
+.bud-act{font-size:1rem;font-weight:800;color:var(--pri)}
+.bud-diff{font-size:.68rem;margin-top:2px}
+.bud-diff.over{color:var(--del)}.bud-diff.under{color:var(--ok)}
+.budget-table{width:100%;border-collapse:collapse;font-size:.78rem}
+.budget-table th{background:var(--bg);font-weight:700;font-size:.68rem;text-transform:uppercase;color:var(--txt2);padding:6px 8px;text-align:left;border-bottom:2px solid var(--bdr);white-space:nowrap}
+.budget-table td{padding:6px 8px;border-bottom:1px solid #f5f5f5;vertical-align:middle}
+.budget-table tr:hover td{background:#fafafa}
+.bud-cat-tag{display:inline-block;font-size:.58rem;padding:1px 5px;border-radius:8px;font-weight:700;color:#fff;margin-right:3px}
+.bud-cat-tag.transport{background:#667eea}.bud-cat-tag.hotel{background:#e67e22}
+.bud-cat-tag.activity{background:#27ae60}.bud-cat-tag.food{background:#ff6b35}
+.bud-cat-tag.shopping{background:#9b59b6}.bud-cat-tag.misc{background:#95a5a6}
+.bud-label-cell{min-width:120px}
+.bud-label-edit{background:transparent;border:none;font-family:inherit;font-size:.78rem;color:var(--txt);width:100%;outline:none;cursor:pointer}
+.bud-label-edit:focus{background:var(--pri-l);border-radius:3px;padding:1px 3px;cursor:text}
+.bud-num{width:70px}
+.bud-inp{width:70px;font-size:.78rem;border:1px solid var(--bdr);border-radius:4px;padding:3px 5px;font-family:inherit;text-align:right;outline:none}
+.bud-inp:focus{border-color:var(--pri);background:var(--pri-l)}
+.bud-cb-cell{text-align:center;width:36px}
+.bud-cb{width:16px;height:16px;cursor:pointer}
+.bud-cb.sa{accent-color:var(--sa)}.bud-cb.bi{accent-color:var(--bi)}.bud-cb.ty{accent-color:var(--ty)}
+.bud-del-btn{background:none;border:none;cursor:pointer;color:#ccc;font-size:.8rem;padding:2px}
+.bud-del-btn:hover{color:var(--del)}
+.bud-add-row{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.bud-add-inp{flex:1;min-width:140px;font-size:.78rem;border:1px solid var(--bdr);border-radius:6px;padding:5px 8px;font-family:inherit;outline:none;background:var(--bg)}
+.bud-add-inp:focus{border-color:var(--pri);background:#fff}
+.bud-cat-sel{font-size:.75rem;border:1px solid var(--bdr);border-radius:6px;padding:5px 6px;background:var(--bg);outline:none}
+.bud-add-btn{font-size:.75rem;background:var(--pri);color:#fff;border:none;border-radius:6px;padding:5px 12px;cursor:pointer;font-weight:700}
+.bud-footer{display:flex;align-items:center;gap:8px;margin-top:10px;padding-top:8px;border-top:2px solid var(--bdr);font-weight:800;font-size:.85rem}
 .tc{display:none}.tc.on{display:block}
-.no-tasks{font-size:.78rem;color:var(--txt3);font-style:italic;padding:6px 0}
-::-webkit-scrollbar{width:4px;height:4px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:4px}
-::-webkit-scrollbar-thumb:hover{background:var(--txt3)}
+@media(max-width:767px){
+  .bnav{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--bdr);display:flex;justify-content:space-around;padding:6px 0 env(safe-area-inset-bottom,8px);z-index:1002;box-shadow:0 -2px 10px rgba(0,0,0,.08)}
+  .bnav-i{display:flex;flex-direction:column;align-items:center;font-size:.6rem;color:var(--txt2);cursor:pointer;padding:2px 6px;-webkit-tap-highlight-color:transparent}
+  .bnav-i.on{color:var(--pri)}
+  .bnav-i span:first-child{font-size:1.1rem}
+  .budget-summary{grid-template-columns:repeat(3,1fr)}
+}
+@media(min-width:768px){.bnav{display:none}}
+::-webkit-scrollbar{height:0;width:0}
 
-/* ── BUDGET REDESIGN ── */
-.bud-summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
-.bud-card{text-align:center;padding:10px 6px;border-radius:var(--r);background:var(--card);border:2px solid var(--bdr);transition:border-color .15s}
+/* Budget */
+.bud-summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.bud-card{text-align:center;padding:10px 6px;border-radius:var(--r);background:var(--card);border:2px solid var(--bdr);transition:all .2s;cursor:pointer}
+.bud-card:hover{transform:translateY(-1px);box-shadow:var(--sh-md)}
 .bud-card.sa{border-color:var(--sa)}.bud-card.bi{border-color:var(--bi)}.bud-card.ty{border-color:var(--ty)}
+.bud-card.sa.active{box-shadow:0 0 0 3px var(--sa);transform:translateY(-2px)}
+.bud-card.bi.active{box-shadow:0 0 0 3px var(--bi);transform:translateY(-2px)}
+.bud-card.ty.active{box-shadow:0 0 0 3px var(--ty);transform:translateY(-2px)}
 .bud-avatar{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;color:#fff;margin:0 auto 5px}
 .bud-avatar.sa{background:var(--sa)}.bud-avatar.bi{background:var(--bi)}.bud-avatar.ty{background:var(--ty)}
-.bud-name{font-size:.75rem;font-weight:700;color:var(--txt)}
+.bud-name{font-size:.75rem;font-weight:700}
 .bud-est{font-size:.65rem;color:var(--txt3);margin-top:2px}
-.bud-act-vnd{font-size:.85rem;font-weight:800;color:var(--txt);margin-top:4px;line-height:1.2}
+.bud-act-vnd{font-size:.85rem;font-weight:800;margin-top:4px}
 .bud-act-twd{font-size:.65rem;color:var(--txt3);margin-top:1px}
 .bud-diff{font-size:.65rem;margin-top:3px;font-weight:600}
 .bud-diff.over{color:var(--red)}.bud-diff.under{color:var(--ok)}
-
 .bud-totals{display:flex;align-items:center;background:var(--card);border-radius:var(--r);padding:10px 14px;margin-bottom:12px;box-shadow:var(--sh);border:1px solid var(--bdr2)}
 .bud-total-item{flex:1;text-align:center}
 .bud-total-label{display:block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--txt3);margin-bottom:3px}
 .bud-total-val{display:block;font-size:.95rem;font-weight:800;color:var(--pri)}
-.bud-total-sub{display:block;font-size:.68rem;color:var(--txt3);margin-top:1px}
+.bud-total-sub{display:block;font-size:.68rem;color:var(--txt3)}
 .bud-total-divider{width:1px;background:var(--bdr);align-self:stretch;margin:0 8px}
-
-/* Budget item card — mobile-first */
-.bud-item-card{
-  background:var(--card);border-radius:var(--r-sm);
-  border:1px solid var(--bdr2);margin-bottom:8px;
-  overflow:hidden;box-shadow:var(--sh);
-}
-.bud-item-top{
-  display:flex;align-items:center;gap:8px;
-  padding:10px 12px;border-bottom:1px solid var(--bdr2);
-}
-.bud-item-cat{font-size:.7rem;flex-shrink:0}
-.bud-item-label{flex:1;font-size:.82rem;font-weight:600;color:var(--txt);min-width:0;
-  background:transparent;border:none;font-family:inherit;outline:none;cursor:pointer;
-}
+.bud-add-card{background:var(--card);border-radius:var(--r);border:2px dashed var(--pri);padding:14px;margin-bottom:12px;box-shadow:var(--sh)}
+.bud-add-inp{width:100%;font-size:.82rem;border:1.5px solid var(--bdr);border-radius:8px;padding:7px 10px;font-family:inherit;outline:none;background:var(--bg);transition:border-color .15s}
+.bud-add-inp:focus{border-color:var(--pri);background:#fff}
+.bud-add-select{font-size:.75rem;border:1.5px solid var(--bdr);border-radius:8px;padding:6px 8px;background:var(--bg);outline:none;cursor:pointer;flex:1}
+.bud-add-btn{font-size:.8rem;background:var(--pri);color:#fff;border:none;border-radius:8px;padding:8px 16px;cursor:pointer;font-weight:700;white-space:nowrap;transition:all .15s;box-shadow:0 2px 6px rgba(79,70,229,.3)}
+.bud-add-btn:hover{background:var(--pri-d)}.bud-add-btn:active{transform:scale(.97)}
+.bud-item-card{background:var(--card);border-radius:var(--r-sm);border:1px solid var(--bdr2);margin-bottom:8px;overflow:hidden;box-shadow:var(--sh)}
+.bud-item-top{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--bdr2)}
+.bud-cat-select{font-size:.7rem;border:1px solid var(--bdr);border-radius:6px;padding:3px 5px;background:var(--bg);outline:none;cursor:pointer}
+.bud-item-label{flex:1;font-size:.82rem;font-weight:600;color:var(--txt);background:transparent;border:none;font-family:inherit;outline:none;cursor:pointer;min-width:0}
 .bud-item-label:focus{background:var(--pri-l);border-radius:4px;padding:1px 5px;cursor:text}
 .bud-item-del{background:none;border:none;cursor:pointer;color:var(--txt3);font-size:.8rem;padding:3px;flex-shrink:0}
 .bud-item-del:hover{color:var(--red)}
-
 .bud-item-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.bud-item-col{padding:8px 12px}
-.bud-item-col:first-child{border-right:1px solid var(--bdr2)}
+.bud-item-col{padding:8px 12px}.bud-item-col:first-child{border-right:1px solid var(--bdr2)}
 .bud-item-col-label{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--txt3);margin-bottom:5px;display:block}
 .bud-cur-row{display:flex;gap:5px;margin-bottom:5px}
 .bud-cur-btn{flex:1;padding:3px 0;font-size:.7rem;font-weight:700;border-radius:6px;border:1.5px solid var(--bdr);background:var(--bg);color:var(--txt2);cursor:pointer;transition:all .15s}
 .bud-cur-btn.on{background:var(--pri);color:#fff;border-color:var(--pri)}
-.bud-amount-inp{
-  width:100%;font-size:.88rem;font-weight:700;border:1.5px solid var(--bdr);
-  border-radius:7px;padding:5px 8px;font-family:inherit;text-align:right;
-  outline:none;background:var(--bg);color:var(--txt);transition:border-color .15s;
-  -moz-appearance:textfield;
-}
+.bud-amount-inp{width:100%;font-size:.88rem;font-weight:700;border:1.5px solid var(--bdr);border-radius:7px;padding:5px 8px;font-family:inherit;text-align:right;outline:none;background:var(--bg);color:var(--txt);transition:border-color .15s;-moz-appearance:textfield}
 .bud-amount-inp:focus{border-color:var(--pri);background:#fff}
 .bud-amount-inp::-webkit-outer-spin-button,.bud-amount-inp::-webkit-inner-spin-button{-webkit-appearance:none}
 .bud-item-convert{font-size:.65rem;color:var(--txt3);margin-top:3px;text-align:right}
-
-.bud-item-footer{
-  display:flex;align-items:center;padding:6px 12px;
-  background:var(--bg);gap:8px;border-top:1px solid var(--bdr2);
-  flex-wrap:wrap;
-}
-.bud-person-toggle{
-  display:flex;align-items:center;gap:4px;
-  font-size:.72rem;font-weight:600;cursor:pointer;
-  padding:3px 8px;border-radius:8px;border:1.5px solid var(--bdr);
-  transition:all .15s;user-select:none;color:var(--txt2);background:var(--card);
-}
+.bud-item-footer{display:flex;align-items:center;padding:6px 12px;background:var(--bg);gap:6px;border-top:1px solid var(--bdr2);flex-wrap:wrap}
+.bud-person-toggle{display:flex;align-items:center;gap:4px;font-size:.72rem;font-weight:600;cursor:pointer;padding:3px 10px;border-radius:8px;border:1.5px solid var(--bdr);transition:all .15s;user-select:none;color:var(--txt2);background:var(--card)}
 .bud-person-toggle.sa.on{background:rgba(99,102,241,.12);border-color:var(--sa);color:var(--sa)}
 .bud-person-toggle.bi.on{background:rgba(236,72,153,.12);border-color:var(--bi);color:var(--bi)}
 .bud-person-toggle.ty.on{background:rgba(20,184,166,.12);border-color:var(--ty);color:var(--ty)}
-.bud-cat-select{font-size:.7rem;border:1px solid var(--bdr);border-radius:6px;padding:3px 5px;background:var(--bg);outline:none;color:var(--txt2);cursor:pointer}
-
-.bud-add-card{
-  background:var(--card);border-radius:var(--r-sm);
-  border:1.5px dashed var(--bdr);padding:12px;margin-top:4px;
-}
-.bud-add-inp{
-  width:100%;font-size:.82rem;border:1.5px solid var(--bdr);border-radius:8px;
-  padding:7px 10px;font-family:inherit;outline:none;background:var(--bg);
-  transition:border-color .15s;
-}
-.bud-add-inp:focus{border-color:var(--pri);background:#fff}
-.bud-add-select{
-  flex:1;font-size:.75rem;border:1.5px solid var(--bdr);border-radius:8px;
-  padding:6px 8px;background:var(--bg);outline:none;cursor:pointer;
-}
-.bud-add-btn{
-  font-size:.78rem;background:var(--pri);color:#fff;border:none;
-  border-radius:8px;padding:7px 16px;cursor:pointer;font-weight:700;
-  white-space:nowrap;transition:background .15s;
-}
-.bud-add-btn:hover{background:var(--pri-d)}
-
-
-.bud-card{cursor:pointer}
-.bud-card:hover{transform:translateY(-2px);box-shadow:var(--sh-md)}
-.bud-card.sa.active{box-shadow:0 0 0 3px var(--sa)!important;transform:translateY(-2px)}
-.bud-card.bi.active{box-shadow:0 0 0 3px var(--bi)!important;transform:translateY(-2px)}
-.bud-card.ty.active{box-shadow:0 0 0 3px var(--ty)!important;transform:translateY(-2px)}
 </style>
-<div class="app-shell">
-
-<!-- TOP BAR -->
-<div class="topbar">
-  <div class="topbar-left">
-    <h1>🇹🇼 Taiwan Trip 2026</h1>
-    <p>Sa · Bi · Ty &nbsp;·&nbsp; 25/04 – 02/05</p>
-  </div>
-  <div class="topbar-right">
+</head>
+<body>
+<div class="hdr">
+  <h1>🇹🇼 Taiwan 8 Ngày — Sa · Bi · Ty</h1>
+  <div class="hdr-chips">
+    <span>📅 25/04–02/05/2026</span>
+    <span>✈️ CI-782/783</span>
+    <span>👥 Sa · Bi · Ty</span>
     <span class="db-badge" id="dbBadge">⏳ Syncing...</span>
   </div>
 </div>
-
-
-
-<!-- DAY NAV -->
-<div class="day-nav">
-  <button class="dnb on" onclick="go('overview')">🗺️ Tổng quan</button>
-  <button class="dnb" onclick="go('day1')">25/04 ✈️</button>
-  <button class="dnb" onclick="go('day2')">26/04</button>
-  <button class="dnb" onclick="go('day3')">27/04</button>
-  <button class="dnb" onclick="go('day4')">28/04</button>
-  <button class="dnb" onclick="go('day5')">29/04</button>
-  <button class="dnb" onclick="go('day6')">30/04</button>
-  <button class="dnb" onclick="go('day7')">01/05</button>
-  <button class="dnb" onclick="go('day8')">02/05 ✈️</button>
-  <button class="dnb sp" onclick="go('mustdo')">⭐ Must Do</button>
-  <button class="dnb sp" onclick="go('budget')">💰 Chia tiền</button>
-  <button class="dnb sp" onclick="go('ranking')">🏆 Top 20</button>
+<div class="fl-ban">
+  <h3>✈️ China Airlines</h3>
+  <b>ĐI:</b> CI-782 | T7 25/04 | SGN 10:50 → TPE 15:20 (3h30)<br>
+  <b>VỀ:</b> CI-783 | T7 02/05 | TPE 13:45 → SGN 16:20 (3h35)<hr>
+  👤 Gia Bao (FMGKXZ) · Hoài Thanh + Quỳnh Hương (DW9ZY2) · 🧳 7kg + 23kg × 3
+  <div class="fl-warn">⚠️ Check-in 90 phút trước · Ngày về ra sân bay trước 11:45</div>
 </div>
-
-<!-- BODY -->
-<div class="body-area">
-
-  <!-- LEFT SIDEBAR -->
-  <div class="sidebar">
-    <!-- MAP -->
-    <div class="sb-map">
-      <div id="map"></div>
-      <div class="map-overlay-legend">
-        <button class="mol-btn on" onclick="mapMode('all',event)">Tất cả</button>
-        <button class="mol-btn" onclick="mapMode('day1',event)">N1</button>
-        <button class="mol-btn" onclick="mapMode('day2',event)">N2</button>
-        <button class="mol-btn" onclick="mapMode('day3',event)">N3</button>
-        <button class="mol-btn" onclick="mapMode('day4',event)">N4</button>
-        <button class="mol-btn" onclick="mapMode('day5',event)">N5</button>
-        <button class="mol-btn" onclick="mapMode('day6',event)">N6</button>
-        <button class="mol-btn" onclick="mapMode('day7',event)">N7</button>
-        <button class="mol-btn" onclick="mapMode('day8',event)">N8</button>
-      </div>
-    </div>
-
-    <!-- DAY CHECKLIST -->
-    <div class="sb-section">
-      <div class="sb-section-title">
-        <span id="dclTitle">📋 Checklist Ngày</span>
-      </div>
-      <div class="prog-row">
-        <div class="prog-bar"><div class="prog-fill" id="dclBarFill" style="width:0%"></div></div>
-        <span class="prog-label" id="dclProg"></span>
-      </div>
-      <div id="dclPanel"><div class="no-tasks">Chọn một ngày để xem checklist.</div></div>
-    </div>
-
-    <!-- BOOKING LINKS -->
-    <div class="sb-section" id="bkPanel" style="display:none"></div>
+<nav class="nav">
+  <button class="nb on" onclick="go('overview')">🗺️ Tổng quan</button>
+  <button class="nb" onclick="go('day1')">25/04 ✈️</button>
+  <button class="nb" onclick="go('day2')">26/04</button>
+  <button class="nb" onclick="go('day3')">27/04</button>
+  <button class="nb" onclick="go('day4')">28/04</button>
+  <button class="nb" onclick="go('day5')">29/04</button>
+  <button class="nb" onclick="go('day6')">30/04</button>
+  <button class="nb" onclick="go('day7')">01/05</button>
+  <button class="nb" onclick="go('day8')">02/05 ✈️</button>
+  <button class="nb sp" onclick="go('mustdo')">⭐</button>
+  <button class="nb sp" onclick="go('budget')">💰</button>
+  <button class="nb sp" onclick="go('ranking')">🏆</button>
+</nav>
+<div class="main"><div class="grid">
+<div class="left-panel">
+  <div class="map-wrap"><div id="map"></div></div>
+  <div class="map-legend">
+    <span class="on" onclick="mapMode('all',event)">Tất cả</span>
+    <span onclick="mapMode('day1',event)">N1</span>
+    <span onclick="mapMode('day2',event)">N2</span>
+    <span onclick="mapMode('day3',event)">N3</span>
+    <span onclick="mapMode('day4',event)">N4</span>
+    <span onclick="mapMode('day5',event)">N5</span>
+    <span onclick="mapMode('day6',event)">N6</span>
+    <span onclick="mapMode('day7',event)">N7</span>
+    <span onclick="mapMode('day8',event)">N8</span>
   </div>
-
-  <!-- MAIN CONTENT -->
-  <div class="main-content">
-    <div class="content-inner" id="ca">
-
+  <div class="dcl-panel">
+    <div class="dcl-title" id="dclTitle">📋 Checklist Ngày</div>
+    <div class="dcl-prog" id="dclProg"></div>
+    <div class="dcl-bar"><div class="dcl-bar-fill" id="dclBarFill" style="width:0%"></div></div>
+    <div id="dclPanel"><div style="font-size:.78rem;color:var(--txt2)">Chọn một ngày để xem checklist.</div></div>
+    <div id="bkPanel"></div>
+  </div>
+</div>
+<div id="ca">
 
 <div class="tc on" id="tab-overview">
-  <div class="day-hdr blue"><h2>🗺️ Tổng Quan 8 Ngày</h2><p>Đài Bắc (3đ) → Hoa Liên (2đ) → Đài Trung (1đ) → Đài Bắc (1đ)</p></div>
+  <div class="dh"><h2>🗺️ Tổng Quan 8 Ngày</h2><p>Đài Bắc (3đ) → Hoa Liên (2đ) → Đài Trung (1đ) → Đài Bắc (1đ)</p></div>
   <div class="cd"><div class="cd-t">📍 Lộ trình</div><div style="font-size:.82rem">
     <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(5)" title="#5">5</span><b>25/04</b> ✈️ SGN→TPE · Ximending</div>
     <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(1)" title="#1">1</span><span class="rb" onclick="zoomRank(4)" title="#4">4</span><span class="rb" onclick="zoomRank(6)" title="#6">6</span><span class="rb" onclick="zoomRank(7)" title="#7">7</span><b>26/04</b> 101 · Yongkang · Elephant Mt · Raohe</div>
@@ -622,7 +314,7 @@ body{
 </div>
 
 <div class="tc on" id="tab-day1">
-  <div class="day-hdr indigo"><h2>N1 — T7 25/04 — Arrival Đài Bắc</h2><p>CI-782 đến TPE 15:20 → SIM + EasyCard → Ximending</p><span class="day-hdr-chip">🚆 Airport MRT Express 35p</span></div>
+  <div class="dh"><h2>N1 — T7 25/04 — Arrival Đài Bắc</h2><p>CI-782 đến TPE 15:20 → SIM + EasyCard → Ximending</p><span class="dh-tr">🚆 Airport MRT Express 35p</span></div>
   <a href="https://www.google.com/maps/dir/25.0797,121.2342/25.0424,121.5068" target="_blank" class="rt-btn grn">🗺️ Route N1</a>
 
   <div class="cd"><div class="cd-t">📍 Lịch trình</div><div class="tl">    <div class="ti">
@@ -682,7 +374,7 @@ body{
 </div></div>
 </div>
 <div class="tc" id="tab-day2">
-  <div class="day-hdr blue"><h2>N2 — CN 26/04 — Đài Bắc Classic</h2><p>101 · Yongkang · Elephant Mt · Raohe</p><span class="day-hdr-chip">🚇 MRT cả ngày</span></div>
+  <div class="dh"><h2>N2 — CN 26/04 — Đài Bắc Classic</h2><p>101 · Yongkang · Elephant Mt · Raohe</p><span class="dh-tr">🚇 MRT cả ngày</span></div>
   <a href="https://www.google.com/maps/dir/25.0349,121.5219/25.0281,121.5298/25.034,121.5645/25.0272,121.5713/25.0505,121.5774" target="_blank" class="rt-btn grn">🗺️ Route N2</a>
 
   <div class="cd"><div class="cd-t">📍 Lịch trình</div><div class="tl">    <div class="ti">
@@ -748,7 +440,7 @@ body{
 </div></div>
 </div>
 <div class="tc" id="tab-day3">
-  <div class="day-hdr blue"><h2>N3 — T2 27/04 — Yehliu · Jiufen · Shifen</h2><p>Địa chất + Làng cổ + Thả đèn trời</p><span class="day-hdr-chip">🚌 Tour combo KKday</span></div>
+  <div class="dh"><h2>N3 — T2 27/04 — Yehliu · Jiufen · Shifen</h2><p>Địa chất + Làng cổ + Thả đèn trời</p><span class="dh-tr">🚌 Tour combo KKday</span></div>
   <a href="https://www.google.com/maps/dir/25.2056,121.6901/25.1097,121.8452/25.0425,121.7764/25.0558,121.5153" target="_blank" class="rt-btn grn">🗺️ Route N3</a>
 
   <div class="cd"><div class="cd-t">📍 Lịch trình</div><div class="tl">    <div class="ti">
@@ -814,7 +506,7 @@ body{
 </div></div>
 </div>
 <div class="tc" id="tab-day4">
-  <div class="day-hdr orange"><h2>N4 — T3 28/04 — Taipei → Hoa Liên</h2><p>TRA bờ Đông ✅ · Thuê xe máy · Taroko · Qingshui</p><span class="day-hdr-chip">🚆 Tze-Chiang 472 · 08:40 Taipei → 11:05 Hualien</span></div>
+  <div class="dh"><h2>N4 — T3 28/04 — Taipei → Hoa Liên</h2><p>TRA bờ Đông ✅ · Thuê xe máy · Taroko · Qingshui</p><span class="dh-tr">🚆 Tze-Chiang 472 · 08:40 Taipei → 11:05 Hualien</span></div>
   <a href="https://www.google.com/maps/dir/23.9712,121.6009/24.1588,121.6213/24.1718,121.6029/24.2288,121.7144/23.9771,121.6044" target="_blank" class="rt-btn grn">🗺️ Route N4</a>
 
   <div class="cd"><div class="cd-t">📍 Lịch trình</div><div class="tl">    <div class="ti">
@@ -902,7 +594,7 @@ body{
   <div class="nt dng"><b>📌 N4</b>Check trail Taroko trước. Mũ bảo hiểm xe máy bắt buộc. Cần IDP để thuê xe.</div>
 </div>
 <div class="tc" id="tab-day5">
-  <div class="day-hdr green"><h2>N5 — T4 29/04 — Hoa Liên Day 2</h2><p>Qixingtan · Shakadang · Tiaoshi · Chill</p><span class="day-hdr-chip">🏍️ Xe máy đã thuê · Ngày chill nhất</span></div>
+  <div class="dh"><h2>N5 — T4 29/04 — Hoa Liên Day 2</h2><p>Qixingtan · Shakadang · Tiaoshi · Chill</p><span class="dh-tr">🏍️ Xe máy đã thuê · Ngày chill nhất</span></div>
   <a href="https://www.google.com/maps/dir/23.9856,121.6186/24.1345,121.6198/24.0823,121.6535" target="_blank" class="rt-btn grn">🗺️ Route N5</a>
 
   <div class="cd"><div class="cd-t">📍 Lịch trình</div><div class="tl">    <div class="ti">
@@ -979,7 +671,7 @@ body{
 </div></div>
 </div>
 <div class="tc" id="tab-day6">
-  <div class="day-hdr green"><h2>N6 — T5 30/04 — Hoa Liên → Đài Trung</h2><p>TRA xuyên đảo · Miyahara · Rainbow · Gaomei · Fengjia</p><span class="day-hdr-chip">🚆 TRA Hualien→Taichung ~3.5h</span></div>
+  <div class="dh"><h2>N6 — T5 30/04 — Hoa Liên → Đài Trung</h2><p>TRA xuyên đảo · Miyahara · Rainbow · Gaomei · Fengjia</p><span class="dh-tr">🚆 TRA Hualien→Taichung ~3.5h</span></div>
   <a href="https://www.google.com/maps/dir/24.1382,120.6833/24.1339,120.6082/24.3125,120.5527/24.179,120.6463" target="_blank" class="rt-btn grn">🗺️ Route N6</a>
 
   <div class="cd"><div class="cd-t">📍 Lịch trình</div><div class="tl">    <div class="ti">
@@ -1061,7 +753,7 @@ body{
 </div></div>
 </div>
 <div class="tc" id="tab-day7">
-  <div class="day-hdr purple"><h2>N7 — T6 01/05 — Đài Trung → Đài Bắc</h2><p>SML option · HSR về · Beitou/Tamsui · Shilin</p><span class="day-hdr-chip">🚄 HSR Taichung→Taipei ~45p</span></div>
+  <div class="dh"><h2>N7 — T6 01/05 — Đài Trung → Đài Bắc</h2><p>SML option · HSR về · Beitou/Tamsui · Shilin</p><span class="dh-tr">🚄 HSR Taichung→Taipei ~45p</span></div>
   <a href="https://www.google.com/maps/dir/23.8491,120.9163/24.179,120.6463" target="_blank" class="rt-btn org">🗺️ SML option</a>
 
   <a href="https://www.google.com/maps/dir/25.1368,121.5067/25.088,121.5242" target="_blank" class="rt-btn blu">🗺️ Beitou→Shilin</a>
@@ -1147,7 +839,7 @@ body{
 </div></div>
 </div>
 <div class="tc" id="tab-day8">
-  <div class="day-hdr red"><h2>N8 — T7 02/05 — Bay về ✈️ 13:45</h2><p>⚠️ Ra sân bay trước 11:45 → Rời hotel ≤ 10:30</p><span class="day-hdr-chip">🚇 Airport MRT 35p</span></div>
+  <div class="dh red"><h2>N8 — T7 02/05 — Bay về ✈️ 13:45</h2><p>⚠️ Ra sân bay trước 11:45 → Rời hotel ≤ 10:30</p><span class="dh-tr">🚇 Airport MRT 35p</span></div>
   <a href="https://www.google.com/maps/dir/25.0505,121.5774/25.0797,121.2342" target="_blank" class="rt-btn red">🗺️ Chia Te→Sân bay</a>
 
   <div class="cd"><div class="cd-t">📍 Lịch trình</div><div class="tl">    <div class="ti">
@@ -1221,7 +913,7 @@ body{
 
     <!-- TAIPEI -->
     <div class="md-city">
-      <div class="md-city-hdr taipei">🏙️ Đài Bắc — Taipei</div>
+      <div class="md-city-hdr">🏙️ Đài Bắc — Taipei</div>
       <div class="md-i"><input type="checkbox" data-md="e3" onchange="mdChk(this)"><label><span class="md-name">Lên Taipei 101 tầng 89 台北101</span><span class="md-addr">📍 No. 7, Section 5, Xinyi Road, Xinyi District | 信義路五段7號</span><span class="md-sub">View 360° · Thang máy 37 giây</span></label><a href="https://www.google.com/maps/search/Taipei+101+Observatory" target="_blank" class="md-gmap">📍</a></div>
       <div class="md-i"><input type="checkbox" data-md="e2" onchange="mdChk(this)"><label><span class="md-name">Leo Elephant Mountain chụp 101 象山</span><span class="md-addr">📍 Xiangshan Trail, Xinyi District, Taipei | 象山步道，信義區</span><span class="md-sub">Golden hour 16:30-18:30 · Free</span></label><a href="https://www.google.com/maps/search/Elephant+Mountain+Taipei" target="_blank" class="md-gmap">📍</a></div>
       <div class="md-i"><input type="checkbox" data-md="c1" onchange="mdChk(this)"><label><span class="md-name">Xem đổi gác CKS Memorial 中正紀念堂</span><span class="md-addr">📍 No. 21, Zhongshan South Road, Zhongzheng District | 中山南路21號</span><span class="md-sub">Mỗi giờ chẵn · Free</span></label><a href="https://www.google.com/maps/search/CKS+Memorial+Hall+Taipei" target="_blank" class="md-gmap">📍</a></div>
@@ -1237,7 +929,7 @@ body{
 
     <!-- TAN BAC (NEW TAIPEI) -->
     <div class="md-city">
-      <div class="md-city-hdr newtaipei">🌊 Tân Bắc — New Taipei City</div>
+      <div class="md-city-hdr" style="background:#fff3cd;border-left-color:var(--warn)">🌊 Tân Bắc — New Taipei City</div>
       <div class="md-i"><input type="checkbox" data-md="e2b" onchange="mdChk(this)"><label><span class="md-name">Yehliu Geopark / 野柳地質公園 — Queen's Head</span><span class="md-addr">📍 No. 167-1, Gangdong Road, Wanli District, New Taipei | 萬里區港東路167-1號</span><span class="md-sub">Vé 80 TWD · Đến sớm tránh tour</span></label><a href="https://www.google.com/maps/search/Yehliu+Geopark+Taiwan" target="_blank" class="md-gmap">📍</a></div>
       <div class="md-i"><input type="checkbox" data-md="e6" onchange="mdChk(this)"><label><span class="md-name">Jiufen Old Street / 九份老街 — Đèn lồng đỏ</span><span class="md-addr">📍 Jiufen, Ruifang District, New Taipei | 瑞芳區九份老街</span><span class="md-sub">Chiều tối 17:00+ đẹp nhất</span></label><a href="https://www.google.com/maps/search/Jiufen+Old+Street+Taiwan" target="_blank" class="md-gmap">📍</a></div>
       <div class="md-i"><input type="checkbox" data-md="e1" onchange="mdChk(this)"><label><span class="md-name">Thả đèn trời Shifen 十分放天燈</span><span class="md-addr">📍 Shifen Old Street, Pingxi District, New Taipei | 平溪區十分老街</span><span class="md-sub">Đèn 200 TWD/4 màu · Viết ước muốn</span></label><a href="https://www.google.com/maps/search/Shifen+Sky+Lantern+Taiwan" target="_blank" class="md-gmap">📍</a></div>
@@ -1247,7 +939,7 @@ body{
 
     <!-- HUALIEN -->
     <div class="md-city">
-      <div class="md-city-hdr hualien">🏔️ Hoa Liên — Hualien</div>
+      <div class="md-city-hdr" style="background:#d4edda;border-left-color:var(--ok)">🏔️ Hoa Liên — Hualien</div>
       <div class="md-i"><input type="checkbox" data-md="e4" onchange="mdChk(this)"><label><span class="md-name">Đi tàu TRA bờ Đông view biển ✅</span><span class="md-addr">📍 Taipei Station → Hualien Station | 台北車站→花蓮車站 (Booking #6684500)</span><span class="md-sub">Tze-Chiang 472 · Ghế số chẵn bên phải</span></label><a href="https://www.google.com/maps/search/Taiwan+Railway+Hualien" target="_blank" class="md-gmap">📍</a></div>
       <div class="md-i"><input type="checkbox" data-md="e5" onchange="mdChk(this)"><label><span class="md-name">Đi bộ Taroko Gorge 太魯閣峽谷</span><span class="md-addr">📍 Taroko National Park, Xiulin Township, Hualien | 秀林鄉太魯閣國家公園</span><span class="md-sub">Hẻm núi đá cẩm thạch #1 châu Á</span></label><a href="https://www.google.com/maps/search/Taroko+Gorge+Taiwan" target="_blank" class="md-gmap">📍</a></div>
       <div class="md-i"><input type="checkbox" data-md="e9" onchange="mdChk(this)"><label><span class="md-name">Shakadang Trail suối ngọc lam 砂卡礑步道</span><span class="md-addr">📍 Shakadang Trailhead, Xiulin, Hualien | 秀林鄉砂卡礑步道入口</span><span class="md-sub">4.4km · Không cần permit · Dễ đi</span></label><a href="https://www.google.com/maps/search/Shakadang+Trail+Taroko" target="_blank" class="md-gmap">📍</a></div>
@@ -1262,7 +954,7 @@ body{
 
     <!-- TAICHUNG -->
     <div class="md-city">
-      <div class="md-city-hdr taichung">🌆 Đài Trung — Taichung</div>
+      <div class="md-city-hdr" style="background:#e8f4e8;border-left-color:#27ae60">🌆 Đài Trung — Taichung</div>
       <div class="md-i"><input type="checkbox" data-md="f_miya" onchange="mdChk(this)"><label><span class="md-name">Miyahara Ice Cream 宮原眼科</span><span class="md-addr">📍 No. 20, Zhongshan Road, Central District, Taichung | 中山路20號</span><span class="md-sub">Mái vòm sách Harry Potter · Kem multi-scoop</span></label><a href="https://www.google.com/maps/search/Miyahara+Taichung" target="_blank" class="md-gmap">📍</a></div>
       <div class="md-i"><input type="checkbox" data-md="c4" onchange="mdChk(this)"><label><span class="md-name">Rainbow Village 彩虹眷村</span><span class="md-addr">📍 No. 56, Chuncheng Road, Nantun District, Taichung | 南屯區春城路56號</span><span class="md-sub">Cụ ông 97 tuổi vẽ tay · Free</span></label><a href="https://www.google.com/maps/search/Rainbow+Village+Taichung" target="_blank" class="md-gmap">📍</a></div>
       <div class="md-i"><input type="checkbox" data-md="e11" onchange="mdChk(this)"><label><span class="md-name">Hoàng hôn Gaomei Wetlands 高美濕地</span><span class="md-addr">📍 Gaomei, Qingshui District, Taichung | 清水區高美濕地</span><span class="md-sub">Tuabin gió + sunset · Check triều trước!</span></label><a href="https://www.google.com/maps/search/Gaomei+Wetlands+Taichung" target="_blank" class="md-gmap">📍</a></div>
@@ -1272,7 +964,7 @@ body{
 
     <!-- FOOD GENERAL -->
     <div class="md-city">
-      <div class="md-city-hdr food">🍜 Ẩm thực — Phải thử</div>
+      <div class="md-city-hdr" style="background:#fff;border-left-color:var(--acc)">🍜 Ẩm thực — Phải thử</div>
       <div class="md-i"><input type="checkbox" data-md="f5" onchange="mdChk(this)"><label><span class="md-name">Stinky Tofu 臭豆腐</span><span class="md-addr">📍 Shilin / Raohe Night Market</span><span class="md-sub">Mùi đặc trưng · Must try once</span></label><a href="https://www.google.com/maps/search/stinky+tofu+Taipei+night+market" target="_blank" class="md-gmap">📍</a></div>
       <div class="md-i"><input type="checkbox" data-md="f6" onchange="mdChk(this)"><label><span class="md-name">Lu Rou Fan 滷肉飯 (Braised Pork Rice)</span><span class="md-addr">📍 Khắp Đài Loan · Ningxia Night Market</span><span class="md-sub">Comfort food kinh điển</span></label><a href="https://www.google.com/maps/search/lu+rou+fan+Taipei" target="_blank" class="md-gmap">📍</a></div>
       <div class="md-i"><input type="checkbox" data-md="f8" onchange="mdChk(this)"><label><span class="md-name">Oyster Omelette 蚵仔煎</span><span class="md-addr">📍 Shilin / Ningxia / Raohe Night Market</span><span class="md-sub">Hào chiên trứng · Classic Đài Loan</span></label><a href="https://www.google.com/maps/search/oyster+omelette+Taiwan" target="_blank" class="md-gmap">📍</a></div>
@@ -1297,40 +989,60 @@ body{
     </div>
   </div>
 
+  <!-- ADD ITEM — TOP -->
+  <div class="bud-add-card">
+    <div style="font-size:.8rem;font-weight:700;color:var(--txt);margin-bottom:8px">➕ Tạo khoản chi mới</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <input class="bud-add-inp" id="budNewLabel" placeholder="Tên khoản chi..."
+        style="flex:1;min-width:140px"
+        onkeydown="if(event.key==='Enter')addBudgetItem()">
+      <select class="bud-add-select" id="budNewCat">
+        <option value="transport">🚆 Di chuyển</option>
+        <option value="hotel">🏨 Khách sạn</option>
+        <option value="activity">🎫 Tham quan</option>
+        <option value="food" selected>🍜 Ăn uống</option>
+        <option value="shopping">🛍️ Mua sắm</option>
+        <option value="misc">🔧 Khác</option>
+      </select>
+      <button class="bud-add-btn" onclick="addBudgetItem()">+ Tạo mới</button>
+    </div>
+  </div>
+
   <!-- SUMMARY CARDS -->
   <div class="bud-summary-grid">
     <div class="bud-card sa" id="bCard_sa" onclick="setBudFilter('sa')" style="cursor:pointer">
       <div class="bud-avatar sa">Sa</div>
       <div class="bud-name">Sa</div>
       <div class="bud-est" id="saEst">Est: —</div>
-      <div class="bud-act-vnd" id="saActVND">0 VND</div>
+      <div class="bud-act-vnd" id="saActVND">0₫</div>
       <div class="bud-act-twd" id="saActTWD">≈ 0 TWD</div>
       <div class="bud-diff" id="saDiff"></div>
-      <div style="font-size:.58rem;color:var(--txt3);margin-top:3px" id="bHint_sa">Bấm để lọc</div>
+      <small style="font-size:.58rem;color:var(--txt3);display:block;margin-top:3px">Bấm để lọc</small>
     </div>
     <div class="bud-card bi" id="bCard_bi" onclick="setBudFilter('bi')" style="cursor:pointer">
       <div class="bud-avatar bi">Bi</div>
       <div class="bud-name">Bi</div>
       <div class="bud-est" id="biEst">Est: —</div>
-      <div class="bud-act-vnd" id="biActVND">0 VND</div>
+      <div class="bud-act-vnd" id="biActVND">0₫</div>
       <div class="bud-act-twd" id="biActTWD">≈ 0 TWD</div>
       <div class="bud-diff" id="biDiff"></div>
-      <div style="font-size:.58rem;color:var(--txt3);margin-top:3px" id="bHint_bi">Bấm để lọc</div>
+      <small style="font-size:.58rem;color:var(--txt3);display:block;margin-top:3px">Bấm để lọc</small>
     </div>
     <div class="bud-card ty" id="bCard_ty" onclick="setBudFilter('ty')" style="cursor:pointer">
       <div class="bud-avatar ty">Ty</div>
       <div class="bud-name">Ty</div>
       <div class="bud-est" id="tyEst">Est: —</div>
-      <div class="bud-act-vnd" id="tyActVND">0 VND</div>
+      <div class="bud-act-vnd" id="tyActVND">0₫</div>
       <div class="bud-act-twd" id="tyActTWD">≈ 0 TWD</div>
       <div class="bud-diff" id="tyDiff"></div>
-      <div style="font-size:.58rem;color:var(--txt3);margin-top:3px" id="bHint_ty">Bấm để lọc</div>
+      <small style="font-size:.58rem;color:var(--txt3);display:block;margin-top:3px">Bấm để lọc</small>
     </div>
   </div>
 
-  <div id="budFilterLabel" style="display:none;text-align:center;font-size:.74rem;font-weight:600;padding:5px 12px;border-radius:8px;margin-bottom:8px;background:var(--pri-l);color:var(--pri);cursor:pointer" onclick="setBudFilter(budFilter)">Đang lọc</div>
+  <!-- FILTER LABEL -->
+  <div id="budFilterLabel" style="display:none;text-align:center;font-size:.74rem;font-weight:600;padding:5px 12px;border-radius:8px;margin-bottom:8px;background:var(--pri-l);color:var(--pri);cursor:pointer" onclick="setBudFilter(budFilter)"></div>
 
-  <!-- TOTALS BAR -->
+  <!-- TOTALS -->
   <div class="bud-totals">
     <div class="bud-total-item">
       <span class="bud-total-label">Tổng Est</span>
@@ -1345,18 +1057,9 @@ body{
     </div>
   </div>
 
-  <!-- ITEM LIST (mobile-friendly cards instead of table) -->
+  <!-- ITEM LIST -->
   <div id="budgetBody"></div>
-
-  <!-- ADD ITEM -->
-  <div class="bud-add-card">
-    <input class="bud-add-inp" id="budNewLabel" placeholder="Tên khoản chi...">
-    <div style="display:flex;gap:6px;margin-top:7px">
-      <select class="bud-add-select" id="budNewCat">
-        <option value="transport">🚆 Di chuyển</option>
-        <option value="hotel">🏨 Khách sạn</option>
-        <option value="activity">🎫 Tham quan</option>
-        <o
+</div>
 
 <div class="tc" id="tab-ranking">
   <div class="cd"><div class="cd-t">🏆 Top 20 Điểm Đến</div>
@@ -1371,13 +1074,21 @@ body{
       </tr></thead>
       <tbody id="rankBody"></tbody>
     </table></div>
-    <div class="nt inf" style="margin-top:10px"><b>📌</b>Tất cả trong lịch trình. (*) = option. Click số → zoom map.</div>
   </div>
 </div>
+</div></div></div>
+<div class="bnav">
+  <div class="bnav-i on" onclick="go('overview')"><span>🗺️</span>Overview</div>
+  <div class="bnav-i" onclick="go('mustdo')"><span>⭐</span>Must Do</div>
+  <div class="bnav-i" onclick="go('budget')"><span>💰</span>Budget</div>
+  <div class="bnav-i" onclick="go('ranking')"><span>🏆</span>Ranking</div>
+</div>
 <script>
+
 const SUPA_URL='https://wvabjrxyymhpdpvuswfr.supabase.co',SUPA_KEY='sb_publishable_MMQYoRIvqb-gVByG-HV1Jg_iASCuCGE',SCHEMA='202604taiwan';
 let sb=null,SID=null;
-const TRIP_ID="202604taiwan_trip1"; // shared across all devices
+const TRIP_ID='202604taiwan_trip1';
+let _sharedIdCache=null;
 
 function devId(){let id=localStorage.getItem('tw26_dev');if(!id){id='d_'+Math.random().toString(36).slice(2,11)+'_'+Date.now();localStorage.setItem('tw26_dev',id);}return id;}
 async function sbInit(){
@@ -1385,65 +1096,41 @@ async function sbInit(){
     sb=window.supabase.createClient(SUPA_URL,SUPA_KEY,{db:{schema:SCHEMA}});
     const{data,error}=await sb.from('sessions').upsert({device_id:devId()},{onConflict:'device_id'}).select().single();
     if(error)throw error; SID=data.id;
-    // Upsert shared trip session (same for all 3 devices)
     await sb.from('sessions').upsert({device_id:TRIP_ID},{onConflict:'device_id'});
     setBadge('🟢 Synced','ok'); return true;
   }catch(e){console.error('SB:',e);setBadge('🔴 Offline','err');return false;}
 }
 function setBadge(t,c){const b=document.getElementById('dbBadge');b.textContent=t;b.className='db-badge '+c;}
 
-let _sharedIdCache=null;
 async function getSharedId(){
   if(_sharedIdCache)return _sharedIdCache;
-  if(sb){
-    const{data}=await sb.from('sessions').select('id').eq('device_id',TRIP_ID).single();
-    if(data){_sharedIdCache=data.id;}
-    return _sharedIdCache;
-  }
-  return null;
+  if(sb){const{data}=await sb.from('sessions').select('id').eq('device_id',TRIP_ID).single();if(data)_sharedIdCache=data.id;}
+  return _sharedIdCache;
 }
 async function getAllShared(tbl){
-  if(sb){
-    const sharedId=await getSharedId();
-    if(sharedId){const{data}=await sb.from(tbl).select('*').eq('session_id',sharedId);return data||[];}
-  }
-  return JSON.parse(localStorage.getItem('tw26_shared_'+tbl)||'[]');
-}
-async function upsertSharedKV(tbl,key,checked){
-  if(sb){
-    const sharedId=await getSharedId();
-    if(sharedId){
-      await sb.from(tbl).upsert({session_id:sharedId,item_key:key,checked,checked_at:checked?new Date().toISOString():null},{onConflict:'session_id,item_key'});
-      return;
-    }
-  }
-  const d=JSON.parse(localStorage.getItem('tw26_shared_kv_'+tbl)||'{}');
-  d[key]=checked;localStorage.setItem('tw26_shared_kv_'+tbl,JSON.stringify(d));
-}
-async function getAllSharedKV(tbl){
-  if(sb){
-    const sharedId=await getSharedId();
-    if(sharedId){const{data}=await sb.from(tbl).select('item_key,checked').eq('session_id',sharedId);const r={};(data||[]).forEach(x=>r[x.item_key]=x.checked);return r;}
-  }
-  return JSON.parse(localStorage.getItem('tw26_shared_kv_'+tbl)||'{}');
+  if(sb){const sid=await getSharedId();if(sid){const{data}=await sb.from(tbl).select('*').eq('session_id',sid);return data||[];}}
+  return JSON.parse(localStorage.getItem('tw26_sh_'+tbl)||'[]');
 }
 async function upsertShared(tbl,row){
-  if(sb){
-    const sharedId=await getSharedId();
-    if(sharedId){await sb.from(tbl).upsert({...row,session_id:sharedId},{onConflict:'session_id,id'});return;}
-  }
-  const arr=JSON.parse(localStorage.getItem('tw26_shared_'+tbl)||'[]');
+  if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).upsert({...row,session_id:sid},{onConflict:'session_id,id'});return;}}
+  const arr=JSON.parse(localStorage.getItem('tw26_sh_'+tbl)||'[]');
   const i=arr.findIndex(r=>r.id===row.id);
   if(i>=0)arr[i]={...arr[i],...row};else arr.push(row);
-  localStorage.setItem('tw26_shared_'+tbl,JSON.stringify(arr));
+  localStorage.setItem('tw26_sh_'+tbl,JSON.stringify(arr));
 }
 async function deleteShared(tbl,id){
-  if(sb){
-    const sharedId=await getSharedId();
-    if(sharedId){await sb.from(tbl).delete().eq('session_id',sharedId).eq('id',id);return;}
-  }
-  const arr=JSON.parse(localStorage.getItem('tw26_shared_'+tbl)||'[]').filter(r=>r.id!==id);
-  localStorage.setItem('tw26_shared_'+tbl,JSON.stringify(arr));
+  if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).delete().eq('session_id',sid).eq('id',id);return;}}
+  const arr=JSON.parse(localStorage.getItem('tw26_sh_'+tbl)||'[]').filter(r=>r.id!==id);
+  localStorage.setItem('tw26_sh_'+tbl,JSON.stringify(arr));
+}
+async function getAllSharedKV(tbl){
+  if(sb){const sid=await getSharedId();if(sid){const{data}=await sb.from(tbl).select('item_key,checked').eq('session_id',sid);const r={};(data||[]).forEach(x=>r[x.item_key]=x.checked);return r;}}
+  return JSON.parse(localStorage.getItem('tw26_sh_kv_'+tbl)||'{}');
+}
+async function upsertSharedKV(tbl,key,checked){
+  if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).upsert({session_id:sid,item_key:key,checked,checked_at:checked?new Date().toISOString():null},{onConflict:'session_id,item_key'});return;}}
+  const d=JSON.parse(localStorage.getItem('tw26_sh_kv_'+tbl)||'{}');d[key]=checked;
+  localStorage.setItem('tw26_sh_kv_'+tbl,JSON.stringify(d));
 }
 async function getAll(tbl){
   if(sb&&SID){const{data}=await sb.from(tbl).select('*').eq('session_id',SID);return data||[];}
@@ -1500,19 +1187,21 @@ function zoomRank(r){let found=null,fd=null;Object.entries(DL).forEach(([dk,locs
 let curDay='overview';
 function go(id){
   document.querySelectorAll('.tc').forEach(e=>e.classList.remove('on'));
-  document.querySelectorAll('.dnb').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.nb,.bnav-i').forEach(b=>b.classList.remove('on'));
   const el=document.getElementById('tab-'+id);if(el)el.classList.add('on');
-  document.querySelectorAll('.dnb').forEach(b=>{const t=b.textContent;
-    if((id==='overview'&&t.includes('Tổng quan'))||(DMAP[id]&&t.includes(DMAP[id]))||(id==='mustdo'&&t.includes('Must'))||(id==='budget'&&t.includes('Chia'))||(id==='ranking'&&t.includes('Top')))b.classList.add('on');
+  document.querySelectorAll('.nb').forEach(b=>{const t=b.textContent;
+    if((id==='overview'&&t.includes('Tổng quan'))||(DMAP[id]&&t.includes(DMAP[id]))||(id==='mustdo'&&t==='⭐')||(id==='budget'&&t==='💰')||(id==='ranking'&&t==='🏆'))b.classList.add('on');
   });
-  
+  document.querySelectorAll('.bnav-i').forEach(b=>{const t=b.textContent;
+    if((id==='overview'&&t.includes('Overview'))||(id==='mustdo'&&t.includes('Must'))||(id==='budget'&&t.includes('Budget'))||(id==='ranking'&&t.includes('Ranking')))b.classList.add('on');
+  });
   if(['overview','mustdo','budget'].includes(id)||id==='ranking'){showAll();hlLeg('all');}
   else if(id==='ranking'){showRanking();hlLeg(null);}
   else if(id.startsWith('day')){showDay(id);hlLeg(id);}
   curDay=id;
   if(id.startsWith('day')){renderDayChecklist(id);renderLeftBookings(id);}
   else{renderDayChecklist(null);renderLeftBookings(null);}
-  if(window.innerWidth<768){const mc=document.querySelector('.main-content');if(mc)mc.scrollTo({top:0,behavior:'smooth'});}
+  if(window.innerWidth<768)document.getElementById('ca').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function hlLeg(mode){document.querySelectorAll('.map-legend span').forEach(s=>{s.classList.remove('on');if(mode==='all'&&s.textContent==='Tất cả')s.classList.add('on');else if(mode&&mode.startsWith('day')&&s.textContent==='N'+mode.replace('day',''))s.classList.add('on');});}
 
@@ -1623,14 +1312,12 @@ async function loadTiBk(){
   rows.forEach(r=>{tiBkData[r.id]=r.url||'';if(r.url)updateTiBkUI(r.id,r.url);});
 }
 async function saveTiBk(inp){
-  const id=inp.getAttribute('data-bk');
-  const type=inp.getAttribute('data-type')||'other';
-  const url=inp.value.trim();
-  tiBkData[id]=url;
-  // Use data-day attribute (more reliable than DOM traversal)
-  const dk=inp.getAttribute('data-day')||inp.closest('[id^="tab-"]')?.id?.replace('tab-','')||'unknown';
+  const id=inp.getAttribute('data-bk');const type=inp.getAttribute('data-type')||'other';
+  const url=inp.value.trim();tiBkData[id]=url;
+  // Find day
+  const dayEl=inp.closest('.tc');const dk=dayEl?dayEl.id.replace('tab-',''):'unknown';
   const labelEl=inp.closest('.ti-bk')?.querySelector('.ti-bk-label');
-  const label=labelEl?labelEl.textContent.trim():'Booking';
+  const label=labelEl?labelEl.textContent:'Booking';
   await upsertShared('booking_links',{id,day_key:dk,link_type:type,label,url});
   updateTiBkUI(id,url);
 }
@@ -1639,10 +1326,7 @@ function updateTiBkUI(id,url){
   const openBtn=document.getElementById('bko_'+id);
   if(inp&&inp.value!==url)inp.value=url;
   if(openBtn){openBtn.style.display=url?'inline':'none';if(url)openBtn.href=url;}
-  if(inp){
-    const wrap=inp.closest('.ti-bk');
-    if(wrap){wrap.classList.toggle('filled',!!url);}
-  }
+  if(inp){const w=inp.closest('.ti-bk');if(w)w.classList.toggle('filled',!!url);}
 }
 
 // LEFT BOOKING LINKS (per day from timeline)
@@ -1667,14 +1351,9 @@ function renderLeftBookings(dk){
 }
 
 // MUST DO
-async function mdChk(cb){
-  const key=cb.getAttribute('data-md');const checked=cb.checked;
-  await upsertSharedKV('mustdo_progress',key,checked);
-  cb.closest('.md-i').classList.toggle('ck',checked);mdUpd();
-}
+async function mdChk(cb){const key=cb.getAttribute('data-md');await upsertSharedKV('mustdo_progress',key,cb.checked);cb.closest('.md-i').classList.toggle('ck',cb.checked);mdUpd();}
 async function mdInit(){
-  const d_kv=await getAllSharedKV('mustdo_progress');
-  const d=d_kv;
+  const d=await getAllSharedKV('mustdo_progress');
   document.querySelectorAll('[data-md]').forEach(cb=>{if(d[cb.getAttribute('data-md')]){cb.checked=true;cb.closest('.md-i').classList.add('ck');}});mdUpd();
 }
 function mdUpd(){const all=document.querySelectorAll('[data-md]');let tot=all.length,chk=0;all.forEach(cb=>{if(cb.checked)chk++;});document.getElementById('mdProg').textContent=`${chk}/${tot} hoàn thành`;document.getElementById('mdBar').style.width=`${Math.round(chk/tot*100)}%`;}
@@ -1682,22 +1361,22 @@ function mdUpd(){const all=document.querySelectorAll('[data-md]');let tot=all.le
 // BUDGET
 // ── BUDGET ────────────────────────────────────────────────────────────────────
 const DEFAULT_BUDGET=[
-  {label:'✈️ Vé CI-782/783 khứ hồi',category:'transport',est_vnd:0,act_vnd:0,est_cur:'VND',act_cur:'VND',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🚆 TRA Taipei→Hualien (×3)',category:'transport',est_vnd:0,act_vnd:1749,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🚆 TRA Hualien→Taichung (×3)',category:'transport',est_vnd:0,act_vnd:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🚄 HSR Taichung→Taipei (×3)',category:'transport',est_vnd:0,act_vnd:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🚇 MRT Đài Bắc (Airport + ngày)',category:'transport',est_vnd:800,act_vnd:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'📱 SIM Chunghwa 8 ngày',category:'misc',est_vnd:400,act_vnd:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'💳 EasyCard deposit + nạp',category:'misc',est_vnd:600,act_vnd:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🏨 Hotel Đài Bắc 4 đêm (N1-3+N7)',category:'hotel',est_vnd:0,act_vnd:0,est_cur:'VND',act_cur:'VND',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🏨 Hotel Hoa Liên 2 đêm (N4+N5)',category:'hotel',est_vnd:0,act_vnd:0,est_cur:'VND',act_cur:'VND',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🏨 Hotel Đài Trung 1 đêm (N6)',category:'hotel',est_vnd:0,act_vnd:0,est_cur:'VND',act_cur:'VND',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🏍️ Thuê xe máy Hoa Liên 2 ngày',category:'transport',est_vnd:350,act_vnd:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🚌 Tour Yehliu+Jiufen+Shifen (KKday)',category:'activity',est_vnd:1200,act_vnd:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🎫 Taipei 101 Observatory',category:'activity',est_vnd:600,act_vnd:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🍜 Ăn uống (estimate/ngày × 8)',category:'food',est_vnd:6400,act_vnd:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🛍️ Quà + Mua sắm',category:'shopping',est_vnd:2000,act_vnd:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🔄 Dự phòng',category:'misc',est_vnd:2000,act_vnd:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
+  {label:'✈️ Vé CI-782/783 khứ hồi',category:'transport',estimate:0,actual:0,est_cur:'VND',act_cur:'VND',for_sa:true,for_bi:true,for_ty:true},
+  {label:'🚆 TRA Taipei→Hualien (×3) ✅',category:'transport',estimate:1749,actual:1749,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
+  {label:'🚆 TRA Hualien→Taichung',category:'transport',estimate:680,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
+  {label:'🚄 HSR Taichung→Taipei',category:'transport',estimate:700,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
+  {label:'🚇 MRT Đài Bắc (Airport + ngày)',category:'transport',estimate:800,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
+  {label:'📱 SIM Chunghwa 8 ngày',category:'misc',estimate:400,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
+  {label:'💳 EasyCard deposit + nạp',category:'misc',estimate:600,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
+  {label:'🏨 Hotel Đài Bắc 4 đêm (N1-3+N7)',category:'hotel',estimate:0,actual:0,est_cur:'VND',act_cur:'VND',for_sa:true,for_bi:true,for_ty:true},
+  {label:'🏨 Hotel Hoa Liên 2 đêm (N4+N5)',category:'hotel',estimate:0,actual:0,est_cur:'VND',act_cur:'VND',for_sa:true,for_bi:true,for_ty:true},
+  {label:'🏨 Hotel Đài Trung 1 đêm (N6)',category:'hotel',estimate:0,actual:0,est_cur:'VND',act_cur:'VND',for_sa:true,for_bi:true,for_ty:true},
+  {label:'🏍️ Thuê xe máy Hoa Liên 2 ngày',category:'transport',estimate:350,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
+  {label:'🚌 Tour Yehliu+Jiufen+Shifen',category:'activity',estimate:1200,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
+  {label:'🎫 Taipei 101 Observatory',category:'activity',estimate:600,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
+  {label:'🍜 Ăn uống (estimate/ngày × 8)',category:'food',estimate:6400,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
+  {label:'🛍️ Quà + Mua sắm',category:'shopping',estimate:2000,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
+  {label:'🔄 Dự phòng',category:'misc',estimate:2000,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
 ];
 const CAT_ICON={transport:'🚆',hotel:'🏨',activity:'🎫',food:'🍜',shopping:'🛍️',misc:'🔧'};
 let budgetItems=[];
@@ -1706,42 +1385,34 @@ let budFilter=null;
 
 function setRate(r){if(r>0){budRate=r;calcBudgetSummary();renderBudget();}}
 
-// Convert any amount to VND
 function toVND(amount,currency){
   const n=Number(amount)||0;
-  return currency==='TWD'?n*budRate:n;
+  return currency==='VND'?n:n*budRate;
 }
-// Format VND
 function fmtVND(n){
   const r=Math.round(n/1000)*1000;
-  return r.toLocaleString('vi-VN')+'₫';
+  return r>=1000000?(r/1000000).toFixed(1)+'tr₫':r.toLocaleString('vi-VN')+'₫';
 }
-// Format TWD
 function fmtTWD(n){return Math.round(n).toLocaleString()+' TWD';}
 
 async function loadBudget(){
   const rows=await getAllShared('budget_items');
   if(rows.length===0){
     budgetItems=DEFAULT_BUDGET.map((d,i)=>({
-      id:genId(),
-      label:d.label,category:d.category,
-      estimate:d.est_vnd,actual:d.act_vnd,
-      est_cur:d.est_cur,act_cur:d.act_cur||'TWD',
-      item_currency:d.est_cur,
-      for_sa:d.for_sa,for_bi:d.for_bi,for_ty:d.for_ty,
-      sort_order:i
+      id:genId(),label:d.label,category:d.category,
+      estimate:d.estimate,actual:d.actual,
+      est_cur:d.est_cur,act_cur:d.act_cur,item_currency:d.est_cur,
+      for_sa:d.for_sa,for_bi:d.for_bi,for_ty:d.for_ty,sort_order:i
     }));
     for(const item of budgetItems)await upsertShared('budget_items',item);
   }else{
     budgetItems=rows.sort((a,b)=>(a.sort_order||0)-(b.sort_order||0));
-    // Migrate old rows that don't have est_cur/act_cur
     budgetItems.forEach(item=>{
       if(!item.est_cur)item.est_cur=item.item_currency||'TWD';
       if(!item.act_cur)item.act_cur=item.item_currency||'TWD';
     });
   }
-  renderBudget();
-  calcBudgetSummary();
+  renderBudget();calcBudgetSummary();
 }
 
 function setBudFilter(p){
@@ -1752,26 +1423,25 @@ function setBudFilter(p){
   });
   renderBudget();
 }
+
 function renderBudget(){
   const cont=document.getElementById('budgetBody');if(!cont)return;
   let html='';
-  const visItems=budFilter?budgetItems.filter(x=>x['for_'+budFilter]):budgetItems;
+  const vis=budFilter?budgetItems.filter(x=>x['for_'+budFilter]):budgetItems;
   const lbl=document.getElementById('budFilterLabel');
-  if(lbl){lbl.style.display=budFilter?'block':'none';if(budFilter)lbl.textContent='Lọc: '+{sa:'Sa',bi:'Bi',ty:'Ty'}[budFilter]+' — '+visItems.length+'/'+budgetItems.length+' khoản';}
-  visItems.forEach(item=>{
-    const estVND=toVND(item.estimate,item.est_cur||'TWD');
-    const actVND=toVND(item.actual,item.act_cur||'TWD');
-    const estConvert=item.est_cur==='TWD'
-      ?'≈ '+fmtVND(estVND)
-      :'≈ '+fmtTWD(estVND/budRate);
-    const actConvert=item.act_cur==='TWD'
-      ?'≈ '+fmtVND(actVND)
-      :'≈ '+fmtTWD(actVND/budRate);
-    const cat=CAT_ICON[item.category]||'🔧';
+  if(lbl){
+    lbl.style.display=budFilter?'block':'none';
+    if(budFilter)lbl.textContent='Lọc: '+{sa:'Sa',bi:'Bi',ty:'Ty'}[budFilter]+' — '+vis.length+'/'+budgetItems.length+' khoản (bấm để bỏ lọc)';
+  }
+  vis.forEach(item=>{
+    const estV=toVND(item.estimate,item.est_cur||'TWD');
+    const actV=toVND(item.actual,item.act_cur||'TWD');
+    const estConv=item.est_cur==='TWD'?'≈ '+fmtVND(estV):'≈ '+fmtTWD(estV/budRate);
+    const actConv=item.act_cur==='TWD'?'≈ '+fmtVND(actV):'≈ '+fmtTWD(actV/budRate);
     html+=`<div class="bud-item-card" id="bic_${item.id}">
       <div class="bud-item-top">
         <select class="bud-cat-select" onchange="updBud('${item.id}','category',this.value)">
-          ${['transport','hotel','activity','food','shopping','misc'].map(v=>'<option value="'+v+'" '+(item.category===v?'selected':'')+'>'+CAT_ICON[v]+'</option>').join('')}
+          ${['transport','hotel','activity','food','shopping','misc'].map(v=>'<option value="'+v+'"'+(item.category===v?' selected':'')+'>'+CAT_ICON[v]+'</option>').join('')}
         </select>
         <input class="bud-item-label" value="${escHtml(item.label)}"
           onchange="updBud('${item.id}','label',this.value)"
@@ -1788,7 +1458,7 @@ function renderBudget(){
           <input class="bud-amount-inp" type="number" value="${item.estimate||0}" min="0"
             onchange="updBud('${item.id}','estimate',+this.value)"
             onblur="updBud('${item.id}','estimate',+this.value)">
-          <div class="bud-item-convert">${estConvert}</div>
+          <div class="bud-item-convert">${estConv}</div>
         </div>
         <div class="bud-item-col">
           <span class="bud-item-col-label">Thực tế (tổng)</span>
@@ -1798,17 +1468,16 @@ function renderBudget(){
           </div>
           <input class="bud-amount-inp" type="number" value="${item.actual||0}" min="0"
             onchange="updBud('${item.id}','actual',+this.value)"
-            onblur="updBud('${item.id}','actual',+this.value)"
-            placeholder="0">
-          <div class="bud-item-convert">${actConvert}</div>
+            onblur="updBud('${item.id}','actual',+this.value)" placeholder="0">
+          <div class="bud-item-convert">${actConv}</div>
         </div>
       </div>
       <div class="bud-item-footer">
-        <span style="font-size:.65rem;color:var(--txt3);font-weight:600;margin-right:2px">Chia cho:</span>
+        <span style="font-size:.65rem;color:var(--txt3);font-weight:600;margin-right:4px">Chia cho:</span>
         <div class="bud-person-toggle sa ${item.for_sa?'on':''}" onclick="togglePerson('${item.id}','for_sa')">Sa</div>
         <div class="bud-person-toggle bi ${item.for_bi?'on':''}" onclick="togglePerson('${item.id}','for_bi')">Bi</div>
         <div class="bud-person-toggle ty ${item.for_ty?'on':''}" onclick="togglePerson('${item.id}','for_ty')">Ty</div>
-        ${actVND>0?'<span style="margin-left:auto;font-size:.7rem;font-weight:700;color:var(--txt2)">'+fmtVND(actVND)+'</span>':''}
+        ${actV>0?'<span style="margin-left:auto;font-size:.72rem;font-weight:700;color:var(--txt2)">'+fmtVND(actV)+'</span>':''}
       </div>
     </div>`;
   });
@@ -1817,104 +1486,79 @@ function renderBudget(){
 
 async function updBud(id,field,val){
   const item=budgetItems.find(x=>x.id===id);if(!item)return;
-  item[field]=val;
-  await upsertShared('budget_items',item);
-  // Refresh convert text and summary
+  item[field]=val;await upsertShared('budget_items',item);
   const card=document.getElementById('bic_'+id);
   if(card){
-    const estVND=toVND(item.estimate,item.est_cur||'TWD');
-    const actVND=toVND(item.actual,item.act_cur||'TWD');
+    const estV=toVND(item.estimate,item.est_cur||'TWD');
+    const actV=toVND(item.actual,item.act_cur||'TWD');
     const cvts=card.querySelectorAll('.bud-item-convert');
-    if(cvts[0])cvts[0].textContent=item.est_cur==='TWD'?'≈ '+fmtVND(estVND):'≈ '+fmtTWD(estVND/budRate);
-    if(cvts[1])cvts[1].textContent=item.act_cur==='TWD'?'≈ '+fmtVND(actVND):'≈ '+fmtTWD(actVND/budRate);
-    // Update actual total in footer
-    const footerAmt=card.querySelector('.bud-item-footer span[style*="margin-left:auto"]');
-    if(footerAmt)footerAmt.textContent=actVND>0?fmtVND(actVND):'';
+    if(cvts[0])cvts[0].textContent=item.est_cur==='TWD'?'≈ '+fmtVND(estV):'≈ '+fmtTWD(estV/budRate);
+    if(cvts[1])cvts[1].textContent=item.act_cur==='TWD'?'≈ '+fmtVND(actV):'≈ '+fmtTWD(actV/budRate);
+    const fa=card.querySelector('.bud-item-footer span[style*="margin-left:auto"]');
+    if(fa)fa.textContent=actV>0?fmtVND(actV):'';
   }
   calcBudgetSummary();
 }
-
 async function setBudCur(id,field,cur){
   const item=budgetItems.find(x=>x.id===id);if(!item)return;
-  item[field]=cur;
-  await upsertShared('budget_items',item);
+  item[field]=cur;await upsertShared('budget_items',item);
   renderBudget();calcBudgetSummary();
 }
-
 async function togglePerson(id,field){
   const item=budgetItems.find(x=>x.id===id);if(!item)return;
-  item[field]=!item[field];
-  await upsertShared('budget_items',item);
-  const tog=document.querySelector(`#bic_${id} .bud-person-toggle.${field==='for_sa'?'sa':field==='for_bi'?'bi':'ty'}`);
+  item[field]=!item[field];await upsertShared('budget_items',item);
+  const p=field==='for_sa'?'sa':field==='for_bi'?'bi':'ty';
+  const tog=document.querySelector('#bic_'+id+' .bud-person-toggle.'+p);
   if(tog)tog.classList.toggle('on',item[field]);
   calcBudgetSummary();
 }
-
 async function delBud(id){
   budgetItems=budgetItems.filter(x=>x.id!==id);
   await deleteShared('budget_items',id);
   renderBudget();calcBudgetSummary();
 }
-
 async function addBudgetItem(){
   const label=document.getElementById('budNewLabel').value.trim();
   const cat=document.getElementById('budNewCat').value;
-  if(!label)return;
+  if(!label){document.getElementById('budNewLabel').focus();return;}
   const item={id:genId(),label,category:cat,estimate:0,actual:0,
     est_cur:'VND',act_cur:'VND',item_currency:'VND',
     for_sa:true,for_bi:true,for_ty:true,sort_order:budgetItems.length};
-  budgetItems.push(item);
-  await upsertShared('budget_items',item);
+  budgetItems.push(item);await upsertShared('budget_items',item);
   document.getElementById('budNewLabel').value='';
   renderBudget();calcBudgetSummary();
 }
-
 function calcBudgetSummary(){
-  let saEstV=0,biEstV=0,tyEstV=0,saActV=0,biActV=0,tyActV=0,totEstV=0,totActV=0;
+  let saE=0,biE=0,tyE=0,saA=0,biA=0,tyA=0,totE=0,totA=0;
   budgetItems.forEach(item=>{
-    const estV=toVND(item.estimate,item.est_cur||'TWD');
-    const actV=toVND(item.actual,item.act_cur||'TWD');
-    const count=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0);
-    totEstV+=estV;totActV+=actV;
-    if(item.for_sa)saEstV+=estV;
-    if(item.for_bi)biEstV+=estV;
-    if(item.for_ty)tyEstV+=estV;
-    if(count>0){
-      if(item.for_sa)saActV+=actV/count;
-      if(item.for_bi)biActV+=actV/count;
-      if(item.for_ty)tyActV+=actV/count;
-    }
+    const eV=toVND(item.estimate,item.est_cur||'TWD');
+    const aV=toVND(item.actual,item.act_cur||'TWD');
+    const n=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0);
+    totE+=eV;totA+=aV;
+    if(item.for_sa)saE+=eV;if(item.for_bi)biE+=eV;if(item.for_ty)tyE+=eV;
+    if(n>0){if(item.for_sa)saA+=aV/n;if(item.for_bi)biA+=aV/n;if(item.for_ty)tyA+=aV/n;}
   });
-  // Update cards
-  [['sa',saEstV,saActV],['bi',biEstV,biActV],['ty',tyEstV,tyActV]].forEach(([p,estV,actV])=>{
+  [['sa',saE,saA],['bi',biE,biA],['ty',tyE,tyA]].forEach(([p,e,a])=>{
     const eEl=document.getElementById(p+'Est');
     const aVEl=document.getElementById(p+'ActVND');
     const aTEl=document.getElementById(p+'ActTWD');
     const dEl=document.getElementById(p+'Diff');
-    if(eEl)eEl.textContent='Est: '+fmtVND(estV);
-    if(aVEl)aVEl.textContent=fmtVND(actV);
-    if(aTEl)aTEl.textContent='≈ '+fmtTWD(actV/budRate);
+    if(eEl)eEl.textContent='Est: '+fmtVND(e);
+    if(aVEl)aVEl.textContent=fmtVND(a);
+    if(aTEl)aTEl.textContent='≈ '+fmtTWD(a/budRate);
     if(dEl){
-      const diff=actV-estV;
-      if(actV===0){dEl.textContent='';return;}
+      const diff=a-e;
+      if(a===0){dEl.textContent='';return;}
       dEl.textContent=(diff>0?'↑ +':diff<0?'↓ ':'')+fmtVND(Math.abs(diff));
       dEl.className='bud-diff '+(diff>0?'over':diff<0?'under':'');
     }
   });
-  // Totals
-  const tEV=document.getElementById('totalEstVND');
-  const tET=document.getElementById('totalEstTWD');
-  const tAV=document.getElementById('totalActVND');
-  const tAT=document.getElementById('totalActTWD');
-  if(tEV)tEV.textContent=fmtVND(totEstV);
-  if(tET)tET.textContent='≈ '+fmtTWD(totEstV/budRate);
-  if(tAV)tAV.textContent=fmtVND(totActV);
-  if(tAT)tAT.textContent='≈ '+fmtTWD(totActV/budRate);
+  const tEV=document.getElementById('totalEstVND');const tET=document.getElementById('totalEstTWD');
+  const tAV=document.getElementById('totalActVND');const tAT=document.getElementById('totalActTWD');
+  if(tEV)tEV.textContent=fmtVND(totE);if(tET)tET.textContent='≈ '+fmtTWD(totE/budRate);
+  if(tAV)tAV.textContent=fmtVND(totA);if(tAT)tAT.textContent='≈ '+fmtTWD(totA/budRate);
 }
-// Remove old setCurrency (no longer needed)
 
-
-// RANKING
 let sCol=0,sAsc=true;
 function buildRank(){const tb=document.getElementById('rankBody');tb.innerHTML='';[...RANKS].sort((a,b)=>{let va=a[sCol],vb=b[sCol];if(typeof va==='string'){va=va.replace('*','');vb=String(vb).replace('*','');}if(!isNaN(va)&&!isNaN(vb)){va=+va;vb=+vb;}return va<vb?(sAsc?-1:1):va>vb?(sAsc?1:-1):0;}).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td><span class="rb" onclick="zoomRank(${r[0]})">${r[0]}</span></td><td><b>${r[1]}</b></td><td>${r[2]}</td><td>${r[3]}</td><td style="font-size:.75rem;color:var(--txt2)">${r[4]}</td>`;tb.appendChild(tr);});document.querySelectorAll('#rankTbl th').forEach((th,i)=>{th.classList.toggle('sorted',i===sCol);const sa=th.querySelector('.sa');if(sa)sa.textContent=i===sCol?(sAsc?'▲':'▼'):'▲';});}
 function sortTbl(c){if(c===4)return;sCol===c?sAsc=!sAsc:(sCol=c,sAsc=true);buildRank();}
@@ -1931,22 +1575,6 @@ async function init(){
 init();
 
 </script>
-RANKING
-let sCol=0,sAsc=true;
-function buildRank(){const tb=document.getElementById('rankBody');tb.innerHTML='';[...RANKS].sort((a,b)=>{let va=a[sCol],vb=b[sCol];if(typeof va==='string'){va=va.replace('*','');vb=String(vb).replace('*','');}if(!isNaN(va)&&!isNaN(vb)){va=+va;vb=+vb;}return va<vb?(sAsc?-1:1):va>vb?(sAsc?1:-1):0;}).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td><span class="rb" onclick="zoomRank(${r[0]})">${r[0]}</span></td><td><b>${r[1]}</b></td><td>${r[2]}</td><td>${r[3]}</td><td style="font-size:.75rem;color:var(--txt2)">${r[4]}</td>`;tb.appendChild(tr);});document.querySelectorAll('#rankTbl th').forEach((th,i)=>{th.classList.toggle('sorted',i===sCol);const sa=th.querySelector('.sa');if(sa)sa.textContent=i===sCol?(sAsc?'▲':'▼'):'▲';});}
-function sortTbl(c){if(c===4)return;sCol===c?sAsc=!sAsc:(sCol=c,sAsc=true);buildRank();}
 
-// INIT
-async function init(){
-  showAll();buildRank();
-  await sbInit();
-  await Promise.all([loadAllTasks(),loadBudget(),mdInit()]);
-  await Promise.all([loadTiBk(),loadLeftBk()]);
-  renderOvChecklist();
-  renderDayChecklist(null);
-}
-init();
-
-</script>
 </body>
 </html>
