@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>🇹🇼 Taiwan Trip 2026</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -185,17 +185,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 ::-webkit-scrollbar{height:0;width:0}
 
 .bud-summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
-.bud-card{text-align:center;padding:10px 6px;border-radius:var(--r);background:var(--card);border:2px solid var(--bdr);transition:all .2s;cursor:pointer}
+.bud-card{text-align:center;padding:8px 6px;border-radius:var(--r);background:var(--card);border:2px solid var(--bdr);transition:all .2s;cursor:pointer}
 .bud-card:hover{transform:translateY(-1px);box-shadow:var(--sh-md)}
 .bud-card.sa{border-color:var(--sa)}.bud-card.bi{border-color:var(--bi)}.bud-card.ty{border-color:var(--ty)}
 .bud-card.sa.active{box-shadow:0 0 0 3px var(--sa);transform:translateY(-2px)}
 .bud-card.bi.active{box-shadow:0 0 0 3px var(--bi);transform:translateY(-2px)}
 .bud-card.ty.active{box-shadow:0 0 0 3px var(--ty);transform:translateY(-2px)}
-.bud-avatar{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;color:#fff;margin:0 auto 5px}
-.bud-avatar.sa{background:var(--sa)}.bud-avatar.bi{background:var(--bi)}.bud-avatar.ty{background:var(--ty)}
-.bud-name{font-size:.75rem;font-weight:700}.bud-est{font-size:.65rem;color:var(--txt3);margin-top:2px}
-.bud-act-vnd{font-size:.85rem;font-weight:800;margin-top:4px}.bud-act-twd{font-size:.65rem;color:var(--txt3)}
-.bud-diff{font-size:.65rem;margin-top:3px;font-weight:600}.bud-diff.over{color:var(--red)}.bud-diff.under{color:var(--ok)}
+.bud-name{font-size:.8rem;font-weight:800;margin-bottom:6px}
+.bud-card-section{text-align:left;width:100%;padding:4px 6px;border-radius:6px;background:var(--bg);margin-bottom:4px}
+.bud-card-section.bud-card-paid{background:rgba(20,184,166,.08);border:1px solid rgba(20,184,166,.2)}
+.bud-card-label{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--txt3);margin-bottom:1px}
+.bud-card-val{font-size:.82rem;font-weight:800;color:var(--txt)}
+.bud-card-paid .bud-card-val{color:var(--ok)}
+.bud-card-sub{font-size:.65rem;color:var(--txt3)}
 .bud-totals{display:flex;align-items:center;background:var(--card);border-radius:var(--r);padding:10px 14px;margin-bottom:12px;box-shadow:var(--sh);border:1px solid var(--bdr2)}
 .bud-total-item{flex:1;text-align:center}
 .bud-total-label{display:block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--txt3);margin-bottom:3px}
@@ -219,10 +221,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .bud-item-amt-block{flex:1;min-width:100px}
 .bud-amount-inp{width:100%;font-size:.9rem;font-weight:700;border:1.5px solid var(--bdr);border-radius:7px;padding:4px 8px;font-family:inherit;text-align:right;outline:none;background:var(--bg);transition:border-color .15s}
 .bud-amount-inp:focus{border-color:var(--pri);background:#fff}
-
 .bud-item-per{font-size:.66rem;color:var(--ok);font-weight:600;margin-top:2px;text-align:right}
 .bud-paid-label{display:flex;align-items:center;gap:5px;cursor:pointer;padding:4px 9px;border-radius:8px;border:1.5px solid var(--bdr);background:var(--bg);transition:all .15s;user-select:none;flex-shrink:0}
-.bud-paid-label.paid{background:rgba(20,184,166,.12);border-color:var(--ok);color:var(--ok)}
+.bud-paid-label.paid{background:rgba(20,184,166,.12);border-color:var(--ok)}
 .bud-paid-cb{width:14px;height:14px;cursor:pointer;accent-color:var(--ok)}
 .bud-paid-txt{font-size:.7rem;font-weight:700;color:var(--txt3)}
 .bud-paid-label.paid .bud-paid-txt{color:var(--ok)}
@@ -234,6 +235,97 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .fl-ban{background:var(--pri-l);border-left:4px solid var(--pri);padding:10px 14px;border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:.78rem;color:var(--txt2);margin-bottom:12px}
 .fl-ban h3{font-size:.82rem;color:var(--pri);margin-bottom:5px;font-weight:700}
 .fl-ban hr{border:none;border-top:1px dashed var(--bdr);margin:5px 0}
+
+/* ── V5: Mobile fixes + modern theme ──────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  overscroll-behavior-x: none;
+  touch-action: pan-y;
+}
+/* Prevent flex/grid overflow */
+.main-content, .body-area, .tc, .day-tasks, .ti, .spot, .food-item {
+  min-width: 0;
+  max-width: 100%;
+}
+.tc { overflow-x: hidden; }
+/* Wrap long strings */
+.ti-bk input, .bud-item-label, .bud-item-per, .ti h3, .ti p, .spot-name, .food-name {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+/* Horizontal scroll nav (tabs) */
+.nb-wrap, .bnav, .nav {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.nb-wrap::-webkit-scrollbar, .bnav::-webkit-scrollbar, .nav::-webkit-scrollbar {
+  display: none;
+}
+.nb, .bnav-i { white-space: nowrap; flex-shrink: 0; }
+/* Tables scroll horizontally inside wrapper only */
+.rank-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.rank-wrap table { min-width: 520px; }
+/* Modernize: softer shadows, better radii */
+:root {
+  --r: 12px;
+  --r-sm: 10px;
+  --sh: 0 1px 2px rgba(0,0,0,.04), 0 1px 4px rgba(0,0,0,.04);
+  --sh-md: 0 2px 6px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.05);
+  --bdr: #e5e7eb;
+  --bdr2: #f0f2f5;
+  --bg: #f7f8fa;
+}
+body { background: var(--bg); font-feature-settings: 'cv11','ss01'; letter-spacing: -0.003em; }
+.dh { border-radius: 0 0 14px 14px; }
+.ti { border-radius: var(--r) !important; transition: box-shadow .15s; }
+.ti:hover { box-shadow: var(--sh-md); }
+/* Touch targets */
+.nb, .bnav-i, .bud-person-toggle, .bud-paid-label, .bud-item-del,
+input[type="checkbox"], .bud-cat-select, .bud-cur-sel-inline {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+}
+.bud-item-del { min-width: 32px; justify-content: center; }
+/* Compact but tappable */
+.bud-item-row, .bud-item-amt-row { gap: 6px; }
+.bud-item-amt-row { flex-wrap: wrap; }
+.bud-amount-inp { min-height: 36px; }
+/* Sticky topbar */
+.topbar { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(1.4) blur(8px); -webkit-backdrop-filter: saturate(1.4) blur(8px); }
+/* Nav: sticky below topbar */
+.nav, .bnav { position: sticky; top: 48px; z-index: 49; background: var(--card); }
+/* Smaller paddings on mobile */
+@media (max-width: 640px) {
+  body { font-size: 14px; }
+  .dh { padding: 14px 14px 16px !important; }
+  .dh h2 { font-size: 1.05rem; }
+  .tc { padding: 10px !important; }
+  .ti { padding: 10px 12px !important; }
+  .bud-summary-grid { gap: 5px; }
+  .bud-card { padding: 7px 4px; }
+  .bud-name { font-size: .7rem; }
+  .bud-sec-v { font-size: .74rem; }
+  /* Sidebar hides on mobile, shown via nav */
+  .sidebar { display: none; }
+  .main-content { width: 100%; padding: 0 !important; }
+}
+/* Font: better system stack */
+body, input, select, button {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+/* Focus visible only on keyboard */
+*:focus { outline: none; }
+*:focus-visible { outline: 2px solid var(--pri); outline-offset: 2px; }
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
 </style>
 </head>
 <body>
@@ -288,7 +380,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 <div class="tc on" id="tab-overview">
   <div class="dh"><h2>🗺️ Tổng Quan 8 Ngày</h2><p>Đài Bắc (3đ) → Hoa Liên (2đ) → Đài Trung (1đ) → Đài Bắc (1đ)</p></div>
 
-  <div class="fl-ban"><h3>✈️ China Airlines</h3><b>ĐI:</b> CI-782 | T7 25/04 | SGN 10:50 → TPE 15:20 (3h30)<br><b>VỀ:</b> CI-783 | T7 02/05 | TPE 13:45 → SGN 16:20 (3h35)<hr>👤 Gia Bao (FMGKXZ) · Hoài Thanh + Quỳnh Hương (DW9ZY2) · 🧳 7kg xách tay + 23kg ký gửi × 3</div>
+  <div class="fl-ban">
+    <h3>✈️ China Airlines</h3>
+    <b>ĐI:</b> CI-782 | T7 25/04 | SGN 10:50 → TPE 15:20 (3h30)<br>
+    <b>VỀ:</b> CI-783 | T7 02/05 | TPE 13:45 → SGN 16:20 (3h35)<hr>
+    👤 Gia Bao (FMGKXZ) · Hoài Thanh + Quỳnh Hương (DW9ZY2) · 🧳 7kg xách tay + 23kg ký gửi × 3
+  </div>
   <div class="cd"><div class="cd-t">📍 Lộ trình</div><div style="font-size:.82rem">
     <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(5)" title="#5">5</span><b>25/04</b> ✈️ SGN→TPE · Ximending</div>
     <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(1)" title="#1">1</span><span class="rb" onclick="zoomRank(4)" title="#4">4</span><span class="rb" onclick="zoomRank(6)" title="#6">6</span><span class="rb" onclick="zoomRank(7)" title="#7">7</span><b>26/04</b> 101 · Yongkang · Elephant Mt · Raohe</div>
@@ -973,15 +1070,74 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
 
 <div class="tc" id="tab-budget">
-  <div class="dh" style="background:linear-gradient(135deg,#11998e,#38ef7d)"><h2>💰 Chia Tiền — Sa · Bi · Ty</h2><p>Input = tổng nhóm · /người tự tính theo số tick</p><div style="display:flex;align-items:center;gap:10px;margin-top:8px"><span style="font-size:.75rem;opacity:.9">Tỷ giá TWD→VND:</span><input id="fxRate" type="number" value="860" min="1" style="width:64px;font-size:.78rem;border:1px solid rgba(255,255,255,.5);border-radius:6px;padding:3px 7px;background:rgba(255,255,255,.2);color:#fff;text-align:center;outline:none;font-weight:700" onchange="setRate(+this.value)" onblur="setRate(+this.value)"><span style="font-size:.72rem;opacity:.8">VND/TWD</span></div></div>
-  <div class="bud-add-card"><div style="font-size:.8rem;font-weight:700;color:var(--txt);margin-bottom:8px">➕ Tạo khoản chi mới</div><div style="display:flex;gap:6px;flex-wrap:wrap"><input class="bud-add-inp" id="budNewLabel" placeholder="Tên khoản chi..." style="flex:1;min-width:130px" onkeydown="if(event.key==='Enter')addBudgetItem()"><select class="bud-add-select" id="budNewCat"><option value="transport">🚆</option><option value="hotel">🏨</option><option value="activity">🎫</option><option value="food" selected>🍜</option><option value="shopping">🛍️</option><option value="misc">🔧</option></select><button class="bud-add-btn" onclick="addBudgetItem()">+ Tạo</button></div></div>
-  <div class="bud-summary-grid">
-    <div class="bud-card sa" id="bCard_sa" onclick="setBudFilter('sa')" style="cursor:pointer"><div class="bud-avatar sa">Sa</div><div class="bud-name">Sa</div><div class="bud-est" id="saEst">—</div><div class="bud-act-vnd" id="saActVND">0₫</div><div class="bud-act-twd" id="saActTWD">≈0 TWD</div><div class="bud-diff" id="saDiff"></div><small style="font-size:.58rem;color:var(--txt3)">Bấm để lọc</small></div>
-    <div class="bud-card bi" id="bCard_bi" onclick="setBudFilter('bi')" style="cursor:pointer"><div class="bud-avatar bi">Bi</div><div class="bud-name">Bi</div><div class="bud-est" id="biEst">—</div><div class="bud-act-vnd" id="biActVND">0₫</div><div class="bud-act-twd" id="biActTWD">≈0 TWD</div><div class="bud-diff" id="biDiff"></div><small style="font-size:.58rem;color:var(--txt3)">Bấm để lọc</small></div>
-    <div class="bud-card ty" id="bCard_ty" onclick="setBudFilter('ty')" style="cursor:pointer"><div class="bud-avatar ty">Ty</div><div class="bud-name">Ty</div><div class="bud-est" id="tyEst">—</div><div class="bud-act-vnd" id="tyActVND">0₫</div><div class="bud-act-twd" id="tyActTWD">≈0 TWD</div><div class="bud-diff" id="tyDiff"></div><small style="font-size:.58rem;color:var(--txt3)">Bấm để lọc</small></div>
+  <div class="dh" style="background:linear-gradient(135deg,#11998e,#38ef7d)">
+    <h2>💰 Chia Tiền — Sa · Bi · Ty</h2>
+    <p>Input = tổng nhóm · /người tự tính theo số tick</p>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:8px">
+      <span style="font-size:.75rem;opacity:.9">Tỷ giá TWD→VND:</span>
+      <input id="fxRate" type="number" value="860" min="1" style="width:64px;font-size:.78rem;border:1px solid rgba(255,255,255,.5);border-radius:6px;padding:3px 7px;background:rgba(255,255,255,.2);color:#fff;text-align:center;outline:none;font-weight:700" onchange="setRate(+this.value)" onblur="setRate(+this.value)">
+      <span style="font-size:.72rem;opacity:.8">VND/TWD</span>
+    </div>
   </div>
-  <div id="budFilterLabel" style="display:none;text-align:center;font-size:.74rem;font-weight:600;padding:5px 12px;border-radius:8px;margin-bottom:8px;background:var(--pri-l);color:var(--pri);cursor:pointer" onclick="setBudFilter(budFilter)"></div>
-  <div class="bud-totals"><div class="bud-total-item"><span class="bud-total-label">Tổng Est</span><span class="bud-total-val" id="totalEstVND">—</span><span class="bud-total-sub" id="totalEstTWD"></span></div><div class="bud-total-divider"></div><div class="bud-total-item"><span class="bud-total-label">Tổng Actual</span><span class="bud-total-val" id="totalActVND">—</span><span class="bud-total-sub" id="totalActTWD"></span></div></div>
+  <div class="bud-add-card">
+    <div style="font-size:.8rem;font-weight:700;color:var(--txt);margin-bottom:8px">➕ Tạo khoản chi mới</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <input class="bud-add-inp" id="budNewLabel" placeholder="Tên khoản chi..." style="flex:1;min-width:130px" onkeydown="if(event.key==='Enter')addBudgetItem()">
+      <select class="bud-add-select" id="budNewCat">
+        <option value="transport">🚆</option><option value="hotel">🏨</option>
+        <option value="activity">🎫</option><option value="food" selected>🍜</option>
+        <option value="shopping">🛍️</option><option value="misc">🔧</option>
+      </select>
+      <button class="bud-add-btn" onclick="addBudgetItem()">+ Tạo</button>
+    </div>
+  </div>
+  <div class="bud-summary-grid">
+    <div class="bud-card sa" id="bCard_sa" onclick="setBudFilter('sa')">
+      <div class="bud-name">Sa</div>
+      <div class="bud-sec est">
+        <span class="bud-sec-lbl">Est</span>
+        <span class="bud-sec-v" id="saEst">—</span>
+        <span class="bud-sec-s" id="saEstTWD"></span>
+      </div>
+      <div class="bud-sec paid">
+        <span class="bud-sec-lbl">Đã TT</span>
+        <span class="bud-sec-v" id="saActVND">0₫</span>
+        <span class="bud-sec-s" id="saActTWD">≈ 0 TWD</span>
+      </div>
+    </div>
+    <div class="bud-card bi" id="bCard_bi" onclick="setBudFilter('bi')">
+      <div class="bud-name">Bi</div>
+      <div class="bud-sec est">
+        <span class="bud-sec-lbl">Est</span>
+        <span class="bud-sec-v" id="biEst">—</span>
+        <span class="bud-sec-s" id="biEstTWD"></span>
+      </div>
+      <div class="bud-sec paid">
+        <span class="bud-sec-lbl">Đã TT</span>
+        <span class="bud-sec-v" id="biActVND">0₫</span>
+        <span class="bud-sec-s" id="biActTWD">≈ 0 TWD</span>
+      </div>
+    </div>
+    <div class="bud-card ty" id="bCard_ty" onclick="setBudFilter('ty')">
+      <div class="bud-name">Ty</div>
+      <div class="bud-sec est">
+        <span class="bud-sec-lbl">Est</span>
+        <span class="bud-sec-v" id="tyEst">—</span>
+        <span class="bud-sec-s" id="tyEstTWD"></span>
+      </div>
+      <div class="bud-sec paid">
+        <span class="bud-sec-lbl">Đã TT</span>
+        <span class="bud-sec-v" id="tyActVND">0₫</span>
+        <span class="bud-sec-s" id="tyActTWD">≈ 0 TWD</span>
+      </div>
+    </div>
+  </div>
+<div id="budFilterLabel" style="display:none;text-align:center;font-size:.74rem;font-weight:600;padding:5px 12px;border-radius:8px;margin-bottom:8px;background:var(--pri-l);color:var(--pri);cursor:pointer" onclick="setBudFilter(budFilter)"></div>
+  <div class="bud-totals">
+    <div class="bud-total-item"><span class="bud-total-label">Tổng Est</span><span class="bud-total-val" id="totalEstVND">—</span><span class="bud-total-sub" id="totalEstTWD"></span></div>
+    <div class="bud-total-divider"></div>
+    <div class="bud-total-item"><span class="bud-total-label">Đã Thanh Toán</span><span class="bud-total-val" id="totalActVND">—</span><span class="bud-total-sub" id="totalActTWD"></span></div>
+  </div>
   <div id="budgetBody"></div>
 </div>
 
@@ -1025,30 +1181,6 @@ async function upsertShared(tbl,row){if(sb){const sid=await getSharedId();if(sid
 async function deleteShared(tbl,id){if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).delete().eq('session_id',sid).eq('id',id);return;}}const arr=JSON.parse(localStorage.getItem('tw26_sh_'+tbl)||'[]').filter(r=>r.id!==id);localStorage.setItem('tw26_sh_'+tbl,JSON.stringify(arr));}
 async function getAllSharedKV(tbl){if(sb){const sid=await getSharedId();if(sid){const{data}=await sb.from(tbl).select('item_key,checked').eq('session_id',sid);const r={};(data||[]).forEach(x=>r[x.item_key]=x.checked);return r;}}return JSON.parse(localStorage.getItem('tw26_sh_kv_'+tbl)||'{}');}
 async function upsertSharedKV(tbl,key,checked){if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).upsert({session_id:sid,item_key:key,checked,checked_at:checked?new Date().toISOString():null},{onConflict:'session_id,item_key'});return;}}const d=JSON.parse(localStorage.getItem('tw26_sh_kv_'+tbl)||'{}');d[key]=checked;localStorage.setItem('tw26_sh_kv_'+tbl,JSON.stringify(d));}
-async function getAll(tbl){
-  if(sb&&SID){const{data}=await sb.from(tbl).select('*').eq('session_id',SID);return data||[];}
-  return JSON.parse(localStorage.getItem('tw26_'+tbl)||'[]');
-}
-async function upsertRow(tbl,row){
-  if(sb&&SID){await sb.from(tbl).upsert({...row,session_id:SID},{onConflict:'session_id,id'});return;}
-  const arr=JSON.parse(localStorage.getItem('tw26_'+tbl)||'[]');
-  const i=arr.findIndex(r=>r.id===row.id);
-  if(i>=0)arr[i]={...arr[i],...row};else arr.push(row);
-  localStorage.setItem('tw26_'+tbl,JSON.stringify(arr));
-}
-async function deleteRow(tbl,id){
-  if(sb&&SID){await sb.from(tbl).delete().eq('session_id',SID).eq('id',id);return;}
-  const arr=JSON.parse(localStorage.getItem('tw26_'+tbl)||'[]').filter(r=>r.id!==id);
-  localStorage.setItem('tw26_'+tbl,JSON.stringify(arr));
-}
-async function getAllKV(tbl){
-  if(sb&&SID){const{data}=await sb.from(tbl).select('item_key,checked').eq('session_id',SID);const r={};(data||[]).forEach(x=>r[x.item_key]=x.checked);return r;}
-  return JSON.parse(localStorage.getItem('tw26_kv_'+tbl)||'{}');
-}
-async function setKV(tbl,key,val){
-  if(sb&&SID){await sb.from(tbl).upsert({session_id:SID,item_key:key,checked:val,checked_at:val?new Date().toISOString():null},{onConflict:'session_id,item_key'});return;}
-  const d=JSON.parse(localStorage.getItem('tw26_kv_'+tbl)||'{}');d[key]=val;localStorage.setItem('tw26_kv_'+tbl,JSON.stringify(d));
-}
 
 // MAP
 const DL={
@@ -1211,7 +1343,7 @@ async function loadTiBk(){
     });
     await Promise.all(seed.map(bk=>upsertShared('booking_links',bk)));
     seed.forEach(bk=>{tiBkData[bk.id]=bk.url;if(bk.url)updateTiBkUI(bk.id,bk.url);});
-  }else{rows.forEach(r=>{tiBkData[r.id]=r.url||'';if(r.url)updateTiBkUI(r.id,r.url);}); }
+  }else{rows.forEach(r=>{tiBkData[r.id]=r.url||'';if(r.url)updateTiBkUI(r.id,r.url);});}
 }
 async function saveTiBk(inp){
   const id=inp.getAttribute('data-bk');const type=inp.getAttribute('data-type')||'other';
@@ -1280,6 +1412,7 @@ const DEFAULT_BUDGET=[
 const DEFAULT_BOOKINGS={day1:[['flight','✈️ Vé CI-782 SGN→TPE',''],['hotel','🏨 Hotel Đài Bắc (N1-3+N7)','']],day2:[['ticket','🎫 Taipei 101 (Klook)','']],day3:[['tour','🚌 Tour Yehliu+Jiufen+Shifen (KKday)','']],day4:[['transport','🚆 TRA 472 Taipei→Hualien #6684500','https://www.railway.gov.tw'],['hotel','🏨 Hotel Hoa Liên (N4+N5)',''],['permit','📋 Taroko Trail Permit','https://taroko.gov.tw']],day5:[['transport','🚆 TRA Hualien→Taichung 30/04',''],['hotel','🏨 Hotel Hoa Liên (đêm 2)','']],day6:[['transport','🚆 TRA Hualien→Taichung',''],['hotel','🏨 Hotel Đài Trung (Fengjia)','']],day7:[['transport','🚄 HSR Taichung→Taipei',''],['hotel','🏨 Hotel Đài Bắc đêm cuối','']],day8:[['flight','✈️ Vé CI-783 TPE→SGN','']]};
 const CAT_ICON={transport:'🚆',hotel:'🏨',activity:'🎫',food:'🍜',shopping:'🛍️',misc:'🔧'};
 let budgetItems=[],budRate=860,budFilter=null;
+
 function setRate(r){if(r>0){budRate=r;calcBudgetSummary();renderBudget();}}
 function toVND(n,cur){return cur==='VND'?Number(n)||0:(Number(n)||0)*budRate;}
 function fmtVND(n){const r=Number(n)||0;return r>=1000000?fmtMoney(r/1000000)+'tr₫':fmtMoney(r)+'₫';}
@@ -1287,19 +1420,23 @@ function fmtTWD(n){return fmtMoney(Number(n)||0)+' TWD';}
 function fmtMoney(n){return (Number(n)||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
 function fmtInt(n){return Math.round(Number(n)||0).toLocaleString('en-US');}
 function parseAmt(s){return Number(String(s).replace(/,/g,''))||0;}
-async function loadBudget(){const rows=await getAllShared('budget_items');if(rows.length===0){budgetItems=DEFAULT_BUDGET.map((d,i)=>({id:genId(),label:d.label,category:d.category,estimate:d.estimate,actual:d.actual,currency:d.currency,est_cur:d.currency,act_cur:d.currency,item_currency:d.currency,paid:false,for_sa:d.for_sa,for_bi:d.for_bi,for_ty:d.for_ty,sort_order:i}));await Promise.all(budgetItems.map(item=>upsertShared('budget_items',item)));}else{budgetItems=rows.sort((a,b)=>(a.sort_order||0)-(b.sort_order||0));budgetItems.forEach(item=>{if(!item.currency)item.currency=item.est_cur||'TWD';});}renderBudget();calcBudgetSummary();}
+
+function budInpFocus(el){const raw=parseAmt(el.dataset.raw||el.value)||0;el.value=raw===0?'':raw;el.select();}
+function budInpBlur(el,id,field){const val=parseAmt(el.value);el.dataset.raw=val;el.value=val===0?'':fmtInt(val);updBud(id,field,val);}
+
+async function loadBudget(){
+  const rows=await getAllShared('budget_items');
+  if(rows.length===0){
+    budgetItems=DEFAULT_BUDGET.map((d,i)=>({id:genId(),label:d.label,category:d.category,estimate:d.estimate,actual:d.actual,currency:d.currency,est_cur:d.currency,act_cur:d.currency,item_currency:d.currency,paid:false,for_sa:d.for_sa,for_bi:d.for_bi,for_ty:d.for_ty,sort_order:i}));
+    await Promise.all(budgetItems.map(item=>upsertShared('budget_items',item)));
+  }else{
+    budgetItems=rows.sort((a,b)=>(a.sort_order||0)-(b.sort_order||0));
+    budgetItems.forEach(item=>{if(!item.currency)item.currency=item.est_cur||'TWD';if(item.paid===undefined)item.paid=false;});
+  }
+  renderBudget();calcBudgetSummary();
+}
+
 function setBudFilter(p){budFilter=budFilter===p?null:p;['sa','bi','ty'].forEach(x=>{const el=document.getElementById('bCard_'+x);if(el)el.classList.toggle('active',x===budFilter);});renderBudget();}
-function budInpFocus(el){
-  const raw=parseAmt(el.value)||parseAmt(el.dataset.raw)||0;
-  el.value=raw===0?'':raw;
-  el.select();
-}
-function budInpBlur(el,id,field){
-  const val=parseAmt(el.value);
-  el.dataset.raw=val;
-  el.value=val===0?'':fmtInt(val);
-  updBud(id,field,val);
-}
 
 function renderBudget(){
   const cont=document.getElementById('budgetBody');if(!cont)return;
@@ -1311,8 +1448,9 @@ function renderBudget(){
     const cur=item.currency||'TWD';
     const pc=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0)||1;
     const est=Number(item.estimate)||0;
-    const perPerson=est>0?fmtMoney(est/pc)+' '+cur+'/ng':'—';
     const paid=!!item.paid;
+    const perPerson=est>0?fmtMoney(est/pc)+' '+cur+'/ng':'—';
+    const convLine=cur==='TWD'&&est>0?' · ≈ '+fmtInt(est*budRate)+' VND':'';
     html+=`<div class="bud-item-card" id="bic_${item.id}">
       <div class="bud-item-row">
         <select class="bud-cat-select" onchange="updBud('${item.id}','category',this.value)">${['transport','hotel','activity','food','shopping','misc'].map(v=>'<option value="'+v+'"'+(item.category===v?' selected':'')+'>'+CAT_ICON[v]+'</option>').join('')}</select>
@@ -1326,11 +1464,10 @@ function renderBudget(){
       <div class="bud-item-amt-row">
         <div class="bud-item-amt-block">
           <input class="bud-amount-inp" type="text" inputmode="numeric"
-            value="${est>0?fmtInt(est):''}" data-raw="${est}"
-            placeholder="0"
+            value="${est>0?fmtInt(est):''}" data-raw="${est}" placeholder="0"
             onfocus="budInpFocus(this)"
             onblur="budInpBlur(this,'${item.id}','estimate')">
-          <div class="bud-item-per">${perPerson}${cur==='TWD'&&est>0?' · ≈ '+fmtInt(est*budRate)+' VND':''}</div>
+          <div class="bud-item-per">${perPerson}${convLine}</div>
         </div>
         <label class="bud-paid-label ${paid?'paid':''}">
           <input type="checkbox" class="bud-paid-cb" ${paid?'checked':''} onchange="togglePaid('${item.id}',this.checked)">
@@ -1347,42 +1484,72 @@ function renderBudget(){
   cont.innerHTML=html;
 }
 
-async function togglePaid(id,paid){
+async function updBud(id,field,val){
   const item=budgetItems.find(x=>x.id===id);if(!item)return;
-  item.paid=paid;
-  if(paid)item.actual=item.estimate; // actual = estimate when paid
-  else item.actual=0;
+  item[field]=val;if(field==='currency'){item.est_cur=val;item.act_cur=val;item.item_currency=val;}
   await upsertShared('budget_items',item);
-  // Update UI
+  const cur=item.currency||'TWD';const pc2=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0)||1;
   const card=document.getElementById('bic_'+id);
   if(card){
-    const lbl=card.querySelector('.bud-paid-label');
-    if(lbl){lbl.className='bud-paid-label '+(paid?'paid':'');lbl.querySelector('.bud-paid-txt').textContent=paid?'✓ Đã TT':'Đã TT?';}
+    const per=card.querySelector('.bud-item-per');
+    const est2=Number(item.estimate)||0;
+    if(per){
+      let perTxt=est2>0?fmtMoney(est2/pc2)+' '+cur+'/ng':'—';
+      if(cur==='TWD'&&est2>0)perTxt+=' · ≈ '+fmtInt(est2*budRate)+' VND';
+      per.textContent=perTxt;
+    }
   }
   calcBudgetSummary();
 }
 
-async function updBud(id,field,val){const item=budgetItems.find(x=>x.id===id);if(!item)return;item[field]=val;if(field==='currency'){item.est_cur=val;item.act_cur=val;item.item_currency=val;}await upsertShared('budget_items',item);const cur=item.currency||'TWD';const pc=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0)||1;const card=document.getElementById('bic_'+id);if(card){const pers=card.querySelectorAll('.bud-item-per');if(pers[0])pers[0].textContent='≈ '+(item.estimate>0?fmtMoney(item.estimate/pc)+' '+cur+'/ng':'—');if(pers[1])pers[1].textContent='≈ '+(item.actual>0?fmtMoney(item.actual/pc)+' '+cur+'/ng':'—');}calcBudgetSummary();}
-async function togglePerson(id,field){const item=budgetItems.find(x=>x.id===id);if(!item)return;item[field]=!item[field];await upsertShared('budget_items',item);const p=field==='for_sa'?'sa':field==='for_bi'?'bi':'ty';const tog=document.querySelector('#bic_'+id+' .bud-person-toggle.'+p);if(tog)tog.classList.toggle('on',item[field]);calcBudgetSummary();}
+async function togglePaid(id,paid){
+  const item=budgetItems.find(x=>x.id===id);if(!item)return;
+  item.paid=paid;item.actual=paid?item.estimate:0;
+  await upsertShared('budget_items',item);
+  const card=document.getElementById('bic_'+id);
+  if(card){const lbl=card.querySelector('.bud-paid-label');if(lbl){lbl.className='bud-paid-label '+(paid?'paid':'');lbl.querySelector('.bud-paid-txt').textContent=paid?'✓ Đã TT':'Đã TT?';}}
+  calcBudgetSummary();
+}
+
+async function togglePerson(id,field){
+  const item=budgetItems.find(x=>x.id===id);if(!item)return;item[field]=!item[field];
+  await upsertShared('budget_items',item);
+  renderBudget();calcBudgetSummary();
+}
+
 async function delBud(id){budgetItems=budgetItems.filter(x=>x.id!==id);await deleteShared('budget_items',id);renderBudget();calcBudgetSummary();}
-async function addBudgetItem(){const label=document.getElementById('budNewLabel').value.trim();const cat=document.getElementById('budNewCat').value;if(!label){document.getElementById('budNewLabel').focus();return;}const item={id:genId(),label,category:cat,estimate:0,actual:0,currency:'VND',est_cur:'VND',act_cur:'VND',item_currency:'VND',for_sa:true,for_bi:true,for_ty:true,sort_order:budgetItems.length};budgetItems.push(item);await upsertShared('budget_items',item);document.getElementById('budNewLabel').value='';renderBudget();calcBudgetSummary();}
-function calcBudgetSummary(){let saE=0,biE=0,tyE=0,saA=0,biA=0,tyA=0,totE=0,totA=0;budgetItems.forEach(item=>{const cur=item.currency||'TWD';const eV=toVND(item.estimate,cur);const aV=toVND(item.actual,cur);const n=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0);totE+=eV;totA+=aV;if(item.for_sa)saE+=eV;if(item.for_bi)biE+=eV;if(item.for_ty)tyE+=eV;if(n>0){if(item.for_sa)saA+=aV/n;if(item.for_bi)biA+=aV/n;if(item.for_ty)tyA+=aV/n;}});[['sa',saE,saA],['bi',biE,biA],['ty',tyE,tyA]].forEach(([p,e,a])=>{const eEl=document.getElementById(p+'Est');const aVEl=document.getElementById(p+'ActVND');const aTEl=document.getElementById(p+'ActTWD');const dEl=document.getElementById(p+'Diff');if(eEl)eEl.textContent='Est: '+fmtVND(e);if(aVEl)aVEl.textContent=fmtVND(a);if(aTEl)aTEl.textContent='≈ '+fmtTWD(a/budRate);if(dEl){const diff=a-e;if(a===0){dEl.textContent='';return;}dEl.textContent=(diff>0?'↑ +':diff<0?'↓ ':'')+fmtVND(Math.abs(diff));dEl.className='bud-diff '+(diff>0?'over':diff<0?'under':'');}});const tEV=document.getElementById('totalEstVND');const tET=document.getElementById('totalEstTWD');const tAV=document.getElementById('totalActVND');const tAT=document.getElementById('totalActTWD');if(tEV)tEV.textContent=fmtVND(totE);if(tET)tET.textContent='≈ '+fmtTWD(totE/budRate);if(tAV)tAV.textContent=fmtVND(totA);if(tAT)tAT.textContent='≈ '+fmtTWD(totA/budRate);}
+
+async function addBudgetItem(){
+  const label=document.getElementById('budNewLabel').value.trim();const cat=document.getElementById('budNewCat').value;
+  if(!label){document.getElementById('budNewLabel').focus();return;}
+  const item={id:genId(),label,category:cat,estimate:0,actual:0,currency:'VND',est_cur:'VND',act_cur:'VND',item_currency:'VND',paid:false,for_sa:true,for_bi:true,for_ty:true,sort_order:budgetItems.length};
+  budgetItems.push(item);await upsertShared('budget_items',item);
+  document.getElementById('budNewLabel').value='';renderBudget();calcBudgetSummary();
+}
+
+function calcBudgetSummary(){
+  let saE=0,biE=0,tyE=0,saA=0,biA=0,tyA=0,totE=0,totA=0;
+  budgetItems.forEach(item=>{
+    const cur=item.currency||'TWD';const eV=toVND(item.estimate,cur);const aV=item.paid?eV:toVND(item.actual||0,cur);
+    const n=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0);
+    totE+=eV;totA+=aV;if(item.for_sa)saE+=eV;if(item.for_bi)biE+=eV;if(item.for_ty)tyE+=eV;
+    if(n>0){if(item.for_sa)saA+=aV/n;if(item.for_bi)biA+=aV/n;if(item.for_ty)tyA+=aV/n;}
+  });
+  [['sa',saE,saA],['bi',biE,biA],['ty',tyE,tyA]].forEach(([p,e,a])=>{
+    const eVEl=document.getElementById(p+'EstVND');const eTEl=document.getElementById(p+'EstTWD');
+    const aVEl=document.getElementById(p+'ActVND');const aTEl=document.getElementById(p+'ActTWD');
+    if(eVEl)eVEl.textContent=fmtVND(e);if(eTEl)eTEl.textContent='≈ '+fmtTWD(e/budRate);
+    if(aVEl)aVEl.textContent=fmtVND(a);if(aTEl)aTEl.textContent='≈ '+fmtTWD(a/budRate);
+  });
+  const tEV=document.getElementById('totalEstVND');const tET=document.getElementById('totalEstTWD');
+  const tAV=document.getElementById('totalActVND');const tAT=document.getElementById('totalActTWD');
+  if(tEV)tEV.textContent=fmtVND(totE);if(tET)tET.textContent='≈ '+fmtTWD(totE/budRate);
+  if(tAV)tAV.textContent=fmtVND(totA);if(tAT)tAT.textContent='≈ '+fmtTWD(totA/budRate);
+}
 
 let sCol=0,sAsc=true;
 function buildRank(){const tb=document.getElementById('rankBody');tb.innerHTML='';[...RANKS].sort((a,b)=>{let va=a[sCol],vb=b[sCol];if(typeof va==='string'){va=va.replace('*','');vb=String(vb).replace('*','');}if(!isNaN(va)&&!isNaN(vb)){va=+va;vb=+vb;}return va<vb?(sAsc?-1:1):va>vb?(sAsc?1:-1):0;}).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td><span class="rb" onclick="zoomRank(${r[0]})">${r[0]}</span></td><td><b>${r[1]}</b></td><td>${r[2]}</td><td>${r[3]}</td><td style="font-size:.75rem;color:var(--txt2)">${r[4]}</td>`;tb.appendChild(tr);});document.querySelectorAll('#rankTbl th').forEach((th,i)=>{th.classList.toggle('sorted',i===sCol);const sa=th.querySelector('.sa');if(sa)sa.textContent=i===sCol?(sAsc?'▲':'▼'):'▲';});}
 function sortTbl(c){if(c===4)return;sCol===c?sAsc=!sAsc:(sCol=c,sAsc=true);buildRank();}
-
-// INIT
-async function init(){
-  showAll();buildRank();
-  await sbInit();
-  await Promise.all([loadAllTasks(),loadBudget(),mdInit()]);
-  await Promise.all([loadTiBk(),loadLeftBk()]);
-  renderOvChecklist();
-  renderDayChecklist(null);
-}
-init();
-
 
 // INIT
 async function init(){
