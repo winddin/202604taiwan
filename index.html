@@ -1373,10 +1373,13 @@ async function sbInit(){
 }
 function setBadge(t,c){const b=document.getElementById('dbBadge');b.textContent=t;b.className='db-badge '+c;}
 
+let _sharedIdCache=null;
 async function getSharedId(){
+  if(_sharedIdCache)return _sharedIdCache;
   if(sb){
     const{data}=await sb.from('sessions').select('id').eq('device_id',TRIP_ID).single();
-    return data?data.id:null;
+    if(data){_sharedIdCache=data.id;}
+    return _sharedIdCache;
   }
   return null;
 }
@@ -1507,11 +1510,9 @@ async function loadAllTasks(){
   const grouped={};rows.forEach(r=>{if(!grouped[r.day_key])grouped[r.day_key]=[];grouped[r.day_key].push(r);});
   Object.keys(grouped).forEach(dk=>grouped[dk].sort((a,b)=>(a.sort_order||0)-(b.sort_order||0)));
   allTasks=grouped;
-  const seeds=[];
   for(const dk of [...Object.keys(DEFAULT_TASKS),'overview']){
-    if(!allTasks[dk]||allTasks[dk].length===0)seeds.push(seedTasks(dk));
+    if(!allTasks[dk]||allTasks[dk].length===0)await seedTasks(dk);
   }
-  await Promise.all(seeds);
 }
 async function seedTasks(dk){
   const list=dk==='overview'?DEFAULT_OV_TASKS:(DEFAULT_TASKS[dk]||[]);
@@ -1605,12 +1606,14 @@ async function loadTiBk(){
   rows.forEach(r=>{tiBkData[r.id]=r.url||'';if(r.url)updateTiBkUI(r.id,r.url);});
 }
 async function saveTiBk(inp){
-  const id=inp.getAttribute('data-bk');const type=inp.getAttribute('data-type')||'other';
-  const url=inp.value.trim();tiBkData[id]=url;
-  // Find day
-  const dayEl=inp.closest('.tc');const dk=dayEl?dayEl.id.replace('tab-',''):'unknown';
+  const id=inp.getAttribute('data-bk');
+  const type=inp.getAttribute('data-type')||'other';
+  const url=inp.value.trim();
+  tiBkData[id]=url;
+  // Use data-day attribute (more reliable than DOM traversal)
+  const dk=inp.getAttribute('data-day')||inp.closest('[id^="tab-"]')?.id?.replace('tab-','')||'unknown';
   const labelEl=inp.closest('.ti-bk')?.querySelector('.ti-bk-label');
-  const label=labelEl?labelEl.textContent:'Booking';
+  const label=labelEl?labelEl.textContent.trim():'Booking';
   await upsertShared('booking_links',{id,day_key:dk,link_type:type,label,url});
   updateTiBkUI(id,url);
 }
@@ -1619,7 +1622,10 @@ function updateTiBkUI(id,url){
   const openBtn=document.getElementById('bko_'+id);
   if(inp&&inp.value!==url)inp.value=url;
   if(openBtn){openBtn.style.display=url?'inline':'none';if(url)openBtn.href=url;}
-  if(inp)inp.closest('.ti-bk').style.borderColor=url?'var(--ok)':'var(--pri)';
+  if(inp){
+    const wrap=inp.closest('.ti-bk');
+    if(wrap){wrap.classList.toggle('filled',!!url);}
+  }
 }
 
 // LEFT BOOKING LINKS (per day from timeline)
