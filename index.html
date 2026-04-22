@@ -519,6 +519,12 @@ body{
 }
 .bud-add-btn:hover{background:var(--pri-d)}
 
+
+.bud-card{cursor:pointer}
+.bud-card:hover{transform:translateY(-2px);box-shadow:var(--sh-md)}
+.bud-card.sa.active{box-shadow:0 0 0 3px var(--sa)!important;transform:translateY(-2px)}
+.bud-card.bi.active{box-shadow:0 0 0 3px var(--bi)!important;transform:translateY(-2px)}
+.bud-card.ty.active{box-shadow:0 0 0 3px var(--ty)!important;transform:translateY(-2px)}
 </style>
 <div class="app-shell">
 
@@ -1293,31 +1299,36 @@ body{
 
   <!-- SUMMARY CARDS -->
   <div class="bud-summary-grid">
-    <div class="bud-card sa">
+    <div class="bud-card sa" id="bCard_sa" onclick="setBudFilter('sa')" style="cursor:pointer">
       <div class="bud-avatar sa">Sa</div>
       <div class="bud-name">Sa</div>
       <div class="bud-est" id="saEst">Est: —</div>
       <div class="bud-act-vnd" id="saActVND">0 VND</div>
       <div class="bud-act-twd" id="saActTWD">≈ 0 TWD</div>
       <div class="bud-diff" id="saDiff"></div>
+      <div style="font-size:.58rem;color:var(--txt3);margin-top:3px" id="bHint_sa">Bấm để lọc</div>
     </div>
-    <div class="bud-card bi">
+    <div class="bud-card bi" id="bCard_bi" onclick="setBudFilter('bi')" style="cursor:pointer">
       <div class="bud-avatar bi">Bi</div>
       <div class="bud-name">Bi</div>
       <div class="bud-est" id="biEst">Est: —</div>
       <div class="bud-act-vnd" id="biActVND">0 VND</div>
       <div class="bud-act-twd" id="biActTWD">≈ 0 TWD</div>
       <div class="bud-diff" id="biDiff"></div>
+      <div style="font-size:.58rem;color:var(--txt3);margin-top:3px" id="bHint_bi">Bấm để lọc</div>
     </div>
-    <div class="bud-card ty">
+    <div class="bud-card ty" id="bCard_ty" onclick="setBudFilter('ty')" style="cursor:pointer">
       <div class="bud-avatar ty">Ty</div>
       <div class="bud-name">Ty</div>
       <div class="bud-est" id="tyEst">Est: —</div>
       <div class="bud-act-vnd" id="tyActVND">0 VND</div>
       <div class="bud-act-twd" id="tyActTWD">≈ 0 TWD</div>
       <div class="bud-diff" id="tyDiff"></div>
+      <div style="font-size:.58rem;color:var(--txt3);margin-top:3px" id="bHint_ty">Bấm để lọc</div>
     </div>
   </div>
+
+  <div id="budFilterLabel" style="display:none;text-align:center;font-size:.74rem;font-weight:600;padding:5px 12px;border-radius:8px;margin-bottom:8px;background:var(--pri-l);color:var(--pri);cursor:pointer" onclick="setBudFilter(budFilter)">Đang lọc</div>
 
   <!-- TOTALS BAR -->
   <div class="bud-totals">
@@ -1345,39 +1356,7 @@ body{
         <option value="transport">🚆 Di chuyển</option>
         <option value="hotel">🏨 Khách sạn</option>
         <option value="activity">🎫 Tham quan</option>
-        <option value="food" selected>🍜 Ăn uống</option>
-        <option value="shopping">🛍️ Mua sắm</option>
-        <option value="misc">🔧 Khác</option>
-      </select>
-      <button class="bud-add-btn" onclick="addBudgetItem()">+ Thêm</button>
-    </div>
-  </div>
-</div>
-
-<div class="tc" id="tab-ranking">
-  <div class="cd"><div class="cd-t">🏆 Top 20 Điểm Đến</div>
-    <p style="font-size:.72rem;color:var(--txt2);margin-bottom:8px">Click số → zoom map · Click tiêu đề → sắp xếp</p>
-    <div style="overflow-x:auto"><table class="tbl" id="rankTbl">
-      <thead><tr>
-        <th onclick="sortTbl(0)" class="sorted"># <span class="sa">▲</span></th>
-        <th onclick="sortTbl(1)">Điểm đến <span class="sa">▲</span></th>
-        <th onclick="sortTbl(2)">TP <span class="sa">▲</span></th>
-        <th onclick="sortTbl(3)">Ngày <span class="sa">▲</span></th>
-        <th>Đặc điểm</th>
-      </tr></thead>
-      <tbody id="rankBody"></tbody>
-    </table></div>
-  </div>
-</div>
-</div></div></div>
-</div><!-- /content-inner -->
-  </div><!-- /main-content -->
-</div><!-- /body-area -->
-
-</div>
-
-</div><!-- /app-shell -->
-
+        <o
 <script>
 const SUPA_URL='https://wvabjrxyymhpdpvuswfr.supabase.co',SUPA_KEY='sb_publishable_MMQYoRIvqb-gVByG-HV1Jg_iASCuCGE',SCHEMA='202604taiwan';
 let sb=null,SID=null;
@@ -1684,10 +1663,6 @@ async function mdInit(){
 function mdUpd(){const all=document.querySelectorAll('[data-md]');let tot=all.length,chk=0;all.forEach(cb=>{if(cb.checked)chk++;});document.getElementById('mdProg').textContent=`${chk}/${tot} hoàn thành`;document.getElementById('mdBar').style.width=`${Math.round(chk/tot*100)}%`;}
 
 // BUDGET
-const DEFAULT_BUDGET=[["✈️ Vé máy bay CI-782 khứ hồi", "transport", 0, true, true, true], ["🚆 TRA Taipei→Hualien (Booking #6684500)", "transport", 470, true, true, true], ["🚆 TRA Hualien→Taichung", "transport", 680, true, true, true], ["🚄 HSR Taichung→Taipei", "transport", 700, true, true, true], ["🚇 MRT Đài Bắc (Airport + các ngày)", "transport", 800, true, true, true], ["📱 SIM Chunghwa 8 ngày", "misc", 400, true, true, true], ["💳 EasyCard (deposit + nạp)", "misc", 600, true, true, true], ["🏨 Hotel Đài Bắc 4 đêm (N1-3+N7)", "hotel", 0, true, true, true], ["🏨 Hotel Hoa Liên 2 đêm (N4+N5)", "hotel", 0, true, true, true], ["🏨 Hotel Đài Trung 1 đêm (N6)", "hotel", 0, true, true, true], ["🏍️ Thuê xe máy Hoa Liên 2 ngày", "transport", 350, true, true, true], ["🚌 Tour Yehliu+Jiufen+Shifen (KKday)", "activity", 1200, true, true, true], ["🎫 Taipei 101 Observatory", "activity", 600, true, true, true], ["🎫 Yehliu Geopark", "activity", 80, true, true, true], ["🍜 Ăn uống (estimate/ngày × 8)", "food", 6400, true, true, true], ["🛍️ Quà + Mua sắm", "shopping", 2000, true, true, true], ["🔄 Dự phòng", "misc", 2000, true, true, true]];
-const CAT_LABELS={transport:'🚆',hotel:'🏨',activity:'🎫',food:'🍜',shopping:'🛍️',misc:'🔧'};
-let budgetItems=[];
-
 // ── BUDGET ────────────────────────────────────────────────────────────────────
 const DEFAULT_BUDGET=[
   {label:'✈️ Vé CI-782/783 khứ hồi',category:'transport',est_vnd:0,act_vnd:0,est_cur:'VND',act_cur:'VND',for_sa:true,for_bi:true,for_ty:true},
@@ -1710,6 +1685,7 @@ const DEFAULT_BUDGET=[
 const CAT_ICON={transport:'🚆',hotel:'🏨',activity:'🎫',food:'🍜',shopping:'🛍️',misc:'🔧'};
 let budgetItems=[];
 let budRate=860;
+let budFilter=null;
 
 function setRate(r){if(r>0){budRate=r;calcBudgetSummary();renderBudget();}}
 
@@ -1751,10 +1727,21 @@ async function loadBudget(){
   calcBudgetSummary();
 }
 
+function setBudFilter(p){
+  budFilter=budFilter===p?null:p;
+  ['sa','bi','ty'].forEach(x=>{
+    const card=document.getElementById('bCard_'+x);
+    if(card)card.classList.toggle('active',x===budFilter);
+  });
+  renderBudget();
+}
 function renderBudget(){
   const cont=document.getElementById('budgetBody');if(!cont)return;
   let html='';
-  budgetItems.forEach(item=>{
+  const visItems=budFilter?budgetItems.filter(x=>x['for_'+budFilter]):budgetItems;
+  const lbl=document.getElementById('budFilterLabel');
+  if(lbl){lbl.style.display=budFilter?'block':'none';if(budFilter)lbl.textContent='Lọc: '+{sa:'Sa',bi:'Bi',ty:'Ty'}[budFilter]+' — '+visItems.length+'/'+budgetItems.length+' khoản';}
+  visItems.forEach(item=>{
     const estVND=toVND(item.estimate,item.est_cur||'TWD');
     const actVND=toVND(item.actual,item.act_cur||'TWD');
     const estConvert=item.est_cur==='TWD'
@@ -1911,6 +1898,23 @@ function calcBudgetSummary(){
 
 
 // RANKING
+let sCol=0,sAsc=true;
+function buildRank(){const tb=document.getElementById('rankBody');tb.innerHTML='';[...RANKS].sort((a,b)=>{let va=a[sCol],vb=b[sCol];if(typeof va==='string'){va=va.replace('*','');vb=String(vb).replace('*','');}if(!isNaN(va)&&!isNaN(vb)){va=+va;vb=+vb;}return va<vb?(sAsc?-1:1):va>vb?(sAsc?1:-1):0;}).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td><span class="rb" onclick="zoomRank(${r[0]})">${r[0]}</span></td><td><b>${r[1]}</b></td><td>${r[2]}</td><td>${r[3]}</td><td style="font-size:.75rem;color:var(--txt2)">${r[4]}</td>`;tb.appendChild(tr);});document.querySelectorAll('#rankTbl th').forEach((th,i)=>{th.classList.toggle('sorted',i===sCol);const sa=th.querySelector('.sa');if(sa)sa.textContent=i===sCol?(sAsc?'▲':'▼'):'▲';});}
+function sortTbl(c){if(c===4)return;sCol===c?sAsc=!sAsc:(sCol=c,sAsc=true);buildRank();}
+
+// INIT
+async function init(){
+  showAll();buildRank();
+  await sbInit();
+  await Promise.all([loadAllTasks(),loadBudget(),mdInit()]);
+  await Promise.all([loadTiBk(),loadLeftBk()]);
+  renderOvChecklist();
+  renderDayChecklist(null);
+}
+init();
+
+</script>
+RANKING
 let sCol=0,sAsc=true;
 function buildRank(){const tb=document.getElementById('rankBody');tb.innerHTML='';[...RANKS].sort((a,b)=>{let va=a[sCol],vb=b[sCol];if(typeof va==='string'){va=va.replace('*','');vb=String(vb).replace('*','');}if(!isNaN(va)&&!isNaN(vb)){va=+va;vb=+vb;}return va<vb?(sAsc?-1:1):va>vb?(sAsc?1:-1):0;}).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td><span class="rb" onclick="zoomRank(${r[0]})">${r[0]}</span></td><td><b>${r[1]}</b></td><td>${r[2]}</td><td>${r[3]}</td><td style="font-size:.75rem;color:var(--txt2)">${r[4]}</td>`;tb.appendChild(tr);});document.querySelectorAll('#rankTbl th').forEach((th,i)=>{th.classList.toggle('sorted',i===sCol);const sa=th.querySelector('.sa');if(sa)sa.textContent=i===sCol?(sAsc?'▲':'▼'):'▲';});}
 function sortTbl(c){if(c===4)return;sCol===c?sAsc=!sAsc:(sCol=c,sAsc=true);buildRank();}
