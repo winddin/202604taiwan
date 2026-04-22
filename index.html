@@ -1357,6 +1357,23 @@ body{
         <option value="hotel">🏨 Khách sạn</option>
         <option value="activity">🎫 Tham quan</option>
         <o
+
+<div class="tc" id="tab-ranking">
+  <div class="cd"><div class="cd-t">🏆 Top 20 Điểm Đến</div>
+    <p style="font-size:.72rem;color:var(--txt2);margin-bottom:8px">Click số → zoom map · Click tiêu đề → sắp xếp</p>
+    <div style="overflow-x:auto"><table class="tbl" id="rankTbl">
+      <thead><tr>
+        <th onclick="sortTbl(0)" class="sorted"># <span class="sa">▲</span></th>
+        <th onclick="sortTbl(1)">Điểm đến <span class="sa">▲</span></th>
+        <th onclick="sortTbl(2)">TP <span class="sa">▲</span></th>
+        <th onclick="sortTbl(3)">Ngày <span class="sa">▲</span></th>
+        <th>Đặc điểm</th>
+      </tr></thead>
+      <tbody id="rankBody"></tbody>
+    </table></div>
+    <div class="nt inf" style="margin-top:10px"><b>📌</b>Tất cả trong lịch trình. (*) = option. Click số → zoom map.</div>
+  </div>
+</div>
 <script>
 const SUPA_URL='https://wvabjrxyymhpdpvuswfr.supabase.co',SUPA_KEY='sb_publishable_MMQYoRIvqb-gVByG-HV1Jg_iASCuCGE',SCHEMA='202604taiwan';
 let sb=null,SID=null;
@@ -1929,6 +1946,7 @@ async function init(){
   renderDayChecklist(null);
 }
 init();
+
 </script>
 </body>
 </html>
