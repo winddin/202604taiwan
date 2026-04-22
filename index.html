@@ -1364,7 +1364,6 @@ function updateTiBkUI(id,url){
 }
 
 // LEFT BOOKING LINKS (per day from timeline)
-const DEFAULT_BOOKINGS={"day1": [["flight", "✈️ Vé CI-782 SGN→TPE", ""], ["hotel", "🏨 Hotel Đài Bắc N1-3+N7", ""]], "day2": [["ticket", "🎫 Taipei 101 (Klook)", ""]], "day3": [["tour", "🚌 Tour Yehliu+Jiufen+Shifen", ""]], "day4": [["transport", "🚆 TRA 472 Taipei→Hualien #6684500", "https://www.railway.gov.tw"], ["hotel", "🏨 Hotel Hoa Liên N4+N5", ""], ["permit", "📋 Taroko Trail Permit", "https://taroko.gov.tw"]], "day5": [["transport", "🚆 TRA Hualien→Taichung", ""], ["hotel", "🏨 Hotel Hoa Liên N5 (đêm 2)", ""]], "day6": [["transport", "🚆 TRA Hualien→Taichung", ""], ["hotel", "🏨 Hotel Đài Trung Fengjia", ""]], "day7": [["transport", "🚄 HSR Taichung→Taipei", ""], ["hotel", "🏨 Hotel Đài Bắc đêm cuối", ""]], "day8": [["flight", "✈️ Vé CI-783 TPE→SGN", ""]]};
 let allLeftBk={};
 async function loadLeftBk(){
   const rows=await getAllShared('booking_links');
