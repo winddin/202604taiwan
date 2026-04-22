@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
@@ -26,7 +27,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .fl-ban{background:var(--pri-l);border-left:4px solid var(--pri);padding:10px 14px;margin:10px 10px 0;border-radius:0 10px 10px 0;font-size:.78rem;color:var(--txt2)}
 .fl-ban h3{font-size:.8rem;color:var(--pri);margin-bottom:4px;font-weight:700}
 .fl-ban hr{border:none;border-top:1px dashed #ccc;margin:6px 0}
-
+.fl-warn{font-size:.72rem;color:var(--acc);margin-top:4px;font-weight:600}
 .nav{display:flex;overflow-x:auto;padding:7px 10px;gap:5px;background:var(--card);border-bottom:1px solid var(--bdr);position:sticky;top:62px;z-index:1000;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
 .nb{flex-shrink:0;padding:5px 11px;border:2px solid var(--bdr);border-radius:20px;background:var(--card);cursor:pointer;font-size:.73rem;font-weight:700;transition:all .15s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
@@ -184,57 +185,54 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 @media(min-width:768px){.bnav{display:none}}
 ::-webkit-scrollbar{height:0;width:0}
 
-/* Budget */
 .bud-summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
-.bud-card{text-align:center;padding:10px 6px;border-radius:var(--r);background:var(--card);border:2px solid var(--bdr);transition:all .2s;cursor:pointer}
-.bud-card:hover{transform:translateY(-1px);box-shadow:var(--sh-md)}
-.bud-card.sa{border-color:var(--sa)}.bud-card.bi{border-color:var(--bi)}.bud-card.ty{border-color:var(--ty)}
-.bud-card.sa.active{box-shadow:0 0 0 3px var(--sa);transform:translateY(-2px)}
-.bud-card.bi.active{box-shadow:0 0 0 3px var(--bi);transform:translateY(-2px)}
-.bud-card.ty.active{box-shadow:0 0 0 3px var(--ty);transform:translateY(-2px)}
+.bud-card{text-align:center;padding:10px 6px;border-radius:var(–r);background:var(–card);border:2px solid var(–bdr);transition:all .2s;cursor:pointer}
+.bud-card:hover{transform:translateY(-1px);box-shadow:var(–sh-md)}
+.bud-card.sa{border-color:var(–sa)}.bud-card.bi{border-color:var(–bi)}.bud-card.ty{border-color:var(–ty)}
+.bud-card.sa.active{box-shadow:0 0 0 3px var(–sa);transform:translateY(-2px)}
+.bud-card.bi.active{box-shadow:0 0 0 3px var(–bi);transform:translateY(-2px)}
+.bud-card.ty.active{box-shadow:0 0 0 3px var(–ty);transform:translateY(-2px)}
 .bud-avatar{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;color:#fff;margin:0 auto 5px}
-.bud-avatar.sa{background:var(--sa)}.bud-avatar.bi{background:var(--bi)}.bud-avatar.ty{background:var(--ty)}
-.bud-name{font-size:.75rem;font-weight:700}
-.bud-est{font-size:.65rem;color:var(--txt3);margin-top:2px}
-.bud-act-vnd{font-size:.85rem;font-weight:800;margin-top:4px}
-.bud-act-twd{font-size:.65rem;color:var(--txt3);margin-top:1px}
-.bud-diff{font-size:.65rem;margin-top:3px;font-weight:600}
-.bud-diff.over{color:var(--red)}.bud-diff.under{color:var(--ok)}
-.bud-totals{display:flex;align-items:center;background:var(--card);border-radius:var(--r);padding:10px 14px;margin-bottom:12px;box-shadow:var(--sh);border:1px solid var(--bdr2)}
+.bud-avatar.sa{background:var(–sa)}.bud-avatar.bi{background:var(–bi)}.bud-avatar.ty{background:var(–ty)}
+.bud-name{font-size:.75rem;font-weight:700}.bud-est{font-size:.65rem;color:var(–txt3);margin-top:2px}
+.bud-act-vnd{font-size:.85rem;font-weight:800;margin-top:4px}.bud-act-twd{font-size:.65rem;color:var(–txt3)}
+.bud-diff{font-size:.65rem;margin-top:3px;font-weight:600}.bud-diff.over{color:var(–red)}.bud-diff.under{color:var(–ok)}
+.bud-totals{display:flex;align-items:center;background:var(–card);border-radius:var(–r);padding:10px 14px;margin-bottom:12px;box-shadow:var(–sh);border:1px solid var(–bdr2)}
 .bud-total-item{flex:1;text-align:center}
-.bud-total-label{display:block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--txt3);margin-bottom:3px}
-.bud-total-val{display:block;font-size:.95rem;font-weight:800;color:var(--pri)}
-.bud-total-sub{display:block;font-size:.68rem;color:var(--txt3)}
-.bud-total-divider{width:1px;background:var(--bdr);align-self:stretch;margin:0 8px}
-.bud-add-card{background:var(--card);border-radius:var(--r);border:2px dashed var(--pri);padding:14px;margin-bottom:12px;box-shadow:var(--sh)}
-.bud-add-inp{width:100%;font-size:.82rem;border:1.5px solid var(--bdr);border-radius:8px;padding:7px 10px;font-family:inherit;outline:none;background:var(--bg);transition:border-color .15s}
-.bud-add-inp:focus{border-color:var(--pri);background:#fff}
-.bud-add-select{font-size:.75rem;border:1.5px solid var(--bdr);border-radius:8px;padding:6px 8px;background:var(--bg);outline:none;cursor:pointer;flex:1}
-.bud-add-btn{font-size:.8rem;background:var(--pri);color:#fff;border:none;border-radius:8px;padding:8px 16px;cursor:pointer;font-weight:700;white-space:nowrap;transition:all .15s;box-shadow:0 2px 6px rgba(79,70,229,.3)}
-.bud-add-btn:hover{background:var(--pri-d)}.bud-add-btn:active{transform:scale(.97)}
-.bud-item-card{background:var(--card);border-radius:var(--r-sm);border:1px solid var(--bdr2);margin-bottom:8px;overflow:hidden;box-shadow:var(--sh)}
-.bud-item-top{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--bdr2)}
-.bud-cat-select{font-size:.7rem;border:1px solid var(--bdr);border-radius:6px;padding:3px 5px;background:var(--bg);outline:none;cursor:pointer}
-.bud-item-label{flex:1;font-size:.82rem;font-weight:600;color:var(--txt);background:transparent;border:none;font-family:inherit;outline:none;cursor:pointer;min-width:0}
-.bud-item-label:focus{background:var(--pri-l);border-radius:4px;padding:1px 5px;cursor:text}
-.bud-item-del{background:none;border:none;cursor:pointer;color:var(--txt3);font-size:.8rem;padding:3px;flex-shrink:0}
-.bud-item-del:hover{color:var(--red)}
-.bud-item-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.bud-item-col{padding:8px 12px}.bud-item-col:first-child{border-right:1px solid var(--bdr2)}
-.bud-item-col-label{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--txt3);margin-bottom:5px;display:block}
-.bud-cur-row{display:flex;gap:5px;margin-bottom:5px}
-.bud-cur-btn{flex:1;padding:3px 0;font-size:.7rem;font-weight:700;border-radius:6px;border:1.5px solid var(--bdr);background:var(--bg);color:var(--txt2);cursor:pointer;transition:all .15s}
-.bud-cur-btn.on{background:var(--pri);color:#fff;border-color:var(--pri)}
-.bud-amount-inp{width:100%;font-size:.88rem;font-weight:700;border:1.5px solid var(--bdr);border-radius:7px;padding:5px 8px;font-family:inherit;text-align:right;outline:none;background:var(--bg);color:var(--txt);transition:border-color .15s;-moz-appearance:textfield}
-.bud-amount-inp:focus{border-color:var(--pri);background:#fff}
+.bud-total-label{display:block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(–txt3);margin-bottom:3px}
+.bud-total-val{display:block;font-size:.95rem;font-weight:800;color:var(–pri)}
+.bud-total-sub{display:block;font-size:.68rem;color:var(–txt3)}
+.bud-total-divider{width:1px;background:var(–bdr);align-self:stretch;margin:0 8px}
+.bud-add-card{background:var(–card);border-radius:var(–r);border:2px dashed var(–pri);padding:14px;margin-bottom:12px;box-shadow:var(–sh)}
+.bud-add-inp{font-size:.82rem;border:1.5px solid var(–bdr);border-radius:8px;padding:7px 10px;font-family:inherit;outline:none;background:var(–bg)}
+.bud-add-inp:focus{border-color:var(–pri);background:#fff}
+.bud-add-select{font-size:.9rem;border:1.5px solid var(–bdr);border-radius:8px;padding:6px;background:var(–bg);outline:none;cursor:pointer}
+.bud-add-btn{font-size:.8rem;background:var(–pri);color:#fff;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-weight:700}
+.bud-item-card{background:var(–card);border-radius:var(–r-sm);border:1px solid var(–bdr2);margin-bottom:8px;overflow:hidden;box-shadow:var(–sh)}
+.bud-item-top{display:flex;align-items:center;gap:7px;padding:9px 12px;border-bottom:1px solid var(–bdr2)}
+.bud-cat-select,.bud-cur-sel-inline{font-size:.7rem;border:1px solid var(–bdr);border-radius:5px;padding:2px 4px;background:var(–bg);outline:none;cursor:pointer}
+.bud-cur-sel-inline{color:var(–pri);font-weight:700;flex-shrink:0}
+.bud-item-label{flex:1;font-size:.82rem;font-weight:600;color:var(–txt);background:transparent;border:none;font-family:inherit;outline:none;cursor:pointer;min-width:0}
+.bud-item-label:focus{background:var(–pri-l);border-radius:4px;padding:1px 4px}
+.bud-item-del{background:none;border:none;cursor:pointer;color:var(–txt3);font-size:.8rem;padding:3px;flex-shrink:0}
+.bud-item-del:hover{color:var(–red)}
+.bud-item-body{display:grid;grid-template-columns:1fr 1fr}
+.bud-item-col{padding:8px 12px}.bud-item-col:first-child{border-right:1px solid var(–bdr2)}
+.bud-item-col-label{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(–txt3);margin-bottom:5px;display:block}
+.bud-amount-inp{width:100%;font-size:.88rem;font-weight:700;border:1.5px solid var(–bdr);border-radius:7px;padding:5px 8px;font-family:inherit;text-align:right;outline:none;background:var(–bg);-moz-appearance:textfield}
+.bud-amount-inp:focus{border-color:var(–pri);background:#fff}
 .bud-amount-inp::-webkit-outer-spin-button,.bud-amount-inp::-webkit-inner-spin-button{-webkit-appearance:none}
-.bud-item-convert{font-size:.65rem;color:var(--txt3);margin-top:3px;text-align:right}
-.bud-item-footer{display:flex;align-items:center;padding:6px 12px;background:var(--bg);gap:6px;border-top:1px solid var(--bdr2);flex-wrap:wrap}
-.bud-person-toggle{display:flex;align-items:center;gap:4px;font-size:.72rem;font-weight:600;cursor:pointer;padding:3px 10px;border-radius:8px;border:1.5px solid var(--bdr);transition:all .15s;user-select:none;color:var(--txt2);background:var(--card)}
-.bud-person-toggle.sa.on{background:rgba(99,102,241,.12);border-color:var(--sa);color:var(--sa)}
-.bud-person-toggle.bi.on{background:rgba(236,72,153,.12);border-color:var(--bi);color:var(--bi)}
-.bud-person-toggle.ty.on{background:rgba(20,184,166,.12);border-color:var(--ty);color:var(--ty)}
+.bud-item-per{font-size:.68rem;color:var(–ok);font-weight:600;margin-top:3px;text-align:right}
+.bud-item-footer{display:flex;align-items:center;padding:6px 12px;background:var(–bg);gap:6px;border-top:1px solid var(–bdr2);flex-wrap:wrap}
+.bud-person-toggle{font-size:.72rem;font-weight:600;cursor:pointer;padding:3px 10px;border-radius:8px;border:1.5px solid var(–bdr);transition:all .15s;user-select:none;color:var(–txt2);background:var(–card)}
+.bud-person-toggle.sa.on{background:rgba(99,102,241,.12);border-color:var(–sa);color:var(–sa)}
+.bud-person-toggle.bi.on{background:rgba(236,72,153,.12);border-color:var(–bi);color:var(–bi)}
+.bud-person-toggle.ty.on{background:rgba(20,184,166,.12);border-color:var(–ty);color:var(–ty)}
+.fl-ban{background:var(–pri-l);border-left:4px solid var(–pri);padding:10px 14px;border-radius:0 var(–r-sm) var(–r-sm) 0;font-size:.78rem;color:var(–txt2);margin-bottom:12px}
+.fl-ban h3{font-size:.82rem;color:var(–pri);margin-bottom:5px;font-weight:700}
+.fl-ban hr{border:none;border-top:1px dashed var(–bdr);margin:5px 0}
 </style>
+
 </head>
 <body>
 <div class="hdr">
@@ -246,11 +244,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <span class="db-badge" id="dbBadge">⏳ Syncing...</span>
   </div>
 </div>
-<div class="fl-ban">
-  <h3>✈️ China Airlines</h3>
-  <b>ĐI:</b> CI-782 | T7 25/04 | SGN 10:50 → TPE 15:20 (3h30)<br>
-  <b>VỀ:</b> CI-783 | T7 02/05 | TPE 13:45 → SGN 16:20 (3h35)<hr>
-  👤 Gia Bao (FMGKXZ) · Hoài Thanh + Quỳnh Hương (DW9ZY2) · 🧳 7kg + 23kg × 3
 </div>
 <nav class="nav">
   <button class="nb on" onclick="go('overview')">🗺️ Tổng quan</button>
@@ -292,6 +285,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
 <div class="tc on" id="tab-overview">
   <div class="dh"><h2>🗺️ Tổng Quan 8 Ngày</h2><p>Đài Bắc (3đ) → Hoa Liên (2đ) → Đài Trung (1đ) → Đài Bắc (1đ)</p></div>
+
+  <div class="fl-ban"><h3>✈️ China Airlines</h3><b>ĐI:</b> CI-782 | T7 25/04 | SGN 10:50 → TPE 15:20 (3h30)<br><b>VỀ:</b> CI-783 | T7 02/05 | TPE 13:45 → SGN 16:20 (3h35)<hr>👤 Gia Bao (FMGKXZ) · Hoài Thanh + Quỳnh Hương (DW9ZY2) · 🧳 7kg xách tay + 23kg ký gửi × 3</div>
   <div class="cd"><div class="cd-t">📍 Lộ trình</div><div style="font-size:.82rem">
     <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(5)" title="#5">5</span><b>25/04</b> ✈️ SGN→TPE · Ximending</div>
     <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(1)" title="#1">1</span><span class="rb" onclick="zoomRank(4)" title="#4">4</span><span class="rb" onclick="zoomRank(6)" title="#6">6</span><span class="rb" onclick="zoomRank(7)" title="#7">7</span><b>26/04</b> 101 · Yongkang · Elephant Mt · Raohe</div>
@@ -322,54 +317,55 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <div class="ti-d">Nhập cảnh (~45p) → Mua SIM Chunghwa B1 → Mua/nạp EasyCard ×3 → Đổi ≥10,000 TWD</div>
       <div class="ti-c">SIM ~400 TWD | EasyCard 600 TWD × 3</div>
       <div class="ti-tip">💡 Counter SIM + EasyCard ngay B1 arrival, mua xong mới ra ngoài</div>
-      
-      
-      
-      <div class="ti-bk" id="bkf_d1_flight">
-      <span class="ti-bk-label">✈️ Vé CI-782</span>
-      <input class="ti-bk-input" data-bk="d1_flight" data-type="flight" placeholder="Paste link booking..." 
-        onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-      <a class="ti-bk-open" id="bko_d1_flight" style="display:none" target="_blank">Mở ↗</a>
-    </div>
-    </div>
-    <div class="ti">
-      <div class="ti-t">16:30</div>
-      <div class="ti-p">Airport MRT Express / 機場捷運<br><small class="ti-sub">A12 TPE T1 → A1 Taipei Main</small></div>
-      <div class="ti-d">35 phút quẹt EasyCard.</div>
-      <div class="ti-c">160 TWD ×3 = 480 TWD</div>
-      
-      <div class="ti-note">⚠️ SGN Terminal 2 khi đi · TPE Terminal 1 khi đến</div>
-      
-      
-      
-    </div>
-    <div class="ti">
-      <div class="ti-t">17:30</div>
-      <div class="ti-p">🏨 Check-in Hotel Đài Bắc<br><small class="ti-sub">Ximending / Zhongshan / Taipei Main</small></div>
-      <div class="ti-d">Gửi đồ hoặc check-in. Nghỉ ngơi 30p trước khi ra Ximending.</div>
-      
-      
-      
-      
-      
-      <div class="ti-bk" id="bkf_d1_hotel">
-      <span class="ti-bk-label">🏨 Hotel Đài Bắc (N1-3+N7)</span>
-      <input class="ti-bk-input" data-bk="d1_hotel" data-type="hotel" placeholder="Paste link booking..." 
-        onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-      <a class="ti-bk-open" id="bko_d1_hotel" style="display:none" target="_blank">Mở ↗</a>
-    </div>
-    </div>
-    <div class="ti ev">
-      <div class="ti-t">Tối 18:00</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(5)" title="#5">5</span> Ximending / 西門町<br><small class="ti-sub">Tây Môn Đình — Harajuku Đài Bắc</small></div>
-      <div class="ti-d">Phố đi bộ sầm uất. Mua sắm, ăn vặt, street art.</div>
-      <div class="ti-c">~200-400 TWD/người</div>
-      <div class="ti-tip">💡 Tiger Sugar bubble tea + gà rán Hot Star XXL</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Ximending+graffiti+wall+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Graffiti walls + neon hẻm</span><span class="il-tip">Chụp tối đẹp hơn ngày</span></span></a><a href="https://www.google.com/maps/search/Tiger+Sugar+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Tiger Sugar cup shot</span><span class="il-tip">Chụp ly boba stripe trước khi uống</span></span></a></div>
-      <div class="il-group"><a href="https://www.google.com/maps/search/Hot+Star+large+fried+chicken+Ximending" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍗 Hot Star XXL Chicken 豪大大雞排</span><span class="il-tip">Gà rán to nhất Đài Loan</span></span></a><a href="https://www.google.com/maps/search/Tiger+Sugar+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🧋 Tiger Sugar 老虎堂</span><span class="il-tip">Brown sugar boba nổi tiếng</span></span></a><a href="https://www.google.com/maps/search/Ay+Chung+Flour+Rice+Noodle+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍜 Ay-Chung Noodles 阿宗麵線</span><span class="il-tip">Oyster vermicelli huyền thoại</span></span></a></div>
-      
-    </div>
+
+```
+  <div class="ti-bk" id="bkf_d1_flight">
+  <span class="ti-bk-label">✈️ Vé CI-782</span>
+  <input class="ti-bk-input" data-bk="d1_flight" data-type="flight" placeholder="Paste link booking..." 
+    onchange="saveTiBk(this)" onblur="saveTiBk(this)">
+  <a class="ti-bk-open" id="bko_d1_flight" style="display:none" target="_blank">Mở ↗</a>
+</div>
+</div>
+<div class="ti">
+  <div class="ti-t">16:30</div>
+  <div class="ti-p">Airport MRT Express / 機場捷運<br><small class="ti-sub">A12 TPE T1 → A1 Taipei Main</small></div>
+  <div class="ti-d">35 phút quẹt EasyCard.</div>
+  <div class="ti-c">160 TWD ×3 = 480 TWD</div>
+  
+  <div class="ti-note">⚠️ SGN Terminal 2 khi đi · TPE Terminal 1 khi đến</div>
+  
+  
+  
+</div>
+<div class="ti">
+  <div class="ti-t">17:30</div>
+  <div class="ti-p">🏨 Check-in Hotel Đài Bắc<br><small class="ti-sub">Ximending / Zhongshan / Taipei Main</small></div>
+  <div class="ti-d">Gửi đồ hoặc check-in. Nghỉ ngơi 30p trước khi ra Ximending.</div>
+  
+  
+  
+  
+  
+  <div class="ti-bk" id="bkf_d1_hotel">
+  <span class="ti-bk-label">🏨 Hotel Đài Bắc (N1-3+N7)</span>
+  <input class="ti-bk-input" data-bk="d1_hotel" data-type="hotel" placeholder="Paste link booking..." 
+    onchange="saveTiBk(this)" onblur="saveTiBk(this)">
+  <a class="ti-bk-open" id="bko_d1_hotel" style="display:none" target="_blank">Mở ↗</a>
+</div>
+</div>
+<div class="ti ev">
+  <div class="ti-t">Tối 18:00</div>
+  <div class="ti-p"><span class="rb" onclick="zoomRank(5)" title="#5">5</span> Ximending / 西門町<br><small class="ti-sub">Tây Môn Đình — Harajuku Đài Bắc</small></div>
+  <div class="ti-d">Phố đi bộ sầm uất. Mua sắm, ăn vặt, street art.</div>
+  <div class="ti-c">~200-400 TWD/người</div>
+  <div class="ti-tip">💡 Tiger Sugar bubble tea + gà rán Hot Star XXL</div>
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Ximending+graffiti+wall+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Graffiti walls + neon hẻm</span><span class="il-tip">Chụp tối đẹp hơn ngày</span></span></a><a href="https://www.google.com/maps/search/Tiger+Sugar+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Tiger Sugar cup shot</span><span class="il-tip">Chụp ly boba stripe trước khi uống</span></span></a></div>
+  <div class="il-group"><a href="https://www.google.com/maps/search/Hot+Star+large+fried+chicken+Ximending" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍗 Hot Star XXL Chicken 豪大大雞排</span><span class="il-tip">Gà rán to nhất Đài Loan</span></span></a><a href="https://www.google.com/maps/search/Tiger+Sugar+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🧋 Tiger Sugar 老虎堂</span><span class="il-tip">Brown sugar boba nổi tiếng</span></span></a><a href="https://www.google.com/maps/search/Ay+Chung+Flour+Rice+Noodle+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍜 Ay-Chung Noodles 阿宗麵線</span><span class="il-tip">Oyster vermicelli huyền thoại</span></span></a></div>
+  
+</div>
+```
+
 </div></div>
 </div>
 <div class="tc" id="tab-day2">
@@ -382,60 +378,63 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <div class="ti-d">Đổi gác lính mỗi giờ chẵn. Kiến trúc trắng hùng vĩ.</div>
       <div class="ti-c">Miễn phí</div>
       <div class="ti-tip">💡 Đến đúng giờ chẵn để xem đổi gác</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Chiang+Kai+Shek+Memorial+Hall+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Cổng xanh + bậc thang trắng</span><span class="il-tip">Góc chính diện · Sáng ít người</span></span></a><a href="https://www.google.com/maps/search/CKS+Memorial+guard+change+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Lễ đổi gác</span><span class="il-tip">Đúng giờ chẵn</span></span></a></div>
-      
-      
-    </div>
-    <div class="ti">
-      <div class="ti-t">Trưa 11:30</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(4)" title="#4">4</span> Yongkang Street / 永康街<br><small class="ti-sub">Phố Vĩnh Khang</small></div>
-      <div class="ti-d">Mì bò + Din Tai Fung xiao long bao.</div>
-      <div class="ti-c">Mì bò ~220 TWD | DTF ~400 TWD</div>
-      <div class="ti-tip">💡 DTF trước 11:00 hoặc sau 14:00 tránh đông</div>
-      
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Din+Tai+Fung+Yongkang+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🥟 Din Tai Fung 鼎泰豐</span><span class="il-tip">XLB nổi tiếng nhất TG</span></span></a><a href="https://www.google.com/maps/search/Yongkang+Beef+Noodle+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍜 Yongkang Beef Noodle 永康牛肉麵</span><span class="il-tip">Huyền thoại 60 năm</span></span></a></div>
-      
-    </div>
-    <div class="ti">
-      <div class="ti-t">Chiều 14:00</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(1)" title="#1">1</span> Taipei 101 / 台北101<br><small class="ti-sub">Đài quan sát T89</small></div>
-      <div class="ti-d">Thang máy 37 giây lên T89. View 360°.</div>
-      <div class="ti-c">~600 TWD (Klook ~510)</div>
-      <div class="ti-tip">💡 Mua online Klook skip hàng dài</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Taipei+101+Observatory" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">T89 view 360°</span><span class="il-tip">Chụp toàn cảnh + núi xa</span></span></a></div>
-      
-      <div class="ti-bk" id="bkf_d2_101">
-      <span class="ti-bk-label">🎫 Vé Taipei 101 (Klook)</span>
-      <input class="ti-bk-input" data-bk="d2_101" data-type="ticket" placeholder="Paste link booking..." 
-        onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-      <a class="ti-bk-open" id="bko_d2_101" style="display:none" target="_blank">Mở ↗</a>
-    </div>
-    </div>
-    <div class="ti">
-      <div class="ti-t">Chiều 16:30</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(6)" title="#6">6</span> Elephant Mountain / 象山<br><small class="ti-sub">Núi Voi · Xiàng Shān</small></div>
-      <div class="ti-d">20-30p leo → best viewpoint 101 golden hour.</div>
-      <div class="ti-c">Miễn phí</div>
-      <div class="ti-tip">💡 Đến 16:30-17:00 cho ánh sáng đẹp</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Elephant+Mountain+Xiangshan+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">4 tảng đá + 101 backdrop</span><span class="il-tip">Golden hour 17:30-18:30</span></span></a></div>
-      
-      
-    </div>
-    <div class="ti ev">
-      <div class="ti-t">Tối 19:00</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(7)" title="#7">7</span> Raohe Night Market / 饒河夜市<br><small class="ti-sub">Chợ đêm cổ nhất Đài Bắc</small></div>
-      <div class="ti-d">Black Pepper Bun ngay cổng, hào chiên, stinky tofu.</div>
-      <div class="ti-c">~300-500 TWD</div>
-      
-      
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Fuzhou+Pepper+Bun+Raohe+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🫙 Fuzhou Pepper Bun 胡椒餅</span><span class="il-tip">Ngay cổng · Ăn nóng</span></span></a><a href="https://www.google.com/maps/search/oyster+omelette+Raohe+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🦪 Oyster Omelette 蚵仔煎</span><span class="il-tip">Hào chiên đặc sản</span></span></a></div>
-      
-    </div>
+
+```
+  <div class="il-group"><a href="https://www.google.com/maps/search/Chiang+Kai+Shek+Memorial+Hall+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Cổng xanh + bậc thang trắng</span><span class="il-tip">Góc chính diện · Sáng ít người</span></span></a><a href="https://www.google.com/maps/search/CKS+Memorial+guard+change+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Lễ đổi gác</span><span class="il-tip">Đúng giờ chẵn</span></span></a></div>
+  
+  
+</div>
+<div class="ti">
+  <div class="ti-t">Trưa 11:30</div>
+  <div class="ti-p"><span class="rb" onclick="zoomRank(4)" title="#4">4</span> Yongkang Street / 永康街<br><small class="ti-sub">Phố Vĩnh Khang</small></div>
+  <div class="ti-d">Mì bò + Din Tai Fung xiao long bao.</div>
+  <div class="ti-c">Mì bò ~220 TWD | DTF ~400 TWD</div>
+  <div class="ti-tip">💡 DTF trước 11:00 hoặc sau 14:00 tránh đông</div>
+  
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Din+Tai+Fung+Yongkang+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🥟 Din Tai Fung 鼎泰豐</span><span class="il-tip">XLB nổi tiếng nhất TG</span></span></a><a href="https://www.google.com/maps/search/Yongkang+Beef+Noodle+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍜 Yongkang Beef Noodle 永康牛肉麵</span><span class="il-tip">Huyền thoại 60 năm</span></span></a></div>
+  
+</div>
+<div class="ti">
+  <div class="ti-t">Chiều 14:00</div>
+  <div class="ti-p"><span class="rb" onclick="zoomRank(1)" title="#1">1</span> Taipei 101 / 台北101<br><small class="ti-sub">Đài quan sát T89</small></div>
+  <div class="ti-d">Thang máy 37 giây lên T89. View 360°.</div>
+  <div class="ti-c">~600 TWD (Klook ~510)</div>
+  <div class="ti-tip">💡 Mua online Klook skip hàng dài</div>
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Taipei+101+Observatory" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">T89 view 360°</span><span class="il-tip">Chụp toàn cảnh + núi xa</span></span></a></div>
+  
+  <div class="ti-bk" id="bkf_d2_101">
+  <span class="ti-bk-label">🎫 Vé Taipei 101 (Klook)</span>
+  <input class="ti-bk-input" data-bk="d2_101" data-type="ticket" placeholder="Paste link booking..." 
+    onchange="saveTiBk(this)" onblur="saveTiBk(this)">
+  <a class="ti-bk-open" id="bko_d2_101" style="display:none" target="_blank">Mở ↗</a>
+</div>
+</div>
+<div class="ti">
+  <div class="ti-t">Chiều 16:30</div>
+  <div class="ti-p"><span class="rb" onclick="zoomRank(6)" title="#6">6</span> Elephant Mountain / 象山<br><small class="ti-sub">Núi Voi · Xiàng Shān</small></div>
+  <div class="ti-d">20-30p leo → best viewpoint 101 golden hour.</div>
+  <div class="ti-c">Miễn phí</div>
+  <div class="ti-tip">💡 Đến 16:30-17:00 cho ánh sáng đẹp</div>
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Elephant+Mountain+Xiangshan+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">4 tảng đá + 101 backdrop</span><span class="il-tip">Golden hour 17:30-18:30</span></span></a></div>
+  
+  
+</div>
+<div class="ti ev">
+  <div class="ti-t">Tối 19:00</div>
+  <div class="ti-p"><span class="rb" onclick="zoomRank(7)" title="#7">7</span> Raohe Night Market / 饒河夜市<br><small class="ti-sub">Chợ đêm cổ nhất Đài Bắc</small></div>
+  <div class="ti-d">Black Pepper Bun ngay cổng, hào chiên, stinky tofu.</div>
+  <div class="ti-c">~300-500 TWD</div>
+  
+  
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Fuzhou+Pepper+Bun+Raohe+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🫙 Fuzhou Pepper Bun 胡椒餅</span><span class="il-tip">Ngay cổng · Ăn nóng</span></span></a><a href="https://www.google.com/maps/search/oyster+omelette+Raohe+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🦪 Oyster Omelette 蚵仔煎</span><span class="il-tip">Hào chiên đặc sản</span></span></a></div>
+  
+</div>
+```
+
 </div></div>
 </div>
 <div class="tc" id="tab-day3">
@@ -446,62 +445,61 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <div class="ti-t">Sáng 8:00</div>
       <div class="ti-p">Tour combo / KKday<br><small class="ti-sub">Xe đưa đón từ Taipei Main</small></div>
       <div class="ti-d">Book tour combo Yehliu+Jiufen+Shifen trên KKday.</div>
-      
-      
-      
-      
-      
-      <div class="ti-bk" id="bkf_d3_tour">
-      <span class="ti-bk-label">🚌 Tour Yehliu+Jiufen+Shifen (KKday)</span>
-      <input class="ti-bk-input" data-bk="d3_tour" data-type="tour" placeholder="Paste link booking..." 
-        onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-      <a class="ti-bk-open" id="bko_d3_tour" style="display:none" target="_blank">Mở ↗</a>
-    </div>
-    </div>
-    <div class="ti">
-      <div class="ti-t">8:30</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(9)" title="#9">9</span> Yehliu Geopark / 野柳地質公園<br><small class="ti-sub">Công viên địa chất Dã Liễu</small></div>
-      <div class="ti-d">Queen's Head — gió & sóng tạc hàng triệu năm.</div>
-      <div class="ti-c">Vé 80 TWD</div>
-      <div class="ti-tip">💡 Đến sớm tránh tour đoàn</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Yehliu+Geopark+Queens+Head+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Queen's Head 女王頭</span><span class="il-tip">Xếp hàng đứng sau cổ đá · Sáng ít người</span></span></a></div>
-      
-      
-    </div>
-    <div class="ti">
-      <div class="ti-t">Trưa 11:00</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(3)" title="#3">3</span> Jiufen Old Street / 九份老街<br><small class="ti-sub">Phố cổ Cửu Phần</small></div>
-      <div class="ti-d">Đèn lồng đỏ, A-Mei Tea House. Taro balls, trà oolong.</div>
-      <div class="ti-c">~200-400 TWD</div>
-      <div class="ti-tip">💡 Chiều tối đẹp hơn sáng</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Jiufen+Old+Street+lantern+alley+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Hẻm dốc đèn lồng đỏ</span><span class="il-tip">Chiều tối 17:00+ đẹp nhất</span></span></a></div>
-      <div class="il-group"><a href="https://www.google.com/maps/search/taro+balls+Jiufen+Taiwan" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍡 Taro Balls 芋圓</span><span class="il-tip">Đặc sản làng cổ</span></span></a><a href="https://www.google.com/maps/search/A+Mei+Tea+House+Jiufen" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍵 A-Mei Tea House</span><span class="il-tip">Trà oolong + view biển</span></span></a></div>
-      
-    </div>
-    <div class="ti">
-      <div class="ti-t">Chiều 14:30</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(8)" title="#8">8</span> Shifen / 十分<br><small class="ti-sub">Thập Phần — Thả đèn trời</small></div>
-      <div class="ti-d">Đèn hoa đăng trên đường ray. 4 màu: Đỏ=tình, Vàng=tiền, Xanh=nghiệp, Tím=khoẻ.</div>
-      <div class="ti-c">Đèn 200 TWD/4 màu</div>
-      <div class="ti-tip">💡 Viết tiếng Việt OK!</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Shifen+Sky+Lantern+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Đèn bay trên đường ray</span><span class="il-tip">Chụp ngay lúc thả · Wide angle</span></span></a></div>
-      
-      
-    </div>
-    <div class="ti ev">
-      <div class="ti-t">Tối 19:00</div>
-      <div class="ti-p">Ningxia Night Market / 寧夏夜市<br><small class="ti-sub">Về Đài Bắc</small></div>
-      <div class="ti-d">Hào chiên, lu rou fan.</div>
-      <div class="ti-c">~200-400 TWD</div>
-      
-      <div class="ti-note">⚠️ Tối nay pack balo cho Hoa Liên! Sáng mai 08:40 đi tàu.</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Ningxia+Night+Market+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍚 Lu Rou Fan 滷肉飯</span><span class="il-tip">Cơm thịt kho</span></span></a></div>
-      
-    </div>
+
+```
+  <div class="ti-bk" id="bkf_d3_tour">
+  <span class="ti-bk-label">🚌 Tour Yehliu+Jiufen+Shifen (KKday)</span>
+  <input class="ti-bk-input" data-bk="d3_tour" data-type="tour" placeholder="Paste link booking..." 
+    onchange="saveTiBk(this)" onblur="saveTiBk(this)">
+  <a class="ti-bk-open" id="bko_d3_tour" style="display:none" target="_blank">Mở ↗</a>
+</div>
+</div>
+<div class="ti">
+  <div class="ti-t">8:30</div>
+  <div class="ti-p"><span class="rb" onclick="zoomRank(9)" title="#9">9</span> Yehliu Geopark / 野柳地質公園<br><small class="ti-sub">Công viên địa chất Dã Liễu</small></div>
+  <div class="ti-d">Queen's Head — gió & sóng tạc hàng triệu năm.</div>
+  <div class="ti-c">Vé 80 TWD</div>
+  <div class="ti-tip">💡 Đến sớm tránh tour đoàn</div>
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Yehliu+Geopark+Queens+Head+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Queen's Head 女王頭</span><span class="il-tip">Xếp hàng đứng sau cổ đá · Sáng ít người</span></span></a></div>
+  
+  
+</div>
+<div class="ti">
+  <div class="ti-t">Trưa 11:00</div>
+  <div class="ti-p"><span class="rb" onclick="zoomRank(3)" title="#3">3</span> Jiufen Old Street / 九份老街<br><small class="ti-sub">Phố cổ Cửu Phần</small></div>
+  <div class="ti-d">Đèn lồng đỏ, A-Mei Tea House. Taro balls, trà oolong.</div>
+  <div class="ti-c">~200-400 TWD</div>
+  <div class="ti-tip">💡 Chiều tối đẹp hơn sáng</div>
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Jiufen+Old+Street+lantern+alley+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Hẻm dốc đèn lồng đỏ</span><span class="il-tip">Chiều tối 17:00+ đẹp nhất</span></span></a></div>
+  <div class="il-group"><a href="https://www.google.com/maps/search/taro+balls+Jiufen+Taiwan" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍡 Taro Balls 芋圓</span><span class="il-tip">Đặc sản làng cổ</span></span></a><a href="https://www.google.com/maps/search/A+Mei+Tea+House+Jiufen" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍵 A-Mei Tea House</span><span class="il-tip">Trà oolong + view biển</span></span></a></div>
+  
+</div>
+<div class="ti">
+  <div class="ti-t">Chiều 14:30</div>
+  <div class="ti-p"><span class="rb" onclick="zoomRank(8)" title="#8">8</span> Shifen / 十分<br><small class="ti-sub">Thập Phần — Thả đèn trời</small></div>
+  <div class="ti-d">Đèn hoa đăng trên đường ray. 4 màu: Đỏ=tình, Vàng=tiền, Xanh=nghiệp, Tím=khoẻ.</div>
+  <div class="ti-c">Đèn 200 TWD/4 màu</div>
+  <div class="ti-tip">💡 Viết tiếng Việt OK!</div>
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Shifen+Sky+Lantern+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Đèn bay trên đường ray</span><span class="il-tip">Chụp ngay lúc thả · Wide angle</span></span></a></div>
+  
+  
+</div>
+<div class="ti ev">
+  <div class="ti-t">Tối 19:00</div>
+  <div class="ti-p">Ningxia Night Market / 寧夏夜市<br><small class="ti-sub">Về Đài Bắc</small></div>
+  <div class="ti-d">Hào chiên, lu rou fan.</div>
+  <div class="ti-c">~200-400 TWD</div>
+  
+  <div class="ti-note">⚠️ Tối nay pack balo cho Hoa Liên! Sáng mai 08:40 đi tàu.</div>
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Ningxia+Night+Market+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍚 Lu Rou Fan 滷肉飯</span><span class="il-tip">Cơm thịt kho</span></span></a></div>
+  
+</div>
+```
+
 </div></div>
 </div>
 <div class="tc" id="tab-day4">
@@ -514,81 +512,84 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <div class="ti-d">Lấy vé quầy: Booking #6684500 + passport. Car 12 Seat 32/34/36 bên phải hướng biển.</div>
       <div class="ti-c">Đã thanh toán 1,749 TWD ✅</div>
       <div class="ti-tip">💡 Chụp cảnh biển qua cửa sổ tàu</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Taiwan+Railway+East+Coast+scenic" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Cảnh biển qua cửa sổ TRA</span><span class="il-tip">Bờ Đông Suao-Hualien đẹp nhất</span></span></a></div>
-      
-      <div class="ti-bk" id="bkf_d4_train">
-      <span class="ti-bk-label">🚆 TRA 472 Taipei→Hualien #6684500</span>
-      <input class="ti-bk-input" data-bk="d4_train" data-type="transport" placeholder="Paste link booking..." 
-        onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-      <a class="ti-bk-open" id="bko_d4_train" style="display:none" target="_blank">Mở ↗</a>
-    </div>
-    </div>
-    <div class="ti">
-      <div class="ti-t">11:15</div>
-      <div class="ti-p">Thuê xe máy 125cc / 租機車<br><small class="ti-sub">Khu ga Hualien</small></div>
-      <div class="ti-d">Cần IDP. Điền form + đặt cọc. Dùng suốt N4+N5.</div>
-      <div class="ti-c">~300-400 TWD/ngày · Xăng ~50 TWD</div>
-      <div class="ti-tip">💡 Nhờ homestay đặt trước qua điện thoại</div>
-      
-      
-      
-      
-    </div>
-    <div class="ti">
-      <div class="ti-t">11:30</div>
-      <div class="ti-p">🏨 Check-in Hotel Hoa Liên<br><small class="ti-sub">Gần ga Hualien · 2 đêm N4+N5</small></div>
-      <div class="ti-d">Gửi đồ hoặc check-in sớm.</div>
-      
-      
-      
-      
-      
-      <div class="ti-bk" id="bkf_d4_hotel">
-      <span class="ti-bk-label">🏨 Hotel Hoa Liên (N4+N5)</span>
-      <input class="ti-bk-input" data-bk="d4_hotel" data-type="hotel" placeholder="Paste link booking..." 
-        onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-      <a class="ti-bk-open" id="bko_d4_hotel" style="display:none" target="_blank">Mở ↗</a>
-    </div>
-    </div>
-    <div class="ti">
-      <div class="ti-t">12:00</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(2)" title="#2">2</span> Taroko Gorge / 太魯閣峽谷<br><small class="ti-sub">Thái Lỗ Các</small></div>
-      <div class="ti-d">Hẻm núi #1 châu Á. Shakadang (2h) hoặc Swallow Grotto (30p). Mũ bảo hiểm miễn phí.</div>
-      <div class="ti-c">Miễn phí</div>
-      <div class="ti-tip">💡 Check trail mở/đóng: taroko.gov.tw</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Eternal+Spring+Shrine+Taroko" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Eternal Spring Shrine 長春祠</span><span class="il-tip">Đền bên thác · Icon Taroko</span></span></a><a href="https://www.google.com/maps/search/Swallow+Grotto+Taroko+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Swallow Grotto vách cẩm thạch</span><span class="il-tip">Vách đá xanh đặc trưng</span></span></a></div>
-      
-      <div class="ti-bk" id="bkf_d4_permit">
-      <span class="ti-bk-label">📋 Taroko Trail Permit</span>
-      <input class="ti-bk-input" data-bk="d4_permit" data-type="permit" placeholder="Paste link booking..." 
-        onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-      <a class="ti-bk-open" id="bko_d4_permit" style="display:none" target="_blank">Mở ↗</a>
-    </div>
-    </div>
-    <div class="ti">
-      <div class="ti-t">16:00</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(19)" title="#19">19</span> Qingshui Cliff / 清水斷崖<br><small class="ti-sub">Thanh Thủy Đoạn Nhai</small></div>
-      <div class="ti-d">Vách đá 1000m nhìn xuống Thái Bình Dương.</div>
-      <div class="ti-c">Miễn phí</div>
-      
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Qingshui+Cliff+Hualien+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Vách đá 1000m + biển xanh</span><span class="il-tip">Dừng xe tại điểm nhìn</span></span></a></div>
-      
-      
-    </div>
-    <div class="ti ev">
-      <div class="ti-t">Tối 18:30</div>
-      <div class="ti-p">Dongdamen Night Market / 東大門夜市<br><small class="ti-sub">Lớn nhất Hoa Liên</small></div>
-      <div class="ti-d">Aboriginal food: thịt heo nướng, cơm ống tre.</div>
-      <div class="ti-c">~200-400 TWD</div>
-      
-      
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Dongdamen+Night+Market+Hualien" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🥩 Aboriginal BBQ 原住民烤肉</span><span class="il-tip">Thịt nướng thổ dân</span></span></a><a href="https://www.google.com/maps/search/bamboo+rice+Hualien" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🎋 Bamboo Rice 竹筒飯</span><span class="il-tip">Cơm ống tre đặc sản</span></span></a><a href="https://www.google.com/maps/search/Zeng+Yong+mochi+Hualien" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🥟 Zeng Yong Mochi 曾記麻糬</span><span class="il-tip">Mochi nổi tiếng · Mua về</span></span></a></div>
-      
-    </div>
+
+```
+  <div class="il-group"><a href="https://www.google.com/maps/search/Taiwan+Railway+East+Coast+scenic" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Cảnh biển qua cửa sổ TRA</span><span class="il-tip">Bờ Đông Suao-Hualien đẹp nhất</span></span></a></div>
+  
+  <div class="ti-bk" id="bkf_d4_train">
+  <span class="ti-bk-label">🚆 TRA 472 Taipei→Hualien #6684500</span>
+  <input class="ti-bk-input" data-bk="d4_train" data-type="transport" placeholder="Paste link booking..." 
+    onchange="saveTiBk(this)" onblur="saveTiBk(this)">
+  <a class="ti-bk-open" id="bko_d4_train" style="display:none" target="_blank">Mở ↗</a>
+</div>
+</div>
+<div class="ti">
+  <div class="ti-t">11:15</div>
+  <div class="ti-p">Thuê xe máy 125cc / 租機車<br><small class="ti-sub">Khu ga Hualien</small></div>
+  <div class="ti-d">Cần IDP. Điền form + đặt cọc. Dùng suốt N4+N5.</div>
+  <div class="ti-c">~300-400 TWD/ngày · Xăng ~50 TWD</div>
+  <div class="ti-tip">💡 Nhờ homestay đặt trước qua điện thoại</div>
+  
+  
+  
+  
+</div>
+<div class="ti">
+  <div class="ti-t">11:30</div>
+  <div class="ti-p">🏨 Check-in Hotel Hoa Liên<br><small class="ti-sub">Gần ga Hualien · 2 đêm N4+N5</small></div>
+  <div class="ti-d">Gửi đồ hoặc check-in sớm.</div>
+  
+  
+  
+  
+  
+  <div class="ti-bk" id="bkf_d4_hotel">
+  <span class="ti-bk-label">🏨 Hotel Hoa Liên (N4+N5)</span>
+  <input class="ti-bk-input" data-bk="d4_hotel" data-type="hotel" placeholder="Paste link booking..." 
+    onchange="saveTiBk(this)" onblur="saveTiBk(this)">
+  <a class="ti-bk-open" id="bko_d4_hotel" style="display:none" target="_blank">Mở ↗</a>
+</div>
+</div>
+<div class="ti">
+  <div class="ti-t">12:00</div>
+  <div class="ti-p"><span class="rb" onclick="zoomRank(2)" title="#2">2</span> Taroko Gorge / 太魯閣峽谷<br><small class="ti-sub">Thái Lỗ Các</small></div>
+  <div class="ti-d">Hẻm núi #1 châu Á. Shakadang (2h) hoặc Swallow Grotto (30p). Mũ bảo hiểm miễn phí.</div>
+  <div class="ti-c">Miễn phí</div>
+  <div class="ti-tip">💡 Check trail mở/đóng: taroko.gov.tw</div>
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Eternal+Spring+Shrine+Taroko" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Eternal Spring Shrine 長春祠</span><span class="il-tip">Đền bên thác · Icon Taroko</span></span></a><a href="https://www.google.com/maps/search/Swallow+Grotto+Taroko+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Swallow Grotto vách cẩm thạch</span><span class="il-tip">Vách đá xanh đặc trưng</span></span></a></div>
+  
+  <div class="ti-bk" id="bkf_d4_permit">
+  <span class="ti-bk-label">📋 Taroko Trail Permit</span>
+  <input class="ti-bk-input" data-bk="d4_permit" data-type="permit" placeholder="Paste link booking..." 
+    onchange="saveTiBk(this)" onblur="saveTiBk(this)">
+  <a class="ti-bk-open" id="bko_d4_permit" style="display:none" target="_blank">Mở ↗</a>
+</div>
+</div>
+<div class="ti">
+  <div class="ti-t">16:00</div>
+  <div class="ti-p"><span class="rb" onclick="zoomRank(19)" title="#19">19</span> Qingshui Cliff / 清水斷崖<br><small class="ti-sub">Thanh Thủy Đoạn Nhai</small></div>
+  <div class="ti-d">Vách đá 1000m nhìn xuống Thái Bình Dương.</div>
+  <div class="ti-c">Miễn phí</div>
+  
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Qingshui+Cliff+Hualien+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Vách đá 1000m + biển xanh</span><span class="il-tip">Dừng xe tại điểm nhìn</span></span></a></div>
+  
+  
+</div>
+<div class="ti ev">
+  <div class="ti-t">Tối 18:30</div>
+  <div class="ti-p">Dongdamen Night Market / 東大門夜市<br><small class="ti-sub">Lớn nhất Hoa Liên</small></div>
+  <div class="ti-d">Aboriginal food: thịt heo nướng, cơm ống tre.</div>
+  <div class="ti-c">~200-400 TWD</div>
+  
+  
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Dongdamen+Night+Market+Hualien" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🥩 Aboriginal BBQ 原住民烤肉</span><span class="il-tip">Thịt nướng thổ dân</span></span></a><a href="https://www.google.com/maps/search/bamboo+rice+Hualien" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🎋 Bamboo Rice 竹筒飯</span><span class="il-tip">Cơm ống tre đặc sản</span></span></a><a href="https://www.google.com/maps/search/Zeng+Yong+mochi+Hualien" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🥟 Zeng Yong Mochi 曾記麻糬</span><span class="il-tip">Mochi nổi tiếng · Mua về</span></span></a></div>
+  
+</div>
+```
+
 </div></div>
   <div class="nt dng"><b>📌 N4</b>Check trail Taroko trước. Mũ bảo hiểm xe máy bắt buộc. Cần IDP để thuê xe.</div>
 </div>
@@ -602,71 +603,74 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <div class="ti-d">Bãi đá cuội cung hình. Núi Taroko backdrop. Sáng sớm ít người.</div>
       <div class="ti-c">Miễn phí · 15p từ ga</div>
       <div class="ti-tip">💡 7:00-8:00 ánh sáng vàng đẹp nhất</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Qixingtan+Beach+Hualien+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Bãi đá cuội + núi Taroko</span><span class="il-tip">Đứng mép nước · Ánh sáng vàng sáng sớm</span></span></a><a href="https://www.google.com/maps/search/Qixingtan+viewpoint+Hualien" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Cung hình toàn bãi</span><span class="il-tip">Leo đồi nhỏ bên trái · Panorama</span></span></a></div>
-      
-      
-    </div>
-    <div class="ti">
-      <div class="ti-t">Sáng 9:00</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(20)" title="#20">20</span> Shakadang Trail / 砂卡礑步道<br><small class="ti-sub">Sa Kha Tang Trail</small></div>
-      <div class="ti-d">4.4km khứ hồi, suối xanh ngọc lam. Không cần permit.</div>
-      <div class="ti-c">Miễn phí · 20p xe máy</div>
-      <div class="ti-tip">💡 Mang giày + nước. Có thể bơi điểm giữa.</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Shakadang+Trail+Taroko" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Suối ngọc lam 砂卡礑溪</span><span class="il-tip">Góc thấp sát nước</span></span></a></div>
-      
-      
-    </div>
-    <div class="ti">
-      <div class="ti-t">Trưa 12:00</div>
-      <div class="ti-p">Hualien Sugar Factory / 花蓮糖廠<br><small class="ti-sub">Nhà máy đường Hoa Liên</small></div>
-      <div class="ti-d">Kem milk ice cream 30-50 TWD. Khuôn viên retro Nhật.</div>
-      
-      
-      
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Hualien+Sugar+Factory+ice+cream" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍦 Sugar Factory Ice Cream</span><span class="il-tip">Huyền thoại · 30-50 TWD</span></span></a></div>
-      
-    </div>
-    <div class="ti ev">
-      <div class="ti-t">Chiều 14:00</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(11)" title="#11">11</span> Tiaoshi Coastal Road / 跳石海岸<br><small class="ti-sub">Bờ biển Nhảy Đá</small></div>
-      <div class="ti-d">Đá cuội đen khổng lồ ven bờ. Ít khách. Hidden gem.</div>
-      <div class="ti-c">Miễn phí · Hwy 9 hướng Bắc ~40p</div>
-      <div class="ti-tip">💡 Dừng km 38-40. Mang giày bám tốt.</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Tiaoshi+coast+Hualien+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Đá đen xếp dọc bờ biển</span><span class="il-tip">Đứng trên đá + núi phía sau</span></span></a><a href="https://www.google.com/maps/search/Hualien+Highway+9+coastal+road" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Góc xe máy + đường Hwy 9</span><span class="il-tip">Chụp xe trên đường ven biển</span></span></a></div>
-      
-      
-    </div>
-    <div class="ti">
-      <div class="ti-t">Chiều 16:30</div>
-      <div class="ti-p">Hualien Port Sunset / 花蓮港夕陽<br><small class="ti-sub">Hoàng hôn Thái Bình Dương</small></div>
-      <div class="ti-d">Chill + trà sữa.</div>
-      <div class="ti-c">~60 TWD</div>
-      
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Hualien+Port+sunset+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Hoàng hôn Thái Bình Dương</span><span class="il-tip">17:30-18:00</span></span></a></div>
-      
-      
-    </div>
-    <div class="ti ev">
-      <div class="ti-t">Tối 18:30</div>
-      <div class="ti-p">Dongdamen Night Market<br><small class="ti-sub">Ăn nhẹ + mua Mochi về</small></div>
-      <div class="ti-d">Nghỉ sớm — ngày mai 7:30 đi tàu.</div>
-      
-      
-      <div class="ti-note">⚠️ Tối nay: Pack đồ + trả xe máy. Đặt vé TRA Hualien→Taichung chưa?</div>
-      
-      
-      <div class="ti-bk" id="bkf_d5_train">
-      <span class="ti-bk-label">🚆 TRA Hualien→Taichung 30/04</span>
-      <input class="ti-bk-input" data-bk="d5_train" data-type="transport" placeholder="Paste link booking..." 
-        onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-      <a class="ti-bk-open" id="bko_d5_train" style="display:none" target="_blank">Mở ↗</a>
-    </div>
-    </div>
+
+```
+  <div class="il-group"><a href="https://www.google.com/maps/search/Qixingtan+Beach+Hualien+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Bãi đá cuội + núi Taroko</span><span class="il-tip">Đứng mép nước · Ánh sáng vàng sáng sớm</span></span></a><a href="https://www.google.com/maps/search/Qixingtan+viewpoint+Hualien" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Cung hình toàn bãi</span><span class="il-tip">Leo đồi nhỏ bên trái · Panorama</span></span></a></div>
+  
+  
+</div>
+<div class="ti">
+  <div class="ti-t">Sáng 9:00</div>
+  <div class="ti-p"><span class="rb" onclick="zoomRank(20)" title="#20">20</span> Shakadang Trail / 砂卡礑步道<br><small class="ti-sub">Sa Kha Tang Trail</small></div>
+  <div class="ti-d">4.4km khứ hồi, suối xanh ngọc lam. Không cần permit.</div>
+  <div class="ti-c">Miễn phí · 20p xe máy</div>
+  <div class="ti-tip">💡 Mang giày + nước. Có thể bơi điểm giữa.</div>
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Shakadang+Trail+Taroko" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Suối ngọc lam 砂卡礑溪</span><span class="il-tip">Góc thấp sát nước</span></span></a></div>
+  
+  
+</div>
+<div class="ti">
+  <div class="ti-t">Trưa 12:00</div>
+  <div class="ti-p">Hualien Sugar Factory / 花蓮糖廠<br><small class="ti-sub">Nhà máy đường Hoa Liên</small></div>
+  <div class="ti-d">Kem milk ice cream 30-50 TWD. Khuôn viên retro Nhật.</div>
+  
+  
+  
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Hualien+Sugar+Factory+ice+cream" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍦 Sugar Factory Ice Cream</span><span class="il-tip">Huyền thoại · 30-50 TWD</span></span></a></div>
+  
+</div>
+<div class="ti ev">
+  <div class="ti-t">Chiều 14:00</div>
+  <div class="ti-p"><span class="rb" onclick="zoomRank(11)" title="#11">11</span> Tiaoshi Coastal Road / 跳石海岸<br><small class="ti-sub">Bờ biển Nhảy Đá</small></div>
+  <div class="ti-d">Đá cuội đen khổng lồ ven bờ. Ít khách. Hidden gem.</div>
+  <div class="ti-c">Miễn phí · Hwy 9 hướng Bắc ~40p</div>
+  <div class="ti-tip">💡 Dừng km 38-40. Mang giày bám tốt.</div>
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Tiaoshi+coast+Hualien+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Đá đen xếp dọc bờ biển</span><span class="il-tip">Đứng trên đá + núi phía sau</span></span></a><a href="https://www.google.com/maps/search/Hualien+Highway+9+coastal+road" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Góc xe máy + đường Hwy 9</span><span class="il-tip">Chụp xe trên đường ven biển</span></span></a></div>
+  
+  
+</div>
+<div class="ti">
+  <div class="ti-t">Chiều 16:30</div>
+  <div class="ti-p">Hualien Port Sunset / 花蓮港夕陽<br><small class="ti-sub">Hoàng hôn Thái Bình Dương</small></div>
+  <div class="ti-d">Chill + trà sữa.</div>
+  <div class="ti-c">~60 TWD</div>
+  
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Hualien+Port+sunset+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Hoàng hôn Thái Bình Dương</span><span class="il-tip">17:30-18:00</span></span></a></div>
+  
+  
+</div>
+<div class="ti ev">
+  <div class="ti-t">Tối 18:30</div>
+  <div class="ti-p">Dongdamen Night Market<br><small class="ti-sub">Ăn nhẹ + mua Mochi về</small></div>
+  <div class="ti-d">Nghỉ sớm — ngày mai 7:30 đi tàu.</div>
+  
+  
+  <div class="ti-note">⚠️ Tối nay: Pack đồ + trả xe máy. Đặt vé TRA Hualien→Taichung chưa?</div>
+  
+  
+  <div class="ti-bk" id="bkf_d5_train">
+  <span class="ti-bk-label">🚆 TRA Hualien→Taichung 30/04</span>
+  <input class="ti-bk-input" data-bk="d5_train" data-type="transport" placeholder="Paste link booking..." 
+    onchange="saveTiBk(this)" onblur="saveTiBk(this)">
+  <a class="ti-bk-open" id="bko_d5_train" style="display:none" target="_blank">Mở ↗</a>
+</div>
+</div>
+```
+
 </div></div>
 </div>
 <div class="tc" id="tab-day6">
@@ -680,84 +684,86 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <div class="ti-c">~680 TWD</div>
       <div class="ti-tip">💡 Ga Taichung TRA (台中站) KHÁC ga HSR!</div>
       <div class="ti-note">Ga Taichung TRA ở trung tâm, đi taxi/bus ra HSR nếu cần.</div>
-      
-      
-      <div class="ti-bk" id="bkf_d6_train">
-      <span class="ti-bk-label">🚆 TRA Hualien→Taichung</span>
-      <input class="ti-bk-input" data-bk="d6_train" data-type="transport" placeholder="Paste link booking..." 
-        onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-      <a class="ti-bk-open" id="bko_d6_train" style="display:none" target="_blank">Mở ↗</a>
-    </div>
-    </div>
-    <div class="ti">
-      <div class="ti-t">Trưa 11:30</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(15)" title="#15">15</span> Miyahara / 宮原眼科<br><small class="ti-sub">Gōng Yuán Yǎn Kē</small></div>
-      <div class="ti-d">Tòa nhà thiết kế như thư viện Harry Potter. Kem nhiều tầng.</div>
-      <div class="ti-c">Kem 90-200 TWD</div>
-      <div class="ti-tip">💡 Spot: góc dưới mái vòm nhìn lên</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Miyahara+Taichung+interior" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Mái vòm sách tầng 2</span><span class="il-tip">Wide angle nhìn lên</span></span></a></div>
-      <div class="il-group"><a href="https://www.google.com/maps/search/Miyahara+Taichung" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍦 Multi-scoop Ice Cream</span><span class="il-tip">Ăn tầng 2 view ra phố</span></span></a></div>
-      
-    </div>
-    <div class="ti">
-      <div class="ti-t">12:30</div>
-      <div class="ti-p">🏨 Check-in Hotel Đài Trung<br><small class="ti-sub">Khu Fengjia · 1 đêm N6</small></div>
-      <div class="ti-d">Gửi đồ, nghỉ 30p trước Rainbow Village.</div>
-      
-      
-      
-      
-      
-      <div class="ti-bk" id="bkf_d6_hotel">
-      <span class="ti-bk-label">🏨 Hotel Đài Trung (Fengjia)</span>
-      <input class="ti-bk-input" data-bk="d6_hotel" data-type="hotel" placeholder="Paste link booking..." 
-        onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-      <a class="ti-bk-open" id="bko_d6_hotel" style="display:none" target="_blank">Mở ↗</a>
-    </div>
-    </div>
-    <div class="ti">
-      <div class="ti-t">Chiều 14:30</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(14)" title="#14">14</span> Rainbow Village / 彩虹眷村<br><small class="ti-sub">Làng Cầu Vồng</small></div>
-      <div class="ti-d">Tranh tường bởi cụ Huang Yung-Fu 97 tuổi. 30-45p.</div>
-      <div class="ti-c">Miễn phí</div>
-      <div class="ti-tip">💡 14:00-16:00 ánh sáng đẹp nhất</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Rainbow+Village+Taichung+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Đứng đầu hẻm nhìn vào</span><span class="il-tip">Wide angle · Màu rực rỡ</span></span></a></div>
-      
-      
-    </div>
-    <div class="ti">
-      <div class="ti-t">Chiều 16:30</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(13)" title="#13">13</span> Gaomei Wetlands / 高美濕地<br><small class="ti-sub">Bãi triều Cao Mỹ</small></div>
-      <div class="ti-d">Cầu gỗ 800m + tuabin gió + hoàng hôn. Check thủy triều!</div>
-      <div class="ti-c">Miễn phí · Taxi ~200 TWD</div>
-      <div class="ti-tip">💡 Check tideschart.com! Golden hour 17:30-18:30</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Gaomei+Wetlands+Taichung+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Tuabin gió + hoàng hôn phản chiếu</span><span class="il-tip">Cầu gỗ + bầu trời cam</span></span></a></div>
-      
-      
-    </div>
-    <div class="ti ev">
-      <div class="ti-t">Tối 19:00</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(12)" title="#12">12</span> Fengjia Night Market / 逢甲夜市<br><small class="ti-sub">Lớn nhất Đài Loan</small></div>
-      <div class="ti-d">15,000+ gian hàng. Đi ít nhất 2h.</div>
-      <div class="ti-c">~300-500 TWD</div>
-      
-      
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Fengjia+Night+Market+Taichung" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🐔 Salt & Pepper Chicken 鹽酥雞</span><span class="il-tip">Nổi tiếng nhất Fengjia</span></span></a><a href="https://www.google.com/maps/search/Fengjia+sweet+potato+balls" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍠 Sweet Potato Balls 地瓜球</span><span class="il-tip">Khoai lang chiên phồng</span></span></a></div>
-      
-    </div>
+
+```
+  <div class="ti-bk" id="bkf_d6_train">
+  <span class="ti-bk-label">🚆 TRA Hualien→Taichung</span>
+  <input class="ti-bk-input" data-bk="d6_train" data-type="transport" placeholder="Paste link booking..." 
+    onchange="saveTiBk(this)" onblur="saveTiBk(this)">
+  <a class="ti-bk-open" id="bko_d6_train" style="display:none" target="_blank">Mở ↗</a>
+</div>
+</div>
+<div class="ti">
+  <div class="ti-t">Trưa 11:30</div>
+  <div class="ti-p"><span class="rb" onclick="zoomRank(15)" title="#15">15</span> Miyahara / 宮原眼科<br><small class="ti-sub">Gōng Yuán Yǎn Kē</small></div>
+  <div class="ti-d">Tòa nhà thiết kế như thư viện Harry Potter. Kem nhiều tầng.</div>
+  <div class="ti-c">Kem 90-200 TWD</div>
+  <div class="ti-tip">💡 Spot: góc dưới mái vòm nhìn lên</div>
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Miyahara+Taichung+interior" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Mái vòm sách tầng 2</span><span class="il-tip">Wide angle nhìn lên</span></span></a></div>
+  <div class="il-group"><a href="https://www.google.com/maps/search/Miyahara+Taichung" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍦 Multi-scoop Ice Cream</span><span class="il-tip">Ăn tầng 2 view ra phố</span></span></a></div>
+  
+</div>
+<div class="ti">
+  <div class="ti-t">12:30</div>
+  <div class="ti-p">🏨 Check-in Hotel Đài Trung<br><small class="ti-sub">Khu Fengjia · 1 đêm N6</small></div>
+  <div class="ti-d">Gửi đồ, nghỉ 30p trước Rainbow Village.</div>
+  
+  
+  
+  
+  
+  <div class="ti-bk" id="bkf_d6_hotel">
+  <span class="ti-bk-label">🏨 Hotel Đài Trung (Fengjia)</span>
+  <input class="ti-bk-input" data-bk="d6_hotel" data-type="hotel" placeholder="Paste link booking..." 
+    onchange="saveTiBk(this)" onblur="saveTiBk(this)">
+  <a class="ti-bk-open" id="bko_d6_hotel" style="display:none" target="_blank">Mở ↗</a>
+</div>
+</div>
+<div class="ti">
+  <div class="ti-t">Chiều 14:30</div>
+  <div class="ti-p"><span class="rb" onclick="zoomRank(14)" title="#14">14</span> Rainbow Village / 彩虹眷村<br><small class="ti-sub">Làng Cầu Vồng</small></div>
+  <div class="ti-d">Tranh tường bởi cụ Huang Yung-Fu 97 tuổi. 30-45p.</div>
+  <div class="ti-c">Miễn phí</div>
+  <div class="ti-tip">💡 14:00-16:00 ánh sáng đẹp nhất</div>
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Rainbow+Village+Taichung+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Đứng đầu hẻm nhìn vào</span><span class="il-tip">Wide angle · Màu rực rỡ</span></span></a></div>
+  
+  
+</div>
+<div class="ti">
+  <div class="ti-t">Chiều 16:30</div>
+  <div class="ti-p"><span class="rb" onclick="zoomRank(13)" title="#13">13</span> Gaomei Wetlands / 高美濕地<br><small class="ti-sub">Bãi triều Cao Mỹ</small></div>
+  <div class="ti-d">Cầu gỗ 800m + tuabin gió + hoàng hôn. Check thủy triều!</div>
+  <div class="ti-c">Miễn phí · Taxi ~200 TWD</div>
+  <div class="ti-tip">💡 Check tideschart.com! Golden hour 17:30-18:30</div>
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Gaomei+Wetlands+Taichung+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Tuabin gió + hoàng hôn phản chiếu</span><span class="il-tip">Cầu gỗ + bầu trời cam</span></span></a></div>
+  
+  
+</div>
+<div class="ti ev">
+  <div class="ti-t">Tối 19:00</div>
+  <div class="ti-p"><span class="rb" onclick="zoomRank(12)" title="#12">12</span> Fengjia Night Market / 逢甲夜市<br><small class="ti-sub">Lớn nhất Đài Loan</small></div>
+  <div class="ti-d">15,000+ gian hàng. Đi ít nhất 2h.</div>
+  <div class="ti-c">~300-500 TWD</div>
+  
+  
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Fengjia+Night+Market+Taichung" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🐔 Salt & Pepper Chicken 鹽酥雞</span><span class="il-tip">Nổi tiếng nhất Fengjia</span></span></a><a href="https://www.google.com/maps/search/Fengjia+sweet+potato+balls" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍠 Sweet Potato Balls 地瓜球</span><span class="il-tip">Khoai lang chiên phồng</span></span></a></div>
+  
+</div>
+```
+
 </div></div>
 </div>
 <div class="tc" id="tab-day7">
   <div class="dh"><h2>N7 — T6 01/05 — Đài Trung → Đài Bắc</h2><p>SML option · HSR về · Beitou/Tamsui · Shilin</p><span class="dh-tr">🚄 HSR Taichung→Taipei ~45p</span></div>
   <a href="https://www.google.com/maps/dir/23.8491,120.9163/24.179,120.6463" target="_blank" class="rt-btn org">🗺️ SML option</a>
 
-  <a href="https://www.google.com/maps/dir/25.1368,121.5067/25.088,121.5242" target="_blank" class="rt-btn blu">🗺️ Beitou→Shilin</a>
+<a href="https://www.google.com/maps/dir/25.1368,121.5067/25.088,121.5242" target="_blank" class="rt-btn blu">🗺️ Beitou→Shilin</a>
 
-  <a href="https://www.google.com/maps/dir/25.1696,121.4408/25.088,121.5242" target="_blank" class="rt-btn pur">🗺️ Tamsui→Shilin</a>
+<a href="https://www.google.com/maps/dir/25.1696,121.4408/25.088,121.5242" target="_blank" class="rt-btn pur">🗺️ Tamsui→Shilin</a>
 
   <div class="cd"><div class="cd-t">📍 Lịch trình</div><div class="tl">    <div class="ti">
       <div class="ti-t">Sáng 7:00 — Option A</div>
@@ -765,76 +771,79 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <div class="ti-d">Bus ~1.5h từ Đài Trung. Đạp xe hoặc du thuyền. Về ga HSR 13:00.</div>
       <div class="ti-c">Bus 190 | Xe đạp 200 | Thuyền 300 TWD</div>
       <div class="ti-tip">💡 Sáng sớm hồ phẳng như gương</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Sun+Moon+Lake+Taiwan+morning" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Mặt hồ sáng sớm phẳng như gương</span><span class="il-tip">6:30-8:00 mist đẹp</span></span></a></div>
-      
-      
-    </div>
-    <div class="ti">
-      <div class="ti-t">Trưa 12:00</div>
-      <div class="ti-p">HSR Taichung → Taipei / 台中高鐵→台北<br><small class="ti-sub">Ga Taichung HSR (台中高鐵站)</small></div>
-      <div class="ti-d">45 phút. Taxi Fengjia→ga HSR ~200 TWD, 20p.</div>
-      <div class="ti-c">~700 TWD · App T Express</div>
-      <div class="ti-tip">💡 Ga HSR ở ngoại ô — Uber/taxi 20p từ Fengjia</div>
-      
-      
-      
-      <div class="ti-bk" id="bkf_d7_hsr">
-      <span class="ti-bk-label">🚄 HSR Taichung→Taipei (T Express)</span>
-      <input class="ti-bk-input" data-bk="d7_hsr" data-type="transport" placeholder="Paste link booking..." 
-        onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-      <a class="ti-bk-open" id="bko_d7_hsr" style="display:none" target="_blank">Mở ↗</a>
-    </div>
-    </div>
-    <div class="ti">
-      <div class="ti-t">Chiều 14:00</div>
-      <div class="ti-p">Check-in + lấy vali lớn<br><small class="ti-sub">Hotel Đài Bắc đêm cuối</small></div>
-      <div class="ti-d">Về hotel N1-3 (same hotel). Lấy vali lớn đã gửi.</div>
-      
-      
-      
-      
-      
-      <div class="ti-bk" id="bkf_d7_hotel">
-      <span class="ti-bk-label">🏨 Hotel Đài Bắc đêm cuối</span>
-      <input class="ti-bk-input" data-bk="d7_hotel" data-type="hotel" placeholder="Paste link booking..." 
-        onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-      <a class="ti-bk-open" id="bko_d7_hotel" style="display:none" target="_blank">Mở ↗</a>
-    </div>
-    </div>
-    <div class="ti">
-      <div class="ti-t">Chiều 16:00 — Chọn 1</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(16)" title="#16">16</span> Beitou Onsen / 北投溫泉<br><small class="ti-sub">Suối nóng Bắc Đầu</small></div>
-      <div class="ti-d">MRT 20p. Public 40 TWD hoặc private 800-1,500 TWD/h. Ghé Beitou Library kế bên.</div>
-      <div class="ti-c">Public 40 | Private 800-1,500 TWD</div>
-      
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Beitou+Public+Library+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Beitou Public Library 北投圖書館</span><span class="il-tip">Kiến trúc gỗ xanh đẹp nhất Đài Bắc</span></span></a></div>
-      
-      
-    </div>
-    <div class="ti">
-      <div class="ti-t">Chiều 16:00 — Hoặc</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(17)" title="#17">17</span> Tamsui + Liao Tianding / 淡水+廖添丁廟<br><small class="ti-sub">Đàm Thủy + Bali (八里)</small></div>
-      <div class="ti-d">Hoàng hôn Fisherman's Wharf. Phà sang Bali → Liao Tianding Temple.</div>
-      <div class="ti-c">MRT + phà ~100 TWD</div>
-      
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Fishermans+Wharf+Tamsui+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Fisherman's Wharf cầu đỏ sunset</span><span class="il-tip">18:00-18:30</span></span></a><a href="https://www.google.com/maps/search/Liao+Tianding+Temple+Bali+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Liao Tianding Temple 廖添丁廟</span><span class="il-tip">Đền đỏ cổ · Bali</span></span></a></div>
-      
-      
-    </div>
-    <div class="ti ev">
-      <div class="ti-t">Tối 20:00</div>
-      <div class="ti-p">Shilin Night Market / 士林夜市 — BỮA CUỐI<br><small class="ti-sub">Shì Lín Yè Shì</small></div>
-      <div class="ti-d">Gà rán XXL, oyster vermicelli. MUA QUÀ ĐÊM NAY!</div>
-      <div class="ti-c">~300-500 TWD + Quà 500-2,000 TWD</div>
-      <div class="ti-tip">💡 Chia Te 佳德 mở đến 22:00 gần MRT Songshan</div>
-      <div class="ti-note">⚠️ Cân vali ≤23kg ×3. Set alarm 6:30 sáng mai!</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Shilin+Night+Market+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🦪 Oyster Vermicelli 蚵仔麵線</span><span class="il-tip">Classic bữa cuối</span></span></a><a href="https://www.google.com/maps/search/Chia+Te+Bakery+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🎂 Chia Te Pineapple Cake 佳德</span><span class="il-tip">Mua quà về</span></span></a></div>
-      
-    </div>
+
+```
+  <div class="il-group"><a href="https://www.google.com/maps/search/Sun+Moon+Lake+Taiwan+morning" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Mặt hồ sáng sớm phẳng như gương</span><span class="il-tip">6:30-8:00 mist đẹp</span></span></a></div>
+  
+  
+</div>
+<div class="ti">
+  <div class="ti-t">Trưa 12:00</div>
+  <div class="ti-p">HSR Taichung → Taipei / 台中高鐵→台北<br><small class="ti-sub">Ga Taichung HSR (台中高鐵站)</small></div>
+  <div class="ti-d">45 phút. Taxi Fengjia→ga HSR ~200 TWD, 20p.</div>
+  <div class="ti-c">~700 TWD · App T Express</div>
+  <div class="ti-tip">💡 Ga HSR ở ngoại ô — Uber/taxi 20p từ Fengjia</div>
+  
+  
+  
+  <div class="ti-bk" id="bkf_d7_hsr">
+  <span class="ti-bk-label">🚄 HSR Taichung→Taipei (T Express)</span>
+  <input class="ti-bk-input" data-bk="d7_hsr" data-type="transport" placeholder="Paste link booking..." 
+    onchange="saveTiBk(this)" onblur="saveTiBk(this)">
+  <a class="ti-bk-open" id="bko_d7_hsr" style="display:none" target="_blank">Mở ↗</a>
+</div>
+</div>
+<div class="ti">
+  <div class="ti-t">Chiều 14:00</div>
+  <div class="ti-p">Check-in + lấy vali lớn<br><small class="ti-sub">Hotel Đài Bắc đêm cuối</small></div>
+  <div class="ti-d">Về hotel N1-3 (same hotel). Lấy vali lớn đã gửi.</div>
+  
+  
+  
+  
+  
+  <div class="ti-bk" id="bkf_d7_hotel">
+  <span class="ti-bk-label">🏨 Hotel Đài Bắc đêm cuối</span>
+  <input class="ti-bk-input" data-bk="d7_hotel" data-type="hotel" placeholder="Paste link booking..." 
+    onchange="saveTiBk(this)" onblur="saveTiBk(this)">
+  <a class="ti-bk-open" id="bko_d7_hotel" style="display:none" target="_blank">Mở ↗</a>
+</div>
+</div>
+<div class="ti">
+  <div class="ti-t">Chiều 16:00 — Chọn 1</div>
+  <div class="ti-p"><span class="rb" onclick="zoomRank(16)" title="#16">16</span> Beitou Onsen / 北投溫泉<br><small class="ti-sub">Suối nóng Bắc Đầu</small></div>
+  <div class="ti-d">MRT 20p. Public 40 TWD hoặc private 800-1,500 TWD/h. Ghé Beitou Library kế bên.</div>
+  <div class="ti-c">Public 40 | Private 800-1,500 TWD</div>
+  
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Beitou+Public+Library+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Beitou Public Library 北投圖書館</span><span class="il-tip">Kiến trúc gỗ xanh đẹp nhất Đài Bắc</span></span></a></div>
+  
+  
+</div>
+<div class="ti">
+  <div class="ti-t">Chiều 16:00 — Hoặc</div>
+  <div class="ti-p"><span class="rb" onclick="zoomRank(17)" title="#17">17</span> Tamsui + Liao Tianding / 淡水+廖添丁廟<br><small class="ti-sub">Đàm Thủy + Bali (八里)</small></div>
+  <div class="ti-d">Hoàng hôn Fisherman's Wharf. Phà sang Bali → Liao Tianding Temple.</div>
+  <div class="ti-c">MRT + phà ~100 TWD</div>
+  
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Fishermans+Wharf+Tamsui+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Fisherman's Wharf cầu đỏ sunset</span><span class="il-tip">18:00-18:30</span></span></a><a href="https://www.google.com/maps/search/Liao+Tianding+Temple+Bali+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Liao Tianding Temple 廖添丁廟</span><span class="il-tip">Đền đỏ cổ · Bali</span></span></a></div>
+  
+  
+</div>
+<div class="ti ev">
+  <div class="ti-t">Tối 20:00</div>
+  <div class="ti-p">Shilin Night Market / 士林夜市 — BỮA CUỐI<br><small class="ti-sub">Shì Lín Yè Shì</small></div>
+  <div class="ti-d">Gà rán XXL, oyster vermicelli. MUA QUÀ ĐÊM NAY!</div>
+  <div class="ti-c">~300-500 TWD + Quà 500-2,000 TWD</div>
+  <div class="ti-tip">💡 Chia Te 佳德 mở đến 22:00 gần MRT Songshan</div>
+  <div class="ti-note">⚠️ Cân vali ≤23kg ×3. Set alarm 6:30 sáng mai!</div>
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Shilin+Night+Market+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🦪 Oyster Vermicelli 蚵仔麵線</span><span class="il-tip">Classic bữa cuối</span></span></a><a href="https://www.google.com/maps/search/Chia+Te+Bakery+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🎂 Chia Te Pineapple Cake 佳德</span><span class="il-tip">Mua quà về</span></span></a></div>
+  
+</div>
+```
+
 </div></div>
 </div>
 <div class="tc" id="tab-day8">
@@ -847,60 +856,62 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <div class="ti-d">Soy milk + dan bing. Đến trước 7:30.</div>
       <div class="ti-c">~100 TWD/người</div>
       <div class="ti-tip">💡 Hàng dài = một phần trải nghiệm!</div>
-      
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Fuhang+Soy+Milk+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🥛 Soy Milk + Dan Bing 蛋餅</span><span class="il-tip">BỮA SÁNG CUỐI</span></span></a></div>
-      
-    </div>
-    <div class="ti">
-      <div class="ti-t">8:30</div>
-      <div class="ti-p">Chia Te Bakery / 佳德糕餅<br><small class="ti-sub">Gần MRT Songshan · Mở 7:30</small></div>
-      <div class="ti-d">Mua thêm quà nếu thiếu.</div>
-      
-      
-      
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Chia+Te+Bakery+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🎂 Pineapple Cake 鳳梨酥</span><span class="il-tip">Mở 7:30 · Mua thêm nếu thiếu</span></span></a></div>
-      
-    </div>
-    <div class="ti">
-      <div class="ti-t">9:30</div>
-      <div class="ti-p">Check-out hotel</div>
-      <div class="ti-d">Kiểm tra passport ×3, vé, đồ. Hành lý ≤23kg/kiện.</div>
-      
-      
-      <div class="ti-note">Liquid >100ml phải ký gửi!</div>
-      
-      
-      
-    </div>
-    <div class="ti ev">
-      <div class="ti-t">10:00</div>
-      <div class="ti-p">Airport MRT → TPE T1 / 機場捷運<br><small class="ti-sub">Ga A1 Taipei Main → A12 TPE T1</small></div>
-      <div class="ti-d">Express 35p → ~10:40. Check-in CI-783 → Tax Refund → Refund EasyCard → Duty-free.</div>
-      <div class="ti-c">160 TWD ×3</div>
-      <div class="ti-tip">💡 Refund EasyCard TRƯỚC cổng xuất cảnh</div>
-      
-      
-      
-      <div class="ti-bk" id="bkf_d8_flight">
-      <span class="ti-bk-label">✈️ Vé CI-783 TPE→SGN</span>
-      <input class="ti-bk-input" data-bk="d8_flight" data-type="flight" placeholder="Paste link booking..." 
-        onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-      <a class="ti-bk-open" id="bko_d8_flight" style="display:none" target="_blank">Mở ↗</a>
-    </div>
-    </div>
-    <div class="ti ev">
-      <div class="ti-t">13:45 ✈️</div>
-      <div class="ti-p">CI-783 TPE T1 → SGN T2 (16:20)<br><small class="ti-sub">3h35 · Hẹn gặp lại Đài Loan! 🇹🇼</small></div>
-      <div class="ti-d"></div>
-      
-      
-      
-      
-      
-      
-    </div>
+
+```
+  <div class="il-group"><a href="https://www.google.com/maps/search/Fuhang+Soy+Milk+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🥛 Soy Milk + Dan Bing 蛋餅</span><span class="il-tip">BỮA SÁNG CUỐI</span></span></a></div>
+  
+</div>
+<div class="ti">
+  <div class="ti-t">8:30</div>
+  <div class="ti-p">Chia Te Bakery / 佳德糕餅<br><small class="ti-sub">Gần MRT Songshan · Mở 7:30</small></div>
+  <div class="ti-d">Mua thêm quà nếu thiếu.</div>
+  
+  
+  
+  
+  <div class="il-group"><a href="https://www.google.com/maps/search/Chia+Te+Bakery+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🎂 Pineapple Cake 鳳梨酥</span><span class="il-tip">Mở 7:30 · Mua thêm nếu thiếu</span></span></a></div>
+  
+</div>
+<div class="ti">
+  <div class="ti-t">9:30</div>
+  <div class="ti-p">Check-out hotel</div>
+  <div class="ti-d">Kiểm tra passport ×3, vé, đồ. Hành lý ≤23kg/kiện.</div>
+  
+  
+  <div class="ti-note">Liquid >100ml phải ký gửi!</div>
+  
+  
+  
+</div>
+<div class="ti ev">
+  <div class="ti-t">10:00</div>
+  <div class="ti-p">Airport MRT → TPE T1 / 機場捷運<br><small class="ti-sub">Ga A1 Taipei Main → A12 TPE T1</small></div>
+  <div class="ti-d">Express 35p → ~10:40. Check-in CI-783 → Tax Refund → Refund EasyCard → Duty-free.</div>
+  <div class="ti-c">160 TWD ×3</div>
+  <div class="ti-tip">💡 Refund EasyCard TRƯỚC cổng xuất cảnh</div>
+  
+  
+  
+  <div class="ti-bk" id="bkf_d8_flight">
+  <span class="ti-bk-label">✈️ Vé CI-783 TPE→SGN</span>
+  <input class="ti-bk-input" data-bk="d8_flight" data-type="flight" placeholder="Paste link booking..." 
+    onchange="saveTiBk(this)" onblur="saveTiBk(this)">
+  <a class="ti-bk-open" id="bko_d8_flight" style="display:none" target="_blank">Mở ↗</a>
+</div>
+</div>
+<div class="ti ev">
+  <div class="ti-t">13:45 ✈️</div>
+  <div class="ti-p">CI-783 TPE T1 → SGN T2 (16:20)<br><small class="ti-sub">3h35 · Hẹn gặp lại Đài Loan! 🇹🇼</small></div>
+  <div class="ti-d"></div>
+  
+  
+  
+  
+  
+  
+</div>
+```
+
 </div></div>
 </div>
 
@@ -910,153 +921,83 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <div class="md-prog" id="mdProg">0/40 hoàn thành</div>
     <div class="md-prog-bar"><div class="md-prog-fill" id="mdBar" style="width:0%"></div></div>
 
-    <!-- TAIPEI -->
-    <div class="md-city">
-      <div class="md-city-hdr">🏙️ Đài Bắc — Taipei</div>
-      <div class="md-i"><input type="checkbox" data-md="e3" onchange="mdChk(this)"><label><span class="md-name">Lên Taipei 101 tầng 89 台北101</span><span class="md-addr">📍 No. 7, Section 5, Xinyi Road, Xinyi District | 信義路五段7號</span><span class="md-sub">View 360° · Thang máy 37 giây</span></label><a href="https://www.google.com/maps/search/Taipei+101+Observatory" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e2" onchange="mdChk(this)"><label><span class="md-name">Leo Elephant Mountain chụp 101 象山</span><span class="md-addr">📍 Xiangshan Trail, Xinyi District, Taipei | 象山步道，信義區</span><span class="md-sub">Golden hour 16:30-18:30 · Free</span></label><a href="https://www.google.com/maps/search/Elephant+Mountain+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="c1" onchange="mdChk(this)"><label><span class="md-name">Xem đổi gác CKS Memorial 中正紀念堂</span><span class="md-addr">📍 No. 21, Zhongshan South Road, Zhongzheng District | 中山南路21號</span><span class="md-sub">Mỗi giờ chẵn · Free</span></label><a href="https://www.google.com/maps/search/CKS+Memorial+Hall+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f1" onchange="mdChk(this)"><label><span class="md-name">Xiao Long Bao — Din Tai Fung 鼎泰豐</span><span class="md-addr">📍 No. 194, Section 2, Xinyi Road, Da'an District | 信義路二段194號</span><span class="md-sub">XLB nổi tiếng nhất TG</span></label><a href="https://www.google.com/maps/search/Din+Tai+Fung+Yongkang+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f2" onchange="mdChk(this)"><label><span class="md-name">Mì bò — Yongkang Beef Noodle 永康牛肉麵</span><span class="md-addr">📍 No. 17, Lane 31, Jinhua Street, Da'an District | 金華街31巷17號</span><span class="md-sub">Huyền thoại 60 năm</span></label><a href="https://www.google.com/maps/search/Yongkang+Beef+Noodle+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f3" onchange="mdChk(this)"><label><span class="md-name">Tiger Sugar Bubble Tea 老虎堂</span><span class="md-addr">📍 No. 5, Ximending (nhiều chi nhánh) | 西門町</span><span class="md-sub">Brown sugar boba</span></label><a href="https://www.google.com/maps/search/Tiger+Sugar+Taipei+Ximending" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f4" onchange="mdChk(this)"><label><span class="md-name">Black Pepper Bun 胡椒餅 — Raohe</span><span class="md-addr">📍 Raohe Night Market, Songshan District | 饒河街夜市，松山區</span><span class="md-sub">Ngay cổng chợ · Ăn nóng tại chỗ</span></label><a href="https://www.google.com/maps/search/Fuzhou+Pepper+Bun+Raohe" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f7" onchange="mdChk(this)"><label><span class="md-name">Pineapple Cake — Chia Te 佳德鳳梨酥</span><span class="md-addr">📍 No. 1, Fuxing North Road, Songshan District | 復興北路1號</span><span class="md-sub">Quà về số 1 · Mở 7:30</span></label><a href="https://www.google.com/maps/search/Chia+Te+Bakery+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e10" onchange="mdChk(this)"><label><span class="md-name">Ngâm onsen Beitou 北投溫泉</span><span class="md-addr">📍 Beitou District, Taipei | 北投區 (MRT Xinbeitou)</span><span class="md-sub">Public 40 TWD | Private ~800 TWD/h</span></label><a href="https://www.google.com/maps/search/Beitou+Hot+Spring+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="c2" onchange="mdChk(this)"><label><span class="md-name">Beitou Public Library 北投圖書館</span><span class="md-addr">📍 No. 251, Guangming Road, Beitou District | 光明路251號</span><span class="md-sub">Kiến trúc gỗ xanh đẹp nhất Đài Bắc · Free</span></label><a href="https://www.google.com/maps/search/Beitou+Public+Library+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f14" onchange="mdChk(this)"><label><span class="md-name">Fuhang Soy Milk 阜杭豆漿</span><span class="md-addr">📍 2F, No. 108, Section 1, Zhongxiao East Road (Hangle Market) | 忠孝東路一段108號2樓</span><span class="md-sub">Ăn sáng N8 · Đến trước 7:30</span></label><a href="https://www.google.com/maps/search/Fuhang+Soy+Milk+Taipei" target="_blank" class="md-gmap">📍</a></div>
-    </div>
+```
+<!-- TAIPEI -->
+<div class="md-city">
+  <div class="md-city-hdr">🏙️ Đài Bắc — Taipei</div>
+  <div class="md-i"><input type="checkbox" data-md="e3" onchange="mdChk(this)"><label><span class="md-name">Lên Taipei 101 tầng 89 台北101</span><span class="md-addr">📍 No. 7, Section 5, Xinyi Road, Xinyi District | 信義路五段7號</span><span class="md-sub">View 360° · Thang máy 37 giây</span></label><a href="https://www.google.com/maps/search/Taipei+101+Observatory" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e2" onchange="mdChk(this)"><label><span class="md-name">Leo Elephant Mountain chụp 101 象山</span><span class="md-addr">📍 Xiangshan Trail, Xinyi District, Taipei | 象山步道，信義區</span><span class="md-sub">Golden hour 16:30-18:30 · Free</span></label><a href="https://www.google.com/maps/search/Elephant+Mountain+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="c1" onchange="mdChk(this)"><label><span class="md-name">Xem đổi gác CKS Memorial 中正紀念堂</span><span class="md-addr">📍 No. 21, Zhongshan South Road, Zhongzheng District | 中山南路21號</span><span class="md-sub">Mỗi giờ chẵn · Free</span></label><a href="https://www.google.com/maps/search/CKS+Memorial+Hall+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f1" onchange="mdChk(this)"><label><span class="md-name">Xiao Long Bao — Din Tai Fung 鼎泰豐</span><span class="md-addr">📍 No. 194, Section 2, Xinyi Road, Da'an District | 信義路二段194號</span><span class="md-sub">XLB nổi tiếng nhất TG</span></label><a href="https://www.google.com/maps/search/Din+Tai+Fung+Yongkang+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f2" onchange="mdChk(this)"><label><span class="md-name">Mì bò — Yongkang Beef Noodle 永康牛肉麵</span><span class="md-addr">📍 No. 17, Lane 31, Jinhua Street, Da'an District | 金華街31巷17號</span><span class="md-sub">Huyền thoại 60 năm</span></label><a href="https://www.google.com/maps/search/Yongkang+Beef+Noodle+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f3" onchange="mdChk(this)"><label><span class="md-name">Tiger Sugar Bubble Tea 老虎堂</span><span class="md-addr">📍 No. 5, Ximending (nhiều chi nhánh) | 西門町</span><span class="md-sub">Brown sugar boba</span></label><a href="https://www.google.com/maps/search/Tiger+Sugar+Taipei+Ximending" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f4" onchange="mdChk(this)"><label><span class="md-name">Black Pepper Bun 胡椒餅 — Raohe</span><span class="md-addr">📍 Raohe Night Market, Songshan District | 饒河街夜市，松山區</span><span class="md-sub">Ngay cổng chợ · Ăn nóng tại chỗ</span></label><a href="https://www.google.com/maps/search/Fuzhou+Pepper+Bun+Raohe" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f7" onchange="mdChk(this)"><label><span class="md-name">Pineapple Cake — Chia Te 佳德鳳梨酥</span><span class="md-addr">📍 No. 1, Fuxing North Road, Songshan District | 復興北路1號</span><span class="md-sub">Quà về số 1 · Mở 7:30</span></label><a href="https://www.google.com/maps/search/Chia+Te+Bakery+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e10" onchange="mdChk(this)"><label><span class="md-name">Ngâm onsen Beitou 北投溫泉</span><span class="md-addr">📍 Beitou District, Taipei | 北投區 (MRT Xinbeitou)</span><span class="md-sub">Public 40 TWD | Private ~800 TWD/h</span></label><a href="https://www.google.com/maps/search/Beitou+Hot+Spring+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="c2" onchange="mdChk(this)"><label><span class="md-name">Beitou Public Library 北投圖書館</span><span class="md-addr">📍 No. 251, Guangming Road, Beitou District | 光明路251號</span><span class="md-sub">Kiến trúc gỗ xanh đẹp nhất Đài Bắc · Free</span></label><a href="https://www.google.com/maps/search/Beitou+Public+Library+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f14" onchange="mdChk(this)"><label><span class="md-name">Fuhang Soy Milk 阜杭豆漿</span><span class="md-addr">📍 2F, No. 108, Section 1, Zhongxiao East Road (Hangle Market) | 忠孝東路一段108號2樓</span><span class="md-sub">Ăn sáng N8 · Đến trước 7:30</span></label><a href="https://www.google.com/maps/search/Fuhang+Soy+Milk+Taipei" target="_blank" class="md-gmap">📍</a></div>
+</div>
 
-    <!-- TAN BAC (NEW TAIPEI) -->
-    <div class="md-city">
-      <div class="md-city-hdr" style="background:#fff3cd;border-left-color:var(--warn)">🌊 Tân Bắc — New Taipei City</div>
-      <div class="md-i"><input type="checkbox" data-md="e2b" onchange="mdChk(this)"><label><span class="md-name">Yehliu Geopark / 野柳地質公園 — Queen's Head</span><span class="md-addr">📍 No. 167-1, Gangdong Road, Wanli District, New Taipei | 萬里區港東路167-1號</span><span class="md-sub">Vé 80 TWD · Đến sớm tránh tour</span></label><a href="https://www.google.com/maps/search/Yehliu+Geopark+Taiwan" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e6" onchange="mdChk(this)"><label><span class="md-name">Jiufen Old Street / 九份老街 — Đèn lồng đỏ</span><span class="md-addr">📍 Jiufen, Ruifang District, New Taipei | 瑞芳區九份老街</span><span class="md-sub">Chiều tối 17:00+ đẹp nhất</span></label><a href="https://www.google.com/maps/search/Jiufen+Old+Street+Taiwan" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e1" onchange="mdChk(this)"><label><span class="md-name">Thả đèn trời Shifen 十分放天燈</span><span class="md-addr">📍 Shifen Old Street, Pingxi District, New Taipei | 平溪區十分老街</span><span class="md-sub">Đèn 200 TWD/4 màu · Viết ước muốn</span></label><a href="https://www.google.com/maps/search/Shifen+Sky+Lantern+Taiwan" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="c3" onchange="mdChk(this)"><label><span class="md-name">Liao Tianding Temple 廖添丁廟 — Bali</span><span class="md-addr">📍 No. 218, Zhongyang Road, Bali District, New Taipei | 八里區中央路218號</span><span class="md-sub">Phà từ Tamsui sang Bali · Robin Hood Đài Loan</span></label><a href="https://www.google.com/maps/search/Liao+Tianding+Temple+Bali+Taiwan" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e17" onchange="mdChk(this)"><label><span class="md-name">Tamsui Fisherman's Wharf 漁人碼頭 Sunset</span><span class="md-addr">📍 No. 1, Guanhai Road, Tamsui District | 淡水區觀海路1號</span><span class="md-sub">Cầu đỏ + hoàng hôn · 18:00-18:30</span></label><a href="https://www.google.com/maps/search/Fishermans+Wharf+Tamsui" target="_blank" class="md-gmap">📍</a></div>
-    </div>
+<!-- TAN BAC (NEW TAIPEI) -->
+<div class="md-city">
+  <div class="md-city-hdr" style="background:#fff3cd;border-left-color:var(--warn)">🌊 Tân Bắc — New Taipei City</div>
+  <div class="md-i"><input type="checkbox" data-md="e2b" onchange="mdChk(this)"><label><span class="md-name">Yehliu Geopark / 野柳地質公園 — Queen's Head</span><span class="md-addr">📍 No. 167-1, Gangdong Road, Wanli District, New Taipei | 萬里區港東路167-1號</span><span class="md-sub">Vé 80 TWD · Đến sớm tránh tour</span></label><a href="https://www.google.com/maps/search/Yehliu+Geopark+Taiwan" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e6" onchange="mdChk(this)"><label><span class="md-name">Jiufen Old Street / 九份老街 — Đèn lồng đỏ</span><span class="md-addr">📍 Jiufen, Ruifang District, New Taipei | 瑞芳區九份老街</span><span class="md-sub">Chiều tối 17:00+ đẹp nhất</span></label><a href="https://www.google.com/maps/search/Jiufen+Old+Street+Taiwan" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e1" onchange="mdChk(this)"><label><span class="md-name">Thả đèn trời Shifen 十分放天燈</span><span class="md-addr">📍 Shifen Old Street, Pingxi District, New Taipei | 平溪區十分老街</span><span class="md-sub">Đèn 200 TWD/4 màu · Viết ước muốn</span></label><a href="https://www.google.com/maps/search/Shifen+Sky+Lantern+Taiwan" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="c3" onchange="mdChk(this)"><label><span class="md-name">Liao Tianding Temple 廖添丁廟 — Bali</span><span class="md-addr">📍 No. 218, Zhongyang Road, Bali District, New Taipei | 八里區中央路218號</span><span class="md-sub">Phà từ Tamsui sang Bali · Robin Hood Đài Loan</span></label><a href="https://www.google.com/maps/search/Liao+Tianding+Temple+Bali+Taiwan" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e17" onchange="mdChk(this)"><label><span class="md-name">Tamsui Fisherman's Wharf 漁人碼頭 Sunset</span><span class="md-addr">📍 No. 1, Guanhai Road, Tamsui District | 淡水區觀海路1號</span><span class="md-sub">Cầu đỏ + hoàng hôn · 18:00-18:30</span></label><a href="https://www.google.com/maps/search/Fishermans+Wharf+Tamsui" target="_blank" class="md-gmap">📍</a></div>
+</div>
 
-    <!-- HUALIEN -->
-    <div class="md-city">
-      <div class="md-city-hdr" style="background:#d4edda;border-left-color:var(--ok)">🏔️ Hoa Liên — Hualien</div>
-      <div class="md-i"><input type="checkbox" data-md="e4" onchange="mdChk(this)"><label><span class="md-name">Đi tàu TRA bờ Đông view biển ✅</span><span class="md-addr">📍 Taipei Station → Hualien Station | 台北車站→花蓮車站 (Booking #6684500)</span><span class="md-sub">Tze-Chiang 472 · Ghế số chẵn bên phải</span></label><a href="https://www.google.com/maps/search/Taiwan+Railway+Hualien" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e5" onchange="mdChk(this)"><label><span class="md-name">Đi bộ Taroko Gorge 太魯閣峽谷</span><span class="md-addr">📍 Taroko National Park, Xiulin Township, Hualien | 秀林鄉太魯閣國家公園</span><span class="md-sub">Hẻm núi đá cẩm thạch #1 châu Á</span></label><a href="https://www.google.com/maps/search/Taroko+Gorge+Taiwan" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e9" onchange="mdChk(this)"><label><span class="md-name">Shakadang Trail suối ngọc lam 砂卡礑步道</span><span class="md-addr">📍 Shakadang Trailhead, Xiulin, Hualien | 秀林鄉砂卡礑步道入口</span><span class="md-sub">4.4km · Không cần permit · Dễ đi</span></label><a href="https://www.google.com/maps/search/Shakadang+Trail+Taroko" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e_moto" onchange="mdChk(this)"><label><span class="md-name">🏍️ Thuê xe máy Hoa Liên tự lái</span><span class="md-addr">📍 Khu vực ga Hualien | 花蓮車站周邊</span><span class="md-sub">Hwy 9 ven biển · Cần IDP</span></label><a href="https://www.google.com/maps/search/motorbike+rental+Hualien" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e7" onchange="mdChk(this)"><label><span class="md-name">Qixingtan Beach sáng sớm 七星潭</span><span class="md-addr">📍 Qixingtan, Xincheng Township, Hualien | 新城鄉七星潭</span><span class="md-sub">7-8h sáng ít người · Bãi đá cuội + núi</span></label><a href="https://www.google.com/maps/search/Qixingtan+Beach+Hualien" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e8" onchange="mdChk(this)"><label><span class="md-name">Tiaoshi Coast 跳石海岸 — Hidden Gem</span><span class="md-addr">📍 Provincial Highway 9, km 38-40, Hualien | 台9線38-40公里處</span><span class="md-sub">Đá đen ven biển · Ít khách Tây</span></label><a href="https://www.google.com/maps/search/Tiaoshi+coast+Hualien" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f11" onchange="mdChk(this)"><label><span class="md-name">Qingshui Cliff / 清水斷崖</span><span class="md-addr">📍 Hwy 9, Xiulin Township, Hualien | 秀林鄉台9線清水斷崖</span><span class="md-sub">Vách đá 1000m nhìn Thái Bình Dương</span></label><a href="https://www.google.com/maps/search/Qingshui+Cliff+Hualien" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f12" onchange="mdChk(this)"><label><span class="md-name">Sugar Factory Ice Cream 花蓮糖廠</span><span class="md-addr">📍 No. 676, Zhongshan Road, Guangfu Township, Hualien | 光復鄉中山路676號</span><span class="md-sub">Milk ice cream 30-50 TWD · Huyền thoại</span></label><a href="https://www.google.com/maps/search/Hualien+Sugar+Factory" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f13" onchange="mdChk(this)"><label><span class="md-name">Mochi + Nougat Hoa Liên 曾記麻糬</span><span class="md-addr">📍 No. 6, Fuguo Road, Hualien City | 富國路6號 (Zeng Yong)</span><span class="md-sub">Đặc sản mang về · Mua tại ga tàu</span></label><a href="https://www.google.com/maps/search/Zeng+Yong+mochi+Hualien" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f_abori" onchange="mdChk(this)"><label><span class="md-name">Aboriginal BBQ Dongdamen 東大門夜市</span><span class="md-addr">📍 Dongdamen Night Market, No. 423, Heping Road, Hualien | 和平路423號</span><span class="md-sub">Cơm ống tre + thịt nướng thổ dân</span></label><a href="https://www.google.com/maps/search/Dongdamen+Night+Market+Hualien" target="_blank" class="md-gmap">📍</a></div>
-    </div>
+<!-- HUALIEN -->
+<div class="md-city">
+  <div class="md-city-hdr" style="background:#d4edda;border-left-color:var(--ok)">🏔️ Hoa Liên — Hualien</div>
+  <div class="md-i"><input type="checkbox" data-md="e4" onchange="mdChk(this)"><label><span class="md-name">Đi tàu TRA bờ Đông view biển ✅</span><span class="md-addr">📍 Taipei Station → Hualien Station | 台北車站→花蓮車站 (Booking #6684500)</span><span class="md-sub">Tze-Chiang 472 · Ghế số chẵn bên phải</span></label><a href="https://www.google.com/maps/search/Taiwan+Railway+Hualien" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e5" onchange="mdChk(this)"><label><span class="md-name">Đi bộ Taroko Gorge 太魯閣峽谷</span><span class="md-addr">📍 Taroko National Park, Xiulin Township, Hualien | 秀林鄉太魯閣國家公園</span><span class="md-sub">Hẻm núi đá cẩm thạch #1 châu Á</span></label><a href="https://www.google.com/maps/search/Taroko+Gorge+Taiwan" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e9" onchange="mdChk(this)"><label><span class="md-name">Shakadang Trail suối ngọc lam 砂卡礑步道</span><span class="md-addr">📍 Shakadang Trailhead, Xiulin, Hualien | 秀林鄉砂卡礑步道入口</span><span class="md-sub">4.4km · Không cần permit · Dễ đi</span></label><a href="https://www.google.com/maps/search/Shakadang+Trail+Taroko" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e_moto" onchange="mdChk(this)"><label><span class="md-name">🏍️ Thuê xe máy Hoa Liên tự lái</span><span class="md-addr">📍 Khu vực ga Hualien | 花蓮車站周邊</span><span class="md-sub">Hwy 9 ven biển · Cần IDP</span></label><a href="https://www.google.com/maps/search/motorbike+rental+Hualien" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e7" onchange="mdChk(this)"><label><span class="md-name">Qixingtan Beach sáng sớm 七星潭</span><span class="md-addr">📍 Qixingtan, Xincheng Township, Hualien | 新城鄉七星潭</span><span class="md-sub">7-8h sáng ít người · Bãi đá cuội + núi</span></label><a href="https://www.google.com/maps/search/Qixingtan+Beach+Hualien" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e8" onchange="mdChk(this)"><label><span class="md-name">Tiaoshi Coast 跳石海岸 — Hidden Gem</span><span class="md-addr">📍 Provincial Highway 9, km 38-40, Hualien | 台9線38-40公里處</span><span class="md-sub">Đá đen ven biển · Ít khách Tây</span></label><a href="https://www.google.com/maps/search/Tiaoshi+coast+Hualien" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f11" onchange="mdChk(this)"><label><span class="md-name">Qingshui Cliff / 清水斷崖</span><span class="md-addr">📍 Hwy 9, Xiulin Township, Hualien | 秀林鄉台9線清水斷崖</span><span class="md-sub">Vách đá 1000m nhìn Thái Bình Dương</span></label><a href="https://www.google.com/maps/search/Qingshui+Cliff+Hualien" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f12" onchange="mdChk(this)"><label><span class="md-name">Sugar Factory Ice Cream 花蓮糖廠</span><span class="md-addr">📍 No. 676, Zhongshan Road, Guangfu Township, Hualien | 光復鄉中山路676號</span><span class="md-sub">Milk ice cream 30-50 TWD · Huyền thoại</span></label><a href="https://www.google.com/maps/search/Hualien+Sugar+Factory" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f13" onchange="mdChk(this)"><label><span class="md-name">Mochi + Nougat Hoa Liên 曾記麻糬</span><span class="md-addr">📍 No. 6, Fuguo Road, Hualien City | 富國路6號 (Zeng Yong)</span><span class="md-sub">Đặc sản mang về · Mua tại ga tàu</span></label><a href="https://www.google.com/maps/search/Zeng+Yong+mochi+Hualien" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f_abori" onchange="mdChk(this)"><label><span class="md-name">Aboriginal BBQ Dongdamen 東大門夜市</span><span class="md-addr">📍 Dongdamen Night Market, No. 423, Heping Road, Hualien | 和平路423號</span><span class="md-sub">Cơm ống tre + thịt nướng thổ dân</span></label><a href="https://www.google.com/maps/search/Dongdamen+Night+Market+Hualien" target="_blank" class="md-gmap">📍</a></div>
+</div>
 
-    <!-- TAICHUNG -->
-    <div class="md-city">
-      <div class="md-city-hdr" style="background:#e8f4e8;border-left-color:#27ae60">🌆 Đài Trung — Taichung</div>
-      <div class="md-i"><input type="checkbox" data-md="f_miya" onchange="mdChk(this)"><label><span class="md-name">Miyahara Ice Cream 宮原眼科</span><span class="md-addr">📍 No. 20, Zhongshan Road, Central District, Taichung | 中山路20號</span><span class="md-sub">Mái vòm sách Harry Potter · Kem multi-scoop</span></label><a href="https://www.google.com/maps/search/Miyahara+Taichung" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="c4" onchange="mdChk(this)"><label><span class="md-name">Rainbow Village 彩虹眷村</span><span class="md-addr">📍 No. 56, Chuncheng Road, Nantun District, Taichung | 南屯區春城路56號</span><span class="md-sub">Cụ ông 97 tuổi vẽ tay · Free</span></label><a href="https://www.google.com/maps/search/Rainbow+Village+Taichung" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e11" onchange="mdChk(this)"><label><span class="md-name">Hoàng hôn Gaomei Wetlands 高美濕地</span><span class="md-addr">📍 Gaomei, Qingshui District, Taichung | 清水區高美濕地</span><span class="md-sub">Tuabin gió + sunset · Check triều trước!</span></label><a href="https://www.google.com/maps/search/Gaomei+Wetlands+Taichung" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f_fen" onchange="mdChk(this)"><label><span class="md-name">Fengjia Night Market 逢甲夜市</span><span class="md-addr">📍 Fengjia Street, Xitun District, Taichung | 西屯區逢甲路</span><span class="md-sub">Lớn nhất Đài Loan · Đi ít nhất 2h</span></label><a href="https://www.google.com/maps/search/Fengjia+Night+Market+Taichung" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="sml" onchange="mdChk(this)"><label><span class="md-name">Sun Moon Lake 日月潭 (option)</span><span class="md-addr">📍 Yuchi Township, Nantou County | 南投縣魚池鄉日月潭</span><span class="md-sub">Bus 1.5h từ Đài Trung · Hồ đẹp nhất</span></label><a href="https://www.google.com/maps/search/Sun+Moon+Lake+Taiwan" target="_blank" class="md-gmap">📍</a></div>
-    </div>
+<!-- TAICHUNG -->
+<div class="md-city">
+  <div class="md-city-hdr" style="background:#e8f4e8;border-left-color:#27ae60">🌆 Đài Trung — Taichung</div>
+  <div class="md-i"><input type="checkbox" data-md="f_miya" onchange="mdChk(this)"><label><span class="md-name">Miyahara Ice Cream 宮原眼科</span><span class="md-addr">📍 No. 20, Zhongshan Road, Central District, Taichung | 中山路20號</span><span class="md-sub">Mái vòm sách Harry Potter · Kem multi-scoop</span></label><a href="https://www.google.com/maps/search/Miyahara+Taichung" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="c4" onchange="mdChk(this)"><label><span class="md-name">Rainbow Village 彩虹眷村</span><span class="md-addr">📍 No. 56, Chuncheng Road, Nantun District, Taichung | 南屯區春城路56號</span><span class="md-sub">Cụ ông 97 tuổi vẽ tay · Free</span></label><a href="https://www.google.com/maps/search/Rainbow+Village+Taichung" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e11" onchange="mdChk(this)"><label><span class="md-name">Hoàng hôn Gaomei Wetlands 高美濕地</span><span class="md-addr">📍 Gaomei, Qingshui District, Taichung | 清水區高美濕地</span><span class="md-sub">Tuabin gió + sunset · Check triều trước!</span></label><a href="https://www.google.com/maps/search/Gaomei+Wetlands+Taichung" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f_fen" onchange="mdChk(this)"><label><span class="md-name">Fengjia Night Market 逢甲夜市</span><span class="md-addr">📍 Fengjia Street, Xitun District, Taichung | 西屯區逢甲路</span><span class="md-sub">Lớn nhất Đài Loan · Đi ít nhất 2h</span></label><a href="https://www.google.com/maps/search/Fengjia+Night+Market+Taichung" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="sml" onchange="mdChk(this)"><label><span class="md-name">Sun Moon Lake 日月潭 (option)</span><span class="md-addr">📍 Yuchi Township, Nantou County | 南投縣魚池鄉日月潭</span><span class="md-sub">Bus 1.5h từ Đài Trung · Hồ đẹp nhất</span></label><a href="https://www.google.com/maps/search/Sun+Moon+Lake+Taiwan" target="_blank" class="md-gmap">📍</a></div>
+</div>
 
-    <!-- FOOD GENERAL -->
-    <div class="md-city">
-      <div class="md-city-hdr" style="background:#fff;border-left-color:var(--acc)">🍜 Ẩm thực — Phải thử</div>
-      <div class="md-i"><input type="checkbox" data-md="f5" onchange="mdChk(this)"><label><span class="md-name">Stinky Tofu 臭豆腐</span><span class="md-addr">📍 Shilin / Raohe Night Market</span><span class="md-sub">Mùi đặc trưng · Must try once</span></label><a href="https://www.google.com/maps/search/stinky+tofu+Taipei+night+market" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f6" onchange="mdChk(this)"><label><span class="md-name">Lu Rou Fan 滷肉飯 (Braised Pork Rice)</span><span class="md-addr">📍 Khắp Đài Loan · Ningxia Night Market</span><span class="md-sub">Comfort food kinh điển</span></label><a href="https://www.google.com/maps/search/lu+rou+fan+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f8" onchange="mdChk(this)"><label><span class="md-name">Oyster Omelette 蚵仔煎</span><span class="md-addr">📍 Shilin / Ningxia / Raohe Night Market</span><span class="md-sub">Hào chiên trứng · Classic Đài Loan</span></label><a href="https://www.google.com/maps/search/oyster+omelette+Taiwan" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f9" onchange="mdChk(this)"><label><span class="md-name">Mango Shaved Ice 芒果冰</span><span class="md-addr">📍 Ice Monster: No. 15, Section 4, Zhongxiao East Road, Taipei | 忠孝東路四段15號</span><span class="md-sub">Mùa xoài tháng 4-5 đúng lúc!</span></label><a href="https://www.google.com/maps/search/Ice+Monster+mango+shaved+ice+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f10" onchange="mdChk(this)"><label><span class="md-name">Trà oolong Đài Loan 台灣烏龍茶</span><span class="md-addr">📍 Tea shops Jiufen hoặc Yongkang Street, Taipei</span><span class="md-sub">Mua về làm quà</span></label><a href="https://www.google.com/maps/search/Taiwan+oolong+tea+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f15" onchange="mdChk(this)"><label><span class="md-name">Trải nghiệm 7-Eleven Đài Loan</span><span class="md-addr">📍 Khắp Đài Loan — >12,000 cửa hàng</span><span class="md-sub">ATM + EasyCard + ăn sáng all-in-one</span></label><a href="https://www.google.com/maps/search/7+eleven+Taipei" target="_blank" class="md-gmap">📍</a></div>
-    </div>
+<!-- FOOD GENERAL -->
+<div class="md-city">
+  <div class="md-city-hdr" style="background:#fff;border-left-color:var(--acc)">🍜 Ẩm thực — Phải thử</div>
+  <div class="md-i"><input type="checkbox" data-md="f5" onchange="mdChk(this)"><label><span class="md-name">Stinky Tofu 臭豆腐</span><span class="md-addr">📍 Shilin / Raohe Night Market</span><span class="md-sub">Mùi đặc trưng · Must try once</span></label><a href="https://www.google.com/maps/search/stinky+tofu+Taipei+night+market" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f6" onchange="mdChk(this)"><label><span class="md-name">Lu Rou Fan 滷肉飯 (Braised Pork Rice)</span><span class="md-addr">📍 Khắp Đài Loan · Ningxia Night Market</span><span class="md-sub">Comfort food kinh điển</span></label><a href="https://www.google.com/maps/search/lu+rou+fan+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f8" onchange="mdChk(this)"><label><span class="md-name">Oyster Omelette 蚵仔煎</span><span class="md-addr">📍 Shilin / Ningxia / Raohe Night Market</span><span class="md-sub">Hào chiên trứng · Classic Đài Loan</span></label><a href="https://www.google.com/maps/search/oyster+omelette+Taiwan" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f9" onchange="mdChk(this)"><label><span class="md-name">Mango Shaved Ice 芒果冰</span><span class="md-addr">📍 Ice Monster: No. 15, Section 4, Zhongxiao East Road, Taipei | 忠孝東路四段15號</span><span class="md-sub">Mùa xoài tháng 4-5 đúng lúc!</span></label><a href="https://www.google.com/maps/search/Ice+Monster+mango+shaved+ice+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f10" onchange="mdChk(this)"><label><span class="md-name">Trà oolong Đài Loan 台灣烏龍茶</span><span class="md-addr">📍 Tea shops Jiufen hoặc Yongkang Street, Taipei</span><span class="md-sub">Mua về làm quà</span></label><a href="https://www.google.com/maps/search/Taiwan+oolong+tea+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f15" onchange="mdChk(this)"><label><span class="md-name">Trải nghiệm 7-Eleven Đài Loan</span><span class="md-addr">📍 Khắp Đài Loan — >12,000 cửa hàng</span><span class="md-sub">ATM + EasyCard + ăn sáng all-in-one</span></label><a href="https://www.google.com/maps/search/7+eleven+Taipei" target="_blank" class="md-gmap">📍</a></div>
+</div>
+```
+
   </div>
 </div>
 
-
 <div class="tc" id="tab-budget">
-  <div class="dh" style="background:linear-gradient(135deg,#11998e,#38ef7d)">
-    <h2>💰 Chia Tiền — Sa · Bi · Ty</h2>
-    <p>Mọi số tiền convert về VND để tổng kết</p>
-    <div style="display:flex;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap">
-      <span style="font-size:.75rem;opacity:.9">Tỷ giá TWD→VND:</span>
-      <input id="fxRate" type="number" value="860" min="1"
-        style="width:64px;font-size:.78rem;border:1px solid rgba(255,255,255,.5);border-radius:6px;padding:3px 7px;background:rgba(255,255,255,.2);color:#fff;text-align:center;outline:none;font-weight:700"
-        onchange="setRate(+this.value)" onblur="setRate(+this.value)">
-      <span style="font-size:.72rem;opacity:.8">VND/TWD</span>
-    </div>
-  </div>
-
-  <!-- ADD ITEM — TOP -->
-  <div class="bud-add-card">
-    <div style="font-size:.8rem;font-weight:700;color:var(--txt);margin-bottom:8px">➕ Tạo khoản chi mới</div>
-    <div style="display:flex;gap:6px;flex-wrap:wrap">
-      <input class="bud-add-inp" id="budNewLabel" placeholder="Tên khoản chi..."
-        style="flex:1;min-width:140px"
-        onkeydown="if(event.key==='Enter')addBudgetItem()">
-      <select class="bud-add-select" id="budNewCat">
-        <option value="transport">🚆 Di chuyển</option>
-        <option value="hotel">🏨 Khách sạn</option>
-        <option value="activity">🎫 Tham quan</option>
-        <option value="food" selected>🍜 Ăn uống</option>
-        <option value="shopping">🛍️ Mua sắm</option>
-        <option value="misc">🔧 Khác</option>
-      </select>
-      <button class="bud-add-btn" onclick="addBudgetItem()">+ Tạo mới</button>
-    </div>
-  </div>
-
-  <!-- SUMMARY CARDS -->
+  <div class="dh" style="background:linear-gradient(135deg,#11998e,#38ef7d)"><h2>💰 Chia Tiền — Sa · Bi · Ty</h2><p>Input = tổng nhóm · /người tự tính theo số tick</p><div style="display:flex;align-items:center;gap:10px;margin-top:8px"><span style="font-size:.75rem;opacity:.9">Tỷ giá TWD→VND:</span><input id="fxRate" type="number" value="860" min="1" style="width:64px;font-size:.78rem;border:1px solid rgba(255,255,255,.5);border-radius:6px;padding:3px 7px;background:rgba(255,255,255,.2);color:#fff;text-align:center;outline:none;font-weight:700" onchange="setRate(+this.value)" onblur="setRate(+this.value)"><span style="font-size:.72rem;opacity:.8">VND/TWD</span></div></div>
+  <div class="bud-add-card"><div style="font-size:.8rem;font-weight:700;color:var(--txt);margin-bottom:8px">➕ Tạo khoản chi mới</div><div style="display:flex;gap:6px;flex-wrap:wrap"><input class="bud-add-inp" id="budNewLabel" placeholder="Tên khoản chi..." style="flex:1;min-width:130px" onkeydown="if(event.key==='Enter')addBudgetItem()"><select class="bud-add-select" id="budNewCat"><option value="transport">🚆</option><option value="hotel">🏨</option><option value="activity">🎫</option><option value="food" selected>🍜</option><option value="shopping">🛍️</option><option value="misc">🔧</option></select><button class="bud-add-btn" onclick="addBudgetItem()">+ Tạo</button></div></div>
   <div class="bud-summary-grid">
-    <div class="bud-card sa" id="bCard_sa" onclick="setBudFilter('sa')" style="cursor:pointer">
-      <div class="bud-avatar sa">Sa</div>
-      <div class="bud-name">Sa</div>
-      <div class="bud-est" id="saEst">Est: —</div>
-      <div class="bud-act-vnd" id="saActVND">0₫</div>
-      <div class="bud-act-twd" id="saActTWD">≈ 0 TWD</div>
-      <div class="bud-diff" id="saDiff"></div>
-      <small style="font-size:.58rem;color:var(--txt3);display:block;margin-top:3px">Bấm để lọc</small>
-    </div>
-    <div class="bud-card bi" id="bCard_bi" onclick="setBudFilter('bi')" style="cursor:pointer">
-      <div class="bud-avatar bi">Bi</div>
-      <div class="bud-name">Bi</div>
-      <div class="bud-est" id="biEst">Est: —</div>
-      <div class="bud-act-vnd" id="biActVND">0₫</div>
-      <div class="bud-act-twd" id="biActTWD">≈ 0 TWD</div>
-      <div class="bud-diff" id="biDiff"></div>
-      <small style="font-size:.58rem;color:var(--txt3);display:block;margin-top:3px">Bấm để lọc</small>
-    </div>
-    <div class="bud-card ty" id="bCard_ty" onclick="setBudFilter('ty')" style="cursor:pointer">
-      <div class="bud-avatar ty">Ty</div>
-      <div class="bud-name">Ty</div>
-      <div class="bud-est" id="tyEst">Est: —</div>
-      <div class="bud-act-vnd" id="tyActVND">0₫</div>
-      <div class="bud-act-twd" id="tyActTWD">≈ 0 TWD</div>
-      <div class="bud-diff" id="tyDiff"></div>
-      <small style="font-size:.58rem;color:var(--txt3);display:block;margin-top:3px">Bấm để lọc</small>
-    </div>
+    <div class="bud-card sa" id="bCard_sa" onclick="setBudFilter('sa')" style="cursor:pointer"><div class="bud-avatar sa">Sa</div><div class="bud-name">Sa</div><div class="bud-est" id="saEst">—</div><div class="bud-act-vnd" id="saActVND">0₫</div><div class="bud-act-twd" id="saActTWD">≈0 TWD</div><div class="bud-diff" id="saDiff"></div><small style="font-size:.58rem;color:var(--txt3)">Bấm để lọc</small></div>
+    <div class="bud-card bi" id="bCard_bi" onclick="setBudFilter('bi')" style="cursor:pointer"><div class="bud-avatar bi">Bi</div><div class="bud-name">Bi</div><div class="bud-est" id="biEst">—</div><div class="bud-act-vnd" id="biActVND">0₫</div><div class="bud-act-twd" id="biActTWD">≈0 TWD</div><div class="bud-diff" id="biDiff"></div><small style="font-size:.58rem;color:var(--txt3)">Bấm để lọc</small></div>
+    <div class="bud-card ty" id="bCard_ty" onclick="setBudFilter('ty')" style="cursor:pointer"><div class="bud-avatar ty">Ty</div><div class="bud-name">Ty</div><div class="bud-est" id="tyEst">—</div><div class="bud-act-vnd" id="tyActVND">0₫</div><div class="bud-act-twd" id="tyActTWD">≈0 TWD</div><div class="bud-diff" id="tyDiff"></div><small style="font-size:.58rem;color:var(--txt3)">Bấm để lọc</small></div>
   </div>
-
-  <!-- FILTER LABEL -->
   <div id="budFilterLabel" style="display:none;text-align:center;font-size:.74rem;font-weight:600;padding:5px 12px;border-radius:8px;margin-bottom:8px;background:var(--pri-l);color:var(--pri);cursor:pointer" onclick="setBudFilter(budFilter)"></div>
-
-  <!-- TOTALS -->
-  <div class="bud-totals">
-    <div class="bud-total-item">
-      <span class="bud-total-label">Tổng Est</span>
-      <span class="bud-total-val" id="totalEstVND">—</span>
-      <span class="bud-total-sub" id="totalEstTWD"></span>
-    </div>
-    <div class="bud-total-divider"></div>
-    <div class="bud-total-item">
-      <span class="bud-total-label">Tổng Actual</span>
-      <span class="bud-total-val" id="totalActVND">—</span>
-      <span class="bud-total-sub" id="totalActTWD"></span>
-    </div>
-  </div>
-
-  <!-- ITEM LIST -->
+  <div class="bud-totals"><div class="bud-total-item"><span class="bud-total-label">Tổng Est</span><span class="bud-total-val" id="totalEstVND">—</span><span class="bud-total-sub" id="totalEstTWD"></span></div><div class="bud-total-divider"></div><div class="bud-total-item"><span class="bud-total-label">Tổng Actual</span><span class="bud-total-val" id="totalActVND">—</span><span class="bud-total-sub" id="totalActTWD"></span></div></div>
   <div id="budgetBody"></div>
 </div>
 
@@ -1081,169 +1022,138 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   <div class="bnav-i" onclick="go('mustdo')"><span>⭐</span>Must Do</div>
   <div class="bnav-i" onclick="go('budget')"><span>💰</span>Budget</div>
   <div class="bnav-i" onclick="go('ranking')"><span>🏆</span>Ranking</div>
-</div>
-<script>
+</div><script>
 
-const SUPA_URL='https://wvabjrxyymhpdpvuswfr.supabase.co',SUPA_KEY='sb_publishable_MMQYoRIvqb-gVByG-HV1Jg_iASCuCGE',SCHEMA='202604taiwan';
+const SUPA_URL=‘https://wvabjrxyymhpdpvuswfr.supabase.co’,SUPA_KEY=‘sb_publishable_MMQYoRIvqb-gVByG-HV1Jg_iASCuCGE’,SCHEMA=‘202604taiwan’;
 let sb=null,SID=null;
-const TRIP_ID='202604taiwan_trip1';
+const TRIP_ID=‘202604taiwan_trip1’;
 let _sharedIdCache=null;
 
-function devId(){let id=localStorage.getItem('tw26_dev');if(!id){id='d_'+Math.random().toString(36).slice(2,11)+'_'+Date.now();localStorage.setItem('tw26_dev',id);}return id;}
+function devId(){let id=localStorage.getItem(‘tw26_dev’);if(!id){id=‘d_’+Math.random().toString(36).slice(2,11)+’_’+Date.now();localStorage.setItem(‘tw26_dev’,id);}return id;}
 async function sbInit(){
-  try{
-    sb=window.supabase.createClient(SUPA_URL,SUPA_KEY,{db:{schema:SCHEMA}});
-    const{data,error}=await sb.from('sessions').upsert({device_id:devId()},{onConflict:'device_id'}).select().single();
-    if(error)throw error; SID=data.id;
-    await sb.from('sessions').upsert({device_id:TRIP_ID},{onConflict:'device_id'});
-    setBadge('🟢 Synced','ok'); return true;
-  }catch(e){console.error('SB:',e);setBadge('🔴 Offline','err');return false;}
+try{
+sb=window.supabase.createClient(SUPA_URL,SUPA_KEY,{db:{schema:SCHEMA}});
+const{data,error}=await sb.from(‘sessions’).upsert({device_id:devId()},{onConflict:‘device_id’}).select().single();
+if(error)throw error; SID=data.id;
+await sb.from(‘sessions’).upsert({device_id:TRIP_ID},{onConflict:‘device_id’});
+setBadge(‘🟢 Synced’,‘ok’); return true;
+}catch(e){console.error(‘SB:’,e);setBadge(‘🔴 Offline’,‘err’);return false;}
 }
-function setBadge(t,c){const b=document.getElementById('dbBadge');b.textContent=t;b.className='db-badge '+c;}
+function setBadge(t,c){const b=document.getElementById(‘dbBadge’);b.textContent=t;b.className=’db-badge ’+c;}
 
-async function getSharedId(){
-  if(_sharedIdCache)return _sharedIdCache;
-  if(sb){const{data}=await sb.from('sessions').select('id').eq('device_id',TRIP_ID).single();if(data)_sharedIdCache=data.id;}
-  return _sharedIdCache;
-}
-async function getAllShared(tbl){
-  if(sb){const sid=await getSharedId();if(sid){const{data}=await sb.from(tbl).select('*').eq('session_id',sid);return data||[];}}
-  return JSON.parse(localStorage.getItem('tw26_sh_'+tbl)||'[]');
-}
-async function upsertShared(tbl,row){
-  if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).upsert({...row,session_id:sid},{onConflict:'session_id,id'});return;}}
-  const arr=JSON.parse(localStorage.getItem('tw26_sh_'+tbl)||'[]');
-  const i=arr.findIndex(r=>r.id===row.id);
-  if(i>=0)arr[i]={...arr[i],...row};else arr.push(row);
-  localStorage.setItem('tw26_sh_'+tbl,JSON.stringify(arr));
-}
-async function deleteShared(tbl,id){
-  if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).delete().eq('session_id',sid).eq('id',id);return;}}
-  const arr=JSON.parse(localStorage.getItem('tw26_sh_'+tbl)||'[]').filter(r=>r.id!==id);
-  localStorage.setItem('tw26_sh_'+tbl,JSON.stringify(arr));
-}
-async function getAllSharedKV(tbl){
-  if(sb){const sid=await getSharedId();if(sid){const{data}=await sb.from(tbl).select('item_key,checked').eq('session_id',sid);const r={};(data||[]).forEach(x=>r[x.item_key]=x.checked);return r;}}
-  return JSON.parse(localStorage.getItem('tw26_sh_kv_'+tbl)||'{}');
-}
-async function upsertSharedKV(tbl,key,checked){
-  if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).upsert({session_id:sid,item_key:key,checked,checked_at:checked?new Date().toISOString():null},{onConflict:'session_id,item_key'});return;}}
-  const d=JSON.parse(localStorage.getItem('tw26_sh_kv_'+tbl)||'{}');d[key]=checked;
-  localStorage.setItem('tw26_sh_kv_'+tbl,JSON.stringify(d));
-}
+async function getSharedId(){if(*sharedIdCache)return *sharedIdCache;if(sb){const{data}=await sb.from(‘sessions’).select(‘id’).eq(‘device_id’,TRIP_ID).single();if(data)*sharedIdCache=data.id;}return *sharedIdCache;}
+async function getAllShared(tbl){if(sb){const sid=await getSharedId();if(sid){const{data}=await sb.from(tbl).select(’*’).eq(‘session_id’,sid);return data||[];}}return JSON.parse(localStorage.getItem(’tw26_sh*’+tbl)||’[]’);}
+async function upsertShared(tbl,row){if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).upsert({…row,session_id:sid},{onConflict:‘session_id,id’});return;}}const arr=JSON.parse(localStorage.getItem(’tw26_sh*’+tbl)||’[]’);const i=arr.findIndex(r=>r.id===row.id);if(i>=0)arr[i]={…arr[i],…row};else arr.push(row);localStorage.setItem(’tw26_sh*’+tbl,JSON.stringify(arr));}
+async function deleteShared(tbl,id){if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).delete().eq(‘session_id’,sid).eq(‘id’,id);return;}}const arr=JSON.parse(localStorage.getItem(’tw26_sh*’+tbl)||’[]’).filter(r=>r.id!==id);localStorage.setItem(‘tw26_sh_’+tbl,JSON.stringify(arr));}
+async function getAllSharedKV(tbl){if(sb){const sid=await getSharedId();if(sid){const{data}=await sb.from(tbl).select(‘item_key,checked’).eq(‘session_id’,sid);const r={};(data||[]).forEach(x=>r[x.item_key]=x.checked);return r;}}return JSON.parse(localStorage.getItem(‘tw26_sh_kv_’+tbl)||’{}’);}
+async function upsertSharedKV(tbl,key,checked){if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).upsert({session_id:sid,item_key:key,checked,checked_at:checked?new Date().toISOString():null},{onConflict:‘session_id,item_key’});return;}}const d=JSON.parse(localStorage.getItem(‘tw26_sh_kv_’+tbl)||’{}’);d[key]=checked;localStorage.setItem(‘tw26_sh_kv_’+tbl,JSON.stringify(d));}
 async function getAll(tbl){
-  if(sb&&SID){const{data}=await sb.from(tbl).select('*').eq('session_id',SID);return data||[];}
-  return JSON.parse(localStorage.getItem('tw26_'+tbl)||'[]');
+if(sb&&SID){const{data}=await sb.from(tbl).select(’*’).eq(‘session_id’,SID);return data||[];}
+return JSON.parse(localStorage.getItem(‘tw26_’+tbl)||’[]’);
 }
 async function upsertRow(tbl,row){
-  if(sb&&SID){await sb.from(tbl).upsert({...row,session_id:SID},{onConflict:'session_id,id'});return;}
-  const arr=JSON.parse(localStorage.getItem('tw26_'+tbl)||'[]');
-  const i=arr.findIndex(r=>r.id===row.id);
-  if(i>=0)arr[i]={...arr[i],...row};else arr.push(row);
-  localStorage.setItem('tw26_'+tbl,JSON.stringify(arr));
+if(sb&&SID){await sb.from(tbl).upsert({…row,session_id:SID},{onConflict:‘session_id,id’});return;}
+const arr=JSON.parse(localStorage.getItem(‘tw26_’+tbl)||’[]’);
+const i=arr.findIndex(r=>r.id===row.id);
+if(i>=0)arr[i]={…arr[i],…row};else arr.push(row);
+localStorage.setItem(‘tw26_’+tbl,JSON.stringify(arr));
 }
 async function deleteRow(tbl,id){
-  if(sb&&SID){await sb.from(tbl).delete().eq('session_id',SID).eq('id',id);return;}
-  const arr=JSON.parse(localStorage.getItem('tw26_'+tbl)||'[]').filter(r=>r.id!==id);
-  localStorage.setItem('tw26_'+tbl,JSON.stringify(arr));
+if(sb&&SID){await sb.from(tbl).delete().eq(‘session_id’,SID).eq(‘id’,id);return;}
+const arr=JSON.parse(localStorage.getItem(‘tw26_’+tbl)||’[]’).filter(r=>r.id!==id);
+localStorage.setItem(‘tw26_’+tbl,JSON.stringify(arr));
 }
 async function getAllKV(tbl){
-  if(sb&&SID){const{data}=await sb.from(tbl).select('item_key,checked').eq('session_id',SID);const r={};(data||[]).forEach(x=>r[x.item_key]=x.checked);return r;}
-  return JSON.parse(localStorage.getItem('tw26_kv_'+tbl)||'{}');
+if(sb&&SID){const{data}=await sb.from(tbl).select(‘item_key,checked’).eq(‘session_id’,SID);const r={};(data||[]).forEach(x=>r[x.item_key]=x.checked);return r;}
+return JSON.parse(localStorage.getItem(‘tw26_kv_’+tbl)||’{}’);
 }
 async function setKV(tbl,key,val){
-  if(sb&&SID){await sb.from(tbl).upsert({session_id:SID,item_key:key,checked:val,checked_at:val?new Date().toISOString():null},{onConflict:'session_id,item_key'});return;}
-  const d=JSON.parse(localStorage.getItem('tw26_kv_'+tbl)||'{}');d[key]=val;localStorage.setItem('tw26_kv_'+tbl,JSON.stringify(d));
+if(sb&&SID){await sb.from(tbl).upsert({session_id:SID,item_key:key,checked:val,checked_at:val?new Date().toISOString():null},{onConflict:‘session_id,item_key’});return;}
+const d=JSON.parse(localStorage.getItem(‘tw26_kv_’+tbl)||’{}’);d[key]=val;localStorage.setItem(‘tw26_kv_’+tbl,JSON.stringify(d));
 }
 
 // MAP
 const DL={
-  day1:[{n:"TPE Airport 桃園機場",lat:25.0797,lng:121.2342,r:null},{n:"Ximending 西門町",lat:25.0424,lng:121.5068,r:5}],
-  day2:[{n:"CKS Memorial 中正紀念堂",lat:25.0349,lng:121.5219,r:null},{n:"Yongkang St 永康街",lat:25.0281,lng:121.5298,r:4},{n:"Taipei 101",lat:25.034,lng:121.5645,r:1},{n:"Elephant Mt 象山",lat:25.0272,lng:121.5713,r:6},{n:"Raohe Market 饒河",lat:25.0505,lng:121.5774,r:7}],
-  day3:[{n:"Yehliu 野柳",lat:25.2056,lng:121.6901,r:9},{n:"Jiufen 九份",lat:25.1097,lng:121.8452,r:3},{n:"Shifen 十分",lat:25.0425,lng:121.7764,r:8},{n:"Ningxia Market",lat:25.0558,lng:121.5153,r:null}],
-  day4:[{n:"Taroko 太魯閣",lat:24.1588,lng:121.6213,r:2},{n:"Eternal Spring 長春祠",lat:24.1718,lng:121.6029,r:null},{n:"Qingshui Cliff 清水斷崖",lat:24.2288,lng:121.7144,r:19},{n:"Dongdamen 東大門",lat:23.9771,lng:121.6044,r:null}],
-  day5:[{n:"Qixingtan 七星潭",lat:23.9856,lng:121.6186,r:10},{n:"Shakadang Trail 砂卡礑",lat:24.1345,lng:121.6198,r:20},{n:"Tiaoshi Coast 跳石",lat:24.0823,lng:121.6535,r:11}],
-  day6:[{n:"Miyahara 宮原眼科",lat:24.1382,lng:120.6833,r:15},{n:"Rainbow Village 彩虹眷村",lat:24.1339,lng:120.6082,r:14},{n:"Gaomei 高美濕地",lat:24.3125,lng:120.5527,r:13},{n:"Fengjia 逢甲",lat:24.179,lng:120.6463,r:12}],
-  day7:[{n:"Sun Moon Lake 日月潭",lat:23.8491,lng:120.9163,r:18},{n:"Beitou Onsen 北投",lat:25.1368,lng:121.5067,r:16},{n:"Tamsui 淡水",lat:25.1696,lng:121.4408,r:17},{n:"Shilin Market 士林",lat:25.088,lng:121.5242,r:null}],
-  day8:[{n:"Chia Te 佳德",lat:25.0505,lng:121.5774,r:null},{n:"TPE Airport",lat:25.0797,lng:121.2342,r:null}]
+day1:[{n:“TPE Airport 桃園機場”,lat:25.0797,lng:121.2342,r:null},{n:“Ximending 西門町”,lat:25.0424,lng:121.5068,r:5}],
+day2:[{n:“CKS Memorial 中正紀念堂”,lat:25.0349,lng:121.5219,r:null},{n:“Yongkang St 永康街”,lat:25.0281,lng:121.5298,r:4},{n:“Taipei 101”,lat:25.034,lng:121.5645,r:1},{n:“Elephant Mt 象山”,lat:25.0272,lng:121.5713,r:6},{n:“Raohe Market 饒河”,lat:25.0505,lng:121.5774,r:7}],
+day3:[{n:“Yehliu 野柳”,lat:25.2056,lng:121.6901,r:9},{n:“Jiufen 九份”,lat:25.1097,lng:121.8452,r:3},{n:“Shifen 十分”,lat:25.0425,lng:121.7764,r:8},{n:“Ningxia Market”,lat:25.0558,lng:121.5153,r:null}],
+day4:[{n:“Taroko 太魯閣”,lat:24.1588,lng:121.6213,r:2},{n:“Eternal Spring 長春祠”,lat:24.1718,lng:121.6029,r:null},{n:“Qingshui Cliff 清水斷崖”,lat:24.2288,lng:121.7144,r:19},{n:“Dongdamen 東大門”,lat:23.9771,lng:121.6044,r:null}],
+day5:[{n:“Qixingtan 七星潭”,lat:23.9856,lng:121.6186,r:10},{n:“Shakadang Trail 砂卡礑”,lat:24.1345,lng:121.6198,r:20},{n:“Tiaoshi Coast 跳石”,lat:24.0823,lng:121.6535,r:11}],
+day6:[{n:“Miyahara 宮原眼科”,lat:24.1382,lng:120.6833,r:15},{n:“Rainbow Village 彩虹眷村”,lat:24.1339,lng:120.6082,r:14},{n:“Gaomei 高美濕地”,lat:24.3125,lng:120.5527,r:13},{n:“Fengjia 逢甲”,lat:24.179,lng:120.6463,r:12}],
+day7:[{n:“Sun Moon Lake 日月潭”,lat:23.8491,lng:120.9163,r:18},{n:“Beitou Onsen 北投”,lat:25.1368,lng:121.5067,r:16},{n:“Tamsui 淡水”,lat:25.1696,lng:121.4408,r:17},{n:“Shilin Market 士林”,lat:25.088,lng:121.5242,r:null}],
+day8:[{n:“Chia Te 佳德”,lat:25.0505,lng:121.5774,r:null},{n:“TPE Airport”,lat:25.0797,lng:121.2342,r:null}]
 };
-const COLORS=['#667eea','#1a73e8','#1a73e8','#e67e22','#e67e22','#27ae60','#27ae60','#dc3545'];
-const DMAP={day1:'25/04',day2:'26/04',day3:'27/04',day4:'28/04',day5:'29/04',day6:'30/04',day7:'01/05',day8:'02/05'};
-const RANKS=[[1,"Taipei 101 / 台北101","Đài Bắc",2,"View 360°"],[2,"Taroko / 太魯閣","Hoa Liên",4,"Hẻm núi #1 châu Á"],[3,"Jiufen / 九份","Tân Bắc",3,"Spirited Away vibes"],[4,"Yongkang / 永康街","Đài Bắc",2,"Mì bò, Din Tai Fung"],[5,"Ximending / 西門町","Đài Bắc",1,"Shopping & nightlife"],[6,"Elephant Mt / 象山","Đài Bắc",2,"Best city view"],[7,"Raohe / 饒河夜市","Đài Bắc",2,"Chợ đêm cổ nhất"],[8,"Shifen / 十分","Tân Bắc",3,"Thả đèn trời"],[9,"Yehliu / 野柳","Tân Bắc",3,"Queen's Head"],[10,"Qixingtan / 七星潭","Hoa Liên",5,"Bãi đá cuội"],[11,"Tiaoshi / 跳石","Hoa Liên",5,"Đá đen, hidden gem"],[12,"Fengjia / 逢甲","Đài Trung",6,"Lớn nhất Đài Loan"],[13,"Gaomei / 高美濕地","Đài Trung",6,"Hoàng hôn tuabin gió"],[14,"Rainbow / 彩虹眷村","Đài Trung",6,"Street art"],[15,"Miyahara / 宮原眼科","Đài Trung",6,"Kem, kiến trúc Nhật"],[16,"Beitou / 北投溫泉","Đài Bắc",7,"Onsen"],[17,"Tamsui / 淡水","Đài Bắc",7,"Hoàng hôn, Liao Tianding"],[18,"Sun Moon Lake / 日月潭","Nam Đầu","7*","Hồ đẹp (option)"],[19,"Qingshui / 清水斷崖","Hoa Liên",4,"Vách đá 1000m"],[20,"Shakadang / 砂卡礑","Hoa Liên",5,"Suối ngọc lam"]];
+const COLORS=[’#667eea’,’#1a73e8’,’#1a73e8’,’#e67e22’,’#e67e22’,’#27ae60’,’#27ae60’,’#dc3545’];
+const DMAP={day1:‘25/04’,day2:‘26/04’,day3:‘27/04’,day4:‘28/04’,day5:‘29/04’,day6:‘30/04’,day7:‘01/05’,day8:‘02/05’};
+const RANKS=[[1,“Taipei 101 / 台北101”,“Đài Bắc”,2,“View 360°”],[2,“Taroko / 太魯閣”,“Hoa Liên”,4,“Hẻm núi #1 châu Á”],[3,“Jiufen / 九份”,“Tân Bắc”,3,“Spirited Away vibes”],[4,“Yongkang / 永康街”,“Đài Bắc”,2,“Mì bò, Din Tai Fung”],[5,“Ximending / 西門町”,“Đài Bắc”,1,“Shopping & nightlife”],[6,“Elephant Mt / 象山”,“Đài Bắc”,2,“Best city view”],[7,“Raohe / 饒河夜市”,“Đài Bắc”,2,“Chợ đêm cổ nhất”],[8,“Shifen / 十分”,“Tân Bắc”,3,“Thả đèn trời”],[9,“Yehliu / 野柳”,“Tân Bắc”,3,“Queen’s Head”],[10,“Qixingtan / 七星潭”,“Hoa Liên”,5,“Bãi đá cuội”],[11,“Tiaoshi / 跳石”,“Hoa Liên”,5,“Đá đen, hidden gem”],[12,“Fengjia / 逢甲”,“Đài Trung”,6,“Lớn nhất Đài Loan”],[13,“Gaomei / 高美濕地”,“Đài Trung”,6,“Hoàng hôn tuabin gió”],[14,“Rainbow / 彩虹眷村”,“Đài Trung”,6,“Street art”],[15,“Miyahara / 宮原眼科”,“Đài Trung”,6,“Kem, kiến trúc Nhật”],[16,“Beitou / 北投溫泉”,“Đài Bắc”,7,“Onsen”],[17,“Tamsui / 淡水”,“Đài Bắc”,7,“Hoàng hôn, Liao Tianding”],[18,“Sun Moon Lake / 日月潭”,“Nam Đầu”,“7*”,“Hồ đẹp (option)”],[19,“Qingshui / 清水斷崖”,“Hoa Liên”,4,“Vách đá 1000m”],[20,“Shakadang / 砂卡礑”,“Hoa Liên”,5,“Suối ngọc lam”]];
 
-let map=L.map('map',{zoomControl:false}).setView([23.7,121],7);
-L.control.zoom({position:'bottomright'}).addTo(map);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OSM'}).addTo(map);
+let map=L.map(‘map’,{zoomControl:false}).setView([23.7,121],7);
+L.control.zoom({position:‘bottomright’}).addTo(map);
+L.tileLayer(‘https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png’,{attribution:‘© OSM’}).addTo(map);
 let mks=[],poly=null;
 function clrMap(){mks.forEach(m=>map.removeLayer(m));mks=[];if(poly){map.removeLayer(poly);poly=null;}}
-function showDay(dk){clrMap();const locs=DL[dk];if(!locs||!locs.length)return;const b=[],pp=[];const di=parseInt(dk.replace('day',''))-1;const col=COLORS[di]||'#1a73e8';locs.forEach((l,i)=>{const ic=L.divIcon({html:`<div style="background:${l.r?'#ff6b35':col};color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3)">${i+1}</div>`,iconSize:[26,26],iconAnchor:[13,13],className:''});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup(`${l.r?'#'+l.r+' ':''}${l.n}`).addTo(map);mks.push(m);b.push([l.lat,l.lng]);pp.push([l.lat,l.lng]);});if(pp.length>1)poly=L.polyline(pp,{color:col,weight:3,opacity:.7,dashArray:'8,8'}).addTo(map);b.length===1?map.setView(b[0],14):map.fitBounds(b,{padding:[30,30]});}
-function showAll(){clrMap();const ab=[];Object.entries(DL).forEach(([dk,locs],di)=>{const col=COLORS[di]||'#1a73e8';const pp=[];locs.forEach(l=>{const ic=L.divIcon({html:`<div style="background:${l.r?'#ff6b35':col};color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.25)">${l.r||'·'}</div>`,iconSize:[20,20],iconAnchor:[10,10],className:''});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup(`N${di+1}: ${l.n}`).addTo(map);mks.push(m);ab.push([l.lat,l.lng]);pp.push([l.lat,l.lng]);});if(pp.length>1){const ln=L.polyline(pp,{color:col,weight:2,opacity:.5,dashArray:'6,6'}).addTo(map);mks.push(ln);}});if(ab.length)map.fitBounds(ab,{padding:[20,20]});}
-function showRanking(){clrMap();const ab=[];Object.values(DL).forEach(locs=>locs.forEach(l=>{if(!l.r)return;const ic=L.divIcon({html:`<div style="background:#ff6b35;color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,.3)">${l.r}</div>`,iconSize:[22,22],iconAnchor:[11,11],className:''});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup(`#${l.r} ${l.n}`).addTo(map);mks.push(m);ab.push([l.lat,l.lng]);}));if(ab.length)map.fitBounds(ab,{padding:[20,20]});}
-function mapMode(mode,evt){document.querySelectorAll('.map-legend span').forEach(s=>s.classList.remove('on'));evt.target.classList.add('on');if(mode==='all')showAll();else showDay(mode);}
-function zoomRank(r){let found=null,fd=null;Object.entries(DL).forEach(([dk,locs])=>locs.forEach(l=>{if(l.r===r){found=l;fd=dk;}}));if(!found)return;showDay(fd);hlLeg(fd);setTimeout(()=>{map.setView([found.lat,found.lng],14);mks.forEach(m=>{try{if(m.getLatLng&&Math.abs(m.getLatLng().lat-found.lat)<.001)m.openPopup();}catch(e){}});},150);if(window.innerWidth<768)document.getElementById('map').scrollIntoView({behavior:'smooth',block:'start'});}
+function showDay(dk){clrMap();const locs=DL[dk];if(!locs||!locs.length)return;const b=[],pp=[];const di=parseInt(dk.replace(‘day’,’’))-1;const col=COLORS[di]||’#1a73e8’;locs.forEach((l,i)=>{const ic=L.divIcon({html:`<div style="background:${l.r?'#ff6b35':col};color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3)">${i+1}</div>`,iconSize:[26,26],iconAnchor:[13,13],className:’’});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup(`${l.r?'#'+l.r+' ':''}${l.n}`).addTo(map);mks.push(m);b.push([l.lat,l.lng]);pp.push([l.lat,l.lng]);});if(pp.length>1)poly=L.polyline(pp,{color:col,weight:3,opacity:.7,dashArray:‘8,8’}).addTo(map);b.length===1?map.setView(b[0],14):map.fitBounds(b,{padding:[30,30]});}
+function showAll(){clrMap();const ab=[];Object.entries(DL).forEach(([dk,locs],di)=>{const col=COLORS[di]||’#1a73e8’;const pp=[];locs.forEach(l=>{const ic=L.divIcon({html:`<div style="background:${l.r?'#ff6b35':col};color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.25)">${l.r||'·'}</div>`,iconSize:[20,20],iconAnchor:[10,10],className:’’});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup(`N${di+1}: ${l.n}`).addTo(map);mks.push(m);ab.push([l.lat,l.lng]);pp.push([l.lat,l.lng]);});if(pp.length>1){const ln=L.polyline(pp,{color:col,weight:2,opacity:.5,dashArray:‘6,6’}).addTo(map);mks.push(ln);}});if(ab.length)map.fitBounds(ab,{padding:[20,20]});}
+function showRanking(){clrMap();const ab=[];Object.values(DL).forEach(locs=>locs.forEach(l=>{if(!l.r)return;const ic=L.divIcon({html:`<div style="background:#ff6b35;color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,.3)">${l.r}</div>`,iconSize:[22,22],iconAnchor:[11,11],className:’’});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup(`#${l.r} ${l.n}`).addTo(map);mks.push(m);ab.push([l.lat,l.lng]);}));if(ab.length)map.fitBounds(ab,{padding:[20,20]});}
+function mapMode(mode,evt){document.querySelectorAll(’.map-legend span’).forEach(s=>s.classList.remove(‘on’));evt.target.classList.add(‘on’);if(mode===‘all’)showAll();else showDay(mode);}
+function zoomRank(r){let found=null,fd=null;Object.entries(DL).forEach(([dk,locs])=>locs.forEach(l=>{if(l.r===r){found=l;fd=dk;}}));if(!found)return;showDay(fd);hlLeg(fd);setTimeout(()=>{map.setView([found.lat,found.lng],14);mks.forEach(m=>{try{if(m.getLatLng&&Math.abs(m.getLatLng().lat-found.lat)<.001)m.openPopup();}catch(e){}});},150);if(window.innerWidth<768)document.getElementById(‘map’).scrollIntoView({behavior:‘smooth’,block:‘start’});}
 
 // NAV
-let curDay='overview';
+let curDay=‘overview’;
 function go(id){
-  document.querySelectorAll('.tc').forEach(e=>e.classList.remove('on'));
-  document.querySelectorAll('.nb,.bnav-i').forEach(b=>b.classList.remove('on'));
-  const el=document.getElementById('tab-'+id);if(el)el.classList.add('on');
-  document.querySelectorAll('.nb').forEach(b=>{const t=b.textContent;
-    if((id==='overview'&&t.includes('Tổng quan'))||(DMAP[id]&&t.includes(DMAP[id]))||(id==='mustdo'&&t==='⭐')||(id==='budget'&&t==='💰')||(id==='ranking'&&t==='🏆'))b.classList.add('on');
-  });
-  document.querySelectorAll('.bnav-i').forEach(b=>{const t=b.textContent;
-    if((id==='overview'&&t.includes('Overview'))||(id==='mustdo'&&t.includes('Must'))||(id==='budget'&&t.includes('Budget'))||(id==='ranking'&&t.includes('Ranking')))b.classList.add('on');
-  });
-  if(['overview','mustdo','budget'].includes(id)||id==='ranking'){showAll();hlLeg('all');}
-  else if(id==='ranking'){showRanking();hlLeg(null);}
-  else if(id.startsWith('day')){showDay(id);hlLeg(id);}
-  curDay=id;
-  if(id.startsWith('day')){renderDayChecklist(id);renderLeftBookings(id);}
-  else{renderDayChecklist(null);renderLeftBookings(null);}
-  if(window.innerWidth<768)document.getElementById('ca').scrollIntoView({behavior:'smooth',block:'start'});
+document.querySelectorAll(’.tc’).forEach(e=>e.classList.remove(‘on’));
+document.querySelectorAll(’.nb,.bnav-i’).forEach(b=>b.classList.remove(‘on’));
+const el=document.getElementById(‘tab-’+id);if(el)el.classList.add(‘on’);
+document.querySelectorAll(’.nb’).forEach(b=>{const t=b.textContent;
+if((id===‘overview’&&t.includes(‘Tổng quan’))||(DMAP[id]&&t.includes(DMAP[id]))||(id===‘mustdo’&&t===‘⭐’)||(id===‘budget’&&t===‘💰’)||(id===‘ranking’&&t===‘🏆’))b.classList.add(‘on’);
+});
+document.querySelectorAll(’.bnav-i’).forEach(b=>{const t=b.textContent;
+if((id===‘overview’&&t.includes(‘Overview’))||(id===‘mustdo’&&t.includes(‘Must’))||(id===‘budget’&&t.includes(‘Budget’))||(id===‘ranking’&&t.includes(‘Ranking’)))b.classList.add(‘on’);
+});
+if([‘overview’,‘mustdo’,‘budget’].includes(id)||id===‘ranking’){showAll();hlLeg(‘all’);}
+else if(id===‘ranking’){showRanking();hlLeg(null);}
+else if(id.startsWith(‘day’)){showDay(id);hlLeg(id);}
+curDay=id;
+if(id.startsWith(‘day’)){renderDayChecklist(id);renderLeftBookings(id);}
+else{renderDayChecklist(null);renderLeftBookings(null);}
+if(window.innerWidth<768)document.getElementById(‘ca’).scrollIntoView({behavior:‘smooth’,block:‘start’});
 }
-function hlLeg(mode){document.querySelectorAll('.map-legend span').forEach(s=>{s.classList.remove('on');if(mode==='all'&&s.textContent==='Tất cả')s.classList.add('on');else if(mode&&mode.startsWith('day')&&s.textContent==='N'+mode.replace('day',''))s.classList.add('on');});}
+function hlLeg(mode){document.querySelectorAll(’.map-legend span’).forEach(s=>{s.classList.remove(‘on’);if(mode===‘all’&&s.textContent===‘Tất cả’)s.classList.add(‘on’);else if(mode&&mode.startsWith(‘day’)&&s.textContent===‘N’+mode.replace(‘day’,’’))s.classList.add(‘on’);});}
 
 // GENERIC TASK SYSTEM
-const DEFAULT_TASKS={"day1": ["Mua SIM Chunghwa Telecom tại TPE B1", "Mua + nạp EasyCard ×3 (500 TWD/thẻ)", "Đổi ≥10,000 TWD/người", "Check-in hotel Ximending/Zhongshan", "Ăn tối Ximending — Tiger Sugar + Hot Star"], "day2": ["Đến CKS Memorial đúng giờ chẵn xem đổi gác", "Ăn trưa Yongkang — DTF hoặc Beef Noodle", "Lên Taipei 101 T89 (vé Klook)", "Leo Elephant Mountain trước 17:00", "Chợ đêm Raohe tối", "Nạp thêm EasyCard nếu dưới 200 TWD"], "day3": ["Tour combo Yehliu+Jiufen+Shifen (KKday)", "Mang áo mưa — vùng này hay mưa", "Mua đèn trời tại Shifen (200 TWD/4 màu)", "Ăn tối Ningxia Night Market", "Sắp balo cho Hoa Liên tối nay!"], "day4": ["⏰ Ra ga Taipei trước 08:10", "Lấy vé tại quầy: Booking #6684500 + passport", "Thuê xe máy 125cc tại khu ga Hualien (IDP)", "Check trail Taroko: taroko.gov.tw", "Mượn mũ bảo hiểm miễn phí cổng Taroko", "Đặt vé TRA Hualien→Taichung 30/04 (nếu chưa)", "Confirm hotel Hualien 2 đêm"], "day5": ["Đến Qixingtan trước 8:00 — ánh sáng vàng", "Dừng km 38-40 Hwy 9 — Tiaoshi rocks", "Trả xe máy tối nay hoặc sáng sớm mai", "Mua Mochi + Nougat Hoa Liên tại Dongdamen", "Pack đồ — sáng mai 7:30 đi tàu"], "day6": ["⏰ Ra ga Hualien trước 7:15", "Check Gaomei thủy triều: tideschart.com", "Check-in hotel khu Fengjia", "Kem Miyahara + chụp mái vòm sách", "Đến Gaomei trước 16:30 cho golden hour", "Chợ đêm Fengjia ít nhất 2h"], "day7": ["Taxi Fengjia→ga HSR Taichung ~200 TWD", "Về hotel Đài Bắc — lấy vali lớn đã gửi", "Chọn: Beitou onsen HOẶC Tamsui+Liao Tianding", "MUA QUÀ tại Shilin — cơ hội cuối!", "Cân vali ≤23kg ×3 trước khi ngủ", "Set alarm 6:30"], "day8": ["⏰ Rời hotel trước 10:30", "Ăn sáng Fuhang Soy Milk (đến trước 7:30)", "Chia Te mở 7:30 (MRT Songshan) — mua thêm quà", "Kiểm tra passport ×3 + vé + đồ đạc", "Airport MRT ga A1 lúc 10:00", "Tax Refund nếu mua >2,000 TWD/shop", "Refund EasyCard TRƯỚC cổng xuất cảnh"]};
-const DEFAULT_OV_TASKS=["Hộ chiếu 3 người còn hạn > 6 tháng", "Visa Đài Loan / E-visa 3 người đã duyệt", "Vé máy bay CI-782/783 (in confirmation)", "🎫 Vé TRA Taipei→Hualien 28/04 — Booking #6684500 ✅", "Vé TRA Hualien→Taichung 30/04 (đặt trước!)", "HSR Taichung→Taipei 01/05 (App T Express)", "Bảo hiểm du lịch 3 người", "Vé Taipei 101 (Klook giảm 15%)", "Tour Yehliu+Jiufen+Shifen (KKday)", "🏍️ Bằng lái quốc tế (IDP) — thuê xe máy Hoa Liên", "Adapter ổ cắm 2 chấu dẹt (110V)", "Pin sạc dự phòng + cáp ×3", "Kem chống nắng SPF50", "Áo mưa gấp gọn / ô nhỏ", "Giày đi bộ thoải mái", "Giày thể thao bám tốt (Shakadang + Tiaoshi)", "Áo khoác nhẹ (AC tàu rất lạnh)", "Thuốc say xe (đèo Taroko)", "Google Maps offline map Taiwan", "App T Express (vé HSR)", "App Taiwan Railways (vé TRA)"];
+const DEFAULT_TASKS={“day1”: [“Mua SIM Chunghwa Telecom tại TPE B1”, “Mua + nạp EasyCard ×3 (500 TWD/thẻ)”, “Đổi ≥10,000 TWD/người”, “Check-in hotel Ximending/Zhongshan”, “Ăn tối Ximending — Tiger Sugar + Hot Star”], “day2”: [“Đến CKS Memorial đúng giờ chẵn xem đổi gác”, “Ăn trưa Yongkang — DTF hoặc Beef Noodle”, “Lên Taipei 101 T89 (vé Klook)”, “Leo Elephant Mountain trước 17:00”, “Chợ đêm Raohe tối”, “Nạp thêm EasyCard nếu dưới 200 TWD”], “day3”: [“Tour combo Yehliu+Jiufen+Shifen (KKday)”, “Mang áo mưa — vùng này hay mưa”, “Mua đèn trời tại Shifen (200 TWD/4 màu)”, “Ăn tối Ningxia Night Market”, “Sắp balo cho Hoa Liên tối nay!”], “day4”: [“⏰ Ra ga Taipei trước 08:10”, “Lấy vé tại quầy: Booking #6684500 + passport”, “Thuê xe máy 125cc tại khu ga Hualien (IDP)”, “Check trail Taroko: taroko.gov.tw”, “Mượn mũ bảo hiểm miễn phí cổng Taroko”, “Đặt vé TRA Hualien→Taichung 30/04 (nếu chưa)”, “Confirm hotel Hualien 2 đêm”], “day5”: [“Đến Qixingtan trước 8:00 — ánh sáng vàng”, “Dừng km 38-40 Hwy 9 — Tiaoshi rocks”, “Trả xe máy tối nay hoặc sáng sớm mai”, “Mua Mochi + Nougat Hoa Liên tại Dongdamen”, “Pack đồ — sáng mai 7:30 đi tàu”], “day6”: [“⏰ Ra ga Hualien trước 7:15”, “Check Gaomei thủy triều: tideschart.com”, “Check-in hotel khu Fengjia”, “Kem Miyahara + chụp mái vòm sách”, “Đến Gaomei trước 16:30 cho golden hour”, “Chợ đêm Fengjia ít nhất 2h”], “day7”: [“Taxi Fengjia→ga HSR Taichung ~200 TWD”, “Về hotel Đài Bắc — lấy vali lớn đã gửi”, “Chọn: Beitou onsen HOẶC Tamsui+Liao Tianding”, “MUA QUÀ tại Shilin — cơ hội cuối!”, “Cân vali ≤23kg ×3 trước khi ngủ”, “Set alarm 6:30”], “day8”: [“⏰ Rời hotel trước 10:30”, “Ăn sáng Fuhang Soy Milk (đến trước 7:30)”, “Chia Te mở 7:30 (MRT Songshan) — mua thêm quà”, “Kiểm tra passport ×3 + vé + đồ đạc”, “Airport MRT ga A1 lúc 10:00”, “Tax Refund nếu mua >2,000 TWD/shop”, “Refund EasyCard TRƯỚC cổng xuất cảnh”]};
+const DEFAULT_OV_TASKS=[“Hộ chiếu 3 người còn hạn > 6 tháng”, “Visa Đài Loan / E-visa 3 người đã duyệt”, “Vé máy bay CI-782/783 (in confirmation)”, “🎫 Vé TRA Taipei→Hualien 28/04 — Booking #6684500 ✅”, “Vé TRA Hualien→Taichung 30/04 (đặt trước!)”, “HSR Taichung→Taipei 01/05 (App T Express)”, “Bảo hiểm du lịch 3 người”, “Vé Taipei 101 (Klook giảm 15%)”, “Tour Yehliu+Jiufen+Shifen (KKday)”, “🏍️ Bằng lái quốc tế (IDP) — thuê xe máy Hoa Liên”, “Adapter ổ cắm 2 chấu dẹt (110V)”, “Pin sạc dự phòng + cáp ×3”, “Kem chống nắng SPF50”, “Áo mưa gấp gọn / ô nhỏ”, “Giày đi bộ thoải mái”, “Giày thể thao bám tốt (Shakadang + Tiaoshi)”, “Áo khoác nhẹ (AC tàu rất lạnh)”, “Thuốc say xe (đèo Taroko)”, “Google Maps offline map Taiwan”, “App T Express (vé HSR)”, “App Taiwan Railways (vé TRA)”];
 let allTasks={};
 
-function genId(){return 't_'+Math.random().toString(36).slice(2,11)+'_'+Date.now();}
+function genId(){return ‘t_’+Math.random().toString(36).slice(2,11)+’_’+Date.now();}
 async function loadAllTasks(){
-  const rows=await getAllShared('day_tasks');
-  const grouped={};rows.forEach(r=>{if(!grouped[r.day_key])grouped[r.day_key]=[];grouped[r.day_key].push(r);});
-  Object.keys(grouped).forEach(dk=>grouped[dk].sort((a,b)=>(a.sort_order||0)-(b.sort_order||0)));
-  allTasks=grouped;
-  // Seed any day that has 0 rows in DB (source of truth = DB)
-  const allKeys=[...Object.keys(DEFAULT_TASKS),'overview'];
-  for(const dk of allKeys){
-    if(!allTasks[dk]||allTasks[dk].length===0)await seedTasks(dk);
-  }
+const rows=await getAllShared(‘day_tasks’);
+const grouped={};rows.forEach(r=>{if(!grouped[r.day_key])grouped[r.day_key]=[];grouped[r.day_key].push(r);});
+Object.keys(grouped).forEach(dk=>grouped[dk].sort((a,b)=>(a.sort_order||0)-(b.sort_order||0)));
+allTasks=grouped;
+for(const dk of […Object.keys(DEFAULT_TASKS),‘overview’]){
+if(!allTasks[dk]||allTasks[dk].length===0)await seedTasks(dk);
+}
 }
 async function seedTasks(dk){
-  const list=dk==='overview'?DEFAULT_OV_TASKS:(DEFAULT_TASKS[dk]||[]);
-  allTasks[dk]=list.map((text,i)=>({id:genId(),day_key:dk,task_text:text,checked:false,sort_order:i}));
-  // Push all to DB in parallel
-  await Promise.all(allTasks[dk].map(task=>upsertShared('day_tasks',task)));
+const list=dk===‘overview’?DEFAULT_OV_TASKS:(DEFAULT_TASKS[dk]||[]);
+allTasks[dk]=[];
+for(let i=0;i<list.length;i++){
+const task={id:genId(),day_key:dk,task_text:list[i],checked:false,sort_order:i};
+await upsertShared(‘day_tasks’,task);allTasks[dk].push(task);
+}
 }
 
 function renderTaskList(tasks,panelId,dk,progId,barId){
-  const panel=document.getElementById(panelId);if(!panel)return;
-  let html='';
-  tasks.forEach(t=>{
-    html+=`<div class="task-row" id="tr_${t.id}">
-      <input type="checkbox" class="task-cb" ${t.checked?'checked':''} onchange="toggleTask('${dk}','${t.id}',this.checked,'${progId}','${barId}')">
-      <span class="task-text${t.checked?' done':''}" onclick="startEdit('${t.id}','${dk}')" title="Click để sửa">${escHtml(t.task_text)}</span>
-      <span class="task-actions">
-        <button class="task-btn edit" onclick="startEdit('${t.id}','${dk}')">✏️</button>
-        <button class="task-btn del" onclick="deleteTask('${dk}','${t.id}','${progId}','${barId}')">🗑️</button>
-      </span>
-    </div>`;
-  });
-  html+=`<div class="add-task-row">
-    <input class="add-task-inp" id="newTask_${dk}" placeholder="+ Thêm công việc..." onkeydown="if(event.key==='Enter')addTask('${dk}','${progId}','${barId}')">
-    <button class="add-task-btn" onclick="addTask('${dk}','${progId}','${barId}')">Thêm</button>
+const panel=document.getElementById(panelId);if(!panel)return;
+let html=’’;
+tasks.forEach(t=>{
+html+=`<div class="task-row" id="tr_${t.id}"> <input type="checkbox" class="task-cb" ${t.checked?'checked':''} onchange="toggleTask('${dk}','${t.id}',this.checked,'${progId}','${barId}')"> <span class="task-text${t.checked?' done':''}" onclick="startEdit('${t.id}','${dk}')" title="Click để sửa">${escHtml(t.task_text)}</span> <span class="task-actions"> <button class="task-btn edit" onclick="startEdit('${t.id}','${dk}')">✏️</button> <button class="task-btn del" onclick="deleteTask('${dk}','${t.id}','${progId}','${barId}')">🗑️</button> </span> </div>`;
+});
+html+=`<div class="add-task-row">
+<input class="add-task-inp" id="newTask_${dk}" placeholder="+ Thêm công việc..." onkeydown="if(event.key==='Enter')addTask('${dk}','${progId}','${barId}')">
+<button class="add-task-btn" onclick="addTask('${dk}','${progId}','${barId}')">Thêm</button>
+
   </div>`;
   panel.innerHTML=html;
   updateProgress(dk,progId,barId);
@@ -1290,325 +1200,128 @@ async function addTask(dk,progId,barId){
 }
 
 // DAY CHECKLIST (left panel)
-const dayNames={day1:'N1 25/04',day2:'N2 26/04',day3:'N3 27/04',day4:'N4 28/04',day5:'N5 29/04',day6:'N6 30/04',day7:'N7 01/05',day8:'N8 02/05'};
+const dayNames={day1:‘N1 25/04’,day2:‘N2 26/04’,day3:‘N3 27/04’,day4:‘N4 28/04’,day5:‘N5 29/04’,day6:‘N6 30/04’,day7:‘N7 01/05’,day8:‘N8 02/05’};
 function renderDayChecklist(dk){
-  const panel=document.getElementById('dclPanel');
-  const title=document.getElementById('dclTitle');
-  if(!dk){if(panel)panel.innerHTML='<div style="font-size:.78rem;color:var(--txt2)">Chọn một ngày để xem checklist.</div>';if(title)title.textContent='📋 Checklist Ngày';return;}
-  if(title)title.textContent=`📋 ${dayNames[dk]||dk}`;
-  renderTaskList(allTasks[dk]||[],  'dclPanel',dk,'dclProg','dclBarFill');
+const panel=document.getElementById(‘dclPanel’);
+const title=document.getElementById(‘dclTitle’);
+if(!dk){if(panel)panel.innerHTML=’<div style="font-size:.78rem;color:var(--txt2)">Chọn một ngày để xem checklist.</div>’;if(title)title.textContent=‘📋 Checklist Ngày’;return;}
+if(title)title.textContent=`📋 ${dayNames[dk]||dk}`;
+renderTaskList(allTasks[dk]||[],  ‘dclPanel’,dk,‘dclProg’,‘dclBarFill’);
 }
 
 // OVERVIEW CHECKLIST
 function renderOvChecklist(){
-  renderTaskList(allTasks['overview']||[],'ovTaskPanel','overview','ovProg','ovBarFill');
+renderTaskList(allTasks[‘overview’]||[],‘ovTaskPanel’,‘overview’,‘ovProg’,‘ovBarFill’);
 }
 
 // INLINE BOOKING LINKS (timeline)
 let tiBkData={};  // {bk_id: url}
-const DEFAULT_BOOKINGS={
-  day1:[['flight','✈️ Vé CI-782 SGN→TPE',''],['hotel','🏨 Hotel Đài Bắc (N1-3+N7)','']],
-  day2:[['ticket','🎫 Taipei 101 (Klook)','']],
-  day3:[['tour','🚌 Tour Yehliu+Jiufen+Shifen (KKday)','']],
-  day4:[['transport','🚆 TRA 472 Taipei→Hualien #6684500','https://www.railway.gov.tw'],['hotel','🏨 Hotel Hoa Liên (N4+N5)',''],['permit','📋 Taroko Trail Permit','https://taroko.gov.tw']],
-  day5:[['transport','🚆 TRA Hualien→Taichung 30/04',''],['hotel','🏨 Hotel Hoa Liên (đêm 2)','']],
-  day6:[['transport','🚆 TRA Hualien→Taichung',''],['hotel','🏨 Hotel Đài Trung (Fengjia)','']],
-  day7:[['transport','🚄 HSR Taichung→Taipei',''],['hotel','🏨 Hotel Đài Bắc đêm cuối','']],
-  day8:[['flight','✈️ Vé CI-783 TPE→SGN','']],
-};
 async function loadTiBk(){
-  const rows=await getAllShared('booking_links');
-  if(rows.length===0){
-    // Seed default booking link metadata to DB
-    const toSeed=[];
-    Object.entries(DEFAULT_BOOKINGS).forEach(([dk,items])=>{
-      // Use fixed IDs matching data-bk attributes in HTML
-      const dayBks={
-        day1:['d1_flight','d1_hotel'],
-        day2:['d2_101'],
-        day3:['d3_tour'],
-        day4:['d4_train','d4_hotel','d4_permit'],
-        day5:['d5_train','d5_hotel'],
-        day6:['d6_train','d6_hotel'],
-        day7:['d7_hsr','d7_hotel'],
-        day8:['d8_flight'],
-      };
-      const ids=dayBks[dk]||[];
-      items.forEach(([type,label,url],i)=>{
-        const id=ids[i]||('bk_'+dk+'_'+i);
-        toSeed.push({id,day_key:dk,link_type:type,label,url:url||''});
-      });
-    });
-    await Promise.all(toSeed.map(bk=>upsertShared('booking_links',bk)));
-    toSeed.forEach(bk=>{tiBkData[bk.id]=bk.url;if(bk.url)updateTiBkUI(bk.id,bk.url);});
-  }else{
-    rows.forEach(r=>{tiBkData[r.id]=r.url||'';if(r.url)updateTiBkUI(r.id,r.url);});
-  }
+const rows=await getAllShared(‘booking_links’);
+if(rows.length===0){
+const IDS={day1:[‘d1_flight’,‘d1_hotel’],day2:[‘d2_101’],day3:[‘d3_tour’],day4:[‘d4_train’,‘d4_hotel’,‘d4_permit’],day5:[‘d5_train’,‘d5_hotel’],day6:[‘d6_train’,‘d6_hotel’],day7:[‘d7_hsr’,‘d7_hotel’],day8:[‘d8_flight’]};
+const seed=[];
+Object.entries(DEFAULT_BOOKINGS).forEach(([dk,items])=>{
+const ids=IDS[dk]||[];
+items.forEach(([type,label,url],i)=>{seed.push({id:ids[i]||‘bk_’+dk+’*’+i,day_key:dk,link_type:type,label,url:url||’’});});
+});
+await Promise.all(seed.map(bk=>upsertShared(‘booking_links’,bk)));
+seed.forEach(bk=>{tiBkData[bk.id]=bk.url;if(bk.url)updateTiBkUI(bk.id,bk.url);});
+}else{rows.forEach(r=>{tiBkData[r.id]=r.url||’’;if(r.url)updateTiBkUI(r.id,r.url);}); }
 }
 async function saveTiBk(inp){
-  const id=inp.getAttribute('data-bk');const type=inp.getAttribute('data-type')||'other';
-  const url=inp.value.trim();tiBkData[id]=url;
-  // Find day
-  const dayEl=inp.closest('.tc');const dk=dayEl?dayEl.id.replace('tab-',''):'unknown';
-  const labelEl=inp.closest('.ti-bk')?.querySelector('.ti-bk-label');
-  const label=labelEl?labelEl.textContent:'Booking';
-  await upsertShared('booking_links',{id,day_key:dk,link_type:type,label,url});
-  updateTiBkUI(id,url);
+const id=inp.getAttribute(‘data-bk’);const type=inp.getAttribute(‘data-type’)||‘other’;
+const url=inp.value.trim();tiBkData[id]=url;
+// Find day
+const dayEl=inp.closest(’.tc’);const dk=dayEl?dayEl.id.replace(‘tab-’,’’):‘unknown’;
+const labelEl=inp.closest(’.ti-bk’)?.querySelector(’.ti-bk-label’);
+const label=labelEl?labelEl.textContent:‘Booking’;
+await upsertShared(‘booking_links’,{id,day_key:dk,link_type:type,label,url});
+updateTiBkUI(id,url);
 }
 function updateTiBkUI(id,url){
-  const inp=document.querySelector(`[data-bk="${id}"]`);
-  const openBtn=document.getElementById('bko_'+id);
-  if(inp&&inp.value!==url)inp.value=url;
-  if(openBtn){openBtn.style.display=url?'inline':'none';if(url)openBtn.href=url;}
-  if(inp){const w=inp.closest('.ti-bk');if(w)w.classList.toggle('filled',!!url);}
+const inp=document.querySelector(`[data-bk="${id}"]`);
+const openBtn=document.getElementById(’bko*’+id);
+if(inp&&inp.value!==url)inp.value=url;
+if(openBtn){openBtn.style.display=url?‘inline’:‘none’;if(url)openBtn.href=url;}
+if(inp){const w=inp.closest(’.ti-bk’);if(w)w.classList.toggle(‘filled’,!!url);}
 }
 
-// LEFT BOOKING LINKS (per day from timeline)
-let allLeftBk={};
+// LEFT BOOKING LINKS (per day from timeline)let allLeftBk={};
 async function loadLeftBk(){
-  const rows=await getAllShared('booking_links');
-  const g={};rows.forEach(r=>{if(!g[r.day_key])g[r.day_key]=[];g[r.day_key].push(r);});
-  allLeftBk=g;
+const rows=await getAllShared(‘booking_links’);
+const g={};rows.forEach(r=>{if(!g[r.day_key])g[r.day_key]=[];g[r.day_key].push(r);});
+allLeftBk=g;
 }
 function renderLeftBookings(dk){
-  const cont=document.getElementById('bkPanel');if(!cont)return;
-  if(!dk||!dk.startsWith('day')){cont.innerHTML='';return;}
-  // We reuse the ti-bk inputs in the timeline as the primary booking UI
-  // Left panel shows quick summary of what's set
-  const bks=allLeftBk[dk]||[];
-  const filled=bks.filter(b=>b.url);
-  if(!filled.length){cont.innerHTML='';return;}
-  let html='<div class="bk-section"><div class="bk-title">🔗 Bookings đã lưu</div>';
-  filled.forEach(b=>{html+=`<div class="bk-row has-link"><span class="bk-label">${escHtml(b.label)}</span><a href="${escHtml(b.url)}" target="_blank" class="bk-open">Mở ↗</a></div>`;} );
-  html+='</div>';cont.innerHTML=html;
+const cont=document.getElementById(‘bkPanel’);if(!cont)return;
+if(!dk||!dk.startsWith(‘day’)){cont.innerHTML=’’;return;}
+// We reuse the ti-bk inputs in the timeline as the primary booking UI
+// Left panel shows quick summary of what’s set
+const bks=allLeftBk[dk]||[];
+const filled=bks.filter(b=>b.url);
+if(!filled.length){cont.innerHTML=’’;return;}
+let html=’<div class="bk-section"><div class="bk-title">🔗 Bookings đã lưu</div>’;
+filled.forEach(b=>{html+=`<div class="bk-row has-link"><span class="bk-label">${escHtml(b.label)}</span><a href="${escHtml(b.url)}" target="_blank" class="bk-open">Mở ↗</a></div>`;} );
+html+=’</div>’;cont.innerHTML=html;
 }
 
 // MUST DO
-async function mdChk(cb){const key=cb.getAttribute('data-md');await upsertSharedKV('mustdo_progress',key,cb.checked);cb.closest('.md-i').classList.toggle('ck',cb.checked);mdUpd();}
+async function mdChk(cb){await upsertSharedKV(‘mustdo_progress’,cb.getAttribute(‘data-md’),cb.checked);cb.closest(’.md-i’).classList.toggle(‘ck’,cb.checked);mdUpd();}
 async function mdInit(){
-  // mustdo_progress only tracks checked state — no seeding needed
-  // items are hardcoded in HTML; we just sync checked state
-  const d=await getAllSharedKV('mustdo_progress');
-  document.querySelectorAll('[data-md]').forEach(cb=>{if(d[cb.getAttribute('data-md')]){cb.checked=true;cb.closest('.md-i').classList.add('ck');}});mdUpd();
+const d=await getAllSharedKV(‘mustdo_progress’);
+document.querySelectorAll(’[data-md]’).forEach(cb=>{if(d[cb.getAttribute(‘data-md’)]){cb.checked=true;cb.closest(’.md-i’).classList.add(‘ck’);}});mdUpd();
 }
-function mdUpd(){const all=document.querySelectorAll('[data-md]');let tot=all.length,chk=0;all.forEach(cb=>{if(cb.checked)chk++;});document.getElementById('mdProg').textContent=`${chk}/${tot} hoàn thành`;document.getElementById('mdBar').style.width=`${Math.round(chk/tot*100)}%`;}
+function mdUpd(){const all=document.querySelectorAll(’[data-md]’);let tot=all.length,chk=0;all.forEach(cb=>{if(cb.checked)chk++;});document.getElementById(‘mdProg’).textContent=`${chk}/${tot} hoàn thành`;document.getElementById(‘mdBar’).style.width=`${Math.round(chk/tot*100)}%`;}
 
 // BUDGET
-// ── BUDGET ────────────────────────────────────────────────────────────────────
 const DEFAULT_BUDGET=[
-  {label:'✈️ Vé CI-782/783 khứ hồi',category:'transport',estimate:0,actual:0,est_cur:'VND',act_cur:'VND',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🚆 TRA Taipei→Hualien (×3) ✅',category:'transport',estimate:1749,actual:1749,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🚆 TRA Hualien→Taichung',category:'transport',estimate:680,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🚄 HSR Taichung→Taipei',category:'transport',estimate:700,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🚇 MRT Đài Bắc (Airport + ngày)',category:'transport',estimate:800,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'📱 SIM Chunghwa 8 ngày',category:'misc',estimate:400,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'💳 EasyCard deposit + nạp',category:'misc',estimate:600,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🏨 Hotel Đài Bắc 4 đêm (N1-3+N7)',category:'hotel',estimate:0,actual:0,est_cur:'VND',act_cur:'VND',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🏨 Hotel Hoa Liên 2 đêm (N4+N5)',category:'hotel',estimate:0,actual:0,est_cur:'VND',act_cur:'VND',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🏨 Hotel Đài Trung 1 đêm (N6)',category:'hotel',estimate:0,actual:0,est_cur:'VND',act_cur:'VND',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🏍️ Thuê xe máy Hoa Liên 2 ngày',category:'transport',estimate:350,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🚌 Tour Yehliu+Jiufen+Shifen',category:'activity',estimate:1200,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🎫 Taipei 101 Observatory',category:'activity',estimate:600,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🍜 Ăn uống (estimate/ngày × 8)',category:'food',estimate:6400,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🛍️ Quà + Mua sắm',category:'shopping',estimate:2000,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🔄 Dự phòng',category:'misc',estimate:2000,actual:0,est_cur:'TWD',act_cur:'TWD',for_sa:true,for_bi:true,for_ty:true},
+{label:‘✈️ Vé CI-782/783 khứ hồi’,category:‘transport’,estimate:0,actual:0,currency:‘VND’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🚆 TRA Taipei→Hualien (×3) ✅’,category:‘transport’,estimate:1749,actual:1749,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🚆 TRA Hualien→Taichung’,category:‘transport’,estimate:680,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🚄 HSR Taichung→Taipei’,category:‘transport’,estimate:700,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🚇 MRT Đài Bắc (Airport+ngày)’,category:‘transport’,estimate:800,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘📱 SIM Chunghwa 8 ngày’,category:‘misc’,estimate:400,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘💳 EasyCard deposit+nạp’,category:‘misc’,estimate:600,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🏨 Hotel Đài Bắc 4 đêm (N1-3+N7)’,category:‘hotel’,estimate:0,actual:0,currency:‘VND’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🏨 Hotel Hoa Liên 2 đêm (N4+N5)’,category:‘hotel’,estimate:0,actual:0,currency:‘VND’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🏨 Hotel Đài Trung 1 đêm (N6)’,category:‘hotel’,estimate:0,actual:0,currency:‘VND’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🏍️ Thuê xe máy Hoa Liên 2 ngày’,category:‘transport’,estimate:350,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🚌 Tour Yehliu+Jiufen+Shifen’,category:‘activity’,estimate:1200,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🎫 Taipei 101 Observatory’,category:‘activity’,estimate:600,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🍜 Ăn uống (estimate/ngày×8)’,category:‘food’,estimate:6400,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🛍️ Quà+Mua sắm’,category:‘shopping’,estimate:2000,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🔄 Dự phòng’,category:‘misc’,estimate:2000,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
 ];
-const CAT_ICON={transport:'🚆',hotel:'🏨',activity:'🎫',food:'🍜',shopping:'🛍️',misc:'🔧'};
-let budgetItems=[];
-let budRate=860;
-let budFilter=null;
-
+const DEFAULT_BOOKINGS={day1:[[‘flight’,‘✈️ Vé CI-782 SGN→TPE’,’’],[‘hotel’,‘🏨 Hotel Đài Bắc (N1-3+N7)’,’’]],day2:[[‘ticket’,‘🎫 Taipei 101 (Klook)’,’’]],day3:[[‘tour’,‘🚌 Tour Yehliu+Jiufen+Shifen (KKday)’,’’]],day4:[[‘transport’,‘🚆 TRA 472 Taipei→Hualien #6684500’,‘https://www.railway.gov.tw’],[‘hotel’,‘🏨 Hotel Hoa Liên (N4+N5)’,’’],[‘permit’,‘📋 Taroko Trail Permit’,‘https://taroko.gov.tw’]],day5:[[‘transport’,‘🚆 TRA Hualien→Taichung 30/04’,’’],[‘hotel’,‘🏨 Hotel Hoa Liên (đêm 2)’,’’]],day6:[[‘transport’,‘🚆 TRA Hualien→Taichung’,’’],[‘hotel’,‘🏨 Hotel Đài Trung (Fengjia)’,’’]],day7:[[‘transport’,‘🚄 HSR Taichung→Taipei’,’’],[‘hotel’,‘🏨 Hotel Đài Bắc đêm cuối’,’’]],day8:[[‘flight’,‘✈️ Vé CI-783 TPE→SGN’,’’]]};
+const CAT_ICON={transport:‘🚆’,hotel:‘🏨’,activity:‘🎫’,food:‘🍜’,shopping:‘🛍️’,misc:‘🔧’};
+let budgetItems=[],budRate=860,budFilter=null;
 function setRate(r){if(r>0){budRate=r;calcBudgetSummary();renderBudget();}}
-
-function toVND(amount,currency){
-  const n=Number(amount)||0;
-  return currency==='VND'?n:n*budRate;
-}
-function fmtVND(n){
-  const r=Math.round(n/1000)*1000;
-  return r>=1000000?(r/1000000).toFixed(1)+'tr₫':r.toLocaleString('vi-VN')+'₫';
-}
-function fmtTWD(n){return Math.round(n).toLocaleString()+' TWD';}
-
-async function loadBudget(){
-  const rows=await getAllShared('budget_items');
-  if(rows.length===0){
-    // No data in DB → seed defaults and push to DB immediately
-    budgetItems=DEFAULT_BUDGET.map((d,i)=>({
-      id:genId(),label:d.label,category:d.category,
-      estimate:d.estimate,actual:d.actual,
-      est_cur:d.est_cur,act_cur:d.act_cur,item_currency:d.est_cur,
-      for_sa:d.for_sa,for_bi:d.for_bi,for_ty:d.for_ty,sort_order:i
-    }));
-    // Push ALL to DB in parallel (faster than sequential for seeding)
-    await Promise.all(budgetItems.map(item=>upsertShared('budget_items',item)));
-  }else{
-    // Load from DB — DB is source of truth
-    budgetItems=rows.sort((a,b)=>(a.sort_order||0)-(b.sort_order||0));
-    budgetItems.forEach(item=>{
-      if(!item.est_cur)item.est_cur=item.item_currency||'TWD';
-      if(!item.act_cur)item.act_cur=item.item_currency||'TWD';
-    });
-  }
-  renderBudget();calcBudgetSummary();
-}
-
-function setBudFilter(p){
-  budFilter=budFilter===p?null:p;
-  ['sa','bi','ty'].forEach(x=>{
-    const card=document.getElementById('bCard_'+x);
-    if(card)card.classList.toggle('active',x===budFilter);
-  });
-  renderBudget();
-}
-
-function renderBudget(){
-  const cont=document.getElementById('budgetBody');if(!cont)return;
-  let html='';
-  const vis=budFilter?budgetItems.filter(x=>x['for_'+budFilter]):budgetItems;
-  const lbl=document.getElementById('budFilterLabel');
-  if(lbl){
-    lbl.style.display=budFilter?'block':'none';
-    if(budFilter)lbl.textContent='Lọc: '+{sa:'Sa',bi:'Bi',ty:'Ty'}[budFilter]+' — '+vis.length+'/'+budgetItems.length+' khoản (bấm để bỏ lọc)';
-  }
-  vis.forEach(item=>{
-    const estV=toVND(item.estimate,item.est_cur||'TWD');
-    const actV=toVND(item.actual,item.act_cur||'TWD');
-    const estConv=item.est_cur==='TWD'?'≈ '+fmtVND(estV):'≈ '+fmtTWD(estV/budRate);
-    const actConv=item.act_cur==='TWD'?'≈ '+fmtVND(actV):'≈ '+fmtTWD(actV/budRate);
-    html+=`<div class="bud-item-card" id="bic_${item.id}">
-      <div class="bud-item-top">
-        <select class="bud-cat-select" onchange="updBud('${item.id}','category',this.value)">
-          ${['transport','hotel','activity','food','shopping','misc'].map(v=>'<option value="'+v+'"'+(item.category===v?' selected':'')+'>'+CAT_ICON[v]+'</option>').join('')}
-        </select>
-        <input class="bud-item-label" value="${escHtml(item.label)}"
-          onchange="updBud('${item.id}','label',this.value)"
-          onblur="updBud('${item.id}','label',this.value)">
-        <button class="bud-item-del" onclick="delBud('${item.id}')">✕</button>
-      </div>
-      <div class="bud-item-body">
-        <div class="bud-item-col">
-          <span class="bud-item-col-label">Dự kiến / người</span>
-          <div class="bud-cur-row">
-            <button class="bud-cur-btn ${(item.est_cur||'TWD')==='TWD'?'on':''}" onclick="setBudCur('${item.id}','est_cur','TWD')">TWD</button>
-            <button class="bud-cur-btn ${(item.est_cur||'TWD')==='VND'?'on':''}" onclick="setBudCur('${item.id}','est_cur','VND')">VND</button>
-          </div>
-          <input class="bud-amount-inp" type="number" value="${item.estimate||0}" min="0"
-            onchange="updBud('${item.id}','estimate',+this.value)"
-            onblur="updBud('${item.id}','estimate',+this.value)">
-          <div class="bud-item-convert">${estConv}</div>
-        </div>
-        <div class="bud-item-col">
-          <span class="bud-item-col-label">Thực tế (tổng)</span>
-          <div class="bud-cur-row">
-            <button class="bud-cur-btn ${(item.act_cur||'TWD')==='TWD'?'on':''}" onclick="setBudCur('${item.id}','act_cur','TWD')">TWD</button>
-            <button class="bud-cur-btn ${(item.act_cur||'TWD')==='VND'?'on':''}" onclick="setBudCur('${item.id}','act_cur','VND')">VND</button>
-          </div>
-          <input class="bud-amount-inp" type="number" value="${item.actual||0}" min="0"
-            onchange="updBud('${item.id}','actual',+this.value)"
-            onblur="updBud('${item.id}','actual',+this.value)" placeholder="0">
-          <div class="bud-item-convert">${actConv}</div>
-        </div>
-      </div>
-      <div class="bud-item-footer">
-        <span style="font-size:.65rem;color:var(--txt3);font-weight:600;margin-right:4px">Chia cho:</span>
-        <div class="bud-person-toggle sa ${item.for_sa?'on':''}" onclick="togglePerson('${item.id}','for_sa')">Sa</div>
-        <div class="bud-person-toggle bi ${item.for_bi?'on':''}" onclick="togglePerson('${item.id}','for_bi')">Bi</div>
-        <div class="bud-person-toggle ty ${item.for_ty?'on':''}" onclick="togglePerson('${item.id}','for_ty')">Ty</div>
-        ${actV>0?'<span style="margin-left:auto;font-size:.72rem;font-weight:700;color:var(--txt2)">'+fmtVND(actV)+'</span>':''}
-      </div>
-    </div>`;
-  });
-  cont.innerHTML=html;
-}
-
-async function updBud(id,field,val){
-  const item=budgetItems.find(x=>x.id===id);if(!item)return;
-  item[field]=val;await upsertShared('budget_items',item);
-  const card=document.getElementById('bic_'+id);
-  if(card){
-    const estV=toVND(item.estimate,item.est_cur||'TWD');
-    const actV=toVND(item.actual,item.act_cur||'TWD');
-    const cvts=card.querySelectorAll('.bud-item-convert');
-    if(cvts[0])cvts[0].textContent=item.est_cur==='TWD'?'≈ '+fmtVND(estV):'≈ '+fmtTWD(estV/budRate);
-    if(cvts[1])cvts[1].textContent=item.act_cur==='TWD'?'≈ '+fmtVND(actV):'≈ '+fmtTWD(actV/budRate);
-    const fa=card.querySelector('.bud-item-footer span[style*="margin-left:auto"]');
-    if(fa)fa.textContent=actV>0?fmtVND(actV):'';
-  }
-  calcBudgetSummary();
-}
-async function setBudCur(id,field,cur){
-  const item=budgetItems.find(x=>x.id===id);if(!item)return;
-  item[field]=cur;await upsertShared('budget_items',item);
-  renderBudget();calcBudgetSummary();
-}
-async function togglePerson(id,field){
-  const item=budgetItems.find(x=>x.id===id);if(!item)return;
-  item[field]=!item[field];await upsertShared('budget_items',item);
-  const p=field==='for_sa'?'sa':field==='for_bi'?'bi':'ty';
-  const tog=document.querySelector('#bic_'+id+' .bud-person-toggle.'+p);
-  if(tog)tog.classList.toggle('on',item[field]);
-  calcBudgetSummary();
-}
-async function delBud(id){
-  budgetItems=budgetItems.filter(x=>x.id!==id);
-  await deleteShared('budget_items',id);
-  renderBudget();calcBudgetSummary();
-}
-async function addBudgetItem(){
-  const label=document.getElementById('budNewLabel').value.trim();
-  const cat=document.getElementById('budNewCat').value;
-  if(!label){document.getElementById('budNewLabel').focus();return;}
-  const item={id:genId(),label,category:cat,estimate:0,actual:0,
-    est_cur:'VND',act_cur:'VND',item_currency:'VND',
-    for_sa:true,for_bi:true,for_ty:true,sort_order:budgetItems.length};
-  budgetItems.push(item);await upsertShared('budget_items',item);
-  document.getElementById('budNewLabel').value='';
-  renderBudget();calcBudgetSummary();
-}
-function calcBudgetSummary(){
-  let saE=0,biE=0,tyE=0,saA=0,biA=0,tyA=0,totE=0,totA=0;
-  budgetItems.forEach(item=>{
-    const eV=toVND(item.estimate,item.est_cur||'TWD');
-    const aV=toVND(item.actual,item.act_cur||'TWD');
-    const n=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0);
-    totE+=eV;totA+=aV;
-    if(item.for_sa)saE+=eV;if(item.for_bi)biE+=eV;if(item.for_ty)tyE+=eV;
-    if(n>0){if(item.for_sa)saA+=aV/n;if(item.for_bi)biA+=aV/n;if(item.for_ty)tyA+=aV/n;}
-  });
-  [['sa',saE,saA],['bi',biE,biA],['ty',tyE,tyA]].forEach(([p,e,a])=>{
-    const eEl=document.getElementById(p+'Est');
-    const aVEl=document.getElementById(p+'ActVND');
-    const aTEl=document.getElementById(p+'ActTWD');
-    const dEl=document.getElementById(p+'Diff');
-    if(eEl)eEl.textContent='Est: '+fmtVND(e);
-    if(aVEl)aVEl.textContent=fmtVND(a);
-    if(aTEl)aTEl.textContent='≈ '+fmtTWD(a/budRate);
-    if(dEl){
-      const diff=a-e;
-      if(a===0){dEl.textContent='';return;}
-      dEl.textContent=(diff>0?'↑ +':diff<0?'↓ ':'')+fmtVND(Math.abs(diff));
-      dEl.className='bud-diff '+(diff>0?'over':diff<0?'under':'');
-    }
-  });
-  const tEV=document.getElementById('totalEstVND');const tET=document.getElementById('totalEstTWD');
-  const tAV=document.getElementById('totalActVND');const tAT=document.getElementById('totalActTWD');
-  if(tEV)tEV.textContent=fmtVND(totE);if(tET)tET.textContent='≈ '+fmtTWD(totE/budRate);
-  if(tAV)tAV.textContent=fmtVND(totA);if(tAT)tAT.textContent='≈ '+fmtTWD(totA/budRate);
-}
+function toVND(n,cur){return cur===‘VND’?Number(n)||0:(Number(n)||0)*budRate;}
+function fmtVND(n){const r=Math.round(n/1000)*1000;return r>=1000000?(r/1000000).toFixed(1)+‘tr₫’:r.toLocaleString(‘vi-VN’)+‘₫’;}
+function fmtTWD(n){return Math.round(n).toLocaleString()+’ TWD’;}
+function fmtNum(n){return Math.round(Number(n)||0).toLocaleString();}
+async function loadBudget(){const rows=await getAllShared(‘budget_items’);if(rows.length===0){budgetItems=DEFAULT_BUDGET.map((d,i)=>({id:genId(),label:d.label,category:d.category,estimate:d.estimate,actual:d.actual,currency:d.currency,est_cur:d.currency,act_cur:d.currency,item_currency:d.currency,for_sa:d.for_sa,for_bi:d.for_bi,for_ty:d.for_ty,sort_order:i}));await Promise.all(budgetItems.map(item=>upsertShared(‘budget_items’,item)));}else{budgetItems=rows.sort((a,b)=>(a.sort_order||0)-(b.sort_order||0));budgetItems.forEach(item=>{if(!item.currency)item.currency=item.est_cur||‘TWD’;});}renderBudget();calcBudgetSummary();}
+function setBudFilter(p){budFilter=budFilter===p?null:p;[‘sa’,‘bi’,‘ty’].forEach(x=>{const el=document.getElementById(‘bCard_’+x);if(el)el.classList.toggle(‘active’,x===budFilter);});renderBudget();}
+function renderBudget(){const cont=document.getElementById(‘budgetBody’);if(!cont)return;const vis=budFilter?budgetItems.filter(x=>x[‘for_’+budFilter]):budgetItems;const lbl=document.getElementById(‘budFilterLabel’);if(lbl){lbl.style.display=budFilter?‘block’:‘none’;if(budFilter)lbl.textContent=‘Lọc: ‘+{sa:‘Sa’,bi:‘Bi’,ty:‘Ty’}[budFilter]+’ — ‘+vis.length+’/’+budgetItems.length+’ khoản’;}let html=’’;vis.forEach(item=>{const cur=item.currency||‘TWD’;const pc=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0)||1;const eP=item.estimate>0?fmtNum(item.estimate/pc)+’ ‘+cur+’/ng’:’—’;const aP=item.actual>0?fmtNum(item.actual/pc)+’ ‘+cur+’/ng’:’—’;html+=`<div class="bud-item-card" id="bic_${item.id}"><div class="bud-item-top"><select class="bud-cat-select" onchange="updBud('${item.id}','category',this.value)">${['transport','hotel','activity','food','shopping','misc'].map(v=>'<option value="'+v+'"'+(item.category===v?' selected':'')+'>'+CAT_ICON[v]+'</option>').join('')}</select><input class="bud-item-label" value="${escHtml(item.label)}" onchange="updBud('${item.id}','label',this.value)" onblur="updBud('${item.id}','label',this.value)"><select class="bud-cur-sel-inline" onchange="updBud('${item.id}','currency',this.value)"><option value="TWD" ${cur==='TWD'?'selected':''}>TWD</option><option value="VND" ${cur==='VND'?'selected':''}>VND</option></select><button class="bud-item-del" onclick="delBud('${item.id}')">✕</button></div><div class="bud-item-body"><div class="bud-item-col"><span class="bud-item-col-label">Dự kiến (tổng)</span><input class="bud-amount-inp" type="number" value="${item.estimate||0}" min="0" onchange="updBud('${item.id}','estimate',+this.value)" onblur="updBud('${item.id}','estimate',+this.value)"><div class="bud-item-per">≈ ${eP}</div></div><div class="bud-item-col"><span class="bud-item-col-label">Thực tế (tổng)</span><input class="bud-amount-inp" type="number" value="${item.actual||0}" min="0" onchange="updBud('${item.id}','actual',+this.value)" onblur="updBud('${item.id}','actual',+this.value)" placeholder="0"><div class="bud-item-per">≈ ${aP}</div></div></div><div class="bud-item-footer"><span style="font-size:.65rem;color:var(--txt3);font-weight:600;margin-right:4px">Chia cho:</span><div class="bud-person-toggle sa ${item.for_sa?'on':''}" onclick="togglePerson('${item.id}','for_sa')">Sa</div><div class="bud-person-toggle bi ${item.for_bi?'on':''}" onclick="togglePerson('${item.id}','for_bi')">Bi</div><div class="bud-person-toggle ty ${item.for_ty?'on':''}" onclick="togglePerson('${item.id}','for_ty')">Ty</div>${item.actual>0?'<span style="margin-left:auto;font-size:.72rem;font-weight:700;color:var(--txt2)">'+fmtNum(item.actual)+' '+cur+'</span>':''}</div></div>`;});cont.innerHTML=html;}
+async function updBud(id,field,val){const item=budgetItems.find(x=>x.id===id);if(!item)return;item[field]=val;if(field===‘currency’){item.est_cur=val;item.act_cur=val;item.item_currency=val;}await upsertShared(‘budget_items’,item);const cur=item.currency||‘TWD’;const pc=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0)||1;const card=document.getElementById(‘bic_’+id);if(card){const pers=card.querySelectorAll(’.bud-item-per’);if(pers[0])pers[0].textContent=‘≈ ‘+(item.estimate>0?fmtNum(item.estimate/pc)+’ ‘+cur+’/ng’:’—’);if(pers[1])pers[1].textContent=‘≈ ‘+(item.actual>0?fmtNum(item.actual/pc)+’ ‘+cur+’/ng’:’—’);}calcBudgetSummary();}
+async function togglePerson(id,field){const item=budgetItems.find(x=>x.id===id);if(!item)return;item[field]=!item[field];await upsertShared(‘budget_items’,item);const p=field===‘for_sa’?‘sa’:field===‘for_bi’?‘bi’:‘ty’;const tog=document.querySelector(’#bic_’+id+’ .bud-person-toggle.’+p);if(tog)tog.classList.toggle(‘on’,item[field]);calcBudgetSummary();}
+async function delBud(id){budgetItems=budgetItems.filter(x=>x.id!==id);await deleteShared(‘budget_items’,id);renderBudget();calcBudgetSummary();}
+async function addBudgetItem(){const label=document.getElementById(‘budNewLabel’).value.trim();const cat=document.getElementById(‘budNewCat’).value;if(!label){document.getElementById(‘budNewLabel’).focus();return;}const item={id:genId(),label,category:cat,estimate:0,actual:0,currency:‘VND’,est_cur:‘VND’,act_cur:‘VND’,item_currency:‘VND’,for_sa:true,for_bi:true,for_ty:true,sort_order:budgetItems.length};budgetItems.push(item);await upsertShared(‘budget_items’,item);document.getElementById(‘budNewLabel’).value=’’;renderBudget();calcBudgetSummary();}
+function calcBudgetSummary(){let saE=0,biE=0,tyE=0,saA=0,biA=0,tyA=0,totE=0,totA=0;budgetItems.forEach(item=>{const cur=item.currency||‘TWD’;const eV=toVND(item.estimate,cur);const aV=toVND(item.actual,cur);const n=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0);totE+=eV;totA+=aV;if(item.for_sa)saE+=eV;if(item.for_bi)biE+=eV;if(item.for_ty)tyE+=eV;if(n>0){if(item.for_sa)saA+=aV/n;if(item.for_bi)biA+=aV/n;if(item.for_ty)tyA+=aV/n;}});[[‘sa’,saE,saA],[‘bi’,biE,biA],[‘ty’,tyE,tyA]].forEach(([p,e,a])=>{const eEl=document.getElementById(p+‘Est’);const aVEl=document.getElementById(p+‘ActVND’);const aTEl=document.getElementById(p+‘ActTWD’);const dEl=document.getElementById(p+‘Diff’);if(eEl)eEl.textContent=’Est: ’+fmtVND(e);if(aVEl)aVEl.textContent=fmtVND(a);if(aTEl)aTEl.textContent=‘≈ ‘+fmtTWD(a/budRate);if(dEl){const diff=a-e;if(a===0){dEl.textContent=’’;return;}dEl.textContent=(diff>0?‘↑ +’:diff<0?‘↓ ‘:’’)+fmtVND(Math.abs(diff));dEl.className=‘bud-diff ‘+(diff>0?‘over’:diff<0?‘under’:’’);}});const tEV=document.getElementById(‘totalEstVND’);const tET=document.getElementById(‘totalEstTWD’);const tAV=document.getElementById(‘totalActVND’);const tAT=document.getElementById(‘totalActTWD’);if(tEV)tEV.textContent=fmtVND(totE);if(tET)tET.textContent=’≈ ’+fmtTWD(totE/budRate);if(tAV)tAV.textContent=fmtVND(totA);if(tAT)tAT.textContent=’≈ ’+fmtTWD(totA/budRate);}
 
 let sCol=0,sAsc=true;
-function buildRank(){const tb=document.getElementById('rankBody');tb.innerHTML='';[...RANKS].sort((a,b)=>{let va=a[sCol],vb=b[sCol];if(typeof va==='string'){va=va.replace('*','');vb=String(vb).replace('*','');}if(!isNaN(va)&&!isNaN(vb)){va=+va;vb=+vb;}return va<vb?(sAsc?-1:1):va>vb?(sAsc?1:-1):0;}).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td><span class="rb" onclick="zoomRank(${r[0]})">${r[0]}</span></td><td><b>${r[1]}</b></td><td>${r[2]}</td><td>${r[3]}</td><td style="font-size:.75rem;color:var(--txt2)">${r[4]}</td>`;tb.appendChild(tr);});document.querySelectorAll('#rankTbl th').forEach((th,i)=>{th.classList.toggle('sorted',i===sCol);const sa=th.querySelector('.sa');if(sa)sa.textContent=i===sCol?(sAsc?'▲':'▼'):'▲';});}
+function buildRank(){const tb=document.getElementById(‘rankBody’);tb.innerHTML=’’;[…RANKS].sort((a,b)=>{let va=a[sCol],vb=b[sCol];if(typeof va===‘string’){va=va.replace(’*’,’’);vb=String(vb).replace(’*’,’’);}if(!isNaN(va)&&!isNaN(vb)){va=+va;vb=+vb;}return va<vb?(sAsc?-1:1):va>vb?(sAsc?1:-1):0;}).forEach(r=>{const tr=document.createElement(‘tr’);tr.innerHTML=`<td><span class="rb" onclick="zoomRank(${r[0]})">${r[0]}</span></td><td><b>${r[1]}</b></td><td>${r[2]}</td><td>${r[3]}</td><td style="font-size:.75rem;color:var(--txt2)">${r[4]}</td>`;tb.appendChild(tr);});document.querySelectorAll(’#rankTbl th’).forEach((th,i)=>{th.classList.toggle(‘sorted’,i===sCol);const sa=th.querySelector(’.sa’);if(sa)sa.textContent=i===sCol?(sAsc?‘▲’:‘▼’):‘▲’;});}
 function sortTbl(c){if(c===4)return;sCol===c?sAsc=!sAsc:(sCol=c,sAsc=true);buildRank();}
 
 // INIT
 async function init(){
-  showAll();buildRank();
-  await sbInit();
-  await Promise.all([loadAllTasks(),loadBudget(),mdInit()]);
-  await Promise.all([loadTiBk(),loadLeftBk()]);
-  renderOvChecklist();
-  renderDayChecklist(null);
+showAll();buildRank();
+await sbInit();
+await Promise.all([loadAllTasks(),loadBudget(),mdInit()]);
+await Promise.all([loadTiBk(),loadLeftBk()]);
+renderOvChecklist();
+renderDayChecklist(null);
 }
 init();
 
