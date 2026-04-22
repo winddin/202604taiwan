@@ -26,7 +26,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .fl-ban{background:var(--pri-l);border-left:4px solid var(--pri);padding:10px 14px;margin:10px 10px 0;border-radius:0 10px 10px 0;font-size:.78rem;color:var(--txt2)}
 .fl-ban h3{font-size:.8rem;color:var(--pri);margin-bottom:4px;font-weight:700}
 .fl-ban hr{border:none;border-top:1px dashed #ccc;margin:6px 0}
-.fl-warn{font-size:.72rem;color:var(--acc);margin-top:4px;font-weight:600}
+
 .nav{display:flex;overflow-x:auto;padding:7px 10px;gap:5px;background:var(--card);border-bottom:1px solid var(--bdr);position:sticky;top:62px;z-index:1000;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
 .nb{flex-shrink:0;padding:5px 11px;border:2px solid var(--bdr);border-radius:20px;background:var(--card);cursor:pointer;font-size:.73rem;font-weight:700;transition:all .15s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
@@ -251,7 +251,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   <b>ĐI:</b> CI-782 | T7 25/04 | SGN 10:50 → TPE 15:20 (3h30)<br>
   <b>VỀ:</b> CI-783 | T7 02/05 | TPE 13:45 → SGN 16:20 (3h35)<hr>
   👤 Gia Bao (FMGKXZ) · Hoài Thanh + Quỳnh Hương (DW9ZY2) · 🧳 7kg + 23kg × 3
-  <div class="fl-warn">⚠️ Check-in 90 phút trước · Ngày về ra sân bay trước 11:45</div>
 </div>
 <nav class="nav">
   <button class="nb on" onclick="go('overview')">🗺️ Tổng quan</button>
@@ -1216,17 +1215,17 @@ async function loadAllTasks(){
   const grouped={};rows.forEach(r=>{if(!grouped[r.day_key])grouped[r.day_key]=[];grouped[r.day_key].push(r);});
   Object.keys(grouped).forEach(dk=>grouped[dk].sort((a,b)=>(a.sort_order||0)-(b.sort_order||0)));
   allTasks=grouped;
-  for(const dk of [...Object.keys(DEFAULT_TASKS),'overview']){
+  // Seed any day that has 0 rows in DB (source of truth = DB)
+  const allKeys=[...Object.keys(DEFAULT_TASKS),'overview'];
+  for(const dk of allKeys){
     if(!allTasks[dk]||allTasks[dk].length===0)await seedTasks(dk);
   }
 }
 async function seedTasks(dk){
   const list=dk==='overview'?DEFAULT_OV_TASKS:(DEFAULT_TASKS[dk]||[]);
-  allTasks[dk]=[];
-  for(let i=0;i<list.length;i++){
-    const task={id:genId(),day_key:dk,task_text:list[i],checked:false,sort_order:i};
-    await upsertShared('day_tasks',task);allTasks[dk].push(task);
-  }
+  allTasks[dk]=list.map((text,i)=>({id:genId(),day_key:dk,task_text:text,checked:false,sort_order:i}));
+  // Push all to DB in parallel
+  await Promise.all(allTasks[dk].map(task=>upsertShared('day_tasks',task)));
 }
 
 function renderTaskList(tasks,panelId,dk,progId,barId){
@@ -1307,9 +1306,44 @@ function renderOvChecklist(){
 
 // INLINE BOOKING LINKS (timeline)
 let tiBkData={};  // {bk_id: url}
+const DEFAULT_BOOKINGS={
+  day1:[['flight','✈️ Vé CI-782 SGN→TPE',''],['hotel','🏨 Hotel Đài Bắc (N1-3+N7)','']],
+  day2:[['ticket','🎫 Taipei 101 (Klook)','']],
+  day3:[['tour','🚌 Tour Yehliu+Jiufen+Shifen (KKday)','']],
+  day4:[['transport','🚆 TRA 472 Taipei→Hualien #6684500','https://www.railway.gov.tw'],['hotel','🏨 Hotel Hoa Liên (N4+N5)',''],['permit','📋 Taroko Trail Permit','https://taroko.gov.tw']],
+  day5:[['transport','🚆 TRA Hualien→Taichung 30/04',''],['hotel','🏨 Hotel Hoa Liên (đêm 2)','']],
+  day6:[['transport','🚆 TRA Hualien→Taichung',''],['hotel','🏨 Hotel Đài Trung (Fengjia)','']],
+  day7:[['transport','🚄 HSR Taichung→Taipei',''],['hotel','🏨 Hotel Đài Bắc đêm cuối','']],
+  day8:[['flight','✈️ Vé CI-783 TPE→SGN','']],
+};
 async function loadTiBk(){
   const rows=await getAllShared('booking_links');
-  rows.forEach(r=>{tiBkData[r.id]=r.url||'';if(r.url)updateTiBkUI(r.id,r.url);});
+  if(rows.length===0){
+    // Seed default booking link metadata to DB
+    const toSeed=[];
+    Object.entries(DEFAULT_BOOKINGS).forEach(([dk,items])=>{
+      // Use fixed IDs matching data-bk attributes in HTML
+      const dayBks={
+        day1:['d1_flight','d1_hotel'],
+        day2:['d2_101'],
+        day3:['d3_tour'],
+        day4:['d4_train','d4_hotel','d4_permit'],
+        day5:['d5_train','d5_hotel'],
+        day6:['d6_train','d6_hotel'],
+        day7:['d7_hsr','d7_hotel'],
+        day8:['d8_flight'],
+      };
+      const ids=dayBks[dk]||[];
+      items.forEach(([type,label,url],i)=>{
+        const id=ids[i]||('bk_'+dk+'_'+i);
+        toSeed.push({id,day_key:dk,link_type:type,label,url:url||''});
+      });
+    });
+    await Promise.all(toSeed.map(bk=>upsertShared('booking_links',bk)));
+    toSeed.forEach(bk=>{tiBkData[bk.id]=bk.url;if(bk.url)updateTiBkUI(bk.id,bk.url);});
+  }else{
+    rows.forEach(r=>{tiBkData[r.id]=r.url||'';if(r.url)updateTiBkUI(r.id,r.url);});
+  }
 }
 async function saveTiBk(inp){
   const id=inp.getAttribute('data-bk');const type=inp.getAttribute('data-type')||'other';
@@ -1353,6 +1387,8 @@ function renderLeftBookings(dk){
 // MUST DO
 async function mdChk(cb){const key=cb.getAttribute('data-md');await upsertSharedKV('mustdo_progress',key,cb.checked);cb.closest('.md-i').classList.toggle('ck',cb.checked);mdUpd();}
 async function mdInit(){
+  // mustdo_progress only tracks checked state — no seeding needed
+  // items are hardcoded in HTML; we just sync checked state
   const d=await getAllSharedKV('mustdo_progress');
   document.querySelectorAll('[data-md]').forEach(cb=>{if(d[cb.getAttribute('data-md')]){cb.checked=true;cb.closest('.md-i').classList.add('ck');}});mdUpd();
 }
@@ -1398,14 +1434,17 @@ function fmtTWD(n){return Math.round(n).toLocaleString()+' TWD';}
 async function loadBudget(){
   const rows=await getAllShared('budget_items');
   if(rows.length===0){
+    // No data in DB → seed defaults and push to DB immediately
     budgetItems=DEFAULT_BUDGET.map((d,i)=>({
       id:genId(),label:d.label,category:d.category,
       estimate:d.estimate,actual:d.actual,
       est_cur:d.est_cur,act_cur:d.act_cur,item_currency:d.est_cur,
       for_sa:d.for_sa,for_bi:d.for_bi,for_ty:d.for_ty,sort_order:i
     }));
-    for(const item of budgetItems)await upsertShared('budget_items',item);
+    // Push ALL to DB in parallel (faster than sequential for seeding)
+    await Promise.all(budgetItems.map(item=>upsertShared('budget_items',item)));
   }else{
+    // Load from DB — DB is source of truth
     budgetItems=rows.sort((a,b)=>(a.sort_order||0)-(b.sort_order||0));
     budgetItems.forEach(item=>{
       if(!item.est_cur)item.est_cur=item.item_currency||'TWD';
