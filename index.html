@@ -1767,7 +1767,7 @@ function renderBudget(){
     html+=`<div class="bud-item-card" id="bic_${item.id}">
       <div class="bud-item-top">
         <select class="bud-cat-select" onchange="updBud('${item.id}','category',this.value)">
-          ${['transport','hotel','activity','food','shopping','misc'].map(v=>`<option value="${v}" ${item.category===v?'selected':''}>${CAT_ICON[v]}</option>`).join('')}
+          ${['transport','hotel','activity','food','shopping','misc'].map(v=>'<option value="'+v+'" '+(item.category===v?'selected':'')+'>'+CAT_ICON[v]+'</option>').join('')}
         </select>
         <input class="bud-item-label" value="${escHtml(item.label)}"
           onchange="updBud('${item.id}','label',this.value)"
@@ -1804,7 +1804,7 @@ function renderBudget(){
         <div class="bud-person-toggle sa ${item.for_sa?'on':''}" onclick="togglePerson('${item.id}','for_sa')">Sa</div>
         <div class="bud-person-toggle bi ${item.for_bi?'on':''}" onclick="togglePerson('${item.id}','for_bi')">Bi</div>
         <div class="bud-person-toggle ty ${item.for_ty?'on':''}" onclick="togglePerson('${item.id}','for_ty')">Ty</div>
-        ${actVND>0?`<span style="margin-left:auto;font-size:.7rem;font-weight:700;color:var(--txt2)">${fmtVND(actVND)}</span>`:''}
+        ${actVND>0?'<span style="margin-left:auto;font-size:.7rem;font-weight:700;color:var(--txt2)">'+fmtVND(actVND)+'</span>':''}
       </div>
     </div>`;
   });
