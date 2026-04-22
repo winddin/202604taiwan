@@ -65,30 +65,19 @@ body{
 .db-badge.ok{background:rgba(16,185,129,.25);border-color:rgba(16,185,129,.5)}
 .db-badge.err{background:rgba(239,68,68,.25);border-color:rgba(239,68,68,.5)}
 
-/* ── FLIGHT BANNER ── */
-.fl-banner{
-  background:linear-gradient(135deg,#1e40af,#1d4ed8);
-  color:#fff;padding:10px 16px;font-size:.75rem;
-  display:flex;align-items:center;gap:10px;flex-shrink:0;
-  border-bottom:1px solid rgba(255,255,255,.1);
-}
-.fl-banner .fl-info{flex:1;min-width:0}
-.fl-banner strong{font-weight:700}
-.fl-warn{
-  background:#fef3c7;color:#92400e;font-size:.7rem;font-weight:600;
-  padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;
-}
+
+
 
 /* ── DAY NAV ── */
 .day-nav{
   background:var(--card);border-bottom:1px solid var(--bdr);
-  display:flex;overflow-x:auto;padding:8px 12px;gap:6px;flex-shrink:0;
+  display:flex;overflow-x:auto;padding:5px 10px;gap:4px;flex-shrink:0;
   scrollbar-width:none;-webkit-overflow-scrolling:touch;
 }
 .day-nav::-webkit-scrollbar{display:none}
 .dnb{
-  flex-shrink:0;padding:6px 14px;border-radius:20px;
-  font-size:.75rem;font-weight:600;cursor:pointer;
+  flex-shrink:0;padding:4px 11px;border-radius:16px;
+  font-size:.7rem;font-weight:600;cursor:pointer;
   border:1.5px solid var(--bdr);background:var(--card);
   color:var(--txt2);transition:all .15s;white-space:nowrap;
 }
@@ -119,22 +108,13 @@ body{
 @media(max-width:767px){
   .sidebar{display:none}
   .body-area{flex-direction:column}
-  .main-content{flex:1;overflow-y:auto;padding-bottom:70px}
-  .mob-bottom{
-    display:flex;position:fixed;bottom:0;left:0;right:0;
-    background:var(--card);border-top:1px solid var(--bdr);
-    padding:6px 0 env(safe-area-inset-bottom,8px);z-index:200;
-    box-shadow:0 -4px 12px rgba(0,0,0,.06);
-  }
-  .mob-btn{
-    flex:1;display:flex;flex-direction:column;align-items:center;
-    font-size:.6rem;color:var(--txt3);cursor:pointer;padding:3px 0;
-    transition:color .15s;
-  }
-  .mob-btn.on{color:var(--pri)}
-  .mob-btn span:first-child{font-size:1.1rem;margin-bottom:1px}
+  .main-content{flex:1;overflow-y:auto;padding-bottom:12px}
+  
+  
+  
+  
 }
-@media(min-width:768px){.mob-bottom{display:none}}
+@media(min-width:768px){}
 
 /* ── SIDEBAR SECTIONS ── */
 .sb-map{position:relative;height:220px;flex-shrink:0}
@@ -544,14 +524,7 @@ body{
   </div>
 </div>
 
-<!-- FLIGHT BANNER -->
-<div class="fl-banner">
-  <div class="fl-info">
-    <strong>✈️ ĐI:</strong> CI-782 | 25/04 | SGN 10:50 → TPE 15:20 &nbsp;&nbsp;
-    <strong>VỀ:</strong> CI-783 | 02/05 | TPE 13:45 → SGN 16:20
-  </div>
-  <div class="fl-warn">⚠️ Ra sân bay trước 11:45 ngày về</div>
-</div>
+
 
 <!-- DAY NAV -->
 <div class="day-nav">
@@ -1297,7 +1270,22 @@ body{
 
 
 <div class="tc" id="tab-budget">
-  <div class="dh" style="background:linear-gradient(135deg,#11998e,#38ef7d)"><h2>💰 Chia Tiền — Sa · Bi · Ty</h2><p>Estimate vs Actual · Check vào ai liên quan</p></div>
+  <div class="dh" style="background:linear-gradient(135deg,#11998e,#38ef7d)">
+  <h2>💰 Chia Tiền — Sa · Bi · Ty</h2>
+  <p>Estimate vs Actual · Check vào ai liên quan</p>
+  <div style="display:flex;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap">
+    <div style="display:flex;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.4)">
+      <button id="btnTWD" onclick="setCurrency('TWD')" style="padding:4px 12px;font-size:.72rem;font-weight:700;background:rgba(255,255,255,.9);color:#065f46;border:none;cursor:pointer">TWD</button>
+      <button id="btnVND" onclick="setCurrency('VND')" style="padding:4px 12px;font-size:.72rem;font-weight:700;background:transparent;color:rgba(255,255,255,.8);border:none;cursor:pointer">VND</button>
+    </div>
+    <span style="font-size:.72rem;opacity:.85">Tỷ giá:
+      <input id="fxRate" type="number" value="860" min="1" 
+        style="width:60px;font-size:.72rem;border:1px solid rgba(255,255,255,.4);border-radius:5px;padding:2px 6px;background:rgba(255,255,255,.15);color:#fff;text-align:center;outline:none"
+        onchange="setRate(+this.value)" onblur="setRate(+this.value)">
+      VND/TWD
+    </span>
+  </div>
+</div>
   <div class="cd">
     <div class="budget-summary">
       <div class="bud-card sa"><div class="bud-avatar sa">Sa</div><div class="bud-name">Sa</div><div class="bud-est" id="saEst">Est: 0 TWD</div><div class="bud-act" id="saAct">0 TWD</div><div class="bud-diff" id="saDiff"></div></div>
@@ -1309,8 +1297,9 @@ body{
       <thead><tr>
         <th style="min-width:140px">Item</th>
         <th>Loại</th>
-        <th class="bud-num" title="Estimate per person">Est/người<br>(TWD)</th>
-        <th class="bud-num" title="Actual total">Actual<br>tổng (TWD)</th>
+        <th class="bud-num">Est/người<br><span id="estUnit" style="font-weight:400;text-transform:none;letter-spacing:0">(TWD)</span></th>
+        <th class="bud-num">Actual tổng<br><span id="actUnit" style="font-weight:400;text-transform:none;letter-spacing:0">(TWD)</span></th>
+        <th>Tiền tệ</th>
         <th class="bud-cb-cell" style="color:var(--sa)">Sa</th>
         <th class="bud-cb-cell" style="color:var(--bi)">Bi</th>
         <th class="bud-cb-cell" style="color:var(--ty)">Ty</th>
@@ -1358,21 +1347,10 @@ body{
   </div>
 </div>
 </div></div></div>
-<div class="bnav">
-  <div class="bnav-i on" onclick="go('overview')"><span>🗺️</span>Overview</div>
-  <div class="bnav-i" onclick="go('mustdo')"><span>⭐</span>Must Do</div>
-  <div class="bnav-i" onclick="go('budget')"><span>💰</span>Budget</div>
-  <div class="bnav-i" onclick="go('ranking')"><span>🏆</span>Ranking
-    </div><!-- /content-inner -->
+</div><!-- /content-inner -->
   </div><!-- /main-content -->
 </div><!-- /body-area -->
 
-<!-- MOBILE BOTTOM NAV -->
-<div class="mob-bottom">
-  <div class="mob-btn on" onclick="go('overview')"><span>🗺️</span>Overview</div>
-  <div class="mob-btn" onclick="go('mustdo')"><span>⭐</span>Must Do</div>
-  <div class="mob-btn" onclick="go('budget')"><span>💰</span>Budget</div>
-  <div class="mob-btn" onclick="go('ranking')"><span>🏆</span>Ranking</div>
 </div>
 
 </div><!-- /app-shell -->
@@ -1500,12 +1478,12 @@ function zoomRank(r){let found=null,fd=null;Object.entries(DL).forEach(([dk,locs
 let curDay='overview';
 function go(id){
   document.querySelectorAll('.tc').forEach(e=>e.classList.remove('on'));
-  document.querySelectorAll('.dnb,.mob-btn').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.dnb').forEach(b=>b.classList.remove('on'));
   const el=document.getElementById('tab-'+id);if(el)el.classList.add('on');
   document.querySelectorAll('.dnb').forEach(b=>{const t=b.textContent;
     if((id==='overview'&&t.includes('Tổng quan'))||(DMAP[id]&&t.includes(DMAP[id]))||(id==='mustdo'&&t.includes('Must'))||(id==='budget'&&t.includes('Chia'))||(id==='ranking'&&t.includes('Top')))b.classList.add('on');
   });
-  document.querySelectorAll('.mob-btn').forEach(b=>{const t=b.textContent;
+  if(false){(b=>{const t=b.textContent;
     if((id==='overview'&&t.includes('Overview'))||(id==='mustdo'&&t.includes('Must'))||(id==='budget'&&t.includes('Budget'))||(id==='ranking'&&t.includes('Ranking')))b.classList.add('on');
   });
   if(['overview','mustdo','budget'].includes(id)||id==='ranking'){showAll();hlLeg('all');}
@@ -1682,6 +1660,26 @@ function mdUpd(){const all=document.querySelectorAll('[data-md]');let tot=all.le
 const DEFAULT_BUDGET=[["✈️ Vé máy bay CI-782 khứ hồi", "transport", 0, true, true, true], ["🚆 TRA Taipei→Hualien (Booking #6684500)", "transport", 470, true, true, true], ["🚆 TRA Hualien→Taichung", "transport", 680, true, true, true], ["🚄 HSR Taichung→Taipei", "transport", 700, true, true, true], ["🚇 MRT Đài Bắc (Airport + các ngày)", "transport", 800, true, true, true], ["📱 SIM Chunghwa 8 ngày", "misc", 400, true, true, true], ["💳 EasyCard (deposit + nạp)", "misc", 600, true, true, true], ["🏨 Hotel Đài Bắc 4 đêm (N1-3+N7)", "hotel", 0, true, true, true], ["🏨 Hotel Hoa Liên 2 đêm (N4+N5)", "hotel", 0, true, true, true], ["🏨 Hotel Đài Trung 1 đêm (N6)", "hotel", 0, true, true, true], ["🏍️ Thuê xe máy Hoa Liên 2 ngày", "transport", 350, true, true, true], ["🚌 Tour Yehliu+Jiufen+Shifen (KKday)", "activity", 1200, true, true, true], ["🎫 Taipei 101 Observatory", "activity", 600, true, true, true], ["🎫 Yehliu Geopark", "activity", 80, true, true, true], ["🍜 Ăn uống (estimate/ngày × 8)", "food", 6400, true, true, true], ["🛍️ Quà + Mua sắm", "shopping", 2000, true, true, true], ["🔄 Dự phòng", "misc", 2000, true, true, true]];
 const CAT_LABELS={transport:'🚆',hotel:'🏨',activity:'🎫',food:'🍜',shopping:'🛍️',misc:'🔧'};
 let budgetItems=[];
+let budCurrency='TWD';
+let budRate=860;
+
+function setCurrency(cur){
+  budCurrency=cur;
+  document.getElementById('btnTWD').style.background=cur==='TWD'?'rgba(255,255,255,.9)':'transparent';
+  document.getElementById('btnTWD').style.color=cur==='TWD'?'#065f46':'rgba(255,255,255,.8)';
+  document.getElementById('btnVND').style.background=cur==='VND'?'rgba(255,255,255,.9)':'transparent';
+  document.getElementById('btnVND').style.color=cur==='VND'?'#065f46':'rgba(255,255,255,.8)';
+  renderBudget();
+  calcBudgetSummary();
+}
+function setRate(r){
+  if(r>0){budRate=r;renderBudget();calcBudgetSummary();}
+}
+// Convert item amount to TWD for calculations
+function toTWD(item,field){
+  const val=Number(item[field])||0;
+  return (item.item_currency||'TWD')==='VND'?val/budRate:val;
+}
 async function loadBudget(){
   const rows=await getAllShared('budget_items');
   if(rows.length===0){
@@ -1740,7 +1738,7 @@ async function addBudgetItem(){
 function calcBudgetSummary(){
   let saEst=0,biEst=0,tyEst=0,saAct=0,biAct=0,tyAct=0,totEst=0,totAct=0;
   budgetItems.forEach(item=>{
-    const est=Number(item.estimate)||0;const act=Number(item.actual)||0;
+    const est=toTWD(item,'estimate');const act=toTWD(item,'actual');
     const count=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0);
     totEst+=est;totAct+=act;
     if(item.for_sa)saEst+=est;
@@ -1752,13 +1750,16 @@ function calcBudgetSummary(){
       if(item.for_ty)tyAct+=act/count;
     }
   });
-  const fmt=n=>Math.round(n).toLocaleString()+' TWD';
-  document.getElementById('saEst').textContent='Est: '+fmt(saEst);
-  document.getElementById('biEst').textContent='Est: '+fmt(biEst);
-  document.getElementById('tyEst').textContent='Est: '+fmt(tyEst);
-  document.getElementById('saAct').textContent=fmt(saAct);
-  document.getElementById('biAct').textContent=fmt(biAct);
-  document.getElementById('tyAct').textContent=fmt(tyAct);
+  const fmtTWD=n=>Math.round(n).toLocaleString()+' TWD';
+  const fmtVND=n=>(Math.round(n/1000)*1000).toLocaleString()+' VND';
+  const fmtBoth=n=>fmtTWD(n)+'<br><small style="color:var(--txt3);font-weight:400">~'+fmtVND(n*budRate)+'</small>';
+  const fmtEst=n=>'Est: '+fmtTWD(n)+'<br><small style="color:var(--txt3);font-size:.65rem">~'+fmtVND(n*budRate)+'</small>';
+  document.getElementById('saEst').innerHTML=fmtEst(saEst);
+  document.getElementById('biEst').innerHTML=fmtEst(biEst);
+  document.getElementById('tyEst').innerHTML=fmtEst(tyEst);
+  document.getElementById('saAct').innerHTML=fmtBoth(saAct);
+  document.getElementById('biAct').innerHTML=fmtBoth(biAct);
+  document.getElementById('tyAct').innerHTML=fmtBoth(tyAct);
   ['sa','bi','ty'].forEach(p=>{
     const est=(p==='sa'?saEst:p==='bi'?biEst:tyEst);
     const act=(p==='sa'?saAct:p==='bi'?biAct:tyAct);
@@ -1768,8 +1769,8 @@ function calcBudgetSummary(){
     el.textContent=(diff>0?'↑ +':diff<0?'↓ ':'')+Math.round(Math.abs(diff)).toLocaleString()+' TWD';
     el.className='bud-diff '+(diff>0?'over':diff<0?'under':'');
   });
-  document.getElementById('totalEst').textContent=fmt(totEst);
-  document.getElementById('totalAct').textContent=fmt(totAct);
+  document.getElementById('totalEst').innerHTML=fmtTWD(totEst)+' <small style="color:var(--txt3)">/ ~'+fmtVND(totEst*budRate)+'</small>';
+  document.getElementById('totalAct').innerHTML=fmtTWD(totAct)+' <small style="color:var(--txt3)">/ ~'+fmtVND(totAct*budRate)+'</small>';
 }
 
 // RANKING
