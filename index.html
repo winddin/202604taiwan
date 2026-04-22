@@ -217,9 +217,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .bud-item-del:hover{color:var(--red)}
 .bud-item-amt-row{display:flex;align-items:center;gap:8px;padding:6px 10px 7px;flex-wrap:wrap}
 .bud-item-amt-block{flex:1;min-width:100px}
-.bud-amount-inp{width:100%;font-size:.9rem;font-weight:700;border:1.5px solid var(--bdr);border-radius:7px;padding:4px 8px;font-family:inherit;text-align:right;outline:none;background:var(--bg);-moz-appearance:textfield;transition:border-color .15s}
+.bud-amount-inp{width:100%;font-size:.9rem;font-weight:700;border:1.5px solid var(--bdr);border-radius:7px;padding:4px 8px;font-family:inherit;text-align:right;outline:none;background:var(--bg);transition:border-color .15s}
 .bud-amount-inp:focus{border-color:var(--pri);background:#fff}
-.bud-amount-inp::-webkit-outer-spin-button,.bud-amount-inp::-webkit-inner-spin-button{-webkit-appearance:none}
+
 .bud-item-per{font-size:.66rem;color:var(--ok);font-weight:600;margin-top:2px;text-align:right}
 .bud-paid-label{display:flex;align-items:center;gap:5px;cursor:pointer;padding:4px 9px;border-radius:8px;border:1.5px solid var(--bdr);background:var(--bg);transition:all .15s;user-select:none;flex-shrink:0}
 .bud-paid-label.paid{background:rgba(20,184,166,.12);border-color:var(--ok);color:var(--ok)}
@@ -1285,8 +1285,22 @@ function toVND(n,cur){return cur==='VND'?Number(n)||0:(Number(n)||0)*budRate;}
 function fmtVND(n){const r=Number(n)||0;return r>=1000000?fmtMoney(r/1000000)+'tr₫':fmtMoney(r)+'₫';}
 function fmtTWD(n){return fmtMoney(Number(n)||0)+' TWD';}
 function fmtMoney(n){return (Number(n)||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fmtInt(n){return Math.round(Number(n)||0).toLocaleString('en-US');}
+function parseAmt(s){return Number(String(s).replace(/,/g,''))||0;}
 async function loadBudget(){const rows=await getAllShared('budget_items');if(rows.length===0){budgetItems=DEFAULT_BUDGET.map((d,i)=>({id:genId(),label:d.label,category:d.category,estimate:d.estimate,actual:d.actual,currency:d.currency,est_cur:d.currency,act_cur:d.currency,item_currency:d.currency,paid:false,for_sa:d.for_sa,for_bi:d.for_bi,for_ty:d.for_ty,sort_order:i}));await Promise.all(budgetItems.map(item=>upsertShared('budget_items',item)));}else{budgetItems=rows.sort((a,b)=>(a.sort_order||0)-(b.sort_order||0));budgetItems.forEach(item=>{if(!item.currency)item.currency=item.est_cur||'TWD';});}renderBudget();calcBudgetSummary();}
 function setBudFilter(p){budFilter=budFilter===p?null:p;['sa','bi','ty'].forEach(x=>{const el=document.getElementById('bCard_'+x);if(el)el.classList.toggle('active',x===budFilter);});renderBudget();}
+function budInpFocus(el){
+  const raw=parseAmt(el.value)||parseAmt(el.dataset.raw)||0;
+  el.value=raw===0?'':raw;
+  el.select();
+}
+function budInpBlur(el,id,field){
+  const val=parseAmt(el.value);
+  el.dataset.raw=val;
+  el.value=val===0?'':fmtInt(val);
+  updBud(id,field,val);
+}
+
 function renderBudget(){
   const cont=document.getElementById('budgetBody');if(!cont)return;
   const vis=budFilter?budgetItems.filter(x=>x['for_'+budFilter]):budgetItems;
@@ -1311,10 +1325,12 @@ function renderBudget(){
       </div>
       <div class="bud-item-amt-row">
         <div class="bud-item-amt-block">
-          <input class="bud-amount-inp" type="number" value="${est||0}" min="0"
-            onchange="updBud('${item.id}','estimate',+this.value)"
-            onblur="updBud('${item.id}','estimate',+this.value)">
-          <div class="bud-item-per">${perPerson}</div>
+          <input class="bud-amount-inp" type="text" inputmode="numeric"
+            value="${est>0?fmtInt(est):''}" data-raw="${est}"
+            placeholder="0"
+            onfocus="budInpFocus(this)"
+            onblur="budInpBlur(this,'${item.id}','estimate')">
+          <div class="bud-item-per">${perPerson}${cur==='TWD'&&est>0?' · ≈ '+fmtInt(est*budRate)+' VND':''}</div>
         </div>
         <label class="bud-paid-label ${paid?'paid':''}">
           <input type="checkbox" class="bud-paid-cb" ${paid?'checked':''} onchange="togglePaid('${item.id}',this.checked)">
