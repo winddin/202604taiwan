@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>🇹🇼 Taiwan Trip 2026</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -10,12 +10,6 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{font-size:112%}
-:root{
-  --pri:#1a73e8;--pri-l:#e8f0fe;--acc:#ff6b35;--ok:#34a853;
-  --warn:#fbbc04;--bg:#f5f6f8;--card:#fff;--txt:#202124;
-  --txt2:#5f6368;--bdr:#e0e0e0;--sh:0 2px 8px rgba(0,0,0,.08);--r:14px;
-  --del:#dc3545;--sa:#667eea;--bi:#f5576c;--ty:#34a853
-}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:80px}
 .hdr{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:14px 16px 10px;position:sticky;top:0;z-index:1001;box-shadow:0 4px 16px rgba(0,0,0,.18)}
 .hdr h1{font-size:1.1rem;font-weight:800}
@@ -184,148 +178,136 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 @media(min-width:768px){.bnav{display:none}}
 ::-webkit-scrollbar{height:0;width:0}
 
-.bud-summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
-.bud-card{text-align:center;padding:8px 6px;border-radius:var(--r);background:var(--card);border:2px solid var(--bdr);transition:all .2s;cursor:pointer}
-.bud-card:hover{transform:translateY(-1px);box-shadow:var(--sh-md)}
-.bud-card.sa{border-color:var(--sa)}.bud-card.bi{border-color:var(--bi)}.bud-card.ty{border-color:var(--ty)}
-.bud-card.sa.active{box-shadow:0 0 0 3px var(--sa);transform:translateY(-2px)}
-.bud-card.bi.active{box-shadow:0 0 0 3px var(--bi);transform:translateY(-2px)}
-.bud-card.ty.active{box-shadow:0 0 0 3px var(--ty);transform:translateY(-2px)}
-.bud-name{font-size:.8rem;font-weight:800;margin-bottom:6px}
-.bud-card-section{text-align:left;width:100%;padding:4px 6px;border-radius:6px;background:var(--bg);margin-bottom:4px}
-.bud-card-section.bud-card-paid{background:rgba(20,184,166,.08);border:1px solid rgba(20,184,166,.2)}
-.bud-card-label{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--txt3);margin-bottom:1px}
-.bud-card-val{font-size:.82rem;font-weight:800;color:var(--txt)}
-.bud-card-paid .bud-card-val{color:var(--ok)}
-.bud-card-sub{font-size:.65rem;color:var(--txt3)}
-.bud-totals{display:flex;align-items:center;background:var(--card);border-radius:var(--r);padding:10px 14px;margin-bottom:12px;box-shadow:var(--sh);border:1px solid var(--bdr2)}
-.bud-total-item{flex:1;text-align:center}
-.bud-total-label{display:block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--txt3);margin-bottom:3px}
-.bud-total-val{display:block;font-size:.95rem;font-weight:800;color:var(--pri)}
-.bud-total-sub{display:block;font-size:.68rem;color:var(--txt3)}
-.bud-total-divider{width:1px;background:var(--bdr);align-self:stretch;margin:0 8px}
-.bud-add-card{background:var(--card);border-radius:var(--r);border:2px dashed var(--pri);padding:14px;margin-bottom:12px;box-shadow:var(--sh)}
-.bud-add-inp{font-size:.82rem;border:1.5px solid var(--bdr);border-radius:8px;padding:7px 10px;font-family:inherit;outline:none;background:var(--bg)}
-.bud-add-inp:focus{border-color:var(--pri);background:#fff}
-.bud-add-select{font-size:.9rem;border:1.5px solid var(--bdr);border-radius:8px;padding:6px;background:var(--bg);outline:none;cursor:pointer}
-.bud-add-btn{font-size:.8rem;background:var(--pri);color:#fff;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-weight:700}
-.bud-item-card{background:var(--card);border-radius:var(--r-sm);border:1px solid var(--bdr2);margin-bottom:6px;overflow:hidden;box-shadow:var(--sh)}
-.bud-item-row{display:flex;align-items:center;gap:6px;padding:7px 10px;border-bottom:1px solid var(--bdr2)}
-.bud-cat-select,.bud-cur-sel-inline{font-size:.7rem;border:1px solid var(--bdr);border-radius:5px;padding:2px 3px;background:var(--bg);outline:none;cursor:pointer;flex-shrink:0}
-.bud-cur-sel-inline{color:var(--pri);font-weight:700}
-.bud-item-label{flex:1;font-size:.8rem;font-weight:600;color:var(--txt);background:transparent;border:none;font-family:inherit;outline:none;cursor:pointer;min-width:0}
-.bud-item-label:focus{background:var(--pri-l);border-radius:4px;padding:1px 4px}
-.bud-item-del{background:none;border:none;cursor:pointer;color:var(--txt3);font-size:.78rem;padding:2px;flex-shrink:0}
-.bud-item-del:hover{color:var(--red)}
-.bud-item-amt-row{display:flex;align-items:center;gap:8px;padding:6px 10px 7px;flex-wrap:wrap}
-.bud-item-amt-block{flex:1;min-width:100px}
-.bud-amount-inp{width:100%;font-size:.9rem;font-weight:700;border:1.5px solid var(--bdr);border-radius:7px;padding:4px 8px;font-family:inherit;text-align:right;outline:none;background:var(--bg);transition:border-color .15s}
-.bud-amount-inp:focus{border-color:var(--pri);background:#fff}
-.bud-item-per{font-size:.66rem;color:var(--ok);font-weight:600;margin-top:2px;text-align:right}
-.bud-paid-label{display:flex;align-items:center;gap:5px;cursor:pointer;padding:4px 9px;border-radius:8px;border:1.5px solid var(--bdr);background:var(--bg);transition:all .15s;user-select:none;flex-shrink:0}
-.bud-paid-label.paid{background:rgba(20,184,166,.12);border-color:var(--ok)}
-.bud-paid-cb{width:14px;height:14px;cursor:pointer;accent-color:var(--ok)}
-.bud-paid-txt{font-size:.7rem;font-weight:700;color:var(--txt3)}
-.bud-paid-label.paid .bud-paid-txt{color:var(--ok)}
-.bud-person-row{display:flex;gap:4px;flex-shrink:0}
-.bud-person-toggle{font-size:.7rem;font-weight:700;cursor:pointer;padding:3px 8px;border-radius:7px;border:1.5px solid var(--bdr);transition:all .15s;user-select:none;color:var(--txt3);background:var(--bg)}
-.bud-person-toggle.sa.on{background:rgba(99,102,241,.12);border-color:var(--sa);color:var(--sa)}
-.bud-person-toggle.bi.on{background:rgba(236,72,153,.12);border-color:var(--bi);color:var(--bi)}
-.bud-person-toggle.ty.on{background:rgba(20,184,166,.12);border-color:var(--ty);color:var(--ty)}
-.fl-ban{background:var(--pri-l);border-left:4px solid var(--pri);padding:10px 14px;border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:.78rem;color:var(--txt2);margin-bottom:12px}
-.fl-ban h3{font-size:.82rem;color:var(--pri);margin-bottom:5px;font-weight:700}
-.fl-ban hr{border:none;border-top:1px dashed var(--bdr);margin:5px 0}
-
-/* ── V5: Mobile fixes + modern theme ──────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; }
-html, body {
-  overflow-x: hidden;
-  max-width: 100vw;
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
+/* ── V5 Japanese/Taiwanese theme ─────────────────────────────────── */
+:root{
+  --pri:#d4465a; --pri-d:#b02d42; --pri-l:#fde8ec;
+  --ind:#2d4a7c; --ind-l:#e8ecf5;
+  --gold:#e8a042; --ok:#14a098; --ok-l:#def4f2;
+  --red:#e63946; --sa:#3b4cca; --bi:#e63946; --ty:#14a098;
+  --bg:#fdf8f3; --card:#fff; --bdr:#ece4d9; --bdr2:#f5ede3;
+  --txt:#1a1a2e; --txt2:#4a4a5e; --txt3:#8a8a9a;
+  --sh:0 1px 2px rgba(45,74,124,.04),0 2px 6px rgba(45,74,124,.04);
+  --sh-md:0 2px 8px rgba(45,74,124,.08),0 6px 20px rgba(45,74,124,.06);
+  --r:12px; --r-sm:10px;
 }
-body {
-  overscroll-behavior-x: none;
-  touch-action: pan-y;
+body{background:var(--bg);color:var(--txt);}
+/* Header */
+.topbar,.tb,header{background:linear-gradient(90deg,#1d3456 0%,#2d4a7c 50%,#3b4cca 100%)!important;color:#fff!important;border-bottom:3px solid var(--pri)!important;box-shadow:0 2px 8px rgba(29,52,86,.3)!important;}
+.db-badge,#dbBadge{background:rgba(255,255,255,.15)!important;color:#fff!important;border:1px solid rgba(255,255,255,.25)!important;}
+/* Day headers */
+.dh{color:#fff;}
+.tc#tab-overview .dh{background:linear-gradient(135deg,#2d4a7c,#3b4cca)!important;}
+.tc#tab-mustdo .dh{background:linear-gradient(135deg,#e8a042,#d4465a)!important;}
+.tc#tab-budget .dh{background:linear-gradient(135deg,#14a098,#2d4a7c)!important;}
+.tc#tab-ranking .dh{background:linear-gradient(135deg,#3b4cca,#14a098)!important;}
+/* Nav */
+.nb,.bnav-i{color:var(--txt2);border:1.5px solid transparent;background:var(--card);font-weight:600;transition:all .15s;}
+.nb:hover,.bnav-i:hover{background:var(--ind-l);}
+.nb.on,.bnav-i.on{background:var(--pri)!important;color:#fff!important;border-color:var(--pri-d)!important;box-shadow:0 2px 6px rgba(212,70,90,.3);}
+/* Misc */
+.fl-ban{background:linear-gradient(135deg,#fde8ec,#fef4d8)!important;border-left:4px solid var(--pri)!important;color:var(--txt)!important;}
+.fl-ban h3{color:var(--pri-d)!important;}
+.ti{background:var(--card);border:1px solid var(--bdr);border-left:3px solid var(--ind);}
+.ti.transport{border-left-color:var(--gold);} .ti.hotel{border-left-color:var(--ok);} .ti.food{border-left-color:var(--pri);}
+a{color:var(--ind);} a:hover{color:var(--pri);}
+.md-grp h3{color:var(--ind);border-bottom:2px solid var(--pri);}
+.rank-wrap th{background:var(--ind);color:#fff;}
+.rank-wrap tbody tr:hover{background:var(--pri-l);}
+/* ── Mobile ────────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;}
+html,body{overflow-x:hidden;max-width:100vw;-webkit-tap-highlight-color:transparent;}
+body{overscroll-behavior-x:none;touch-action:pan-y;}
+.main-content,.body-area,.tc{min-width:0;max-width:100%;}
+.tc{overflow-x:hidden;}
+.nb-wrap,.nav{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.nb-wrap::-webkit-scrollbar,.nav::-webkit-scrollbar{display:none;}
+.nb,.bnav-i{white-space:nowrap;flex-shrink:0;}
+.rank-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.rank-wrap table{min-width:520px;}
+.topbar,.tb{position:sticky;top:0;z-index:50;}
+.nav{position:sticky;top:48px;z-index:49;background:var(--card);}
+.ti{border-radius:var(--r)!important;transition:box-shadow .15s;}
+.ti:hover{box-shadow:var(--sh-md);}
+/* ── Budget cards (compact inline) ────────────────────────────── */
+.bud-summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px;}
+.bud-card{padding:8px 6px 10px;border-radius:var(--r);background:var(--card);border:1.5px solid var(--bdr);cursor:pointer;transition:all .15s;text-align:center;min-width:0;overflow:hidden;}
+.bud-card:hover{transform:translateY(-1px);box-shadow:var(--sh-md);}
+.bud-card.sa{border-color:var(--sa);} .bud-card.bi{border-color:var(--bi);} .bud-card.ty{border-color:var(--ty);}
+.bud-card.sa.active{box-shadow:0 0 0 2px var(--sa);background:#f4f6ff;}
+.bud-card.bi.active{box-shadow:0 0 0 2px var(--bi);background:#fef2f3;}
+.bud-card.ty.active{box-shadow:0 0 0 2px var(--ty);background:#f0faf9;}
+.bud-name{font-size:.82rem;font-weight:800;margin-bottom:5px;letter-spacing:.3px;}
+.bud-card.sa .bud-name{color:var(--sa);} .bud-card.bi .bud-name{color:var(--bi);} .bud-card.ty .bud-name{color:var(--ty);}
+.bud-line{display:flex;align-items:baseline;justify-content:center;flex-wrap:wrap;gap:3px;padding:3px 4px;font-size:.64rem;line-height:1.3;min-width:0;}
+.bud-line.paid{background:var(--ok-l);border-radius:6px;margin-top:3px;}
+.bl-lbl{font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:.3px;font-size:.56rem;flex-shrink:0;}
+.bl-vnd{font-weight:800;color:var(--txt);font-size:.7rem;}
+.bud-line.paid .bl-vnd{color:var(--ok);}
+/* ── Budget items ─────────────────────────────────────────────── */
+.bud-totals{display:flex;align-items:center;background:var(--card);border-radius:var(--r);padding:10px 14px;margin-bottom:12px;box-shadow:var(--sh);border:1px solid var(--bdr2);}
+.bud-total-item{flex:1;text-align:center;}
+.bud-total-label{display:block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--txt3);margin-bottom:3px;}
+.bud-total-val{display:block;font-size:.95rem;font-weight:800;color:var(--pri);}
+.bud-total-sub{display:block;font-size:.68rem;color:var(--txt3);}
+.bud-total-divider{width:1px;background:var(--bdr);align-self:stretch;margin:0 8px;}
+.bud-add-card{background:var(--card);border-radius:var(--r);border:2px dashed var(--pri);padding:12px;margin-bottom:12px;box-shadow:var(--sh);}
+.bud-add-inp{font-size:.82rem;border:1.5px solid var(--bdr);border-radius:8px;padding:7px 10px;font-family:inherit;outline:none;background:var(--bg);}
+.bud-add-inp:focus{border-color:var(--ind);background:#fff;}
+.bud-add-select{font-size:.9rem;border:1.5px solid var(--bdr);border-radius:8px;padding:6px;background:var(--bg);outline:none;cursor:pointer;}
+.bud-add-btn{font-size:.8rem;background:var(--pri);color:#fff;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-weight:700;}
+.bud-add-btn:hover{background:var(--pri-d);}
+.bud-item-card{background:var(--card);border-radius:var(--r-sm);border:1px solid var(--bdr2);margin-bottom:6px;overflow:hidden;box-shadow:var(--sh);}
+.bud-item-row{display:flex;align-items:center;gap:6px;padding:8px 10px;border-bottom:1px solid var(--bdr2);}
+.bud-cat-select,.bud-cur-sel-inline{font-size:.7rem;border:1px solid var(--bdr);border-radius:5px;padding:2px 3px;background:var(--bg);outline:none;cursor:pointer;flex-shrink:0;}
+.bud-cur-sel-inline{color:var(--ind);font-weight:700;}
+.bud-item-label{flex:1;font-size:.8rem;font-weight:600;color:var(--txt);background:transparent;border:none;font-family:inherit;outline:none;min-width:0;}
+.bud-item-label:focus{background:var(--pri-l);border-radius:4px;padding:1px 4px;}
+.bud-item-del{background:none;border:none;cursor:pointer;color:var(--txt3);font-size:.8rem;padding:3px;flex-shrink:0;}
+.bud-item-del:hover{color:var(--red);}
+.bud-item-amt-row{display:flex;align-items:center;gap:8px;padding:6px 10px 8px;flex-wrap:wrap;}
+.bud-item-amt-block{flex:1;min-width:100px;}
+.bud-amount-inp{width:100%;font-size:.9rem;font-weight:700;border:1.5px solid var(--bdr);border-radius:7px;padding:5px 8px;font-family:inherit;text-align:right;outline:none;background:var(--bg);transition:border-color .15s;}
+.bud-amount-inp:focus{border-color:var(--ind);background:#fff;}
+.bud-item-per{font-size:.66rem;color:var(--ok);font-weight:600;margin-top:3px;text-align:right;}
+.bud-paid-label{display:flex;align-items:center;gap:5px;cursor:pointer;padding:4px 9px;border-radius:8px;border:1.5px solid var(--bdr);background:var(--bg);transition:all .15s;user-select:none;flex-shrink:0;}
+.bud-paid-label.paid{background:var(--ok-l);border-color:var(--ok);}
+.bud-paid-cb{width:14px;height:14px;cursor:pointer;accent-color:var(--ok);}
+.bud-paid-txt{font-size:.7rem;font-weight:700;color:var(--txt3);}
+.bud-paid-label.paid .bud-paid-txt{color:var(--ok);}
+.bud-person-row{display:flex;gap:4px;flex-shrink:0;}
+.bud-person-toggle{font-size:.7rem;font-weight:700;cursor:pointer;padding:3px 8px;border-radius:7px;border:1.5px solid var(--bdr);transition:all .15s;user-select:none;color:var(--txt3);background:var(--bg);}
+.bud-person-toggle.sa.on{background:rgba(59,76,202,.12);border-color:var(--sa);color:var(--sa);}
+.bud-person-toggle.bi.on{background:rgba(230,57,70,.12);border-color:var(--bi);color:var(--bi);}
+.bud-person-toggle.ty.on{background:rgba(20,160,152,.12);border-color:var(--ty);color:var(--ty);}
+/* ── Flight banner ────────────────────────────────────────────── */
+.fl-ban{border-left:4px solid var(--pri);padding:10px 14px;border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:.78rem;color:var(--txt);margin-bottom:12px;}
+.fl-ban h3{font-size:.82rem;color:var(--pri-d);margin-bottom:5px;font-weight:700;}
+.fl-ban hr{border:none;border-top:1px dashed var(--bdr);margin:5px 0;}
+/* ── iPhone 16 Pro Max (430px) ────────────────────────────────── */
+@media(max-width:480px){
+  .bud-summary-grid{gap:5px;}
+  .bud-card{padding:7px 4px 9px;}
+  .bud-name{font-size:.76rem;}
+  .bl-vnd{font-size:.66rem;} .bl-lbl{font-size:.54rem;}
+  .bud-item-row{padding:7px 8px;gap:5px;}
+  .bud-item-label{font-size:.78rem;}
+  .bud-amount-inp{font-size:.88rem;}
+  .bud-item-per{font-size:.62rem;}
+  .bud-paid-label{padding:3px 7px;}
+  .bud-paid-txt{font-size:.66rem;}
+  .bud-person-toggle{padding:3px 7px;font-size:.66rem;}
+  .bud-total-val{font-size:.88rem;} .bud-total-sub{font-size:.62rem;}
+  .tc{padding:8px!important;} .dh{padding:12px!important;}
+  .dh h2{font-size:1rem;} .dh p{font-size:.75rem;}
+  .ti{padding:9px 10px;margin-bottom:6px;}
+  .ti h3{font-size:.88rem;} .ti p{font-size:.74rem;}
+  .body-area{flex-direction:column!important;}
+  .sidebar{width:100%!important;max-height:260px;}
+  .main-content{padding:8px!important;}
 }
-/* Prevent flex/grid overflow */
-.main-content, .body-area, .tc, .day-tasks, .ti, .spot, .food-item {
-  min-width: 0;
-  max-width: 100%;
+@media(max-width:380px){
+  .bud-name{font-size:.7rem;} .bl-vnd{font-size:.62rem;} .bl-lbl{font-size:.5rem;}
 }
-.tc { overflow-x: hidden; }
-/* Wrap long strings */
-.ti-bk input, .bud-item-label, .bud-item-per, .ti h3, .ti p, .spot-name, .food-name {
-  overflow-wrap: anywhere;
-  word-break: break-word;
-}
-/* Horizontal scroll nav (tabs) */
-.nb-wrap, .bnav, .nav {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.nb-wrap::-webkit-scrollbar, .bnav::-webkit-scrollbar, .nav::-webkit-scrollbar {
-  display: none;
-}
-.nb, .bnav-i { white-space: nowrap; flex-shrink: 0; }
-/* Tables scroll horizontally inside wrapper only */
-.rank-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-.rank-wrap table { min-width: 520px; }
-/* Modernize: softer shadows, better radii */
-:root {
-  --r: 12px;
-  --r-sm: 10px;
-  --sh: 0 1px 2px rgba(0,0,0,.04), 0 1px 4px rgba(0,0,0,.04);
-  --sh-md: 0 2px 6px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.05);
-  --bdr: #e5e7eb;
-  --bdr2: #f0f2f5;
-  --bg: #f7f8fa;
-}
-body { background: var(--bg); font-feature-settings: 'cv11','ss01'; letter-spacing: -0.003em; }
-.dh { border-radius: 0 0 14px 14px; }
-.ti { border-radius: var(--r) !important; transition: box-shadow .15s; }
-.ti:hover { box-shadow: var(--sh-md); }
-/* Touch targets */
-.nb, .bnav-i, .bud-person-toggle, .bud-paid-label, .bud-item-del,
-input[type="checkbox"], .bud-cat-select, .bud-cur-sel-inline {
-  min-height: 36px;
-  display: inline-flex;
-  align-items: center;
-}
-.bud-item-del { min-width: 32px; justify-content: center; }
-/* Compact but tappable */
-.bud-item-row, .bud-item-amt-row { gap: 6px; }
-.bud-item-amt-row { flex-wrap: wrap; }
-.bud-amount-inp { min-height: 36px; }
-/* Sticky topbar */
-.topbar { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(1.4) blur(8px); -webkit-backdrop-filter: saturate(1.4) blur(8px); }
-/* Nav: sticky below topbar */
-.nav, .bnav { position: sticky; top: 48px; z-index: 49; background: var(--card); }
-/* Smaller paddings on mobile */
-@media (max-width: 640px) {
-  body { font-size: 14px; }
-  .dh { padding: 14px 14px 16px !important; }
-  .dh h2 { font-size: 1.05rem; }
-  .tc { padding: 10px !important; }
-  .ti { padding: 10px 12px !important; }
-  .bud-summary-grid { gap: 5px; }
-  .bud-card { padding: 7px 4px; }
-  .bud-name { font-size: .7rem; }
-  .bud-sec-v { font-size: .74rem; }
-  /* Sidebar hides on mobile, shown via nav */
-  .sidebar { display: none; }
-  .main-content { width: 100%; padding: 0 !important; }
-}
-/* Font: better system stack */
-body, input, select, button {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-/* Focus visible only on keyboard */
-*:focus { outline: none; }
-*:focus-visible { outline: 2px solid var(--pri); outline-offset: 2px; }
-/* Smooth scroll */
-html { scroll-behavior: smooth; }
 </style>
 </head>
 <body>
@@ -357,15 +339,15 @@ html { scroll-behavior: smooth; }
 <div class="left-panel">
   <div class="map-wrap"><div id="map"></div></div>
   <div class="map-legend">
-    <span class="on" onclick="mapMode('all',event)">Tất cả</span>
-    <span onclick="mapMode('day1',event)">N1</span>
-    <span onclick="mapMode('day2',event)">N2</span>
-    <span onclick="mapMode('day3',event)">N3</span>
-    <span onclick="mapMode('day4',event)">N4</span>
-    <span onclick="mapMode('day5',event)">N5</span>
-    <span onclick="mapMode('day6',event)">N6</span>
-    <span onclick="mapMode('day7',event)">N7</span>
-    <span onclick="mapMode('day8',event)">N8</span>
+    <span class="on" data-map-mode="all">Tất cả</span>
+    <span data-map-mode="day1">N1</span>
+    <span data-map-mode="day2">N2</span>
+    <span data-map-mode="day3">N3</span>
+    <span data-map-mode="day4">N4</span>
+    <span data-map-mode="day5">N5</span>
+    <span data-map-mode="day6">N6</span>
+    <span data-map-mode="day7">N7</span>
+    <span data-map-mode="day8">N8</span>
   </div>
   <div class="dcl-panel">
     <div class="dcl-title" id="dclTitle">📋 Checklist Ngày</div>
@@ -380,12 +362,7 @@ html { scroll-behavior: smooth; }
 <div class="tc on" id="tab-overview">
   <div class="dh"><h2>🗺️ Tổng Quan 8 Ngày</h2><p>Đài Bắc (3đ) → Hoa Liên (2đ) → Đài Trung (1đ) → Đài Bắc (1đ)</p></div>
 
-  <div class="fl-ban">
-    <h3>✈️ China Airlines</h3>
-    <b>ĐI:</b> CI-782 | T7 25/04 | SGN 10:50 → TPE 15:20 (3h30)<br>
-    <b>VỀ:</b> CI-783 | T7 02/05 | TPE 13:45 → SGN 16:20 (3h35)<hr>
-    👤 Gia Bao (FMGKXZ) · Hoài Thanh + Quỳnh Hương (DW9ZY2) · 🧳 7kg xách tay + 23kg ký gửi × 3
-  </div>
+  <div class="fl-ban"><h3>✈️ China Airlines</h3><b>ĐI:</b> CI-782 | T7 25/04 | SGN 10:50 → TPE 15:20<br><b>VỀ:</b> CI-783 | T7 02/05 | TPE 13:45 → SGN 16:20<hr>👤 Gia Bao (FMGKXZ) · Hoài Thanh + Quỳnh Hương (DW9ZY2) · 🧳 7kg + 23kg×3</div>
   <div class="cd"><div class="cd-t">📍 Lộ trình</div><div style="font-size:.82rem">
     <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(5)" title="#5">5</span><b>25/04</b> ✈️ SGN→TPE · Ximending</div>
     <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(1)" title="#1">1</span><span class="rb" onclick="zoomRank(4)" title="#4">4</span><span class="rb" onclick="zoomRank(6)" title="#6">6</span><span class="rb" onclick="zoomRank(7)" title="#7">7</span><b>26/04</b> 101 · Yongkang · Elephant Mt · Raohe</div>
@@ -1070,12 +1047,13 @@ html { scroll-behavior: smooth; }
 
 
 <div class="tc" id="tab-budget">
-  <div class="dh" style="background:linear-gradient(135deg,#11998e,#38ef7d)">
+  <div class="dh" style="background:linear-gradient(135deg,#14a098,#2d4a7c)">
     <h2>💰 Chia Tiền — Sa · Bi · Ty</h2>
-    <p>Input = tổng nhóm · /người tự tính theo số tick</p>
-    <div style="display:flex;align-items:center;gap:10px;margin-top:8px">
-      <span style="font-size:.75rem;opacity:.9">Tỷ giá TWD→VND:</span>
-      <input id="fxRate" type="number" value="860" min="1" style="width:64px;font-size:.78rem;border:1px solid rgba(255,255,255,.5);border-radius:6px;padding:3px 7px;background:rgba(255,255,255,.2);color:#fff;text-align:center;outline:none;font-weight:700" onchange="setRate(+this.value)" onblur="setRate(+this.value)">
+    <p>Input = tổng nhóm · /người tự tính</p>
+    <div style="display:flex;align-items:center;gap:8px;margin-top:8px">
+      <span style="font-size:.75rem;opacity:.9">Tỷ giá:</span>
+      <input id="fxRate" type="number" value="860" min="1" onchange="setRate(+this.value)" onblur="setRate(+this.value)"
+        style="width:60px;font-size:.78rem;border:1px solid rgba(255,255,255,.5);border-radius:6px;padding:3px 7px;background:rgba(255,255,255,.2);color:#fff;text-align:center;outline:none;font-weight:700">
       <span style="font-size:.72rem;opacity:.8">VND/TWD</span>
     </div>
   </div>
@@ -1094,49 +1072,25 @@ html { scroll-behavior: smooth; }
   <div class="bud-summary-grid">
     <div class="bud-card sa" id="bCard_sa" onclick="setBudFilter('sa')">
       <div class="bud-name">Sa</div>
-      <div class="bud-sec est">
-        <span class="bud-sec-lbl">Est</span>
-        <span class="bud-sec-v" id="saEst">—</span>
-        <span class="bud-sec-s" id="saEstTWD"></span>
-      </div>
-      <div class="bud-sec paid">
-        <span class="bud-sec-lbl">Đã TT</span>
-        <span class="bud-sec-v" id="saActVND">0₫</span>
-        <span class="bud-sec-s" id="saActTWD">≈ 0 TWD</span>
-      </div>
+      <div class="bud-line est"><span class="bl-lbl">Est:</span><span class="bl-vnd" id="saEstLine">—</span></div>
+      <div class="bud-line paid"><span class="bl-lbl">Paid:</span><span class="bl-vnd" id="saPaidLine">0₫</span></div>
     </div>
     <div class="bud-card bi" id="bCard_bi" onclick="setBudFilter('bi')">
       <div class="bud-name">Bi</div>
-      <div class="bud-sec est">
-        <span class="bud-sec-lbl">Est</span>
-        <span class="bud-sec-v" id="biEst">—</span>
-        <span class="bud-sec-s" id="biEstTWD"></span>
-      </div>
-      <div class="bud-sec paid">
-        <span class="bud-sec-lbl">Đã TT</span>
-        <span class="bud-sec-v" id="biActVND">0₫</span>
-        <span class="bud-sec-s" id="biActTWD">≈ 0 TWD</span>
-      </div>
+      <div class="bud-line est"><span class="bl-lbl">Est:</span><span class="bl-vnd" id="biEstLine">—</span></div>
+      <div class="bud-line paid"><span class="bl-lbl">Paid:</span><span class="bl-vnd" id="biPaidLine">0₫</span></div>
     </div>
     <div class="bud-card ty" id="bCard_ty" onclick="setBudFilter('ty')">
       <div class="bud-name">Ty</div>
-      <div class="bud-sec est">
-        <span class="bud-sec-lbl">Est</span>
-        <span class="bud-sec-v" id="tyEst">—</span>
-        <span class="bud-sec-s" id="tyEstTWD"></span>
-      </div>
-      <div class="bud-sec paid">
-        <span class="bud-sec-lbl">Đã TT</span>
-        <span class="bud-sec-v" id="tyActVND">0₫</span>
-        <span class="bud-sec-s" id="tyActTWD">≈ 0 TWD</span>
-      </div>
+      <div class="bud-line est"><span class="bl-lbl">Est:</span><span class="bl-vnd" id="tyEstLine">—</span></div>
+      <div class="bud-line paid"><span class="bl-lbl">Paid:</span><span class="bl-vnd" id="tyPaidLine">0₫</span></div>
     </div>
   </div>
-<div id="budFilterLabel" style="display:none;text-align:center;font-size:.74rem;font-weight:600;padding:5px 12px;border-radius:8px;margin-bottom:8px;background:var(--pri-l);color:var(--pri);cursor:pointer" onclick="setBudFilter(budFilter)"></div>
+  <div id="budFilterLabel" style="display:none;text-align:center;font-size:.74rem;font-weight:600;padding:5px 12px;border-radius:8px;margin-bottom:8px;background:var(--pri-l);color:var(--pri);cursor:pointer" onclick="setBudFilter(budFilter)"></div>
   <div class="bud-totals">
     <div class="bud-total-item"><span class="bud-total-label">Tổng Est</span><span class="bud-total-val" id="totalEstVND">—</span><span class="bud-total-sub" id="totalEstTWD"></span></div>
     <div class="bud-total-divider"></div>
-    <div class="bud-total-item"><span class="bud-total-label">Đã Thanh Toán</span><span class="bud-total-val" id="totalActVND">—</span><span class="bud-total-sub" id="totalActTWD"></span></div>
+    <div class="bud-total-item"><span class="bud-total-label">Tổng Paid</span><span class="bud-total-val" id="totalActVND">—</span><span class="bud-total-sub" id="totalActTWD"></span></div>
   </div>
   <div id="budgetBody"></div>
 </div>
@@ -1146,18 +1100,18 @@ html { scroll-behavior: smooth; }
     <p style="font-size:.72rem;color:var(--txt2);margin-bottom:8px">Click số → zoom map · Click tiêu đề → sắp xếp</p>
     <div style="overflow-x:auto"><table class="tbl" id="rankTbl">
       <thead><tr>
-        <th onclick="sortTbl(0)" class="sorted"># <span class="sa">▲</span></th>
-        <th onclick="sortTbl(1)">Điểm đến <span class="sa">▲</span></th>
-        <th onclick="sortTbl(2)">TP <span class="sa">▲</span></th>
-        <th onclick="sortTbl(3)">Ngày <span class="sa">▲</span></th>
+        <th data-sort="0" class="sorted"># <span class="sa">▲</span></th>
+        <th data-sort="1">Điểm đến <span class="sa">▲</span></th>
+        <th data-sort="2">TP <span class="sa">▲</span></th>
+        <th data-sort="3">Ngày <span class="sa">▲</span></th>
         <th>Đặc điểm</th>
       </tr></thead>
       <tbody id="rankBody"></tbody>
     </table></div>
   </div>
 </div>
-</div></div></div>
-<script>
+</div></div></div><script>
+
 const SUPA_URL='https://wvabjrxyymhpdpvuswfr.supabase.co',SUPA_KEY='sb_publishable_MMQYoRIvqb-gVByG-HV1Jg_iASCuCGE',SCHEMA='202604taiwan';
 let sb=null,SID=null;
 const TRIP_ID='202604taiwan_trip1';
@@ -1175,12 +1129,60 @@ async function sbInit(){
 }
 function setBadge(t,c){const b=document.getElementById('dbBadge');b.textContent=t;b.className='db-badge '+c;}
 
-async function getSharedId(){if(_sharedIdCache)return _sharedIdCache;if(sb){const{data}=await sb.from('sessions').select('id').eq('device_id',TRIP_ID).single();if(data)_sharedIdCache=data.id;}return _sharedIdCache;}
-async function getAllShared(tbl){if(sb){const sid=await getSharedId();if(sid){const{data}=await sb.from(tbl).select('*').eq('session_id',sid);return data||[];}}return JSON.parse(localStorage.getItem('tw26_sh_'+tbl)||'[]');}
-async function upsertShared(tbl,row){if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).upsert({...row,session_id:sid},{onConflict:'session_id,id'});return;}}const arr=JSON.parse(localStorage.getItem('tw26_sh_'+tbl)||'[]');const i=arr.findIndex(r=>r.id===row.id);if(i>=0)arr[i]={...arr[i],...row};else arr.push(row);localStorage.setItem('tw26_sh_'+tbl,JSON.stringify(arr));}
-async function deleteShared(tbl,id){if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).delete().eq('session_id',sid).eq('id',id);return;}}const arr=JSON.parse(localStorage.getItem('tw26_sh_'+tbl)||'[]').filter(r=>r.id!==id);localStorage.setItem('tw26_sh_'+tbl,JSON.stringify(arr));}
-async function getAllSharedKV(tbl){if(sb){const sid=await getSharedId();if(sid){const{data}=await sb.from(tbl).select('item_key,checked').eq('session_id',sid);const r={};(data||[]).forEach(x=>r[x.item_key]=x.checked);return r;}}return JSON.parse(localStorage.getItem('tw26_sh_kv_'+tbl)||'{}');}
-async function upsertSharedKV(tbl,key,checked){if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).upsert({session_id:sid,item_key:key,checked,checked_at:checked?new Date().toISOString():null},{onConflict:'session_id,item_key'});return;}}const d=JSON.parse(localStorage.getItem('tw26_sh_kv_'+tbl)||'{}');d[key]=checked;localStorage.setItem('tw26_sh_kv_'+tbl,JSON.stringify(d));}
+async function getSharedId(){
+  if(_sharedIdCache)return _sharedIdCache;
+  if(sb){const{data}=await sb.from('sessions').select('id').eq('device_id',TRIP_ID).single();if(data)_sharedIdCache=data.id;}
+  return _sharedIdCache;
+}
+async function getAllShared(tbl){
+  if(sb){const sid=await getSharedId();if(sid){const{data}=await sb.from(tbl).select('*').eq('session_id',sid);return data||[];}}
+  return JSON.parse(localStorage.getItem('tw26_sh_'+tbl)||'[]');
+}
+async function upsertShared(tbl,row){
+  if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).upsert({...row,session_id:sid},{onConflict:'session_id,id'});return;}}
+  const arr=JSON.parse(localStorage.getItem('tw26_sh_'+tbl)||'[]');
+  const i=arr.findIndex(r=>r.id===row.id);
+  if(i>=0)arr[i]={...arr[i],...row};else arr.push(row);
+  localStorage.setItem('tw26_sh_'+tbl,JSON.stringify(arr));
+}
+async function deleteShared(tbl,id){
+  if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).delete().eq('session_id',sid).eq('id',id);return;}}
+  const arr=JSON.parse(localStorage.getItem('tw26_sh_'+tbl)||'[]').filter(r=>r.id!==id);
+  localStorage.setItem('tw26_sh_'+tbl,JSON.stringify(arr));
+}
+async function getAllSharedKV(tbl){
+  if(sb){const sid=await getSharedId();if(sid){const{data}=await sb.from(tbl).select('item_key,checked').eq('session_id',sid);const r={};(data||[]).forEach(x=>r[x.item_key]=x.checked);return r;}}
+  return JSON.parse(localStorage.getItem('tw26_sh_kv_'+tbl)||'{}');
+}
+async function upsertSharedKV(tbl,key,checked){
+  if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).upsert({session_id:sid,item_key:key,checked,checked_at:checked?new Date().toISOString():null},{onConflict:'session_id,item_key'});return;}}
+  const d=JSON.parse(localStorage.getItem('tw26_sh_kv_'+tbl)||'{}');d[key]=checked;
+  localStorage.setItem('tw26_sh_kv_'+tbl,JSON.stringify(d));
+}
+async function getAll(tbl){
+  if(sb&&SID){const{data}=await sb.from(tbl).select('*').eq('session_id',SID);return data||[];}
+  return JSON.parse(localStorage.getItem('tw26_'+tbl)||'[]');
+}
+async function upsertRow(tbl,row){
+  if(sb&&SID){await sb.from(tbl).upsert({...row,session_id:SID},{onConflict:'session_id,id'});return;}
+  const arr=JSON.parse(localStorage.getItem('tw26_'+tbl)||'[]');
+  const i=arr.findIndex(r=>r.id===row.id);
+  if(i>=0)arr[i]={...arr[i],...row};else arr.push(row);
+  localStorage.setItem('tw26_'+tbl,JSON.stringify(arr));
+}
+async function deleteRow(tbl,id){
+  if(sb&&SID){await sb.from(tbl).delete().eq('session_id',SID).eq('id',id);return;}
+  const arr=JSON.parse(localStorage.getItem('tw26_'+tbl)||'[]').filter(r=>r.id!==id);
+  localStorage.setItem('tw26_'+tbl,JSON.stringify(arr));
+}
+async function getAllKV(tbl){
+  if(sb&&SID){const{data}=await sb.from(tbl).select('item_key,checked').eq('session_id',SID);const r={};(data||[]).forEach(x=>r[x.item_key]=x.checked);return r;}
+  return JSON.parse(localStorage.getItem('tw26_kv_'+tbl)||'{}');
+}
+async function setKV(tbl,key,val){
+  if(sb&&SID){await sb.from(tbl).upsert({session_id:SID,item_key:key,checked:val,checked_at:val?new Date().toISOString():null},{onConflict:'session_id,item_key'});return;}
+  const d=JSON.parse(localStorage.getItem('tw26_kv_'+tbl)||'{}');d[key]=val;localStorage.setItem('tw26_kv_'+tbl,JSON.stringify(d));
+}
 
 // MAP
 const DL={
@@ -1197,15 +1199,13 @@ const COLORS=['#667eea','#1a73e8','#1a73e8','#e67e22','#e67e22','#27ae60','#27ae
 const DMAP={day1:'25/04',day2:'26/04',day3:'27/04',day4:'28/04',day5:'29/04',day6:'30/04',day7:'01/05',day8:'02/05'};
 const RANKS=[[1,"Taipei 101 / 台北101","Đài Bắc",2,"View 360°"],[2,"Taroko / 太魯閣","Hoa Liên",4,"Hẻm núi #1 châu Á"],[3,"Jiufen / 九份","Tân Bắc",3,"Spirited Away vibes"],[4,"Yongkang / 永康街","Đài Bắc",2,"Mì bò, Din Tai Fung"],[5,"Ximending / 西門町","Đài Bắc",1,"Shopping & nightlife"],[6,"Elephant Mt / 象山","Đài Bắc",2,"Best city view"],[7,"Raohe / 饒河夜市","Đài Bắc",2,"Chợ đêm cổ nhất"],[8,"Shifen / 十分","Tân Bắc",3,"Thả đèn trời"],[9,"Yehliu / 野柳","Tân Bắc",3,"Queen's Head"],[10,"Qixingtan / 七星潭","Hoa Liên",5,"Bãi đá cuội"],[11,"Tiaoshi / 跳石","Hoa Liên",5,"Đá đen, hidden gem"],[12,"Fengjia / 逢甲","Đài Trung",6,"Lớn nhất Đài Loan"],[13,"Gaomei / 高美濕地","Đài Trung",6,"Hoàng hôn tuabin gió"],[14,"Rainbow / 彩虹眷村","Đài Trung",6,"Street art"],[15,"Miyahara / 宮原眼科","Đài Trung",6,"Kem, kiến trúc Nhật"],[16,"Beitou / 北投溫泉","Đài Bắc",7,"Onsen"],[17,"Tamsui / 淡水","Đài Bắc",7,"Hoàng hôn, Liao Tianding"],[18,"Sun Moon Lake / 日月潭","Nam Đầu","7*","Hồ đẹp (option)"],[19,"Qingshui / 清水斷崖","Hoa Liên",4,"Vách đá 1000m"],[20,"Shakadang / 砂卡礑","Hoa Liên",5,"Suối ngọc lam"]];
 
-let map=L.map('map',{zoomControl:false}).setView([23.7,121],7);
-L.control.zoom({position:'bottomright'}).addTo(map);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OSM'}).addTo(map);
-let mks=[],poly=null;
-function clrMap(){mks.forEach(m=>map.removeLayer(m));mks=[];if(poly){map.removeLayer(poly);poly=null;}}
-function showDay(dk){clrMap();const locs=DL[dk];if(!locs||!locs.length)return;const b=[],pp=[];const di=parseInt(dk.replace('day',''))-1;const col=COLORS[di]||'#1a73e8';locs.forEach((l,i)=>{const ic=L.divIcon({html:`<div style="background:${l.r?'#ff6b35':col};color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3)">${i+1}</div>`,iconSize:[26,26],iconAnchor:[13,13],className:''});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup(`${l.r?'#'+l.r+' ':''}${l.n}`).addTo(map);mks.push(m);b.push([l.lat,l.lng]);pp.push([l.lat,l.lng]);});if(pp.length>1)poly=L.polyline(pp,{color:col,weight:3,opacity:.7,dashArray:'8,8'}).addTo(map);b.length===1?map.setView(b[0],14):map.fitBounds(b,{padding:[30,30]});}
-function showAll(){clrMap();const ab=[];Object.entries(DL).forEach(([dk,locs],di)=>{const col=COLORS[di]||'#1a73e8';const pp=[];locs.forEach(l=>{const ic=L.divIcon({html:`<div style="background:${l.r?'#ff6b35':col};color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.25)">${l.r||'·'}</div>`,iconSize:[20,20],iconAnchor:[10,10],className:''});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup(`N${di+1}: ${l.n}`).addTo(map);mks.push(m);ab.push([l.lat,l.lng]);pp.push([l.lat,l.lng]);});if(pp.length>1){const ln=L.polyline(pp,{color:col,weight:2,opacity:.5,dashArray:'6,6'}).addTo(map);mks.push(ln);}});if(ab.length)map.fitBounds(ab,{padding:[20,20]});}
-function showRanking(){clrMap();const ab=[];Object.values(DL).forEach(locs=>locs.forEach(l=>{if(!l.r)return;const ic=L.divIcon({html:`<div style="background:#ff6b35;color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,.3)">${l.r}</div>`,iconSize:[22,22],iconAnchor:[11,11],className:''});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup(`#${l.r} ${l.n}`).addTo(map);mks.push(m);ab.push([l.lat,l.lng]);}));if(ab.length)map.fitBounds(ab,{padding:[20,20]});}
-function mapMode(mode,evt){document.querySelectorAll('.map-legend span').forEach(s=>s.classList.remove('on'));evt.target.classList.add('on');if(mode==='all')showAll();else showDay(mode);}
+let map=null,mks=[],poly=null;
+try{if(typeof L!=='undefined'){map=L.map('map',{zoomControl:false}).setView([23.7,121],7);L.control.zoom({position:'bottomright'}).addTo(map);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OSM'}).addTo(map);}}catch(e){console.error('Map:',e);}
+function clrMap(){if(!map)return;mks.forEach(m=>map.removeLayer(m));mks=[];if(poly){map.removeLayer(poly);poly=null;}}
+function showDay(dk){if(!map)return;clrMap();const locs=DL[dk];if(!locs||!locs.length)return;const b=[],pp=[];const di=parseInt(dk.replace('day',''))-1;const col=COLORS[di]||'#1a73e8';locs.forEach((l,i)=>{const ic=L.divIcon({html:`<div style="background:${l.r?'#ff6b35':col};color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3)">${i+1}</div>`,iconSize:[26,26],iconAnchor:[13,13],className:''});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup(`${l.r?'#'+l.r+' ':''}${l.n}`).addTo(map);mks.push(m);b.push([l.lat,l.lng]);pp.push([l.lat,l.lng]);});if(pp.length>1)poly=L.polyline(pp,{color:col,weight:3,opacity:.7,dashArray:'8,8'}).addTo(map);b.length===1?map.setView(b[0],14):map.fitBounds(b,{padding:[30,30]});}
+function showAll(){if(!map)return;clrMap();const ab=[];Object.entries(DL).forEach(([dk,locs],di)=>{const col=COLORS[di]||'#1a73e8';const pp=[];locs.forEach(l=>{const ic=L.divIcon({html:`<div style="background:${l.r?'#ff6b35':col};color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.25)">${l.r||'·'}</div>`,iconSize:[20,20],iconAnchor:[10,10],className:''});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup(`N${di+1}: ${l.n}`).addTo(map);mks.push(m);ab.push([l.lat,l.lng]);pp.push([l.lat,l.lng]);});if(pp.length>1){const ln=L.polyline(pp,{color:col,weight:2,opacity:.5,dashArray:'6,6'}).addTo(map);mks.push(ln);}});if(ab.length)map.fitBounds(ab,{padding:[20,20]});}
+function showRanking(){if(!map)return;clrMap();const ab=[];Object.values(DL).forEach(locs=>locs.forEach(l=>{if(!l.r)return;const ic=L.divIcon({html:`<div style="background:#ff6b35;color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,.3)">${l.r}</div>`,iconSize:[22,22],iconAnchor:[11,11],className:''});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup(`#${l.r} ${l.n}`).addTo(map);mks.push(m);ab.push([l.lat,l.lng]);}));if(ab.length)map.fitBounds(ab,{padding:[20,20]});}
+function mapMode(mode){document.querySelectorAll('.map-legend span').forEach(s=>s.classList.remove('on'));if(mode==='all')showAll();else showDay(mode);}
 function zoomRank(r){let found=null,fd=null;Object.entries(DL).forEach(([dk,locs])=>locs.forEach(l=>{if(l.r===r){found=l;fd=dk;}}));if(!found)return;showDay(fd);hlLeg(fd);setTimeout(()=>{map.setView([found.lat,found.lng],14);mks.forEach(m=>{try{if(m.getLatLng&&Math.abs(m.getLatLng().lat-found.lat)<.001)m.openPopup();}catch(e){}});},150);if(window.innerWidth<768)document.getElementById('map').scrollIntoView({behavior:'smooth',block:'start'});}
 
 // NAV
@@ -1332,15 +1332,13 @@ function renderOvChecklist(){
 
 // INLINE BOOKING LINKS (timeline)
 let tiBkData={};  // {bk_id: url}
+const DEFAULT_BOOKINGS={day1:[['flight','✈️ Vé CI-782 SGN→TPE',''],['hotel','🏨 Hotel Đài Bắc (N1-3+N7)','']],day2:[['ticket','🎫 Taipei 101 (Klook)','']],day3:[['tour','🚌 Tour Yehliu+Jiufen+Shifen (KKday)','']],day4:[['transport','🚆 TRA 472 Taipei→Hualien #6684500','https://www.railway.gov.tw'],['hotel','🏨 Hotel Hoa Liên (N4+N5)',''],['permit','📋 Taroko Trail Permit','https://taroko.gov.tw']],day5:[['transport','🚆 TRA Hualien→Taichung 30/04',''],['hotel','🏨 Hotel Hoa Liên (đêm 2)','']],day6:[['transport','🚆 TRA Hualien→Taichung',''],['hotel','🏨 Hotel Đài Trung (Fengjia)','']],day7:[['transport','🚄 HSR Taichung→Taipei',''],['hotel','🏨 Hotel Đài Bắc đêm cuối','']],day8:[['flight','✈️ Vé CI-783 TPE→SGN','']]};
 async function loadTiBk(){
   const rows=await getAllShared('booking_links');
   if(rows.length===0){
     const IDS={day1:['d1_flight','d1_hotel'],day2:['d2_101'],day3:['d3_tour'],day4:['d4_train','d4_hotel','d4_permit'],day5:['d5_train','d5_hotel'],day6:['d6_train','d6_hotel'],day7:['d7_hsr','d7_hotel'],day8:['d8_flight']};
     const seed=[];
-    Object.entries(DEFAULT_BOOKINGS).forEach(([dk,items])=>{
-      const ids=IDS[dk]||[];
-      items.forEach(([type,label,url],i)=>{seed.push({id:ids[i]||'bk_'+dk+'_'+i,day_key:dk,link_type:type,label,url:url||''});});
-    });
+    Object.entries(DEFAULT_BOOKINGS).forEach(([dk,items])=>{const ids=IDS[dk]||[];items.forEach(([type,label,url],i)=>{seed.push({id:ids[i]||'bk_'+dk+'_'+i,day_key:dk,link_type:type,label,url:url||''});});});
     await Promise.all(seed.map(bk=>upsertShared('booking_links',bk)));
     seed.forEach(bk=>{tiBkData[bk.id]=bk.url;if(bk.url)updateTiBkUI(bk.id,bk.url);});
   }else{rows.forEach(r=>{tiBkData[r.id]=r.url||'';if(r.url)updateTiBkUI(r.id,r.url);});}
@@ -1409,21 +1407,17 @@ const DEFAULT_BUDGET=[
   {label:'🛍️ Quà+Mua sắm',category:'shopping',estimate:2000,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
   {label:'🔄 Dự phòng',category:'misc',estimate:2000,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
 ];
-const DEFAULT_BOOKINGS={day1:[['flight','✈️ Vé CI-782 SGN→TPE',''],['hotel','🏨 Hotel Đài Bắc (N1-3+N7)','']],day2:[['ticket','🎫 Taipei 101 (Klook)','']],day3:[['tour','🚌 Tour Yehliu+Jiufen+Shifen (KKday)','']],day4:[['transport','🚆 TRA 472 Taipei→Hualien #6684500','https://www.railway.gov.tw'],['hotel','🏨 Hotel Hoa Liên (N4+N5)',''],['permit','📋 Taroko Trail Permit','https://taroko.gov.tw']],day5:[['transport','🚆 TRA Hualien→Taichung 30/04',''],['hotel','🏨 Hotel Hoa Liên (đêm 2)','']],day6:[['transport','🚆 TRA Hualien→Taichung',''],['hotel','🏨 Hotel Đài Trung (Fengjia)','']],day7:[['transport','🚄 HSR Taichung→Taipei',''],['hotel','🏨 Hotel Đài Bắc đêm cuối','']],day8:[['flight','✈️ Vé CI-783 TPE→SGN','']]};
 const CAT_ICON={transport:'🚆',hotel:'🏨',activity:'🎫',food:'🍜',shopping:'🛍️',misc:'🔧'};
 let budgetItems=[],budRate=860,budFilter=null;
-
 function setRate(r){if(r>0){budRate=r;calcBudgetSummary();renderBudget();}}
 function toVND(n,cur){return cur==='VND'?Number(n)||0:(Number(n)||0)*budRate;}
-function fmtVND(n){const r=Number(n)||0;return r>=1000000?fmtMoney(r/1000000)+'tr₫':fmtMoney(r)+'₫';}
-function fmtTWD(n){return fmtMoney(Number(n)||0)+' TWD';}
 function fmtMoney(n){return (Number(n)||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
 function fmtInt(n){return Math.round(Number(n)||0).toLocaleString('en-US');}
 function parseAmt(s){return Number(String(s).replace(/,/g,''))||0;}
-
-function budInpFocus(el){const raw=parseAmt(el.dataset.raw||el.value)||0;el.value=raw===0?'':raw;el.select();}
+function fmtVND(n){const r=Number(n)||0;if(r>=1000000)return (r/1000000).toFixed(2).replace(/\.?0+$/,'')+'tr₫';return fmtInt(r)+'₫';}
+function fmtTWD(n){return fmtInt(Number(n)||0)+' TWD';}
+function budInpFocus(el){const raw=parseAmt(el.value)||parseAmt(el.dataset.raw)||0;el.value=raw===0?'':raw;el.select();}
 function budInpBlur(el,id,field){const val=parseAmt(el.value);el.dataset.raw=val;el.value=val===0?'':fmtInt(val);updBud(id,field,val);}
-
 async function loadBudget(){
   const rows=await getAllShared('budget_items');
   if(rows.length===0){
@@ -1431,13 +1425,12 @@ async function loadBudget(){
     await Promise.all(budgetItems.map(item=>upsertShared('budget_items',item)));
   }else{
     budgetItems=rows.sort((a,b)=>(a.sort_order||0)-(b.sort_order||0));
-    budgetItems.forEach(item=>{if(!item.currency)item.currency=item.est_cur||'TWD';if(item.paid===undefined)item.paid=false;});
+    budgetItems.forEach(item=>{if(!item.currency)item.currency=item.est_cur||'TWD';});
   }
   renderBudget();calcBudgetSummary();
 }
-
+async function loadTiBk2(){}
 function setBudFilter(p){budFilter=budFilter===p?null:p;['sa','bi','ty'].forEach(x=>{const el=document.getElementById('bCard_'+x);if(el)el.classList.toggle('active',x===budFilter);});renderBudget();}
-
 function renderBudget(){
   const cont=document.getElementById('budgetBody');if(!cont)return;
   const vis=budFilter?budgetItems.filter(x=>x['for_'+budFilter]):budgetItems;
@@ -1445,12 +1438,10 @@ function renderBudget(){
   if(lbl){lbl.style.display=budFilter?'block':'none';if(budFilter)lbl.textContent='Lọc: '+{sa:'Sa',bi:'Bi',ty:'Ty'}[budFilter]+' — '+vis.length+'/'+budgetItems.length+' khoản';}
   let html='';
   vis.forEach(item=>{
-    const cur=item.currency||'TWD';
-    const pc=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0)||1;
+    const cur=item.currency||'TWD';const pc=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0)||1;
     const est=Number(item.estimate)||0;
+    const perPerson=est>0?fmtInt(est/pc)+' '+cur+'/ng':'—';
     const paid=!!item.paid;
-    const perPerson=est>0?fmtMoney(est/pc)+' '+cur+'/ng':'—';
-    const convLine=cur==='TWD'&&est>0?' · ≈ '+fmtInt(est*budRate)+' VND':'';
     html+=`<div class="bud-item-card" id="bic_${item.id}">
       <div class="bud-item-row">
         <select class="bud-cat-select" onchange="updBud('${item.id}','category',this.value)">${['transport','hotel','activity','food','shopping','misc'].map(v=>'<option value="'+v+'"'+(item.category===v?' selected':'')+'>'+CAT_ICON[v]+'</option>').join('')}</select>
@@ -1465,11 +1456,10 @@ function renderBudget(){
         <div class="bud-item-amt-block">
           <input class="bud-amount-inp" type="text" inputmode="numeric"
             value="${est>0?fmtInt(est):''}" data-raw="${est}" placeholder="0"
-            onfocus="budInpFocus(this)"
-            onblur="budInpBlur(this,'${item.id}','estimate')">
-          <div class="bud-item-per">${perPerson}${convLine}</div>
+            onfocus="budInpFocus(this)" onblur="budInpBlur(this,'${item.id}','estimate')">
+          <div class="bud-item-per">${perPerson}${cur==='TWD'&&est>0?' · ≈ '+fmtInt(est*budRate)+' VND':''}</div>
         </div>
-        <label class="bud-paid-label ${paid?'paid':''}">
+        <label class="bud-paid-label ${paid?'paid':''}" onclick="">
           <input type="checkbox" class="bud-paid-cb" ${paid?'checked':''} onchange="togglePaid('${item.id}',this.checked)">
           <span class="bud-paid-txt">${paid?'✓ Đã TT':'Đã TT?'}</span>
         </label>
@@ -1483,42 +1473,30 @@ function renderBudget(){
   });
   cont.innerHTML=html;
 }
-
 async function updBud(id,field,val){
   const item=budgetItems.find(x=>x.id===id);if(!item)return;
   item[field]=val;if(field==='currency'){item.est_cur=val;item.act_cur=val;item.item_currency=val;}
   await upsertShared('budget_items',item);
-  const cur=item.currency||'TWD';const pc2=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0)||1;
+  const cur=item.currency||'TWD';const pc=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0)||1;
   const card=document.getElementById('bic_'+id);
-  if(card){
-    const per=card.querySelector('.bud-item-per');
-    const est2=Number(item.estimate)||0;
-    if(per){
-      let perTxt=est2>0?fmtMoney(est2/pc2)+' '+cur+'/ng':'—';
-      if(cur==='TWD'&&est2>0)perTxt+=' · ≈ '+fmtInt(est2*budRate)+' VND';
-      per.textContent=perTxt;
-    }
-  }
+  if(card){const per=card.querySelector('.bud-item-per');
+    const est=Number(item.estimate)||0;
+    if(per){let t=est>0?fmtInt(est/pc)+' '+cur+'/ng':'—';if(cur==='TWD'&&est>0)t+=' · ≈ '+fmtInt(est*budRate)+' VND';per.textContent=t;}}
   calcBudgetSummary();
 }
-
 async function togglePaid(id,paid){
   const item=budgetItems.find(x=>x.id===id);if(!item)return;
-  item.paid=paid;item.actual=paid?item.estimate:0;
+  item.paid=paid;if(paid)item.actual=item.estimate;else item.actual=0;
   await upsertShared('budget_items',item);
   const card=document.getElementById('bic_'+id);
   if(card){const lbl=card.querySelector('.bud-paid-label');if(lbl){lbl.className='bud-paid-label '+(paid?'paid':'');lbl.querySelector('.bud-paid-txt').textContent=paid?'✓ Đã TT':'Đã TT?';}}
   calcBudgetSummary();
 }
-
 async function togglePerson(id,field){
   const item=budgetItems.find(x=>x.id===id);if(!item)return;item[field]=!item[field];
-  await upsertShared('budget_items',item);
-  renderBudget();calcBudgetSummary();
+  await upsertShared('budget_items',item);renderBudget();calcBudgetSummary();
 }
-
 async function delBud(id){budgetItems=budgetItems.filter(x=>x.id!==id);await deleteShared('budget_items',id);renderBudget();calcBudgetSummary();}
-
 async function addBudgetItem(){
   const label=document.getElementById('budNewLabel').value.trim();const cat=document.getElementById('budNewCat').value;
   if(!label){document.getElementById('budNewLabel').focus();return;}
@@ -1526,7 +1504,6 @@ async function addBudgetItem(){
   budgetItems.push(item);await upsertShared('budget_items',item);
   document.getElementById('budNewLabel').value='';renderBudget();calcBudgetSummary();
 }
-
 function calcBudgetSummary(){
   let saE=0,biE=0,tyE=0,saA=0,biA=0,tyA=0,totE=0,totA=0;
   budgetItems.forEach(item=>{
@@ -1536,10 +1513,9 @@ function calcBudgetSummary(){
     if(n>0){if(item.for_sa)saA+=aV/n;if(item.for_bi)biA+=aV/n;if(item.for_ty)tyA+=aV/n;}
   });
   [['sa',saE,saA],['bi',biE,biA],['ty',tyE,tyA]].forEach(([p,e,a])=>{
-    const eVEl=document.getElementById(p+'EstVND');const eTEl=document.getElementById(p+'EstTWD');
-    const aVEl=document.getElementById(p+'ActVND');const aTEl=document.getElementById(p+'ActTWD');
-    if(eVEl)eVEl.textContent=fmtVND(e);if(eTEl)eTEl.textContent='≈ '+fmtTWD(e/budRate);
-    if(aVEl)aVEl.textContent=fmtVND(a);if(aTEl)aTEl.textContent='≈ '+fmtTWD(a/budRate);
+    const estEl=document.getElementById(p+'EstLine');const paidEl=document.getElementById(p+'PaidLine');
+    if(estEl)estEl.textContent=e>0?fmtVND(e)+' ≈ '+fmtTWD(e/budRate):'—';
+    if(paidEl)paidEl.textContent=a>0?fmtVND(a)+' ≈ '+fmtTWD(a/budRate):'0₫ ≈ 0 TWD';
   });
   const tEV=document.getElementById('totalEstVND');const tET=document.getElementById('totalEstTWD');
   const tAV=document.getElementById('totalActVND');const tAT=document.getElementById('totalActTWD');
@@ -1548,18 +1524,37 @@ function calcBudgetSummary(){
 }
 
 let sCol=0,sAsc=true;
-function buildRank(){const tb=document.getElementById('rankBody');tb.innerHTML='';[...RANKS].sort((a,b)=>{let va=a[sCol],vb=b[sCol];if(typeof va==='string'){va=va.replace('*','');vb=String(vb).replace('*','');}if(!isNaN(va)&&!isNaN(vb)){va=+va;vb=+vb;}return va<vb?(sAsc?-1:1):va>vb?(sAsc?1:-1):0;}).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td><span class="rb" onclick="zoomRank(${r[0]})">${r[0]}</span></td><td><b>${r[1]}</b></td><td>${r[2]}</td><td>${r[3]}</td><td style="font-size:.75rem;color:var(--txt2)">${r[4]}</td>`;tb.appendChild(tr);});document.querySelectorAll('#rankTbl th').forEach((th,i)=>{th.classList.toggle('sorted',i===sCol);const sa=th.querySelector('.sa');if(sa)sa.textContent=i===sCol?(sAsc?'▲':'▼'):'▲';});}
+function buildRank(){const tb=document.getElementById('rankBody');if(!tb)return;tb.innerHTML='';[...RANKS].sort((a,b)=>{let va=a[sCol],vb=b[sCol];if(typeof va==='string'){va=va.replace('*','');vb=String(vb).replace('*','');}if(!isNaN(va)&&!isNaN(vb)){va=+va;vb=+vb;}return va<vb?(sAsc?-1:1):va>vb?(sAsc?1:-1):0;}).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td><span class="rb" onclick="zoomRank(${r[0]})">${r[0]}</span></td><td><b>${r[1]}</b></td><td>${r[2]}</td><td>${r[3]}</td><td style="font-size:.75rem;color:var(--txt2)">${r[4]}</td>`;tb.appendChild(tr);});document.querySelectorAll('#rankTbl th').forEach((th,i)=>{th.classList.toggle('sorted',i===sCol);const sa=th.querySelector('.sa');if(sa)sa.textContent=i===sCol?(sAsc?'▲':'▼'):'▲';});}
 function sortTbl(c){if(c===4)return;sCol===c?sAsc=!sAsc:(sCol=c,sAsc=true);buildRank();}
 
 // INIT
 async function init(){
-  showAll();buildRank();
-  await sbInit();
-  await Promise.all([loadAllTasks(),loadBudget(),mdInit()]);
-  await Promise.all([loadTiBk(),loadLeftBk()]);
-  renderOvChecklist();
-  renderDayChecklist(null);
+  try{showAll();}catch(e){console.error('showAll:',e);}
+  try{buildRank();}catch(e){console.error('buildRank:',e);}
+  try{await sbInit();}catch(e){console.error('sbInit:',e);}
+  try{await Promise.all([loadAllTasks(),loadBudget(),mdInit()]);}catch(e){console.error('loadData:',e);}
+  try{await Promise.all([loadTiBk(),loadLeftBk()]);}catch(e){console.error('loadBookings:',e);}
+  try{renderOvChecklist();}catch(e){console.error('renderOv:',e);}
+  try{renderDayChecklist(null);}catch(e){console.error('renderDay:',e);}
 }
+// ── Event delegation (safe for sandboxed iframes) ──────────────────
+document.addEventListener('click',function(e){
+  const tab=e.target.closest('[data-tab]');
+  if(tab){go(tab.getAttribute('data-tab'));return;}
+  const mm=e.target.closest('[data-map-mode]');
+  if(mm){mapMode(mm.getAttribute('data-map-mode'));return;}
+  const sort=e.target.closest('[data-sort]');
+  if(sort){sortTbl(+sort.getAttribute('data-sort'));return;}
+},{passive:true});
+
+// ── Expose all handlers on window (belt+suspenders) ─────────────────
+['go','mapMode','sortTbl','setBudFilter','setRate','addBudgetItem',
+ 'mdChk','saveTiBk','zoomRank','addTask','deleteTask','startEdit',
+ 'toggleTask','togglePaid','togglePerson','updBud','delBud',
+ 'budInpFocus','budInpBlur','renderBudget','calcBudgetSummary',
+ 'buildRank','renderDayChecklist','renderOvChecklist'
+].forEach(function(n){if(typeof window[n]==='undefined'&&typeof eval(n)!=='undefined')try{window[n]=eval(n);}catch(e){}});
+
 init();
 
 </script>
