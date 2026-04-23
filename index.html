@@ -8,306 +8,472 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{font-size:112%}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:80px}
-.hdr{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:14px 16px 10px;position:sticky;top:0;z-index:1001;box-shadow:0 4px 16px rgba(0,0,0,.18)}
-.hdr h1{font-size:1.1rem;font-weight:800}
-.hdr-chips{display:flex;gap:6px;margin-top:5px;flex-wrap:wrap;align-items:center}
-.hdr-chips span{background:rgba(255,255,255,.18);padding:2px 8px;border-radius:16px;font-size:.68rem}
-.db-badge{font-size:.65rem;padding:2px 8px;border-radius:10px;font-weight:700;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3)}
-.db-badge.ok{background:rgba(52,168,83,.4)}.db-badge.err{background:rgba(220,53,69,.4)}
-.fl-ban{background:var(--pri-l);border-left:4px solid var(--pri);padding:10px 14px;margin:10px 10px 0;border-radius:0 10px 10px 0;font-size:.78rem;color:var(--txt2)}
-.fl-ban h3{font-size:.8rem;color:var(--pri);margin-bottom:4px;font-weight:700}
-.fl-ban hr{border:none;border-top:1px dashed #ccc;margin:6px 0}
-.fl-warn{font-size:.72rem;color:var(--acc);margin-top:4px;font-weight:600}
-.nav{display:flex;overflow-x:auto;padding:7px 10px;gap:5px;background:var(--card);border-bottom:1px solid var(--bdr);position:sticky;top:62px;z-index:1000;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.nav::-webkit-scrollbar{display:none}
-.nb{flex-shrink:0;padding:5px 11px;border:2px solid var(--bdr);border-radius:20px;background:var(--card);cursor:pointer;font-size:.73rem;font-weight:700;transition:all .15s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
-.nb.on{background:var(--pri);color:#fff;border-color:var(--pri)}
-.nb.sp{border-color:var(--acc);color:var(--acc)}.nb.sp.on{background:var(--acc);color:#fff}
-.main{max-width:1200px;margin:0 auto;padding:10px}
-.grid{display:grid;grid-template-columns:1fr;gap:12px}
-@media(min-width:768px){.grid{grid-template-columns:1fr 1fr}}
-.map-wrap{border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);height:200px}
-@media(min-width:768px){.map-wrap{height:340px}}
-#map{height:100%;width:100%}
-.map-legend{display:flex;gap:5px;margin-top:7px;flex-wrap:wrap}
-.map-legend span{font-size:.67rem;padding:3px 8px;border-radius:12px;cursor:pointer;border:1.5px solid var(--bdr);background:var(--card);font-weight:600;transition:all .15s}
-.map-legend span.on{background:var(--pri);color:#fff;border-color:var(--pri)}
-@media(min-width:768px){.left-panel{position:sticky;top:118px;max-height:calc(100vh - 130px);overflow-y:auto}}
-.dcl-panel{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:12px 14px;margin-top:10px}
-.dcl-title{font-size:.85rem;font-weight:800;color:var(--pri);margin-bottom:6px}
-.dcl-prog{font-size:.72rem;color:var(--ok);font-weight:700;margin-bottom:5px}
-.dcl-bar{height:5px;background:var(--bdr);border-radius:3px;overflow:hidden;margin-bottom:8px}
-.dcl-bar-fill{height:100%;background:linear-gradient(90deg,var(--ok),var(--pri));border-radius:3px;transition:width .3s}
-.task-row{display:flex;align-items:flex-start;gap:6px;padding:5px 0;border-bottom:1px solid #f3f3f3}
-.task-row:last-child{border-bottom:none}
-.task-cb{width:17px;height:17px;accent-color:var(--pri);cursor:pointer;flex-shrink:0;margin-top:2px}
-.task-text{flex:1;font-size:.78rem;line-height:1.4;cursor:pointer;background:transparent;border:none;color:var(--txt);font-family:inherit;padding:0;outline:none;word-break:break-word}
-.task-text.done{text-decoration:line-through;color:var(--txt2)}
-.task-text[contenteditable=true]{background:var(--pri-l);border-radius:4px;padding:1px 4px;outline:1px solid var(--pri)}
-.task-actions{display:flex;gap:2px;opacity:0;transition:opacity .15s;flex-shrink:0}
-.task-row:hover .task-actions,.task-row:focus-within .task-actions{opacity:1}
-.task-btn{border:none;background:none;cursor:pointer;font-size:.72rem;padding:2px 4px;border-radius:4px;color:var(--txt2);line-height:1}
-.task-btn:hover{background:var(--bg)}
-.task-btn.del:hover{background:#fde;color:var(--del)}
-.add-task-row{display:flex;gap:6px;margin-top:8px;padding-top:6px;border-top:1px dashed var(--bdr)}
-.add-task-inp{flex:1;font-size:.78rem;border:1px solid var(--bdr);border-radius:6px;padding:5px 8px;font-family:inherit;outline:none;background:var(--bg)}
-.add-task-inp:focus{border-color:var(--pri);background:#fff}
-.add-task-btn{font-size:.75rem;background:var(--pri);color:#fff;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-weight:700}
-.bk-section{margin-top:10px;padding-top:8px;border-top:1px dashed var(--bdr)}
-.bk-title{font-size:.78rem;font-weight:700;color:var(--txt2);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
-.bk-row{display:flex;align-items:center;gap:6px;margin-bottom:5px}
-.bk-label{font-size:.73rem;font-weight:700;flex-shrink:0;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.bk-input{flex:1;font-size:.71rem;border:1px solid var(--bdr);border-radius:5px;padding:4px 6px;font-family:inherit;outline:none;color:var(--pri);background:#fff;min-width:0}
-.bk-input:focus{border-color:var(--pri)}
-.bk-input::placeholder{color:#bbb}
-.bk-open{font-size:.68rem;color:var(--pri);text-decoration:none;flex-shrink:0;padding:3px 6px;border-radius:4px;border:1px solid var(--bdr);white-space:nowrap}
-.bk-del{font-size:.7rem;background:none;border:none;cursor:pointer;color:#ccc;padding:2px;flex-shrink:0}
-.bk-del:hover{color:var(--del)}
-.add-bk-row{display:flex;gap:5px;margin-top:6px}
-.add-bk-inp{flex:1;font-size:.72rem;border:1px solid var(--bdr);border-radius:6px;padding:4px 8px;font-family:inherit;outline:none;background:var(--bg)}
-.add-bk-inp:focus{border-color:var(--pri);background:#fff}
-.add-bk-btn{font-size:.72rem;background:var(--ok);color:#fff;border:none;border-radius:6px;padding:4px 10px;cursor:pointer;font-weight:700}
-.cd{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:14px;margin-bottom:12px}
-.cd-t{font-size:1rem;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:6px}
-.tl{position:relative;padding-left:20px}
-.tl::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--pri),var(--acc));border-radius:2px}
-.ti{position:relative;margin-bottom:14px;padding:10px 12px;background:var(--bg);border-radius:8px;border-left:3px solid var(--pri)}
-.ti::before{content:'';position:absolute;left:-17px;top:14px;width:8px;height:8px;border-radius:50%;background:var(--pri);border:2px solid #fff;box-shadow:0 0 0 2px var(--pri)}
-.ti.ev{border-left-color:var(--acc)}.ti.ev::before{background:var(--acc);box-shadow:0 0 0 2px var(--acc)}
-.ti.hotel-ti{border-left-color:#e67e22}.ti.hotel-ti::before{background:#e67e22;box-shadow:0 0 0 2px #e67e22}
-.ti-t{font-size:.7rem;color:var(--txt2);font-weight:700;text-transform:uppercase;letter-spacing:.3px}
-.ti-p{font-size:.9rem;font-weight:800;margin:3px 0;display:flex;align-items:flex-start;gap:5px;flex-wrap:wrap}
-.ti-sub{font-size:.72rem;color:var(--txt2);font-weight:400;display:block;margin-top:1px}
-.ti-d{font-size:.8rem;color:var(--txt2);margin-top:2px}
-.ti-c{font-size:.73rem;color:var(--ok);font-weight:700;margin-top:4px}
-.ti-tip{font-size:.73rem;color:var(--acc);margin-top:3px;font-style:italic}
-.ti-note{font-size:.73rem;color:#6200ea;margin-top:4px;background:#f3e5ff;padding:4px 8px;border-radius:5px;border-left:3px solid #6200ea}
-/* INLINE BOOKING LINK */
-.ti-bk{display:flex;align-items:center;gap:6px;margin-top:7px;padding:5px 8px;background:rgba(26,115,232,.06);border-radius:6px;border:1px dashed var(--pri)}
-.ti-bk-label{font-size:.7rem;font-weight:700;color:var(--pri);flex-shrink:0;white-space:nowrap}
-.ti-bk-input{flex:1;font-size:.7rem;border:none;background:transparent;outline:none;color:var(--txt);font-family:inherit;min-width:0}
-.ti-bk-input::placeholder{color:#bbb}
-.ti-bk-open{font-size:.68rem;color:var(--pri);text-decoration:none;flex-shrink:0;padding:2px 6px;border-radius:4px;border:1px solid var(--pri);white-space:nowrap}
-/* INLINE LINKS */
-.il-group{margin-top:8px;border-top:1px dashed var(--bdr);padding-top:6px;display:flex;flex-direction:column;gap:3px}
-.il-link{display:flex;align-items:flex-start;gap:7px;text-decoration:none;padding:4px 6px;border-radius:6px;transition:background .12s}
-.il-link:hover{background:rgba(0,0,0,.04)}
-.il-icon{font-size:.9rem;flex-shrink:0;margin-top:1px}
-.il-name{font-size:.75rem;font-weight:700;display:block}
-.il-tip{font-size:.68rem;color:var(--txt2);display:block;margin-top:1px}
-.il-photo .il-name{color:#6200ea}
-.il-food .il-name{color:var(--acc)}
-.rb{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#ff6b35,#ff9f1c);color:#fff;font-size:.65rem;font-weight:900;flex-shrink:0;cursor:pointer;transition:transform .15s}
-.rb:hover{transform:scale(1.2)}
-.dh{color:#fff;padding:14px 16px;border-radius:var(--r);margin-bottom:12px;background:linear-gradient(135deg,var(--pri),#4a90d9)}
-.dh h2{font-size:1.05rem;font-weight:800}
-.dh p{font-size:.8rem;opacity:.9;margin-top:3px}
-.dh-tr{display:inline-block;background:rgba(255,255,255,.2);padding:3px 8px;border-radius:10px;font-size:.7rem;margin-top:6px}
-.dh.red{background:linear-gradient(135deg,#dc3545,#c82333)}
-.nt{border-radius:8px;padding:10px 12px;margin-bottom:8px;font-size:.8rem;border-left:4px solid var(--warn);background:#fff3cd}
-.nt.dng{background:#f8d7da;border-left-color:#dc3545}
-.nt.inf{background:var(--pri-l);border-left-color:var(--pri)}
-.nt b{display:block;margin-bottom:3px;font-size:.76rem}
-.rt-btn{display:inline-flex;align-items:center;gap:5px;color:#fff;padding:6px 14px;border-radius:20px;font-size:.75rem;font-weight:700;text-decoration:none;margin:0 6px 10px 0;box-shadow:0 2px 6px rgba(0,0,0,.2)}
-.rt-btn.grn{background:#34a853}.rt-btn.blu{background:#1a73e8}.rt-btn.org{background:#e67e22}.rt-btn.pur{background:#764ba2}.rt-btn.red{background:#dc3545}
-.tbl{width:100%;border-collapse:collapse;font-size:.8rem}
-.tbl th,.tbl td{padding:7px 8px;text-align:left;border-bottom:1px solid var(--bdr)}
-.tbl th{background:var(--bg);font-weight:700;font-size:.7rem;text-transform:uppercase;color:var(--txt2);cursor:pointer;user-select:none}
-.tbl th.sorted .sa{opacity:1;color:var(--pri)}
-.tbl th .sa{font-size:.6rem;margin-left:2px;opacity:.5}
-.tbl-tot{font-weight:800;color:var(--pri)}
-/* MUST DO */
-.md-city{margin-bottom:18px}
-.md-city-hdr{display:flex;align-items:center;gap:8px;font-size:.95rem;font-weight:800;margin-bottom:10px;padding:8px 12px;background:var(--pri-l);border-radius:8px;border-left:4px solid var(--pri)}
-.md-i{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid #f3f3f3;font-size:.82rem}
-.md-i input{width:18px;height:18px;accent-color:var(--pri);cursor:pointer;flex-shrink:0;margin-top:2px}
-.md-i.ck label{text-decoration:line-through;color:var(--txt2)}
-.md-i label{cursor:pointer;flex:1}
-.md-name{font-weight:700;display:block}
-.md-addr{font-size:.7rem;color:var(--txt2);margin-top:2px;display:block}
-.md-sub{font-size:.7rem;color:var(--txt2);display:block;margin-top:1px}
-.md-gmap{color:var(--pri);font-size:.8rem;flex-shrink:0;text-decoration:none;margin-top:2px}
-.md-prog{font-size:.8rem;font-weight:700;color:var(--ok);margin-bottom:6px}
-.md-prog-bar{height:6px;background:var(--bdr);border-radius:3px;overflow:hidden;margin-bottom:14px}
-.md-prog-fill{height:100%;background:linear-gradient(90deg,var(--ok),var(--pri));border-radius:3px;transition:width .3s}
-/* BUDGET */
-.budget-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
-.bud-person{text-align:center;padding:10px;border-radius:10px;background:var(--bg)}
-.bud-person.sa{border-top:3px solid var(--sa)}.bud-person.bi{border-top:3px solid var(--bi)}.bud-person.ty{border-top:3px solid var(--ty)}
-.bud-name{font-size:.85rem;font-weight:800}
-.bud-est{font-size:.75rem;color:var(--txt2)}
-.bud-act{font-size:1rem;font-weight:800;color:var(--pri)}
-.bud-diff{font-size:.68rem;margin-top:2px}
-.bud-diff.over{color:var(--del)}.bud-diff.under{color:var(--ok)}
-.budget-table{width:100%;border-collapse:collapse;font-size:.78rem}
-.budget-table th{background:var(--bg);font-weight:700;font-size:.68rem;text-transform:uppercase;color:var(--txt2);padding:6px 8px;text-align:left;border-bottom:2px solid var(--bdr);white-space:nowrap}
-.budget-table td{padding:6px 8px;border-bottom:1px solid #f5f5f5;vertical-align:middle}
-.budget-table tr:hover td{background:#fafafa}
-.bud-cat-tag{display:inline-block;font-size:.58rem;padding:1px 5px;border-radius:8px;font-weight:700;color:#fff;margin-right:3px}
-.bud-cat-tag.transport{background:#667eea}.bud-cat-tag.hotel{background:#e67e22}
-.bud-cat-tag.activity{background:#27ae60}.bud-cat-tag.food{background:#ff6b35}
-.bud-cat-tag.shopping{background:#9b59b6}.bud-cat-tag.misc{background:#95a5a6}
-.bud-label-cell{min-width:120px}
-.bud-label-edit{background:transparent;border:none;font-family:inherit;font-size:.78rem;color:var(--txt);width:100%;outline:none;cursor:pointer}
-.bud-label-edit:focus{background:var(--pri-l);border-radius:3px;padding:1px 3px;cursor:text}
-.bud-num{width:70px}
-.bud-inp{width:70px;font-size:.78rem;border:1px solid var(--bdr);border-radius:4px;padding:3px 5px;font-family:inherit;text-align:right;outline:none}
-.bud-inp:focus{border-color:var(--pri);background:var(--pri-l)}
-.bud-cb-cell{text-align:center;width:36px}
-.bud-cb{width:16px;height:16px;cursor:pointer}
-.bud-cb.sa{accent-color:var(--sa)}.bud-cb.bi{accent-color:var(--bi)}.bud-cb.ty{accent-color:var(--ty)}
-.bud-del-btn{background:none;border:none;cursor:pointer;color:#ccc;font-size:.8rem;padding:2px}
-.bud-del-btn:hover{color:var(--del)}
-.bud-add-row{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
-.bud-add-inp{flex:1;min-width:140px;font-size:.78rem;border:1px solid var(--bdr);border-radius:6px;padding:5px 8px;font-family:inherit;outline:none;background:var(--bg)}
-.bud-add-inp:focus{border-color:var(--pri);background:#fff}
-.bud-cat-sel{font-size:.75rem;border:1px solid var(--bdr);border-radius:6px;padding:5px 6px;background:var(--bg);outline:none}
-.bud-add-btn{font-size:.75rem;background:var(--pri);color:#fff;border:none;border-radius:6px;padding:5px 12px;cursor:pointer;font-weight:700}
-.bud-footer{display:flex;align-items:center;gap:8px;margin-top:10px;padding-top:8px;border-top:2px solid var(--bdr);font-weight:800;font-size:.85rem}
-.tc{display:none}.tc.on{display:block}
-@media(max-width:767px){
-  .bnav{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--bdr);display:flex;justify-content:space-around;padding:6px 0 env(safe-area-inset-bottom,8px);z-index:1002;box-shadow:0 -2px 10px rgba(0,0,0,.08)}
-  .bnav-i{display:flex;flex-direction:column;align-items:center;font-size:.6rem;color:var(--txt2);cursor:pointer;padding:2px 6px;-webkit-tap-highlight-color:transparent}
-  .bnav-i.on{color:var(--pri)}
-  .bnav-i span:first-child{font-size:1.1rem}
-  .budget-summary{grid-template-columns:repeat(3,1fr)}
-}
-@media(min-width:768px){.bnav{display:none}}
-::-webkit-scrollbar{height:0;width:0}
+/* ══════════════════════════════════════════════════════════════════
+   Taiwan Planner — Theme V6.1 · Modern Light · Mobile-First
+   ══════════════════════════════════════════════════════════════════ */
 
-/* ── V5 Japanese/Taiwanese theme ─────────────────────────────────── */
-:root{
-  --pri:#d4465a; --pri-d:#b02d42; --pri-l:#fde8ec;
-  --ind:#2d4a7c; --ind-l:#e8ecf5;
-  --gold:#e8a042; --ok:#14a098; --ok-l:#def4f2;
-  --red:#e63946; --sa:#3b4cca; --bi:#e63946; --ty:#14a098;
-  --bg:#fdf8f3; --card:#fff; --bdr:#ece4d9; --bdr2:#f5ede3;
-  --txt:#1a1a2e; --txt2:#4a4a5e; --txt3:#8a8a9a;
-  --sh:0 1px 2px rgba(45,74,124,.04),0 2px 6px rgba(45,74,124,.04);
-  --sh-md:0 2px 8px rgba(45,74,124,.08),0 6px 20px rgba(45,74,124,.06);
-  --r:12px; --r-sm:10px;
+/* ── Design Tokens ─────────────────────────────────────────────── */
+:root {
+  --pri:    #4361ee;
+  --pri-d:  #3651d4;
+  --pri-l:  #eef0ff;
+  --acc:    #4cc9f0;
+  --ok:     #06d6a0;
+  --ok-d:   #05a07a;
+  --ok-l:   #e8faf4;
+  --warn:   #f8961e;
+  --warn-l: #fff3e0;
+  --red:    #ef476f;
+  --gold:   #ffd166;
+  --sa:     #4361ee;
+  --bi:     #f72585;
+  --ty:     #4cc9f0;
+  --bg:     #f4f5f7;
+  --card:   #ffffff;
+  --bdr:    #e4e6eb;
+  --bdr2:   #f0f2f5;
+  --txt:    #1a1d23;
+  --txt2:   #4a5065;
+  --txt3:   #9499ad;
+  --sh:     0 1px 3px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.04);
+  --sh-md:  0 4px 16px rgba(0,0,0,.09), 0 1px 4px rgba(0,0,0,.04);
+  --r:      12px;
+  --r-sm:   9px;
+  --r-xs:   6px;
 }
-body{background:var(--bg);color:var(--txt);}
-/* Header */
-.topbar,.tb,header{background:linear-gradient(90deg,#1d3456 0%,#2d4a7c 50%,#3b4cca 100%)!important;color:#fff!important;border-bottom:3px solid var(--pri)!important;box-shadow:0 2px 8px rgba(29,52,86,.3)!important;}
-.db-badge,#dbBadge{background:rgba(255,255,255,.15)!important;color:#fff!important;border:1px solid rgba(255,255,255,.25)!important;}
-/* Day headers */
-.dh{color:#fff;}
-.tc#tab-overview .dh{background:linear-gradient(135deg,#2d4a7c,#3b4cca)!important;}
-.tc#tab-mustdo .dh{background:linear-gradient(135deg,#e8a042,#d4465a)!important;}
-.tc#tab-budget .dh{background:linear-gradient(135deg,#14a098,#2d4a7c)!important;}
-.tc#tab-ranking .dh{background:linear-gradient(135deg,#3b4cca,#14a098)!important;}
-/* Nav */
-.nb,.bnav-i{color:var(--txt2);border:1.5px solid transparent;background:var(--card);font-weight:600;transition:all .15s;}
-.nb:hover,.bnav-i:hover{background:var(--ind-l);}
-.nb.on,.bnav-i.on{background:var(--pri)!important;color:#fff!important;border-color:var(--pri-d)!important;box-shadow:0 2px 6px rgba(212,70,90,.3);}
-/* Misc */
-.fl-ban{background:linear-gradient(135deg,#fde8ec,#fef4d8)!important;border-left:4px solid var(--pri)!important;color:var(--txt)!important;}
-.fl-ban h3{color:var(--pri-d)!important;}
-.ti{background:var(--card);border:1px solid var(--bdr);border-left:3px solid var(--ind);}
-.ti.transport{border-left-color:var(--gold);} .ti.hotel{border-left-color:var(--ok);} .ti.food{border-left-color:var(--pri);}
-a{color:var(--ind);} a:hover{color:var(--pri);}
-.md-grp h3{color:var(--ind);border-bottom:2px solid var(--pri);}
-.rank-wrap th{background:var(--ind);color:#fff;}
-.rank-wrap tbody tr:hover{background:var(--pri-l);}
-/* ── Mobile ────────────────────────────────────────────────────── */
-*,*::before,*::after{box-sizing:border-box;}
-html,body{overflow-x:hidden;max-width:100vw;-webkit-tap-highlight-color:transparent;}
-body{overscroll-behavior-x:none;touch-action:pan-y;}
-.main-content,.body-area,.tc{min-width:0;max-width:100%;}
-.tc{overflow-x:hidden;}
-.nb-wrap,.nav{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-.nb-wrap::-webkit-scrollbar,.nav::-webkit-scrollbar{display:none;}
-.nb,.bnav-i{white-space:nowrap;flex-shrink:0;}
-.rank-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-.rank-wrap table{min-width:520px;}
-.topbar,.tb{position:sticky;top:0;z-index:50;}
-.nav{position:sticky;top:48px;z-index:49;background:var(--card);}
-.ti{border-radius:var(--r)!important;transition:box-shadow .15s;}
-.ti:hover{box-shadow:var(--sh-md);}
-/* ── Budget cards (compact inline) ────────────────────────────── */
-.bud-summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px;}
-.bud-card{padding:8px 6px 10px;border-radius:var(--r);background:var(--card);border:1.5px solid var(--bdr);cursor:pointer;transition:all .15s;text-align:center;min-width:0;overflow:hidden;}
-.bud-card:hover{transform:translateY(-1px);box-shadow:var(--sh-md);}
-.bud-card.sa{border-color:var(--sa);} .bud-card.bi{border-color:var(--bi);} .bud-card.ty{border-color:var(--ty);}
-.bud-card.sa.active{box-shadow:0 0 0 2px var(--sa);background:#f4f6ff;}
-.bud-card.bi.active{box-shadow:0 0 0 2px var(--bi);background:#fef2f3;}
-.bud-card.ty.active{box-shadow:0 0 0 2px var(--ty);background:#f0faf9;}
-.bud-name{font-size:.82rem;font-weight:800;margin-bottom:5px;letter-spacing:.3px;}
-.bud-card.sa .bud-name{color:var(--sa);} .bud-card.bi .bud-name{color:var(--bi);} .bud-card.ty .bud-name{color:var(--ty);}
-.bud-line{display:flex;align-items:baseline;justify-content:center;flex-wrap:wrap;gap:3px;padding:3px 4px;font-size:.64rem;line-height:1.3;min-width:0;}
-.bud-line.paid{background:var(--ok-l);border-radius:6px;margin-top:3px;}
-.bl-lbl{font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:.3px;font-size:.56rem;flex-shrink:0;}
-.bl-vnd{font-weight:800;color:var(--txt);font-size:.7rem;}
-.bud-line.paid .bl-vnd{color:var(--ok);}
-/* ── Budget items ─────────────────────────────────────────────── */
-.bud-totals{display:flex;align-items:center;background:var(--card);border-radius:var(--r);padding:10px 14px;margin-bottom:12px;box-shadow:var(--sh);border:1px solid var(--bdr2);}
-.bud-total-item{flex:1;text-align:center;}
-.bud-total-label{display:block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--txt3);margin-bottom:3px;}
-.bud-total-val{display:block;font-size:.95rem;font-weight:800;color:var(--pri);}
-.bud-total-sub{display:block;font-size:.68rem;color:var(--txt3);}
-.bud-total-divider{width:1px;background:var(--bdr);align-self:stretch;margin:0 8px;}
-.bud-add-card{background:var(--card);border-radius:var(--r);border:2px dashed var(--pri);padding:12px;margin-bottom:12px;box-shadow:var(--sh);}
-.bud-add-inp{font-size:.82rem;border:1.5px solid var(--bdr);border-radius:8px;padding:7px 10px;font-family:inherit;outline:none;background:var(--bg);}
-.bud-add-inp:focus{border-color:var(--ind);background:#fff;}
-.bud-add-select{font-size:.9rem;border:1.5px solid var(--bdr);border-radius:8px;padding:6px;background:var(--bg);outline:none;cursor:pointer;}
-.bud-add-btn{font-size:.8rem;background:var(--pri);color:#fff;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-weight:700;}
-.bud-add-btn:hover{background:var(--pri-d);}
-.bud-item-card{background:var(--card);border-radius:var(--r-sm);border:1px solid var(--bdr2);margin-bottom:6px;overflow:hidden;box-shadow:var(--sh);}
-.bud-item-row{display:flex;align-items:center;gap:6px;padding:8px 10px;border-bottom:1px solid var(--bdr2);}
-.bud-cat-select,.bud-cur-sel-inline{font-size:.7rem;border:1px solid var(--bdr);border-radius:5px;padding:2px 3px;background:var(--bg);outline:none;cursor:pointer;flex-shrink:0;}
-.bud-cur-sel-inline{color:var(--ind);font-weight:700;}
-.bud-item-label{flex:1;font-size:.8rem;font-weight:600;color:var(--txt);background:transparent;border:none;font-family:inherit;outline:none;min-width:0;}
-.bud-item-label:focus{background:var(--pri-l);border-radius:4px;padding:1px 4px;}
-.bud-item-del{background:none;border:none;cursor:pointer;color:var(--txt3);font-size:.8rem;padding:3px;flex-shrink:0;}
-.bud-item-del:hover{color:var(--red);}
-.bud-item-amt-row{display:flex;align-items:center;gap:8px;padding:6px 10px 8px;flex-wrap:wrap;}
-.bud-item-amt-block{flex:1;min-width:100px;}
-.bud-amount-inp{width:100%;font-size:.9rem;font-weight:700;border:1.5px solid var(--bdr);border-radius:7px;padding:5px 8px;font-family:inherit;text-align:right;outline:none;background:var(--bg);transition:border-color .15s;}
-.bud-amount-inp:focus{border-color:var(--ind);background:#fff;}
-.bud-item-per{font-size:.66rem;color:var(--ok);font-weight:600;margin-top:3px;text-align:right;}
-.bud-paid-label{display:flex;align-items:center;gap:5px;cursor:pointer;padding:4px 9px;border-radius:8px;border:1.5px solid var(--bdr);background:var(--bg);transition:all .15s;user-select:none;flex-shrink:0;}
-.bud-paid-label.paid{background:var(--ok-l);border-color:var(--ok);}
-.bud-paid-cb{width:14px;height:14px;cursor:pointer;accent-color:var(--ok);}
-.bud-paid-txt{font-size:.7rem;font-weight:700;color:var(--txt3);}
-.bud-paid-label.paid .bud-paid-txt{color:var(--ok);}
-.bud-person-row{display:flex;gap:4px;flex-shrink:0;}
-.bud-person-toggle{font-size:.7rem;font-weight:700;cursor:pointer;padding:3px 8px;border-radius:7px;border:1.5px solid var(--bdr);transition:all .15s;user-select:none;color:var(--txt3);background:var(--bg);}
-.bud-person-toggle.sa.on{background:rgba(59,76,202,.12);border-color:var(--sa);color:var(--sa);}
-.bud-person-toggle.bi.on{background:rgba(230,57,70,.12);border-color:var(--bi);color:var(--bi);}
-.bud-person-toggle.ty.on{background:rgba(20,160,152,.12);border-color:var(--ty);color:var(--ty);}
-/* ── Flight banner ────────────────────────────────────────────── */
-.fl-ban{border-left:4px solid var(--pri);padding:10px 14px;border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:.78rem;color:var(--txt);margin-bottom:12px;}
-.fl-ban h3{font-size:.82rem;color:var(--pri-d);margin-bottom:5px;font-weight:700;}
-.fl-ban hr{border:none;border-top:1px dashed var(--bdr);margin:5px 0;}
-/* ── iPhone 16 Pro Max (430px) ────────────────────────────────── */
-@media(max-width:480px){
-  .bud-summary-grid{gap:5px;}
-  .bud-card{padding:7px 4px 9px;}
-  .bud-name{font-size:.76rem;}
-  .bl-vnd{font-size:.66rem;} .bl-lbl{font-size:.54rem;}
-  .bud-item-row{padding:7px 8px;gap:5px;}
-  .bud-item-label{font-size:.78rem;}
-  .bud-amount-inp{font-size:.88rem;}
-  .bud-item-per{font-size:.62rem;}
-  .bud-paid-label{padding:3px 7px;}
-  .bud-paid-txt{font-size:.66rem;}
-  .bud-person-toggle{padding:3px 7px;font-size:.66rem;}
-  .bud-total-val{font-size:.88rem;} .bud-total-sub{font-size:.62rem;}
-  .tc{padding:8px!important;} .dh{padding:12px!important;}
-  .dh h2{font-size:1rem;} .dh p{font-size:.75rem;}
-  .ti{padding:9px 10px;margin-bottom:6px;}
-  .ti h3{font-size:.88rem;} .ti p{font-size:.74rem;}
-  .body-area{flex-direction:column!important;}
-  .sidebar{width:100%!important;max-height:260px;}
-  .main-content{padding:8px!important;}
+
+/* ── Reset ──────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  overflow-x: hidden;
+  max-width: 100vw;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
 }
-@media(max-width:380px){
-  .bud-name{font-size:.7rem;} .bl-vnd{font-size:.62rem;} .bl-lbl{font-size:.5rem;}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--txt);
+  background: var(--bg);
+  overscroll-behavior-x: none;
+  touch-action: pan-y;
 }
+a { color: var(--pri); text-decoration: none; }
+a:hover { color: var(--pri-d); }
+button { cursor: pointer; font-family: inherit; }
+input, select { font-family: inherit; }
+*:focus-visible { outline: 2px solid var(--pri); outline-offset: 2px; }
+*:focus { outline: none; }
+
+/* ── Header ─────────────────────────────────────────────────────── */
+.hdr {
+  position: sticky; top: 0; z-index: 50;
+  background: #fff;
+  border-bottom: 1px solid var(--bdr);
+  padding: 11px 16px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.hdr h1 {
+  font-size: .92rem;
+  font-weight: 800;
+  color: var(--txt);
+  margin: 0;
+  letter-spacing: -.2px;
+}
+.hdr-chips {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.hdr-chips span {
+  font-size: .68rem;
+  font-weight: 600;
+  color: var(--txt3);
+  background: var(--bg);
+  padding: 3px 8px;
+  border-radius: 20px;
+  border: 1px solid var(--bdr);
+}
+.db-badge, #dbBadge {
+  font-size: .66rem !important;
+  font-weight: 700 !important;
+  padding: 3px 9px !important;
+  border-radius: 20px !important;
+  border: none !important;
+  background: var(--pri-l) !important;
+  color: var(--pri) !important;
+}
+.db-badge.ok, #dbBadge.ok { background: var(--ok-l) !important; color: var(--ok-d) !important; }
+.db-badge.err, #dbBadge.err { background: #fdedef !important; color: var(--red) !important; }
+
+/* ── Nav tabs ───────────────────────────────────────────────────── */
+.nav {
+  position: sticky; top: 49px; z-index: 49;
+  background: #fff;
+  border-bottom: 1px solid var(--bdr);
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 0 4px;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nb {
+  flex-shrink: 0;
+  padding: 10px 13px;
+  font-size: .76rem;
+  font-weight: 600;
+  color: var(--txt3);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: color .15s, border-color .15s;
+}
+.nb:hover { color: var(--txt2); }
+.nb.on {
+  color: var(--pri) !important;
+  border-bottom-color: var(--pri) !important;
+  font-weight: 700;
+}
+
+/* ── Layout ─────────────────────────────────────────────────────── */
+.main { max-width: 1200px; margin: 0 auto; }
+.grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 0;
+  align-items: start;
+}
+.left-panel {
+  background: var(--bg);
+  padding: 12px;
+  border-right: 1px solid var(--bdr);
+}
+@media (min-width: 768px) {
+  .left-panel { position: sticky; top: 100px; max-height: calc(100vh - 108px); overflow-y: auto; }
+}
+#ca { padding: 0; }
+
+/* ── Tab content ─────────────────────────────────────────────────── */
+.tc { display: none; padding: 14px; min-width: 0; }
+.tc.on { display: block; }
+
+/* ── Day header ─────────────────────────────────────────────────── */
+.dh {
+  background: var(--pri);
+  background: linear-gradient(135deg, var(--pri) 0%, #7b8ff5 100%);
+  color: #fff;
+  padding: 16px;
+  border-radius: var(--r);
+  margin-bottom: 12px;
+}
+.dh h2 { font-size: 1rem; font-weight: 800; margin: 0 0 2px; }
+.dh p  { font-size: .76rem; opacity: .85; margin: 0; }
+.dh-tr { font-size: .7rem; opacity: .8; margin-top: 4px; display: block; }
+.tc#tab-overview .dh  { background: linear-gradient(135deg, #1e3a5f, var(--pri)); }
+.tc#tab-mustdo .dh    { background: linear-gradient(135deg, var(--warn), #f25c54); }
+.tc#tab-budget .dh    { background: linear-gradient(135deg, var(--ok-d), #0096c7); }
+.tc#tab-ranking .dh   { background: linear-gradient(135deg, #7209b7, var(--pri)); }
+
+/* ── Cards / section boxes ───────────────────────────────────────── */
+.cd {
+  background: var(--card);
+  border-radius: var(--r);
+  border: 1px solid var(--bdr);
+  padding: 14px;
+  margin-bottom: 10px;
+  box-shadow: var(--sh);
+}
+.cd-t {
+  font-size: .72rem;
+  font-weight: 800;
+  color: var(--txt3);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 10px;
+}
+
+/* ── Route button ────────────────────────────────────────────────── */
+.rt-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-size: .76rem;
+  font-weight: 700;
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: all .15s;
+}
+.rt-btn.grn { background: var(--ok); color: #fff; }
+.rt-btn.grn:hover { background: var(--ok-d); box-shadow: var(--sh-md); }
+
+/* ── Timeline ────────────────────────────────────────────────────── */
+.tl { display: flex; flex-direction: column; gap: 8px; }
+.ti {
+  background: var(--card);
+  border: 1px solid var(--bdr);
+  border-radius: var(--r-sm);
+  padding: 12px 14px;
+  box-shadow: var(--sh);
+  min-width: 0;
+  transition: box-shadow .15s;
+}
+.ti:hover { box-shadow: var(--sh-md); }
+.ti.ev { border-left: 3px solid var(--warn); }
+.ti-t {
+  font-size: .67rem;
+  font-weight: 800;
+  color: var(--pri);
+  text-transform: uppercase;
+  letter-spacing: .3px;
+  margin-bottom: 3px;
+}
+.ti.ev .ti-t { color: var(--warn); }
+.ti-p { font-size: .88rem; font-weight: 700; color: var(--txt); margin-bottom: 3px; }
+.ti-sub { font-size: .7rem; color: var(--txt3); font-weight: 400; }
+.ti-d { font-size: .78rem; color: var(--txt2); margin-bottom: 3px; }
+.ti-c { font-size: .7rem; color: var(--ok-d); font-weight: 600; }
+.ti-tip {
+  display: inline-block;
+  font-size: .7rem;
+  color: #92400e;
+  background: var(--warn-l);
+  border-radius: var(--r-xs);
+  padding: 3px 8px;
+  margin-top: 5px;
+}
+
+/* ── Rank badges ─────────────────────────────────────────────────── */
+.rb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 21px; height: 21px;
+  background: var(--pri);
+  color: #fff;
+  font-size: .65rem;
+  font-weight: 800;
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform .1s, background .15s;
+}
+.rb:hover { background: var(--pri-d); transform: scale(1.12); }
+
+/* ── Inline links (photo / food) ─────────────────────────────────── */
+.il-group { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 7px; }
+.il-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: .7rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: all .15s;
+}
+.il-photo { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+.il-photo:hover { background: #dbeafe; }
+.il-food  { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
+.il-food:hover  { background: #ffedd5; }
+.il-icon { font-size: .85rem; flex-shrink: 0; }
+.il-name { display: block; font-weight: 700; }
+.il-tip  { display: block; font-size: .62rem; opacity: .7; font-weight: 400; }
+
+/* ── Booking input (ti-bk) ───────────────────────────────────────── */
+.ti-bk {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 9px;
+  padding: 6px 10px;
+  background: var(--bdr2);
+  border: 1px solid var(--bdr);
+  border-radius: var(--r-xs);
+  transition: border-color .15s;
+}
+.ti-bk.filled { border-color: var(--ok); background: var(--ok-l); }
+.ti-bk-label { font-size: .7rem; font-weight: 600; color: var(--txt3); flex-shrink: 0; white-space: nowrap; }
+.ti-bk-input { flex: 1; font-size: .72rem; border: none; background: transparent; outline: none; color: var(--txt); min-width: 0; }
+.ti-bk-open { font-size: .7rem; color: var(--ok-d); font-weight: 700; text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+
+/* ── Flight banner ───────────────────────────────────────────────── */
+.fl-ban {
+  background: var(--pri-l);
+  border-left: 3px solid var(--pri);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-size: .78rem;
+  color: var(--txt2);
+}
+.fl-ban h3 { font-size: .8rem; color: var(--pri-d); font-weight: 700; margin: 0 0 4px; }
+.fl-ban hr { border: none; border-top: 1px solid #c7d2fe; margin: 5px 0; }
+
+/* ── Notes ───────────────────────────────────────────────────────── */
+.nt { font-size: .78rem; border-radius: var(--r-xs); padding: 8px 12px; margin-bottom: 8px; }
+.nt.inf { background: var(--pri-l); border-left: 3px solid var(--pri); color: var(--txt2); }
+.nt.warn { background: var(--warn-l); border-left: 3px solid var(--warn); color: #78350f; }
+
+/* ── Map & Sidebar ───────────────────────────────────────────────── */
+.map-wrap { border-radius: var(--r-sm); overflow: hidden; border: 1px solid var(--bdr); background: #e5e7eb; }
+.map-legend { display: flex; gap: 5px; margin-top: 6px; flex-wrap: wrap; }
+.map-legend span { font-size: .66rem; padding: 3px 9px; border-radius: 20px; cursor: pointer; border: 1px solid var(--bdr); background: var(--card); font-weight: 600; transition: all .15s; }
+.map-legend span.on { background: var(--pri); color: #fff; border-color: var(--pri); }
+.dcl-panel { background: var(--card); border-radius: var(--r-sm); border: 1px solid var(--bdr); padding: 12px; margin-top: 8px; box-shadow: var(--sh); }
+.dcl-title { font-size: .76rem; font-weight: 700; color: var(--txt2); margin-bottom: 6px; }
+.dcl-prog { font-size: .7rem; color: var(--ok-d); font-weight: 700; margin-bottom: 4px; }
+.dcl-bar { height: 4px; background: var(--bdr); border-radius: 2px; overflow: hidden; margin-bottom: 8px; }
+.dcl-bar-fill { height: 100%; background: var(--ok); border-radius: 2px; transition: width .4s; }
+
+/* ── Must Do ─────────────────────────────────────────────────────── */
+.md-grp { margin-bottom: 16px; }
+.md-grp h3 { font-size: .84rem; font-weight: 800; color: var(--pri-d); border-bottom: 2px solid var(--pri-l); padding-bottom: 5px; margin-bottom: 8px; }
+.md-grp label { display: flex; align-items: flex-start; gap: 8px; font-size: .8rem; color: var(--txt2); padding: 5px 0; cursor: pointer; }
+.md-grp label:hover { color: var(--txt); }
+.md-grp input[type=checkbox] { width: 16px; height: 16px; accent-color: var(--pri); flex-shrink: 0; margin-top: 2px; }
+
+/* ── Ranking ─────────────────────────────────────────────────────── */
+.rank-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--r-sm); border: 1px solid var(--bdr); }
+.rank-wrap table { min-width: 480px; border-collapse: collapse; width: 100%; }
+.rank-wrap th { background: var(--pri); color: #fff; padding: 9px 10px; font-size: .72rem; text-align: left; cursor: pointer; white-space: nowrap; }
+.rank-wrap th:hover { background: var(--pri-d); }
+.rank-wrap td { padding: 8px 10px; font-size: .78rem; border-bottom: 1px solid var(--bdr2); }
+.rank-wrap tbody tr:hover td { background: var(--pri-l); }
+
+/* ── Budget summary cards ────────────────────────────────────────── */
+.bud-summary-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-bottom: 12px; }
+.bud-card {
+  padding: 10px 8px;
+  border-radius: var(--r-sm);
+  background: var(--card);
+  border: 1.5px solid var(--bdr);
+  cursor: pointer;
+  transition: all .15s;
+  text-align: center;
+  min-width: 0;
+  overflow: hidden;
+  box-shadow: var(--sh);
+}
+.bud-card:hover { box-shadow: var(--sh-md); transform: translateY(-1px); }
+.bud-card.sa { border-color: var(--sa); }
+.bud-card.bi { border-color: var(--bi); }
+.bud-card.ty { border-color: var(--ty); }
+.bud-card.sa.active { background: #eef0ff; box-shadow: 0 0 0 2px var(--sa); }
+.bud-card.bi.active { background: #fdf2f8; box-shadow: 0 0 0 2px var(--bi); }
+.bud-card.ty.active { background: #e0f9f7; box-shadow: 0 0 0 2px var(--ty); }
+.bud-name { font-size: .78rem; font-weight: 800; margin-bottom: 5px; }
+.bud-card.sa .bud-name { color: var(--sa); }
+.bud-card.bi .bud-name { color: var(--bi); }
+.bud-card.ty .bud-name { color: var(--ty); }
+.bud-line { display: flex; align-items: baseline; justify-content: center; flex-wrap: wrap; gap: 3px; padding: 3px 4px; font-size: .62rem; line-height: 1.3; min-width: 0; }
+.bud-line.paid { background: var(--ok-l); border-radius: var(--r-xs); margin-top: 3px; }
+.bl-lbl { font-weight: 700; color: var(--txt3); text-transform: uppercase; letter-spacing: .3px; font-size: .55rem; flex-shrink: 0; }
+.bl-vnd { font-weight: 800; color: var(--txt); font-size: .69rem; }
+.bud-line.paid .bl-vnd { color: var(--ok-d); }
+
+/* ── Budget totals bar ───────────────────────────────────────────── */
+.bud-totals { display: flex; align-items: center; background: var(--card); border-radius: var(--r-sm); padding: 10px 14px; margin-bottom: 12px; box-shadow: var(--sh); border: 1px solid var(--bdr); }
+.bud-total-item { flex: 1; text-align: center; }
+.bud-total-label { display: block; font-size: .62rem; font-weight: 700; text-transform: uppercase; letter-spacing: .4px; color: var(--txt3); margin-bottom: 2px; }
+.bud-total-val { display: block; font-size: .9rem; font-weight: 800; color: var(--pri); }
+.bud-total-sub { display: block; font-size: .63rem; color: var(--txt3); }
+.bud-total-divider { width: 1px; background: var(--bdr); align-self: stretch; margin: 0 8px; }
+
+/* ── Budget add form ─────────────────────────────────────────────── */
+.bud-add-card { background: var(--card); border-radius: var(--r-sm); border: 1.5px dashed var(--bdr); padding: 12px; margin-bottom: 10px; }
+.bud-add-inp { font-size: .82rem; border: 1.5px solid var(--bdr); border-radius: var(--r-xs); padding: 7px 10px; outline: none; background: var(--bdr2); width: auto; transition: border-color .15s; }
+.bud-add-inp:focus { border-color: var(--pri); background: #fff; }
+.bud-add-select { font-size: .82rem; border: 1.5px solid var(--bdr); border-radius: var(--r-xs); padding: 7px 8px; background: var(--bdr2); outline: none; cursor: pointer; }
+.bud-add-btn { font-size: .8rem; background: var(--pri); color: #fff; border: none; border-radius: var(--r-xs); padding: 8px 14px; font-weight: 700; transition: background .15s; }
+.bud-add-btn:hover { background: var(--pri-d); }
+
+/* ── Budget item cards ───────────────────────────────────────────── */
+.bud-item-card { background: var(--card); border-radius: var(--r-xs); border: 1px solid var(--bdr); margin-bottom: 6px; overflow: hidden; box-shadow: var(--sh); }
+.bud-item-row { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border-bottom: 1px solid var(--bdr2); }
+.bud-cat-select, .bud-cur-sel-inline { font-size: .7rem; border: 1px solid var(--bdr); border-radius: 5px; padding: 2px 4px; background: var(--bdr2); outline: none; cursor: pointer; flex-shrink: 0; }
+.bud-cur-sel-inline { color: var(--pri); font-weight: 700; }
+.bud-item-label { flex: 1; font-size: .8rem; font-weight: 600; color: var(--txt); background: transparent; border: none; outline: none; min-width: 0; }
+.bud-item-label:focus { background: var(--pri-l); border-radius: 4px; padding: 1px 5px; }
+.bud-item-del { background: none; border: none; cursor: pointer; color: var(--txt3); font-size: .8rem; padding: 4px; flex-shrink: 0; }
+.bud-item-del:hover { color: var(--red); }
+.bud-item-amt-row { display: flex; align-items: center; gap: 8px; padding: 7px 10px; flex-wrap: wrap; }
+.bud-item-amt-block { flex: 1; min-width: 100px; }
+.bud-amount-inp { width: 100%; font-size: .9rem; font-weight: 700; border: 1.5px solid var(--bdr); border-radius: var(--r-xs); padding: 5px 8px; text-align: right; outline: none; background: var(--bdr2); transition: border-color .15s; }
+.bud-amount-inp:focus { border-color: var(--pri); background: #fff; }
+.bud-item-per { font-size: .65rem; color: var(--ok-d); font-weight: 600; margin-top: 3px; text-align: right; }
+.bud-paid-label { display: flex; align-items: center; gap: 5px; cursor: pointer; padding: 4px 9px; border-radius: 20px; border: 1.5px solid var(--bdr); background: var(--bdr2); transition: all .15s; user-select: none; flex-shrink: 0; }
+.bud-paid-label.paid { background: var(--ok-l); border-color: var(--ok); }
+.bud-paid-cb { width: 14px; height: 14px; cursor: pointer; accent-color: var(--ok); }
+.bud-paid-txt { font-size: .7rem; font-weight: 700; color: var(--txt3); }
+.bud-paid-label.paid .bud-paid-txt { color: var(--ok-d); }
+.bud-person-row { display: flex; gap: 4px; flex-shrink: 0; }
+.bud-person-toggle { font-size: .7rem; font-weight: 700; cursor: pointer; padding: 4px 9px; border-radius: 20px; border: 1.5px solid var(--bdr); transition: all .15s; user-select: none; color: var(--txt3); background: var(--bdr2); }
+.bud-person-toggle.sa.on { background: #eef0ff; border-color: var(--sa); color: var(--sa); }
+.bud-person-toggle.bi.on { background: #fdf2f8; border-color: var(--bi); color: var(--bi); }
+.bud-person-toggle.ty.on { background: #e0f9f7; border-color: var(--ty); color: var(--ty); }
+
+/* ── Booking summary table ───────────────────────────────────────── */
+.bk-tbl { width: 100%; border-collapse: collapse; font-size: .78rem; margin-top: 4px; }
+.bk-tbl th { background: var(--pri); color: #fff; padding: 7px 10px; text-align: left; font-size: .7rem; font-weight: 700; }
+.bk-tbl td { padding: 6px 10px; border-bottom: 1px solid var(--bdr2); vertical-align: middle; }
+.bk-tbl tr:last-child td { border-bottom: none; }
+.bk-tbl tr:hover td { background: var(--pri-l); }
+.bk-day { font-weight: 700; color: var(--pri); font-size: .7rem; white-space: nowrap; }
+.bk-open { display: inline-flex; align-items: center; font-size: .7rem; font-weight: 600; color: #fff; background: var(--ok-d); padding: 2px 9px; border-radius: 20px; text-decoration: none; }
+.bk-open:hover { background: var(--pri); }
+
+/* ── Checklist items ─────────────────────────────────────────────── */
+.ov-task-item, .day-task-item { display: flex; align-items: center; gap: 8px; padding: 6px 4px; border-bottom: 1px solid var(--bdr2); font-size: .8rem; }
+.ov-task-item:last-child, .day-task-item:last-child { border-bottom: none; }
+.ov-task-item input[type=checkbox], .day-task-item input[type=checkbox] { width: 16px; height: 16px; accent-color: var(--pri); flex-shrink: 0; cursor: pointer; }
+
+/* ── Progress bars ───────────────────────────────────────────────── */
+.prog-bar { height: 4px; background: var(--bdr); border-radius: 2px; overflow: hidden; margin-bottom: 8px; }
+.prog-bar-fill { height: 100%; background: var(--pri); border-radius: 2px; transition: width .4s; }
+#ovBarFill { background: var(--ok); }
+#mdBar .dcl-bar-fill { background: var(--warn); }
+
+/* ── Mobile responsive ───────────────────────────────────────────── */
+.main-content, .body-area, .tc { min-width: 0; max-width: 100%; }
+.tc { overflow-x: hidden; }
+@media (max-width: 767px) {
+  .grid { grid-template-columns: 1fr; }
+  .left-panel { border-right: none; border-bottom: 1px solid var(--bdr); padding: 10px; max-height: 300px; overflow: hidden; }
+  .tc { padding: 10px; }
+  .dh { border-radius: var(--r-sm); }
+}
+@media (max-width: 480px) {
+  body { font-size: 13px; }
+  .hdr { padding: 9px 12px 8px; }
+  .hdr h1 { font-size: .84rem; }
+  .tc { padding: 8px; }
+  .dh { padding: 13px; }
+  .dh h2 { font-size: .94rem; }
+  .ti { padding: 10px 11px; }
+  .bud-summary-grid { gap: 5px; }
+  .bud-card { padding: 8px 5px; }
+  .bud-name { font-size: .74rem; }
+  .bl-vnd { font-size: .64rem; }
+  .bud-total-val { font-size: .84rem; }
+}
+@media (max-width: 380px) {
+  .bud-name { font-size: .68rem; }
+  .bl-vnd { font-size: .6rem; }
+}
+
 </style>
 </head>
 <body>
@@ -338,17 +504,7 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
 <div class="main"><div class="grid">
 <div class="left-panel">
   <div class="map-wrap"><div id="map"></div></div>
-  <div class="map-legend">
-    <span class="on" data-map-mode="all">Tất cả</span>
-    <span data-map-mode="day1">N1</span>
-    <span data-map-mode="day2">N2</span>
-    <span data-map-mode="day3">N3</span>
-    <span data-map-mode="day4">N4</span>
-    <span data-map-mode="day5">N5</span>
-    <span data-map-mode="day6">N6</span>
-    <span data-map-mode="day7">N7</span>
-    <span data-map-mode="day8">N8</span>
-  </div>
+  <div class="map-legend"></div>
   <div class="dcl-panel">
     <div class="dcl-title" id="dclTitle">📋 Checklist Ngày</div>
     <div class="dcl-prog" id="dclProg"></div>
@@ -373,7 +529,10 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
     <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(18)" title="#18">18</span><span class="rb" onclick="zoomRank(16)" title="#16">16</span><span class="rb" onclick="zoomRank(17)" title="#17">17</span><b>01/05</b> 🚄 → Đài Bắc · Beitou/Tamsui · Shilin</div>
     <div style="display:flex;gap:6px;padding:8px 0;align-items:center">🎯<b>02/05</b> Ăn sáng · Mua quà · ✈️ TPE→SGN 13:45</div>
   </div></div>
-  <div class="nt inf"><b>🚆 Vé đã đặt ✅</b>TRA Tze-Chiang 472 · 08:40 Taipei→Hualien 28/04 · Booking #6684500 · 3 vé 1,749 TWD</div>
+  <div class="cd" id="ovBookingWrap">
+    <div class="cd-t">🎫 Booking đã lưu</div>
+    <div id="ovBookingTable"><div style="font-size:.78rem;color:var(--txt2)">Đang tải...</div></div>
+  </div>
   <!-- EDITABLE CHECKLIST -->
   <div class="cd">
     <div class="cd-t">✅ Checklist Chuẩn Bị Chung</div>
@@ -385,105 +544,10 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
 
 <div class="tc on" id="tab-day1">
   <div class="dh"><h2>N1 — T7 25/04 — Arrival Đài Bắc</h2><p>CI-782 đến TPE 15:20 → SIM + EasyCard → Ximending</p><span class="dh-tr">🚆 Airport MRT Express 35p</span></div>
-  <a href="https://www.google.com/maps/dir/25.0797,121.2342/25.0424,121.5068" target="_blank" class="rt-btn grn">🗺️ Route N1</a>
+  </div>
 
-  <div class="cd"><div class="cd-t">📍 Lịch trình</div><div class="tl">    <div class="ti">
-      <div class="ti-t">15:20</div>
-      <div class="ti-p">Sân bay Đào Viên (TPE) / 桃園國際機場</div>
-      <div class="ti-d">Nhập cảnh (~45p) → Mua SIM Chunghwa B1 → Mua/nạp EasyCard ×3 → Đổi ≥10,000 TWD</div>
-      <div class="ti-c">SIM ~400 TWD | EasyCard 600 TWD × 3</div>
-      <div class="ti-tip">💡 Counter SIM + EasyCard ngay B1 arrival, mua xong mới ra ngoài</div>
       
       
-      
-      <div class="ti-bk" id="bkf_d1_flight">
-      <span class="ti-bk-label">✈️ Vé CI-782</span>
-      <input class="ti-bk-input" data-bk="d1_flight" data-type="flight" placeholder="Paste link booking..." 
-        onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-      <a class="ti-bk-open" id="bko_d1_flight" style="display:none" target="_blank">Mở ↗</a>
-    </div>
-    </div>
-    <div class="ti">
-      <div class="ti-t">16:30</div>
-      <div class="ti-p">Airport MRT Express / 機場捷運<br><small class="ti-sub">A12 TPE T1 → A1 Taipei Main</small></div>
-      <div class="ti-d">35 phút quẹt EasyCard.</div>
-      <div class="ti-c">160 TWD ×3 = 480 TWD</div>
-      
-      <div class="ti-note">⚠️ SGN Terminal 2 khi đi · TPE Terminal 1 khi đến</div>
-      
-      
-      
-    </div>
-    <div class="ti">
-      <div class="ti-t">17:30</div>
-      <div class="ti-p">🏨 Check-in Hotel Đài Bắc<br><small class="ti-sub">Ximending / Zhongshan / Taipei Main</small></div>
-      <div class="ti-d">Gửi đồ hoặc check-in. Nghỉ ngơi 30p trước khi ra Ximending.</div>
-      
-      
-      
-      
-      
-      <div class="ti-bk" id="bkf_d1_hotel">
-      <span class="ti-bk-label">🏨 Hotel Đài Bắc (N1-3+N7)</span>
-      <input class="ti-bk-input" data-bk="d1_hotel" data-type="hotel" placeholder="Paste link booking..." 
-        onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-      <a class="ti-bk-open" id="bko_d1_hotel" style="display:none" target="_blank">Mở ↗</a>
-    </div>
-    </div>
-    <div class="ti ev">
-      <div class="ti-t">Tối 18:00</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(5)" title="#5">5</span> Ximending / 西門町<br><small class="ti-sub">Tây Môn Đình — Harajuku Đài Bắc</small></div>
-      <div class="ti-d">Phố đi bộ sầm uất. Mua sắm, ăn vặt, street art.</div>
-      <div class="ti-c">~200-400 TWD/người</div>
-      <div class="ti-tip">💡 Tiger Sugar bubble tea + gà rán Hot Star XXL</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Ximending+graffiti+wall+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Graffiti walls + neon hẻm</span><span class="il-tip">Chụp tối đẹp hơn ngày</span></span></a><a href="https://www.google.com/maps/search/Tiger+Sugar+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Tiger Sugar cup shot</span><span class="il-tip">Chụp ly boba stripe trước khi uống</span></span></a></div>
-      <div class="il-group"><a href="https://www.google.com/maps/search/Hot+Star+large+fried+chicken+Ximending" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍗 Hot Star XXL Chicken 豪大大雞排</span><span class="il-tip">Gà rán to nhất Đài Loan</span></span></a><a href="https://www.google.com/maps/search/Tiger+Sugar+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🧋 Tiger Sugar 老虎堂</span><span class="il-tip">Brown sugar boba nổi tiếng</span></span></a><a href="https://www.google.com/maps/search/Ay+Chung+Flour+Rice+Noodle+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍜 Ay-Chung Noodles 阿宗麵線</span><span class="il-tip">Oyster vermicelli huyền thoại</span></span></a></div>
-      
-    </div>
-</div></div>
-</div>
-<div class="tc" id="tab-day2">
-  <div class="dh"><h2>N2 — CN 26/04 — Đài Bắc Classic</h2><p>101 · Yongkang · Elephant Mt · Raohe</p><span class="dh-tr">🚇 MRT cả ngày</span></div>
-  <a href="https://www.google.com/maps/dir/25.0349,121.5219/25.0281,121.5298/25.034,121.5645/25.0272,121.5713/25.0505,121.5774" target="_blank" class="rt-btn grn">🗺️ Route N2</a>
-
-  <div class="cd"><div class="cd-t">📍 Lịch trình</div><div class="tl">    <div class="ti">
-      <div class="ti-t">Sáng 9:00</div>
-      <div class="ti-p">CKS Memorial / 中正紀念堂<br><small class="ti-sub">Trung Chính Kỷ Niệm Đường</small></div>
-      <div class="ti-d">Đổi gác lính mỗi giờ chẵn. Kiến trúc trắng hùng vĩ.</div>
-      <div class="ti-c">Miễn phí</div>
-      <div class="ti-tip">💡 Đến đúng giờ chẵn để xem đổi gác</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Chiang+Kai+Shek+Memorial+Hall+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Cổng xanh + bậc thang trắng</span><span class="il-tip">Góc chính diện · Sáng ít người</span></span></a><a href="https://www.google.com/maps/search/CKS+Memorial+guard+change+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Lễ đổi gác</span><span class="il-tip">Đúng giờ chẵn</span></span></a></div>
-      
-      
-    </div>
-    <div class="ti">
-      <div class="ti-t">Trưa 11:30</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(4)" title="#4">4</span> Yongkang Street / 永康街<br><small class="ti-sub">Phố Vĩnh Khang</small></div>
-      <div class="ti-d">Mì bò + Din Tai Fung xiao long bao.</div>
-      <div class="ti-c">Mì bò ~220 TWD | DTF ~400 TWD</div>
-      <div class="ti-tip">💡 DTF trước 11:00 hoặc sau 14:00 tránh đông</div>
-      
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Din+Tai+Fung+Yongkang+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🥟 Din Tai Fung 鼎泰豐</span><span class="il-tip">XLB nổi tiếng nhất TG</span></span></a><a href="https://www.google.com/maps/search/Yongkang+Beef+Noodle+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍜 Yongkang Beef Noodle 永康牛肉麵</span><span class="il-tip">Huyền thoại 60 năm</span></span></a></div>
-      
-    </div>
-    <div class="ti">
-      <div class="ti-t">Chiều 14:00</div>
-      <div class="ti-p"><span class="rb" onclick="zoomRank(1)" title="#1">1</span> Taipei 101 / 台北101<br><small class="ti-sub">Đài quan sát T89</small></div>
-      <div class="ti-d">Thang máy 37 giây lên T89. View 360°.</div>
-      <div class="ti-c">~600 TWD (Klook ~510)</div>
-      <div class="ti-tip">💡 Mua online Klook skip hàng dài</div>
-      
-      <div class="il-group"><a href="https://www.google.com/maps/search/Taipei+101+Observatory" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">T89 view 360°</span><span class="il-tip">Chụp toàn cảnh + núi xa</span></span></a></div>
-      
-      <div class="ti-bk" id="bkf_d2_101">
-      <span class="ti-bk-label">🎫 Vé Taipei 101 (Klook)</span>
-      <input class="ti-bk-input" data-bk="d2_101" data-type="ticket" placeholder="Paste link booking..." 
-        onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-      <a class="ti-bk-open" id="bko_d2_101" style="display:none" target="_blank">Mở ↗</a>
-    </div>
     </div>
     <div class="ti">
       <div class="ti-t">Chiều 16:30</div>
@@ -492,7 +556,7 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
       <div class="ti-c">Miễn phí</div>
       <div class="ti-tip">💡 Đến 16:30-17:00 cho ánh sáng đẹp</div>
       
-      <div class="il-group"><a href="https://www.google.com/maps/search/Elephant+Mountain+Xiangshan+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">4 tảng đá + 101 backdrop</span><span class="il-tip">Golden hour 17:30-18:30</span></span></a></div>
+      <div class="il-group"><a href="https://www.google.com/maps/search/Elephant+Mountain+Xiangshan+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">4 tảng đá + 101 backdrop</span><span class="il-tip">Golden hour 17:30-18:30</span></span></a><a href="https://www.google.com/maps/search/Xiangshan+panorama+Taipei+skyline" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Toàn cảnh skyline + núi xa</span><span class="il-tip">Leo thêm 5p lên đỉnh · View 180°</span></span></a></div>
       
       
     </div>
@@ -510,24 +574,21 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
 </div></div>
 </div>
 <div class="tc" id="tab-day3">
-  <div class="dh"><h2>N3 — T2 27/04 — Yehliu · Jiufen · Shifen</h2><p>Địa chất + Làng cổ + Thả đèn trời</p><span class="dh-tr">🚌 Tour combo KKday</span></div>
+  <div class="dh"><h2>N3 — T2 27/04 — Yehliu · Jiufen · Shifen</h2><p>Địa chất + Làng cổ + Thả đèn trời</p><span class="dh-tr">🚌 Tự túc xe buýt</span></div>
   <a href="https://www.google.com/maps/dir/25.2056,121.6901/25.1097,121.8452/25.0425,121.7764/25.0558,121.5153" target="_blank" class="rt-btn grn">🗺️ Route N3</a>
 
   <div class="cd"><div class="cd-t">📍 Lịch trình</div><div class="tl">    <div class="ti">
-      <div class="ti-t">Sáng 8:00</div>
-      <div class="ti-p">Tour combo / KKday<br><small class="ti-sub">Xe đưa đón từ Taipei Main</small></div>
-      <div class="ti-d">Book tour combo Yehliu+Jiufen+Shifen trên KKday.</div>
+      <div class="ti-t">Sáng 7:30</div>
+      <div class="ti-p">Taipei → Yehliu tự túc<br><small class="ti-sub">Xe buýt từ Zhongxiao Fuxing</small></div>
+      <div class="ti-d">Bus 1815 từ MRT Zhongxiao Fuxing (Exit 1) → Yehliu ~60 phút. Sau đó taxi/bus Yehliu→Jiufen→Shifen.</div>
+      <div class="ti-c">Bus 1815: ~90 TWD | Taxi Yehliu→Jiufen: ~400-500 TWD</div>
+      <div class="ti-tip">💡 Chiều: bus 788 từ Shifen → Ruifang → bus 825 về Taipei (hoặc taxi)</div>
       
       
       
       
       
-      <div class="ti-bk" id="bkf_d3_tour">
-      <span class="ti-bk-label">🚌 Tour Yehliu+Jiufen+Shifen (KKday)</span>
-      <input class="ti-bk-input" data-bk="d3_tour" data-type="tour" placeholder="Paste link booking..." 
-        onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-      <a class="ti-bk-open" id="bko_d3_tour" style="display:none" target="_blank">Mở ↗</a>
-    </div>
+      
     </div>
     <div class="ti">
       <div class="ti-t">8:30</div>
@@ -608,7 +669,7 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
     </div>
     <div class="ti">
       <div class="ti-t">11:30</div>
-      <div class="ti-p">🏨 Check-in Hotel Hoa Liên<br><small class="ti-sub">Gần ga Hualien · 2 đêm N4+N5</small></div>
+      <div class="ti-p">🏨 Check-in Hotel Hoa Liên (từ 15:00)<br><small class="ti-sub">Gần ga Hualien · 2 đêm N4+N5</small></div>
       <div class="ti-d">Gửi đồ hoặc check-in sớm.</div>
       
       
@@ -1361,7 +1422,8 @@ function updateTiBkUI(id,url){
   if(inp){const w=inp.closest('.ti-bk');if(w)w.classList.toggle('filled',!!url);}
 }
 
-// LEFT BOOKING LINKS (per day from timeline)let allLeftBk={};
+// LEFT BOOKING LINKS (per day from timeline)
+let allLeftBk={};
 async function loadLeftBk(){
   const rows=await getAllShared('booking_links');
   const g={};rows.forEach(r=>{if(!g[r.day_key])g[r.day_key]=[];g[r.day_key].push(r);});
@@ -1528,6 +1590,30 @@ function buildRank(){const tb=document.getElementById('rankBody');if(!tb)return;
 function sortTbl(c){if(c===4)return;sCol===c?sAsc=!sAsc:(sCol=c,sAsc=true);buildRank();}
 
 // INIT
+async function renderOvBookings(){
+  const panel=document.getElementById('ovBookingTable');
+  if(!panel)return;
+  try{
+    const rows=await getAllShared('booking_links');
+    if(!rows||rows.length===0){panel.innerHTML='<div style="font-size:.78rem;color:var(--txt3);padding:4px 0">Chưa có booking. Paste link vào từng ngày.</div>';return;}
+    const ICONS={flight:'✈️',hotel:'🏨',transport:'🚆',ticket:'🎫',tour:'🚌',permit:'📋',other:'🔗'};
+    const DNM={day1:'N1 25/04',day2:'N2 26/04',day3:'N3 27/04',day4:'N4 28/04',day5:'N5 29/04',day6:'N6 30/04',day7:'N7 01/05',day8:'N8 02/05'};
+    const byDay={};
+    rows.filter(r=>r.url&&r.url.trim()).forEach(r=>{if(!byDay[r.day_key])byDay[r.day_key]=[];byDay[r.day_key].push(r);});
+    if(Object.keys(byDay).length===0){panel.innerHTML='<div style="font-size:.78rem;color:var(--txt3);padding:4px 0">Chưa paste link booking nào.</div>';return;}
+    let html='<table class="bk-tbl"><thead><tr><th>Ngày</th><th>Booking</th><th></th></tr></thead><tbody>';
+    ['day1','day2','day3','day4','day5','day6','day7','day8'].forEach(dk=>{
+      if(!byDay[dk])return;
+      byDay[dk].forEach((r,i)=>{
+        const icon=ICONS[r.link_type]||'🔗';
+        html+=`<tr><td class="bk-day">${i===0?DNM[dk]||dk:''}</td><td class="bk-label">${icon} ${escHtml(r.label||r.link_type)}</td><td class="bk-link"><a href="${escHtml(r.url)}" target="_blank" class="bk-open">↗️ Mở</a></td></tr>`;
+      });
+    });
+    html+='</tbody></table>';
+    panel.innerHTML=html;
+  }catch(e){console.error('renderOvBookings:',e);}
+}
+
 async function init(){
   try{showAll();}catch(e){console.error('showAll:',e);}
   try{buildRank();}catch(e){console.error('buildRank:',e);}
@@ -1536,6 +1622,7 @@ async function init(){
   try{await Promise.all([loadTiBk(),loadLeftBk()]);}catch(e){console.error('loadBookings:',e);}
   try{renderOvChecklist();}catch(e){console.error('renderOv:',e);}
   try{renderDayChecklist(null);}catch(e){console.error('renderDay:',e);}
+  try{renderOvBookings();}catch(e){console.error('renderOvBookings:',e);}
 }
 // ── Event delegation (safe for sandboxed iframes) ──────────────────
 document.addEventListener('click',function(e){
@@ -1552,7 +1639,7 @@ document.addEventListener('click',function(e){
  'mdChk','saveTiBk','zoomRank','addTask','deleteTask','startEdit',
  'toggleTask','togglePaid','togglePerson','updBud','delBud',
  'budInpFocus','budInpBlur','renderBudget','calcBudgetSummary',
- 'buildRank','renderDayChecklist','renderOvChecklist'
+ 'buildRank','renderDayChecklist','renderOvChecklist','renderOvBookings'
 ].forEach(function(n){if(typeof window[n]==='undefined'&&typeof eval(n)!=='undefined')try{window[n]=eval(n);}catch(e){}});
 
 init();
