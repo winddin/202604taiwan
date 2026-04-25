@@ -24,15 +24,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .fl-warn{font-size:.72rem;color:var(--acc);margin-top:4px;font-weight:600}
 .nav{display:flex;overflow-x:auto;padding:7px 10px;gap:5px;background:var(--card);border-bottom:1px solid var(--bdr);position:sticky;top:62px;z-index:1000;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
-.nb{flex-shrink:0;padding:5px 11px;border:2px solid var(--bdr);border-radius:20px;background:var(--card);cursor:pointer;font-size:.73rem;font-weight:700;transition:all .15s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.nb{flex-shrink:0;padding:5px 11px;border:2px solid var(--bdr);border-radius:20px;background:var(--card);cursor:pointer;font-size:.73rem;font-weight:700;transition:all .15s;white-space:nowrap;-webkit-tap-highlight-color:rgba(212,70,90,.2);touch-action:manipulation;pointer-events:auto;position:relative;z-index:1}
 .nb.on{background:var(--pri);color:#fff;border-color:var(--pri)}
 .nb.sp{border-color:var(--acc);color:var(--acc)}.nb.sp.on{background:var(--acc);color:#fff}
 .main{max-width:1200px;margin:0 auto;padding:10px}
 .grid{display:grid;grid-template-columns:1fr;gap:12px}
 @media(min-width:768px){.grid{grid-template-columns:1fr 1fr}}
-.map-wrap{border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);height:200px}
+.map-wrap{border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);height:160px;position:relative;background:linear-gradient(135deg,#e8ecf5,#f0e6dc)}
+.map-wrap::before{content:"🗺️ Map cần kết nối internet để hiển thị";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:.75rem;color:#8a8a9a;font-weight:600;text-align:center;white-space:nowrap;z-index:0;pointer-events:none}
 @media(min-width:768px){.map-wrap{height:340px}}
-#map{height:100%;width:100%}
+#map{height:100%;width:100%;position:relative;z-index:1;background:transparent}
 @media(min-width:768px){.left-panel{position:sticky;top:118px;max-height:calc(100vh - 130px);overflow-y:auto}}
 .dcl-panel{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:12px 14px;margin-top:10px}
 .dcl-title{font-size:.85rem;font-weight:800;color:var(--pri);margin-bottom:6px}
@@ -239,7 +240,7 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
 .rank-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
 .rank-wrap table{min-width:520px;}
 .topbar,.tb{position:sticky;top:0;z-index:50;}
-.nav{position:sticky;top:48px;z-index:49;background:var(–card);}
+.nav{position:sticky;top:62px;z-index:1000;background:var(–card);pointer-events:auto;}
 .ti{border-radius:var(–r)!important;transition:box-shadow .15s;}
 .ti:hover{box-shadow:var(–sh-md);}
 /* ── Budget cards (compact inline) ────────────────────────────── */
@@ -1116,7 +1117,7 @@ const DMAP={day1:‘25/04’,day2:‘26/04’,day3:‘27/04’,day4:‘28/04’,
 const RANKS=[[1,“Taipei 101 / 台北101”,“Đài Bắc”,2,“Chụp 4 góc iconic (no T89)”],[2,“Taroko / 太魯閣”,“Hoa Liên”,4,“Hẻm núi #1 châu Á”],[3,“Jiufen / 九份”,“Tân Bắc”,3,“Spirited Away vibes”],[4,“Yongkang / 永康街”,“Đài Bắc”,2,“Mì bò, Din Tai Fung”],[5,“Ximending / 西門町”,“Đài Bắc”,1,“Shopping & nightlife”],[6,“Elephant Mt / 象山”,“Đài Bắc”,2,“Best city view”],[7,“Raohe / 饒河夜市”,“Đài Bắc”,2,“Chợ đêm cổ nhất”],[8,“Shifen / 十分”,“Tân Bắc”,3,“Thả đèn trời”],[9,“Yehliu / 野柳”,“Tân Bắc”,3,“Queen’s Head”],[10,“Qixingtan / 七星潭”,“Hoa Liên”,5,“Bãi đá cuội”],[11,“Tiaoshi / 跳石”,“Hoa Liên”,5,“Đá đen, hidden gem”],[12,“Fengjia / 逢甲”,“Đài Trung”,6,“Lớn nhất Đài Loan”],[13,“Gaomei / 高美濕地”,“Đài Trung”,6,“Hoàng hôn tuabin gió”],[14,“Rainbow / 彩虹眷村”,“Đài Trung”,6,“Street art”],[15,“Miyahara / 宮原眼科”,“Đài Trung”,6,“Kem, kiến trúc Nhật”],[16,“Beitou / 北投溫泉”,“Đài Bắc”,7,“Onsen”],[17,“Tamsui / 淡水”,“Đài Bắc”,7,“Hoàng hôn, Liao Tianding”],[18,“Sun Moon Lake / 日月潭”,“Nam Đầu”,“7*”,“Hồ đẹp (option)”],[19,“Qingshui / 清水斷崖”,“Hoa Liên”,4,“Vách đá 1000m”],[20,“Shakadang / 砂卡礑”,“Hoa Liên”,5,“Suối ngọc lam”]];
 
 let map=null,mks=[],poly=null;
-try{if(typeof L!==‘undefined’){map=L.map(‘map’,{zoomControl:false}).setView([23.7,121],7);L.control.zoom({position:‘bottomright’}).addTo(map);L.tileLayer(‘https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png’,{attribution:‘© OSM’}).addTo(map);}}catch(e){console.error(‘Map:’,e);}
+try{if(typeof L!==‘undefined’){map=L.map(‘map’,{zoomControl:false}).setView([23.7,121],7);L.control.zoom({position:‘bottomright’}).addTo(map);L.tileLayer(‘https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png’,{attribution:‘© OSM’,crossOrigin:true}).addTo(map);setTimeout(function(){try{map.invalidateSize();}catch(e){}},300);setTimeout(function(){try{map.invalidateSize();}catch(e){}},1000);}}catch(e){console.error(‘Map:’,e);}
 function clrMap(){if(!map)return;mks.forEach(m=>map.removeLayer(m));mks=[];if(poly){map.removeLayer(poly);poly=null;}}
 function showDay(dk){if(!map)return;clrMap();const locs=DL[dk];if(!locs||!locs.length)return;const b=[],pp=[];const di=parseInt(dk.replace(‘day’,’’))-1;const col=COLORS[di]||’#1a73e8’;locs.forEach((l,i)=>{const ic=L.divIcon({html:’<div style="background:linear-gradient(135deg,#2d4a7c,#3b4cca);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3)">’+(i+1)+’</div>’,iconSize:[26,26],iconAnchor:[13,13],className:’’});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup((l.r?’#’+l.r+’ ‘:’’)+l.n).addTo(map);mks.push(m);b.push([l.lat,l.lng]);pp.push([l.lat,l.lng]);});if(pp.length>1)poly=L.polyline(pp,{color:col,weight:3,opacity:.7,dashArray:‘8,8’}).addTo(map);b.length===1?map.setView(b[0],14):map.fitBounds(b,{padding:[30,30]});}
 function showAll(){if(!map)return;clrMap();const ab=[];Object.entries(DL).forEach(([dk,locs],di)=>{const col=COLORS[di]||’#1a73e8’;const pp=[];locs.forEach(l=>{const ic=L.divIcon({html:’<div style="background:'+(l.r?'#ff6b35':col)+';color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.25)">’+(l.r||’·’)+’</div>’,iconSize:[20,20],iconAnchor:[10,10],className:’’});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup(‘N’+(di+1)+’: ‘+l.n).addTo(map);mks.push(m);ab.push([l.lat,l.lng]);pp.push([l.lat,l.lng]);});if(pp.length>1){const ln=L.polyline(pp,{color:col,weight:2,opacity:.5,dashArray:‘6,6’}).addTo(map);mks.push(ln);}});if(ab.length)map.fitBounds(ab,{padding:[20,20]});}
@@ -1129,20 +1130,29 @@ function zoomRank(r){let found=null,fd=null;Object.entries(DL).forEach(([dk,locs
 // NAV
 let curDay=‘overview’;
 function go(id){
+// Step 1: ALWAYS switch active tab+nav class — this is the minimum and must never fail
+try{
 document.querySelectorAll(’.tc’).forEach(e=>e.classList.remove(‘on’));
 document.querySelectorAll(’.nb,.bnav-i’).forEach(b=>b.classList.remove(‘on’));
 const el=document.getElementById(‘tab-’+id);if(el)el.classList.add(‘on’);
 document.querySelectorAll(’.nb’).forEach(b=>{const t=b.textContent;
 if((id===‘overview’&&t.includes(‘Tổng quan’))||(DMAP[id]&&t.includes(DMAP[id]))||(id===‘mustdo’&&t===‘⭐’)||(id===‘budget’&&t===‘💰’)||(id===‘ranking’&&t===‘🏆’))b.classList.add(‘on’);
 });
+curDay=id;
+}catch(e){console.error(‘go() tab-switch:’,e);}
+// Step 2: render side-effects (map / checklists / summary) — wrapped so failures don’t block tab switch
+try{
 if([‘overview’,‘mustdo’,‘budget’].includes(id))showAll();
 else if(id===‘ranking’)showRanking();
 else if(id.startsWith(‘day’))showDay(id);
-curDay=id;
+}catch(e){console.error(‘go() map:’,e);}
+try{if(map&&map.invalidateSize)map.invalidateSize();}catch(e){}
+try{
 if(id.startsWith(‘day’)){renderDayChecklist(id);renderLeftBookings(id);}
 else{renderDayChecklist(null);renderLeftBookings(null);}
-if(id===‘overview’)renderBookingSummary();
-if(window.innerWidth<768)document.getElementById(‘ca’).scrollIntoView({behavior:‘smooth’,block:‘start’});
+}catch(e){console.error(‘go() checklist:’,e);}
+try{if(id===‘overview’)renderBookingSummary();}catch(e){console.error(‘go() bkSum:’,e);}
+try{if(window.innerWidth<768){const ca=document.getElementById(‘ca’);if(ca)ca.scrollIntoView({behavior:‘smooth’,block:‘start’});}}catch(e){}
 }
 
 // GENERIC TASK SYSTEM
