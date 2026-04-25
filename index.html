@@ -30,10 +30,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .main{max-width:1200px;margin:0 auto;padding:10px}
 .grid{display:grid;grid-template-columns:1fr;gap:12px}
 @media(min-width:768px){.grid{grid-template-columns:1fr 1fr}}
-.map-wrap{border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);height:160px;position:relative;background:linear-gradient(135deg,#e8ecf5,#f0e6dc)}
-.map-wrap::before{content:"🗺️ Map cần kết nối internet để hiển thị";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:.75rem;color:#8a8a9a;font-weight:600;text-align:center;white-space:nowrap;z-index:0;pointer-events:none}
+.map-wrap{border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);height:160px;position:relative;background:#e8ecf5}
 @media(min-width:768px){.map-wrap{height:340px}}
-#map{height:100%;width:100%;position:relative;z-index:1;background:transparent}
+#map{height:100%;width:100%;background:#e8ecf5}
 @media(min-width:768px){.left-panel{position:sticky;top:118px;max-height:calc(100vh - 130px);overflow-y:auto}}
 .dcl-panel{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:12px 14px;margin-top:10px}
 .dcl-title{font-size:.85rem;font-weight:800;color:var(--pri);margin-bottom:6px}
@@ -1059,16 +1058,54 @@ const TRIP_ID='202604taiwan_trip1';
 let _sharedIdCache=null;
 
 function devId(){let id=localStorage.getItem(‘tw26_dev’);if(!id){id=‘d_’+Math.random().toString(36).slice(2,11)+’_’+Date.now();localStorage.setItem(‘tw26_dev’,id);}return id;}
+let _sbLastError=’’;
+function *withTimeout(p,ms,label){
+return Promise.race([
+p,
+new Promise(function(*,rej){setTimeout(function(){rej(new Error(‘Timeout ‘+ms+‘ms: ‘+label));},ms);})
+]);
+}
 async function sbInit(){
 try{
-sb=window.supabase.createClient(SUPA_URL,SUPA_KEY,{db:{schema:SCHEMA}});
-const{data,error}=await sb.from(‘sessions’).upsert({device_id:devId()},{onConflict:‘device_id’}).select().single();
-if(error)throw error; SID=data.id;
-await sb.from(‘sessions’).upsert({device_id:TRIP_ID},{onConflict:‘device_id’});
-setBadge(‘🟢 Synced’,‘ok’); return true;
-}catch(e){console.error(‘SB:’,e);setBadge(‘🔴 Offline’,‘err’);return false;}
+setBadge(‘⏳ Syncing…’,’’);
+if(typeof window.supabase===‘undefined’||!window.supabase||!window.supabase.createClient){
+_sbLastError=‘Supabase SDK chưa load (CDN bị chặn?)’;
+console.error(‘SB:’,_sbLastError);
+setBadge(‘🔴 Offline’,‘err’);return false;
 }
-function setBadge(t,c){const b=document.getElementById(‘dbBadge’);b.textContent=t;b.className=’db-badge ’+c;}
+sb=window.supabase.createClient(SUPA_URL,SUPA_KEY,{db:{schema:SCHEMA}});
+const r1=await _withTimeout(
+sb.from(‘sessions’).upsert({device_id:devId()},{onConflict:‘device_id’}).select().single(),
+8000,‘sessions upsert (device)’
+);
+if(r1.error)throw r1.error;
+SID=r1.data.id;
+await _withTimeout(
+sb.from(‘sessions’).upsert({device_id:TRIP_ID},{onConflict:‘device_id’}),
+8000,‘sessions upsert (trip)’
+);
+setBadge(‘🟢 Synced’,‘ok’);
+_sbLastError=’’;
+return true;
+}catch(e){
+_sbLastError=(e&&e.message)||String(e);
+console.error(‘SB:’,e);
+setBadge(‘🔴 Offline’,‘err’);
+return false;
+}
+}
+function setBadge(t,c){const b=document.getElementById(‘dbBadge’);if(!b)return;b.textContent=t;b.className=’db-badge ’+c;b.style.cursor=‘pointer’;b.onclick=function(){
+const info=[
+‘Status: ‘+(b.textContent||’’),
+’SDK loaded: ’+(typeof window.supabase!==‘undefined’&&!!(window.supabase&&window.supabase.createClient)),
+‘Session ID: ‘+(SID||’(none)’),
+‘Last error: ‘+(_sbLastError||’(none)’),
+‘Online: ‘+(navigator.onLine?‘yes’:‘no’),
+‘’,
+‘Tap “Retry” để thử lại Supabase, “Cancel” để dùng localStorage offline.’
+].join(’\n’);
+if(confirm(info)){sbInit().then(function(){location.reload();});}
+};}
 
 async function getSharedId(){
 if(*sharedIdCache)return *sharedIdCache;
