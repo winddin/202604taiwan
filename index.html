@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
@@ -23,15 +24,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .fl-warn{font-size:.72rem;color:var(--acc);margin-top:4px;font-weight:600}
 .nav{display:flex;overflow-x:auto;padding:7px 10px;gap:5px;background:var(--card);border-bottom:1px solid var(--bdr);position:sticky;top:62px;z-index:1000;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
-.nb{flex-shrink:0;padding:5px 11px;border:2px solid var(--bdr);border-radius:20px;background:var(--card);cursor:pointer;font-size:.73rem;font-weight:700;transition:all .15s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.nb{flex-shrink:0;padding:5px 11px;border:2px solid var(--bdr);border-radius:20px;background:var(--card);cursor:pointer;font-size:.73rem;font-weight:700;transition:all .15s;white-space:nowrap;-webkit-tap-highlight-color:rgba(212,70,90,.2);touch-action:manipulation;pointer-events:auto;position:relative;z-index:1}
 .nb.on{background:var(--pri);color:#fff;border-color:var(--pri)}
 .nb.sp{border-color:var(--acc);color:var(--acc)}.nb.sp.on{background:var(--acc);color:#fff}
 .main{max-width:1200px;margin:0 auto;padding:10px}
 .grid{display:grid;grid-template-columns:1fr;gap:12px}
 @media(min-width:768px){.grid{grid-template-columns:1fr 1fr}}
-.map-wrap{border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);height:200px}
+.map-wrap{border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);height:160px;position:relative;background:#e8ecf5}
 @media(min-width:768px){.map-wrap{height:340px}}
-#map{height:100%;width:100%}
+#map{height:100%;width:100%;background:#e8ecf5}
 @media(min-width:768px){.left-panel{position:sticky;top:118px;max-height:calc(100vh - 130px);overflow-y:auto}}
 .dcl-panel{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:12px 14px;margin-top:10px}
 .dcl-title{font-size:.85rem;font-weight:800;color:var(--pri);margin-bottom:6px}
@@ -55,7 +56,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .add-task-btn{font-size:.75rem;background:var(--pri);color:#fff;border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-weight:700}
 .bk-section{margin-top:10px;padding-top:8px;border-top:1px dashed var(--bdr)}
 .bk-title{font-size:.78rem;font-weight:700;color:var(--txt2);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
-.bk-row{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+.bk-row{display:flex;align-items:center;gap:6px;margin-bottom:5px;flex-wrap:wrap;min-width:0}
 .bk-label{font-size:.73rem;font-weight:700;flex-shrink:0;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .bk-input{flex:1;font-size:.71rem;border:1px solid var(--bdr);border-radius:5px;padding:4px 6px;font-family:inherit;outline:none;color:var(--pri);background:#fff;min-width:0}
 .bk-input:focus{border-color:var(--pri)}
@@ -83,10 +84,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .ti-tip{font-size:.73rem;color:var(--acc);margin-top:3px;font-style:italic}
 .ti-note{font-size:.73rem;color:#6200ea;margin-top:4px;background:#f3e5ff;padding:4px 8px;border-radius:5px;border-left:3px solid #6200ea}
 /* INLINE BOOKING LINK */
-.ti-bk{display:flex;align-items:center;gap:6px;margin-top:7px;padding:5px 8px;background:rgba(26,115,232,.06);border-radius:6px;border:1px dashed var(--pri)}
-.ti-bk-label{font-size:.7rem;font-weight:700;color:var(--pri);flex-shrink:0;white-space:nowrap}
-.ti-bk-input{flex:1;font-size:.7rem;border:none;background:transparent;outline:none;color:var(--txt);font-family:inherit;min-width:0}
-.ti-bk-input::placeholder{color:#bbb}
+.ti-bk{display:flex;align-items:center;gap:6px;margin-top:7px;padding:5px 8px;background:rgba(26,115,232,.06);border-radius:6px;border:1px dashed var(--pri);flex-wrap:wrap;max-width:100%;min-width:0}
+.ti-bk-label{font-size:.7rem;font-weight:700;color:var(--pri);flex-shrink:0;white-space:normal;word-break:break-word;max-width:100%}
+.ti-bk-input{flex:1 1 180px;font-size:.7rem;border:none;background:transparent;outline:none;color:var(--txt);font-family:inherit;min-width:0;width:100%}
+.ti-bk-input::placeholder{color:#bbb;overflow:hidden;text-overflow:ellipsis}
 .ti-bk-open{font-size:.68rem;color:var(--pri);text-decoration:none;flex-shrink:0;padding:2px 6px;border-radius:4px;border:1px solid var(--pri);white-space:nowrap}
 /* INLINE LINKS */
 .il-group{margin-top:8px;border-top:1px dashed var(--bdr);padding-top:6px;display:flex;flex-direction:column;gap:3px}
@@ -193,19 +194,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
 /* ── V5 Japanese/Taiwanese theme ─────────────────────────────────── */
 :root{
-  --pri:#d4465a; --pri-d:#b02d42; --pri-l:#fde8ec;
-  --ind:#2d4a7c; --ind-l:#e8ecf5;
-  --gold:#e8a042; --ok:#14a098; --ok-l:#def4f2;
-  --red:#e63946; --sa:#3b4cca; --bi:#e63946; --ty:#14a098;
-  --bg:#fdf8f3; --card:#fff; --bdr:#ece4d9; --bdr2:#f5ede3;
-  --txt:#1a1a2e; --txt2:#4a4a5e; --txt3:#8a8a9a;
-  --sh:0 1px 2px rgba(45,74,124,.04),0 2px 6px rgba(45,74,124,.04);
-  --sh-md:0 2px 8px rgba(45,74,124,.08),0 6px 20px rgba(45,74,124,.06);
-  --r:12px; --r-sm:10px;
+–pri:#d4465a; –pri-d:#b02d42; –pri-l:#fde8ec;
+–ind:#2d4a7c; –ind-l:#e8ecf5;
+–gold:#e8a042; –ok:#14a098; –ok-l:#def4f2;
+–red:#e63946; –sa:#3b4cca; –bi:#e63946; –ty:#14a098;
+–bg:#fdf8f3; –card:#fff; –bdr:#ece4d9; –bdr2:#f5ede3;
+–txt:#1a1a2e; –txt2:#4a4a5e; –txt3:#8a8a9a;
+–sh:0 1px 2px rgba(45,74,124,.04),0 2px 6px rgba(45,74,124,.04);
+–sh-md:0 2px 8px rgba(45,74,124,.08),0 6px 20px rgba(45,74,124,.06);
+–r:12px; –r-sm:10px;
 }
-body{background:var(--bg);color:var(--txt);}
+body{background:var(–bg);color:var(–txt);}
 /* Header */
-.topbar,.tb,header{background:linear-gradient(90deg,#1d3456 0%,#2d4a7c 50%,#3b4cca 100%)!important;color:#fff!important;border-bottom:3px solid var(--pri)!important;box-shadow:0 2px 8px rgba(29,52,86,.3)!important;}
+.topbar,.tb,header{background:linear-gradient(90deg,#1d3456 0%,#2d4a7c 50%,#3b4cca 100%)!important;color:#fff!important;border-bottom:3px solid var(–pri)!important;box-shadow:0 2px 8px rgba(29,52,86,.3)!important;}
 .db-badge,#dbBadge{background:rgba(255,255,255,.15)!important;color:#fff!important;border:1px solid rgba(255,255,255,.25)!important;}
 /* Day headers */
 .dh{color:#fff;}
@@ -214,18 +215,18 @@ body{background:var(--bg);color:var(--txt);}
 .tc#tab-budget .dh{background:linear-gradient(135deg,#14a098,#2d4a7c)!important;}
 .tc#tab-ranking .dh{background:linear-gradient(135deg,#3b4cca,#14a098)!important;}
 /* Nav */
-.nb,.bnav-i{color:var(--txt2);border:1.5px solid transparent;background:var(--card);font-weight:600;transition:all .15s;}
-.nb:hover,.bnav-i:hover{background:var(--ind-l);}
-.nb.on,.bnav-i.on{background:var(--pri)!important;color:#fff!important;border-color:var(--pri-d)!important;box-shadow:0 2px 6px rgba(212,70,90,.3);}
+.nb,.bnav-i{color:var(–txt2);border:1.5px solid transparent;background:var(–card);font-weight:600;transition:all .15s;}
+.nb:hover,.bnav-i:hover{background:var(–ind-l);}
+.nb.on,.bnav-i.on{background:var(–pri)!important;color:#fff!important;border-color:var(–pri-d)!important;box-shadow:0 2px 6px rgba(212,70,90,.3);}
 /* Misc */
-.fl-ban{background:linear-gradient(135deg,#fde8ec,#fef4d8)!important;border-left:4px solid var(--pri)!important;color:var(--txt)!important;}
-.fl-ban h3{color:var(--pri-d)!important;}
-.ti{background:var(--card);border:1px solid var(--bdr);border-left:3px solid var(--ind);}
-.ti.transport{border-left-color:var(--gold);} .ti.hotel{border-left-color:var(--ok);} .ti.food{border-left-color:var(--pri);}
-a{color:var(--ind);} a:hover{color:var(--pri);}
-.md-grp h3{color:var(--ind);border-bottom:2px solid var(--pri);}
-.rank-wrap th{background:var(--ind);color:#fff;}
-.rank-wrap tbody tr:hover{background:var(--pri-l);}
+.fl-ban{background:linear-gradient(135deg,#fde8ec,#fef4d8)!important;border-left:4px solid var(–pri)!important;color:var(–txt)!important;}
+.fl-ban h3{color:var(–pri-d)!important;}
+.ti{background:var(–card);border:1px solid var(–bdr);border-left:3px solid var(–ind);}
+.ti.transport{border-left-color:var(–gold);} .ti.hotel{border-left-color:var(–ok);} .ti.food{border-left-color:var(–pri);}
+a{color:var(–ind);} a:hover{color:var(–pri);}
+.md-grp h3{color:var(–ind);border-bottom:2px solid var(–pri);}
+.rank-wrap th{background:var(–ind);color:#fff;}
+.rank-wrap tbody tr:hover{background:var(–pri-l);}
 /* ── Mobile ────────────────────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;}
 html,body{overflow-x:hidden;max-width:100vw;-webkit-tap-highlight-color:transparent;}
@@ -238,90 +239,115 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
 .rank-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
 .rank-wrap table{min-width:520px;}
 .topbar,.tb{position:sticky;top:0;z-index:50;}
-.nav{position:sticky;top:48px;z-index:49;background:var(--card);}
-.ti{border-radius:var(--r)!important;transition:box-shadow .15s;}
-.ti:hover{box-shadow:var(--sh-md);}
+.nav{position:sticky;top:62px;z-index:1000;background:var(–card);pointer-events:auto;}
+.ti{border-radius:var(–r)!important;transition:box-shadow .15s;}
+.ti:hover{box-shadow:var(–sh-md);}
 /* ── Budget cards (compact inline) ────────────────────────────── */
 .bud-summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px;}
-.bud-card{padding:8px 6px 10px;border-radius:var(--r);background:var(--card);border:1.5px solid var(--bdr);cursor:pointer;transition:all .15s;text-align:center;min-width:0;overflow:hidden;}
-.bud-card:hover{transform:translateY(-1px);box-shadow:var(--sh-md);}
-.bud-card.sa{border-color:var(--sa);} .bud-card.bi{border-color:var(--bi);} .bud-card.ty{border-color:var(--ty);}
-.bud-card.sa.active{box-shadow:0 0 0 2px var(--sa);background:#f4f6ff;}
-.bud-card.bi.active{box-shadow:0 0 0 2px var(--bi);background:#fef2f3;}
-.bud-card.ty.active{box-shadow:0 0 0 2px var(--ty);background:#f0faf9;}
+.bud-card{padding:8px 6px 10px;border-radius:var(–r);background:var(–card);border:1.5px solid var(–bdr);cursor:pointer;transition:all .15s;text-align:center;min-width:0;overflow:hidden;}
+.bud-card:hover{transform:translateY(-1px);box-shadow:var(–sh-md);}
+.bud-card.sa{border-color:var(–sa);} .bud-card.bi{border-color:var(–bi);} .bud-card.ty{border-color:var(–ty);}
+.bud-card.sa.active{box-shadow:0 0 0 2px var(–sa);background:#f4f6ff;}
+.bud-card.bi.active{box-shadow:0 0 0 2px var(–bi);background:#fef2f3;}
+.bud-card.ty.active{box-shadow:0 0 0 2px var(–ty);background:#f0faf9;}
 .bud-name{font-size:.82rem;font-weight:800;margin-bottom:5px;letter-spacing:.3px;}
-.bud-card.sa .bud-name{color:var(--sa);} .bud-card.bi .bud-name{color:var(--bi);} .bud-card.ty .bud-name{color:var(--ty);}
+.bud-card.sa .bud-name{color:var(–sa);} .bud-card.bi .bud-name{color:var(–bi);} .bud-card.ty .bud-name{color:var(–ty);}
 .bud-line{display:flex;align-items:baseline;justify-content:center;flex-wrap:wrap;gap:3px;padding:3px 4px;font-size:.64rem;line-height:1.3;min-width:0;}
-.bud-line.paid{background:var(--ok-l);border-radius:6px;margin-top:3px;}
-.bl-lbl{font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:.3px;font-size:.56rem;flex-shrink:0;}
-.bl-vnd{font-weight:800;color:var(--txt);font-size:.7rem;}
-.bud-line.paid .bl-vnd{color:var(--ok);}
+.bud-line.paid{background:var(–ok-l);border-radius:6px;margin-top:3px;}
+.bl-lbl{font-weight:700;color:var(–txt3);text-transform:uppercase;letter-spacing:.3px;font-size:.56rem;flex-shrink:0;}
+.bl-vnd{font-weight:800;color:var(–txt);font-size:.7rem;}
+.bud-line.paid .bl-vnd{color:var(–ok);}
 /* ── Budget items ─────────────────────────────────────────────── */
-.bud-totals{display:flex;align-items:center;background:var(--card);border-radius:var(--r);padding:10px 14px;margin-bottom:12px;box-shadow:var(--sh);border:1px solid var(--bdr2);}
+.bud-totals{display:flex;align-items:center;background:var(–card);border-radius:var(–r);padding:10px 14px;margin-bottom:12px;box-shadow:var(–sh);border:1px solid var(–bdr2);}
 .bud-total-item{flex:1;text-align:center;}
-.bud-total-label{display:block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--txt3);margin-bottom:3px;}
-.bud-total-val{display:block;font-size:.95rem;font-weight:800;color:var(--pri);}
-.bud-total-sub{display:block;font-size:.68rem;color:var(--txt3);}
-.bud-total-divider{width:1px;background:var(--bdr);align-self:stretch;margin:0 8px;}
-.bud-add-card{background:var(--card);border-radius:var(--r);border:2px dashed var(--pri);padding:12px;margin-bottom:12px;box-shadow:var(--sh);}
-.bud-add-inp{font-size:.82rem;border:1.5px solid var(--bdr);border-radius:8px;padding:7px 10px;font-family:inherit;outline:none;background:var(--bg);}
-.bud-add-inp:focus{border-color:var(--ind);background:#fff;}
-.bud-add-select{font-size:.9rem;border:1.5px solid var(--bdr);border-radius:8px;padding:6px;background:var(--bg);outline:none;cursor:pointer;}
-.bud-add-btn{font-size:.8rem;background:var(--pri);color:#fff;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-weight:700;}
-.bud-add-btn:hover{background:var(--pri-d);}
-.bud-item-card{background:var(--card);border-radius:var(--r-sm);border:1px solid var(--bdr2);margin-bottom:6px;overflow:hidden;box-shadow:var(--sh);}
-.bud-item-row{display:flex;align-items:center;gap:6px;padding:8px 10px;border-bottom:1px solid var(--bdr2);}
-.bud-cat-select,.bud-cur-sel-inline{font-size:.7rem;border:1px solid var(--bdr);border-radius:5px;padding:2px 3px;background:var(--bg);outline:none;cursor:pointer;flex-shrink:0;}
-.bud-cur-sel-inline{color:var(--ind);font-weight:700;}
-.bud-item-label{flex:1;font-size:.8rem;font-weight:600;color:var(--txt);background:transparent;border:none;font-family:inherit;outline:none;min-width:0;}
-.bud-item-label:focus{background:var(--pri-l);border-radius:4px;padding:1px 4px;}
-.bud-item-del{background:none;border:none;cursor:pointer;color:var(--txt3);font-size:.8rem;padding:3px;flex-shrink:0;}
-.bud-item-del:hover{color:var(--red);}
+.bud-total-label{display:block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(–txt3);margin-bottom:3px;}
+.bud-total-val{display:block;font-size:.95rem;font-weight:800;color:var(–pri);}
+.bud-total-sub{display:block;font-size:.68rem;color:var(–txt3);}
+.bud-total-divider{width:1px;background:var(–bdr);align-self:stretch;margin:0 8px;}
+.bud-add-card{background:var(–card);border-radius:var(–r);border:2px dashed var(–pri);padding:12px;margin-bottom:12px;box-shadow:var(–sh);}
+.bud-add-inp{font-size:.82rem;border:1.5px solid var(–bdr);border-radius:8px;padding:7px 10px;font-family:inherit;outline:none;background:var(–bg);}
+.bud-add-inp:focus{border-color:var(–ind);background:#fff;}
+.bud-add-select{font-size:.9rem;border:1.5px solid var(–bdr);border-radius:8px;padding:6px;background:var(–bg);outline:none;cursor:pointer;}
+.bud-add-btn{font-size:.8rem;background:var(–pri);color:#fff;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-weight:700;}
+.bud-add-btn:hover{background:var(–pri-d);}
+.bud-item-card{background:var(–card);border-radius:var(–r-sm);border:1px solid var(–bdr2);margin-bottom:6px;overflow:hidden;box-shadow:var(–sh);}
+.bud-item-row{display:flex;align-items:center;gap:6px;padding:8px 10px;border-bottom:1px solid var(–bdr2);}
+.bud-cat-select,.bud-cur-sel-inline{font-size:.7rem;border:1px solid var(–bdr);border-radius:5px;padding:2px 3px;background:var(–bg);outline:none;cursor:pointer;flex-shrink:0;}
+.bud-cur-sel-inline{color:var(–ind);font-weight:700;}
+.bud-item-label{flex:1;font-size:.8rem;font-weight:600;color:var(–txt);background:transparent;border:none;font-family:inherit;outline:none;min-width:0;}
+.bud-item-label:focus{background:var(–pri-l);border-radius:4px;padding:1px 4px;}
+.bud-item-del{background:none;border:none;cursor:pointer;color:var(–txt3);font-size:.8rem;padding:3px;flex-shrink:0;}
+.bud-item-del:hover{color:var(–red);}
 .bud-item-amt-row{display:flex;align-items:center;gap:8px;padding:6px 10px 8px;flex-wrap:wrap;}
 .bud-item-amt-block{flex:1;min-width:100px;}
-.bud-amount-inp{width:100%;font-size:.9rem;font-weight:700;border:1.5px solid var(--bdr);border-radius:7px;padding:5px 8px;font-family:inherit;text-align:right;outline:none;background:var(--bg);transition:border-color .15s;}
-.bud-amount-inp:focus{border-color:var(--ind);background:#fff;}
-.bud-item-per{font-size:.66rem;color:var(--ok);font-weight:600;margin-top:3px;text-align:right;}
-.bud-paid-label{display:flex;align-items:center;gap:5px;cursor:pointer;padding:4px 9px;border-radius:8px;border:1.5px solid var(--bdr);background:var(--bg);transition:all .15s;user-select:none;flex-shrink:0;}
-.bud-paid-label.paid{background:var(--ok-l);border-color:var(--ok);}
-.bud-paid-cb{width:14px;height:14px;cursor:pointer;accent-color:var(--ok);}
-.bud-paid-txt{font-size:.7rem;font-weight:700;color:var(--txt3);}
-.bud-paid-label.paid .bud-paid-txt{color:var(--ok);}
+.bud-amount-inp{width:100%;font-size:.9rem;font-weight:700;border:1.5px solid var(–bdr);border-radius:7px;padding:5px 8px;font-family:inherit;text-align:right;outline:none;background:var(–bg);transition:border-color .15s;}
+.bud-amount-inp:focus{border-color:var(–ind);background:#fff;}
+.bud-item-per{font-size:.66rem;color:var(–ok);font-weight:600;margin-top:3px;text-align:right;}
+.bud-paid-label{display:flex;align-items:center;gap:5px;cursor:pointer;padding:4px 9px;border-radius:8px;border:1.5px solid var(–bdr);background:var(–bg);transition:all .15s;user-select:none;flex-shrink:0;}
+.bud-paid-label.paid{background:var(–ok-l);border-color:var(–ok);}
+.bud-paid-cb{width:14px;height:14px;cursor:pointer;accent-color:var(–ok);}
+.bud-paid-txt{font-size:.7rem;font-weight:700;color:var(–txt3);}
+.bud-paid-label.paid .bud-paid-txt{color:var(–ok);}
 .bud-person-row{display:flex;gap:4px;flex-shrink:0;}
-.bud-person-toggle{font-size:.7rem;font-weight:700;cursor:pointer;padding:3px 8px;border-radius:7px;border:1.5px solid var(--bdr);transition:all .15s;user-select:none;color:var(--txt3);background:var(--bg);}
-.bud-person-toggle.sa.on{background:rgba(59,76,202,.12);border-color:var(--sa);color:var(--sa);}
-.bud-person-toggle.bi.on{background:rgba(230,57,70,.12);border-color:var(--bi);color:var(--bi);}
-.bud-person-toggle.ty.on{background:rgba(20,160,152,.12);border-color:var(--ty);color:var(--ty);}
+.bud-person-toggle{font-size:.7rem;font-weight:700;cursor:pointer;padding:3px 8px;border-radius:7px;border:1.5px solid var(–bdr);transition:all .15s;user-select:none;color:var(–txt3);background:var(–bg);}
+.bud-person-toggle.sa.on{background:rgba(59,76,202,.12);border-color:var(–sa);color:var(–sa);}
+.bud-person-toggle.bi.on{background:rgba(230,57,70,.12);border-color:var(–bi);color:var(–bi);}
+.bud-person-toggle.ty.on{background:rgba(20,160,152,.12);border-color:var(–ty);color:var(–ty);}
 /* ── Flight banner ────────────────────────────────────────────── */
-.fl-ban{border-left:4px solid var(--pri);padding:10px 14px;border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:.78rem;color:var(--txt);margin-bottom:12px;}
-.fl-ban h3{font-size:.82rem;color:var(--pri-d);margin-bottom:5px;font-weight:700;}
-.fl-ban hr{border:none;border-top:1px dashed var(--bdr);margin:5px 0;}
+.fl-ban{border-left:4px solid var(–pri);padding:10px 14px;border-radius:0 var(–r-sm) var(–r-sm) 0;font-size:.78rem;color:var(–txt);margin-bottom:12px;}
+.fl-ban h3{font-size:.82rem;color:var(–pri-d);margin-bottom:5px;font-weight:700;}
+.fl-ban hr{border:none;border-top:1px dashed var(–bdr);margin:5px 0;}
+/* ── Universal overflow containment (all viewports) ──────────── */
+.cd,.ti,.tc,.tl,.left-panel,.dcl-panel,.bud-item-card,.bud-add-card,.fl-ban{min-width:0;max-width:100%;overflow-wrap:anywhere;word-wrap:break-word}
+.ti-p,.ti-d,.ti-c,.ti-tip,.ti-note,.ti-sub{min-width:0;max-width:100%;overflow-wrap:anywhere;word-wrap:break-word}
+.il-link,.il-name,.il-tip{min-width:0;max-width:100%;overflow-wrap:anywhere}
+.ti-bk-input{text-overflow:ellipsis}
+/* Tables stay scrollable horizontally, not break parent */
+.tbl,.budget-table{table-layout:auto}
+.bk-sum-link{overflow-wrap:anywhere}
 /* ── iPhone 16 Pro Max (430px) ────────────────────────────────── */
 @media(max-width:480px){
-  .bud-summary-grid{gap:5px;}
-  .bud-card{padding:7px 4px 9px;}
-  .bud-name{font-size:.76rem;}
-  .bl-vnd{font-size:.66rem;} .bl-lbl{font-size:.54rem;}
-  .bud-item-row{padding:7px 8px;gap:5px;}
-  .bud-item-label{font-size:.78rem;}
-  .bud-amount-inp{font-size:.88rem;}
-  .bud-item-per{font-size:.62rem;}
-  .bud-paid-label{padding:3px 7px;}
-  .bud-paid-txt{font-size:.66rem;}
-  .bud-person-toggle{padding:3px 7px;font-size:.66rem;}
-  .bud-total-val{font-size:.88rem;} .bud-total-sub{font-size:.62rem;}
-  .tc{padding:8px!important;} .dh{padding:12px!important;}
-  .dh h2{font-size:1rem;} .dh p{font-size:.75rem;}
-  .ti{padding:9px 10px;margin-bottom:6px;}
-  .ti h3{font-size:.88rem;} .ti p{font-size:.74rem;}
-  .body-area{flex-direction:column!important;}
-  .sidebar{width:100%!important;max-height:260px;}
-  .main-content{padding:8px!important;}
+.bud-summary-grid{gap:5px;}
+.bud-card{padding:7px 4px 9px;}
+.bud-name{font-size:.76rem;}
+.bl-vnd{font-size:.66rem;} .bl-lbl{font-size:.54rem;}
+.bud-item-row{padding:7px 8px;gap:5px;}
+.bud-item-label{font-size:.78rem;}
+.bud-amount-inp{font-size:.88rem;}
+.bud-item-per{font-size:.62rem;}
+.bud-paid-label{padding:3px 7px;}
+.bud-paid-txt{font-size:.66rem;}
+.bud-person-toggle{padding:3px 7px;font-size:.66rem;}
+.bud-total-val{font-size:.88rem;} .bud-total-sub{font-size:.62rem;}
+.tc{padding:8px!important;} .dh{padding:12px!important;}
+.dh h2{font-size:1rem;} .dh p{font-size:.75rem;}
+.ti{padding:9px 10px;margin-bottom:6px;}
+.ti h3{font-size:.88rem;} .ti p{font-size:.74rem;}
+.body-area{flex-direction:column!important;}
+.sidebar{width:100%!important;max-height:260px;}
+.main-content{padding:8px!important;}
+/* Booking link rows: stack label / input / open vertically */
+.ti-bk{flex-direction:column;align-items:stretch;gap:4px;padding:6px 8px;}
+.ti-bk-label{font-size:.66rem;line-height:1.25;}
+.ti-bk-input{flex:1 1 auto;width:100%;padding:3px 0;border-bottom:1px dashed rgba(45,74,124,.2);font-size:.7rem;}
+.ti-bk-open{align-self:flex-end;font-size:.65rem;padding:2px 8px;}
+/* Left-panel saved-bookings row: also stacks */
+.bk-row{flex-direction:column;align-items:flex-start;gap:3px;}
+.bk-label{max-width:100%;white-space:normal;}
+.bk-open{align-self:flex-end;}
+/* Booking summary table: shrink + allow horizontal scroll if needed */
+#bkSummaryTbl{font-size:.72rem;}
+#bkSummaryTbl th,#bkSummaryTbl td{padding:5px 4px;}
+.bk-sum-type{font-size:.56rem;padding:1px 4px;}
+.bk-sum-status{font-size:.62rem;padding:1px 5px;}
+/* Route buttons: prevent overflow */
+.rt-btn{font-size:.7rem;padding:5px 10px;}
 }
 @media(max-width:380px){
-  .bud-name{font-size:.7rem;} .bl-vnd{font-size:.62rem;} .bl-lbl{font-size:.5rem;}
+.bud-name{font-size:.7rem;} .bl-vnd{font-size:.62rem;} .bl-lbl{font-size:.5rem;}
 }
 </style>
+
 </head>
 <body>
 <div class="hdr">
@@ -332,7 +358,6 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
     <span>👥 Sa · Bi · Ty</span>
     <span class="db-badge" id="dbBadge">⏳ Syncing...</span>
   </div>
-</div>
 </div>
 <nav class="nav">
   <button class="nb on" onclick="go('overview')">🗺️ Tổng quan</button>
@@ -372,12 +397,13 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
     <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(9)" title="#9">9</span><span class="rb" onclick="zoomRank(3)" title="#3">3</span><span class="rb" onclick="zoomRank(8)" title="#8">8</span><b>27/04</b> Yehliu · Jiufen · Shifen (tự túc)</div>
     <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(2)" title="#2">2</span><span class="rb" onclick="zoomRank(19)" title="#19">19</span><b>28/04</b> 🚆 → Hoa Liên · Taroko · Qingshui</div>
     <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(10)" title="#10">10</span><span class="rb" onclick="zoomRank(20)" title="#20">20</span><span class="rb" onclick="zoomRank(11)" title="#11">11</span><b>29/04</b> Qixingtan · Shakadang · Tiaoshi</div>
-    <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(15)" title="#15">15</span><span class="rb" onclick="zoomRank(14)" title="#14">14</span><span class="rb" onclick="zoomRank(13)" title="#13">13</span><span class="rb" onclick="zoomRank(12)" title="#12">12</span><b>30/04</b> 🚆 → Đài Trung · Miyahara · Rainbow · Gaomei · Fengjia</div>
-    <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(18)" title="#18">18</span><span class="rb" onclick="zoomRank(16)" title="#16">16</span><span class="rb" onclick="zoomRank(17)" title="#17">17</span><b>01/05</b> 🚄 → Đài Bắc · Beitou/Tamsui · Shilin</div>
+    <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(15)" title="#15">15</span><span class="rb" onclick="zoomRank(14)" title="#14">14</span><span class="rb" onclick="zoomRank(13)" title="#13">13</span><span class="rb" onclick="zoomRank(12)" title="#12">12</span><b>30/04</b> 🚆Puyuma+🚄HSR → Đài Trung · Miyahara · Theater · Audit · Rainbow · Gaomei · Fengjia</div>
+    <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(16)" title="#16">16</span><span class="rb" onclick="zoomRank(17)" title="#17">17</span><b>01/05</b> Sáng cafe Đài Trung · 🚄HSR → Đài Bắc · Beitou/Tamsui · Shilin</div>
     <div style="display:flex;gap:6px;padding:8px 0;align-items:center">🎯<b>02/05</b> Ăn sáng · Mua quà · ✈️ TPE→SGN 13:45</div>
   </div></div>
 
   <!-- BOOKING SUMMARY TABLE -->
+
   <div class="cd">
     <div class="cd-t">🔗 Bảng Tổng Hợp Booking</div>
     <div style="overflow-x:auto"><table class="tbl" id="bkSummaryTbl">
@@ -394,6 +420,7 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
   </div>
 
   <!-- EDITABLE CHECKLIST -->
+
   <div class="cd">
     <div class="cd-t">✅ Checklist Chuẩn Bị Chung</div>
     <div class="dcl-prog" id="ovProg"></div>
@@ -693,9 +720,9 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
       <div class="ti-t">Tối 18:30</div>
       <div class="ti-p">Dongdamen Night Market<br><small class="ti-sub">Ăn nhẹ + mua Mochi về</small></div>
       <div class="ti-d">Nghỉ sớm — ngày mai 7:30 đi tàu.</div>
-      <div class="ti-note">⚠️ Tối nay: Pack đồ + trả xe máy. Đặt vé TRA Hualien→Taichung chưa?</div>
+      <div class="ti-note">⚠️ Tối nay: Pack đồ + trả xe máy. Vé Puyuma 7330461 ✅ đã có. Báo lễ tân check-out 5:00 sáng mai!</div>
       <div class="ti-bk" id="bkf_d5_train">
-        <span class="ti-bk-label">🚆 TRA Hualien→Taichung 30/04</span>
+        <span class="ti-bk-label">🚆 TRA Puyuma 203 #7330461 ✅ Đã đặt</span>
         <input class="ti-bk-input" data-bk="d5_train" data-type="transport" placeholder="Paste link booking..." onchange="saveTiBk(this)" onblur="saveTiBk(this)">
         <a class="ti-bk-open" id="bko_d5_train" style="display:none" target="_blank">Mở ↗</a>
       </div>
@@ -704,41 +731,71 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
 </div>
 
 <div class="tc" id="tab-day6">
-  <div class="dh"><h2>N6 — T5 30/04 — Hoa Liên → Đài Trung</h2><p>TRA xuyên đảo · Miyahara · Rainbow · Gaomei · Fengjia · 🧳 Mang hành lý theo</p><span class="dh-tr">🚆 TRA Hualien→Taichung ~3.5h</span></div>
-  <a href="https://www.google.com/maps/dir/24.1382,120.6833/24.1339,120.6082/24.3125,120.5527/24.179,120.6463" target="_blank" class="rt-btn grn">🗺️ Route N6</a>
+  <div class="dh"><h2>N6 — T5 30/04 — Hoa Liên → Đài Trung</h2><p>🚆 TRA Puyuma 05:50 + 🚄 HSR 1509 → Đài Trung 09:42 · 6 điểm</p><span class="dh-tr">⏰ Dậy 04:30 · Cả ngày Đài Trung</span></div>
+  <a href="https://www.google.com/maps/dir/24.1382,120.6833/24.1626,120.6403/24.1396,120.6601/24.1339,120.6082/24.3125,120.5527/24.179,120.6463" target="_blank" class="rt-btn grn">🗺️ Route N6</a>
 
   <div class="cd"><div class="cd-t">📍 Lịch trình</div><div class="tl">
     <div class="ti">
-      <div class="ti-t">07:00</div>
-      <div class="ti-p">🧳 Check-out Hotel Hoa Liên<br><small class="ti-sub">Mang toàn bộ hành lý theo người</small></div>
-      <div class="ti-d">Trả phòng hotel Hoa Liên, mang hành lý đi tàu.</div>
+      <div class="ti-t">04:30</div>
+      <div class="ti-p">⏰ Wake up + chuẩn bị</div>
+      <div class="ti-d">Set 2-3 alarms tối nay! Sáng sớm phải tỉnh táo bắt tàu Puyuma 5:50.</div>
+      <div class="ti-tip">💡 Tối N5 ngủ trước 22:00</div>
     </div>
     <div class="ti">
-      <div class="ti-t">Sáng 7:30</div>
-      <div class="ti-p">TRA Hualien → Taichung / 花蓮→台中<br><small class="ti-sub">Ga Hualien → Ga Taichung TRA (台中站)</small></div>
-      <div class="ti-d">Qua đèo trung tâm đảo — cảnh núi rừng. Đến ~11:00.</div>
-      <div class="ti-c">~680 TWD</div>
-      <div class="ti-tip">💡 Ga Taichung TRA (台中站) KHÁC ga HSR!</div>
-      <div class="ti-note">Ga Taichung TRA ở trung tâm, đi taxi/bus ra HSR nếu cần.</div>
-      <div class="ti-bk" id="bkf_d6_train">
-        <span class="ti-bk-label">🚆 TRA Hualien→Taichung</span>
-        <input class="ti-bk-input" data-bk="d6_train" data-type="transport" placeholder="Paste link booking..." onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-        <a class="ti-bk-open" id="bko_d6_train" style="display:none" target="_blank">Mở ↗</a>
+      <div class="ti-t">05:00</div>
+      <div class="ti-p">🧳 Check-out Hotel Hoa Liên<br><small class="ti-sub">Báo trước lễ tân — cần check-out 24h hoặc đêm trước</small></div>
+      <div class="ti-d">Trả phòng. Mang toàn bộ hành lý. Taxi/Uber ra ga Hualien (~10p, 150 TWD) hoặc đi bộ nếu hotel gần ga.</div>
+      <div class="ti-note">⚠️ Confirm với hotel HÔM TRƯỚC: check-out 5:00 sáng cần lễ tân 24h</div>
+    </div>
+    <div class="ti">
+      <div class="ti-t">05:30</div>
+      <div class="ti-p">Ga Hualien — Lấy vé quầy<br><small class="ti-sub">Booking #7330461 + passport</small></div>
+      <div class="ti-d">Đến quầy ticket window đưa booking number 7330461 + passport → in 3 vé giấy. Ăn sáng 7-Eleven trong ga nếu có.</div>
+      <div class="ti-c">Đã thanh toán 1,674 TWD ✅</div>
+      <div class="ti-tip">💡 Tới sớm tối thiểu 20p — ga sáng có thể ít quầy mở</div>
+    </div>
+    <div class="ti">
+      <div class="ti-t">05:50</div>
+      <div class="ti-p">🚆 TRA Puyuma 203 Hualien → Nangang<br><small class="ti-sub">花蓮 → 南港 · Booking #7330461</small></div>
+      <div class="ti-d">Puyuma express 2h14p. Cảnh núi rừng + biển bờ Đông. Đến Nangang 08:04.</div>
+      <div class="ti-c">3 vé · 1,674 TWD ✅ Đã đặt</div>
+      <div class="ti-tip">💡 Ngồi bên phải hướng đi để view biển; tàu lắc nhiều — không nên ăn nặng</div>
+      <div class="il-group"><a href="https://www.google.com/maps/search/Taiwan+Railway+East+Coast+Hualien+to+Nangang" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Cảnh biển bờ Đông Nam</span><span class="il-tip">Suao-Yilan đoạn đẹp nhất</span></span></a></div>
+      <div class="ti-bk" id="bkf_d6_tra">
+        <span class="ti-bk-label">🚆 TRA Puyuma 203 #7330461 ✅</span>
+        <input class="ti-bk-input" data-bk="d6_tra" data-type="transport" placeholder="Paste link booking..." onchange="saveTiBk(this)" onblur="saveTiBk(this)">
+        <a class="ti-bk-open" id="bko_d6_tra" style="display:none" target="_blank">Mở ↗</a>
       </div>
     </div>
     <div class="ti">
-      <div class="ti-t">Trưa 11:30</div>
-      <div class="ti-p"><span class="mb">1</span><span class="rb" onclick="zoomRank(15)" title="#15">15</span>Miyahara / 宮原眼科<br><small class="ti-sub">Gōng Yuán Yǎn Kē</small></div>
-      <div class="ti-d">Tòa nhà thiết kế như thư viện Harry Potter. Kem nhiều tầng. Mang theo hành lý → gửi tại locker Miyahara hoặc giữ luôn.</div>
-      <div class="ti-c">Kem 90-200 TWD</div>
-      <div class="ti-tip">💡 Spot: góc dưới mái vòm nhìn lên</div>
-      <div class="il-group"><a href="https://www.google.com/maps/search/Miyahara+Taichung+interior" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Mái vòm sách tầng 2</span><span class="il-tip">Wide angle nhìn lên</span></span></a></div>
-      <div class="il-group"><a href="https://www.google.com/maps/search/Miyahara+Taichung" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍦 Multi-scoop Ice Cream</span><span class="il-tip">Ăn tầng 2 view ra phố</span></span></a></div>
+      <div class="ti-t">08:04</div>
+      <div class="ti-p">Đến Nangang Station 南港車站<br><small class="ti-sub">TRA + HSR + MRT cùng 1 building</small></div>
+      <div class="ti-d">Xuống tàu, đi bộ 5 phút sang khu HSR (cùng building Nangang Station). Mua snack/cà phê 7-11 trong ga nếu cần.</div>
+      <div class="ti-tip">💡 Ngắm building Nangang — kiến trúc thú vị, có shopping mall trong ga</div>
     </div>
     <div class="ti">
-      <div class="ti-t">12:30</div>
-      <div class="ti-p">🧳 Gửi hành lý Hotel Đài Trung<br><small class="ti-sub">Check-in 15:00 — chỉ gửi đồ lúc này · Khu Fengjia · 1 đêm N6</small></div>
-      <div class="ti-d">Đến hotel khu Fengjia, gửi hành lý tại lễ tân. Quay lại check-in phòng sau 15:00.</div>
+      <div class="ti-t">08:36</div>
+      <div class="ti-p">🚄 HSR 1509 → Taichung<br><small class="ti-sub">Reservation #05266847 · App T Express</small></div>
+      <div class="ti-d">HSR 1509 từ Taipei. Boarding tại Nangang (1 stop trước Taipei) — quét QR code app T Express. Đến Taichung 09:42.</div>
+      <div class="ti-c">~700 TWD/người ✅ Đã đặt</div>
+      <div class="ti-tip">💡 Ticket "Taipei→Taichung" nhưng có thể boarding tại Nangang vì train đi qua. Confirm tại quầy nếu chưa chắc, hoặc lên TRA 1 stop sang Taipei Main đón cho an toàn.</div>
+      <div class="ti-note">⚠️ Mở app T Express + QR code SẴN trước cổng. Độ sáng max.</div>
+      <div class="ti-bk" id="bkf_d6_hsr">
+        <span class="ti-bk-label">🚄 HSR 1509 #05266847 ✅</span>
+        <input class="ti-bk-input" data-bk="d6_hsr" data-type="transport" placeholder="Paste link booking..." onchange="saveTiBk(this)" onblur="saveTiBk(this)">
+        <a class="ti-bk-open" id="bko_d6_hsr" style="display:none" target="_blank">Mở ↗</a>
+      </div>
+    </div>
+    <div class="ti">
+      <div class="ti-t">09:42</div>
+      <div class="ti-p">Đến HSR Taichung 台中高鐵站<br><small class="ti-sub">Wuri District — Ngoại ô</small></div>
+      <div class="ti-d">Uber/taxi từ HSR Taichung → Hotel Fengjia (~25p, 350 TWD/3 người). Hoặc Green Line MRT (rẻ hơn nhưng chậm).</div>
+      <div class="ti-tip">💡 Setup Uber app sẵn từ Việt Nam, dùng cả N6+N7 ở Đài Trung</div>
+    </div>
+    <div class="ti">
+      <div class="ti-t">10:30</div>
+      <div class="ti-p">🧳 Gửi hành lý Hotel Đài Trung<br><small class="ti-sub">Check-in 15:00 — chỉ gửi đồ · Khu Fengjia · 1 đêm N6</small></div>
+      <div class="ti-d">Hotel Fengjia. Gửi hành lý lễ tân (free), đổi giày thoải mái, ra Uber đi tiếp.</div>
       <div class="ti-bk" id="bkf_d6_hotel">
         <span class="ti-bk-label">🏨 Hotel Đài Trung (Fengjia)</span>
         <input class="ti-bk-input" data-bk="d6_hotel" data-type="hotel" placeholder="Paste link booking..." onchange="saveTiBk(this)" onblur="saveTiBk(this)">
@@ -746,69 +803,118 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
       </div>
     </div>
     <div class="ti">
-      <div class="ti-t">Chiều 14:30</div>
-      <div class="ti-p"><span class="mb">2</span><span class="rb" onclick="zoomRank(14)" title="#14">14</span>Rainbow Village / 彩虹眷村<br><small class="ti-sub">Làng Cầu Vồng</small></div>
-      <div class="ti-d">Tranh tường bởi cụ Huang Yung-Fu 97 tuổi. 30-45p.</div>
+      <div class="ti-t">11:00</div>
+      <div class="ti-p"><span class="mb">1</span><span class="rb" onclick="zoomRank(15)" title="#15">15</span>Miyahara / 宮原眼科<br><small class="ti-sub">Brunch + chụp hình kiến trúc</small></div>
+      <div class="ti-d">Tòa nhà thiết kế thư viện Harry Potter. Kem multi-scoop tầng 2. Đặt brunch tại đây — bữa đầu ngày sau khi đi tàu sớm.</div>
+      <div class="ti-c">Kem 90-200 TWD · Brunch 250-400 TWD</div>
+      <div class="ti-tip">💡 Spot: góc dưới mái vòm nhìn lên · Đến trước 11:30 trước khi đông</div>
+      <div class="il-group"><a href="https://www.google.com/maps/search/Miyahara+Taichung+interior" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Mái vòm sách tầng 2</span><span class="il-tip">Wide angle nhìn lên</span></span></a></div>
+      <div class="il-group"><a href="https://www.google.com/maps/search/Miyahara+Taichung" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍦 Multi-scoop Ice Cream</span><span class="il-tip">Ăn tầng 2 view ra phố</span></span></a></div>
+    </div>
+    <div class="ti">
+      <div class="ti-t">12:30</div>
+      <div class="ti-p"><span class="mb">2</span><span class="rb" onclick="zoomRank(18)" title="#18">18</span>National Taichung Theater 國家歌劇院<br><small class="ti-sub">Kiến trúc Toyo Ito · Pritzker Prize</small></div>
+      <div class="ti-d">Landmark kiến trúc Đài Trung — tường cong "sound caves", một trong các kiến trúc danh tiếng Châu Á. Vào miễn phí khu sảnh + cafe Roof Garden tầng 6.</div>
+      <div class="ti-c">Miễn phí (vào khu công cộng)</div>
+      <div class="ti-tip">💡 Cafe Roof Garden tầng 6 ngắm view + chụp ảnh</div>
+      <div class="il-group">
+        <a href="https://www.google.com/maps/search/National+Taichung+Theater+Toyo+Ito" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Tường cong "sound caves"</span><span class="il-tip">Sảnh chính · Chụp lookup angle</span></span></a>
+        <a href="https://www.google.com/maps/search/National+Taichung+Theater+exterior" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Mặt ngoài Theater</span><span class="il-tip">Chụp toàn cảnh từ công viên trước</span></span></a>
+      </div>
+    </div>
+    <div class="ti">
+      <div class="ti-t">14:00</div>
+      <div class="ti-p"><span class="mb">3</span>Audit Village 審計新村<br><small class="ti-sub">Khu cộng đồng nghệ thuật trẻ + cafe</small></div>
+      <div class="ti-d">Khu nhà công vụ cũ thập niên 70 → boutique + cafe + studio nghệ thuật. Chill cafe, chụp hình, mua đồ handmade.</div>
+      <div class="ti-c">Free entry · Cafe ~200 TWD</div>
+      <div class="ti-tip">💡 Mở 11:00-19:00 · Đông cuối tuần (T6 sau lễ có thể đông)</div>
+      <div class="il-group"><a href="https://www.google.com/maps/search/Audit+Village+Taichung+Shenji+Xincun" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Hẻm nghệ thuật + boutique</span><span class="il-tip">Đèn trang trí buổi chiều đẹp</span></span></a></div>
+    </div>
+    <div class="ti">
+      <div class="ti-t">15:30</div>
+      <div class="ti-p"><span class="mb">4</span><span class="rb" onclick="zoomRank(14)" title="#14">14</span>Rainbow Village / 彩虹眷村<br><small class="ti-sub">Làng Cầu Vồng — Cụ ông 97 tuổi</small></div>
+      <div class="ti-d">Tranh tường cụ Huang Yung-Fu vẽ tay. 30-45p. Uber từ Audit Village ~25p.</div>
       <div class="ti-c">Miễn phí</div>
-      <div class="ti-tip">💡 14:00-16:00 ánh sáng đẹp nhất</div>
       <div class="il-group"><a href="https://www.google.com/maps/search/Rainbow+Village+Taichung+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Đứng đầu hẻm nhìn vào</span><span class="il-tip">Wide angle · Màu rực rỡ</span></span></a></div>
     </div>
     <div class="ti">
-      <div class="ti-t">Chiều 16:30</div>
-      <div class="ti-p"><span class="mb">3</span><span class="rb" onclick="zoomRank(13)" title="#13">13</span>Gaomei Wetlands / 高美濕地<br><small class="ti-sub">Bãi triều Cao Mỹ</small></div>
-      <div class="ti-d">Cầu gỗ 800m + tuabin gió + hoàng hôn. Check thủy triều!</div>
-      <div class="ti-c">Miễn phí · Taxi ~200 TWD</div>
+      <div class="ti-t">16:30</div>
+      <div class="ti-p"><span class="mb">5</span><span class="rb" onclick="zoomRank(13)" title="#13">13</span>Gaomei Wetlands / 高美濕地<br><small class="ti-sub">Bãi triều + Hoàng hôn ⭐</small></div>
+      <div class="ti-d">Cầu gỗ 800m + tuabin gió + hoàng hôn. Uber từ Rainbow ~35p, 450 TWD. Check thủy triều!</div>
+      <div class="ti-c">Miễn phí · Uber ~450 TWD</div>
       <div class="ti-tip">💡 Check tideschart.com! Golden hour 17:30-18:30</div>
       <div class="il-group"><a href="https://www.google.com/maps/search/Gaomei+Wetlands+Taichung+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Tuabin gió + hoàng hôn phản chiếu</span><span class="il-tip">Cầu gỗ + bầu trời cam</span></span></a></div>
     </div>
     <div class="ti ev">
-      <div class="ti-t">Tối 19:00</div>
-      <div class="ti-p"><span class="mb">4</span><span class="rb" onclick="zoomRank(12)" title="#12">12</span>Fengjia Night Market / 逢甲夜市<br><small class="ti-sub">Lớn nhất Đài Loan · Về nhận phòng</small></div>
-      <div class="ti-d">15,000+ gian hàng. Đi ít nhất 2h. Sau đó về hotel check-in phòng chính thức.</div>
-      <div class="ti-c">~300-500 TWD</div>
+      <div class="ti-t">19:00</div>
+      <div class="ti-p"><span class="mb">6</span><span class="rb" onclick="zoomRank(12)" title="#12">12</span>Fengjia Night Market / 逢甲夜市<br><small class="ti-sub">Lớn nhất Đài Loan · Sau đó về hotel check-in</small></div>
+      <div class="ti-d">15,000+ gian hàng. Uber từ Gaomei ~30p, 450 TWD. Đi ít nhất 2h. Về hotel check-in phòng sau ~21:30.</div>
+      <div class="ti-c">~300-500 TWD ăn + Uber 450</div>
+      <div class="ti-note">⚠️ Tối nay pack đồ + check HSR 128 ngày mai 13:39 (App T Express)</div>
       <div class="il-group"><a href="https://www.google.com/maps/search/Fengjia+Night+Market+Taichung" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🐔 Salt & Pepper Chicken 鹽酥雞</span><span class="il-tip">Nổi tiếng nhất Fengjia</span></span></a><a href="https://www.google.com/maps/search/Fengjia+sweet+potato+balls" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍠 Sweet Potato Balls 地瓜球</span><span class="il-tip">Khoai lang chiên phồng</span></span></a></div>
     </div>
   </div></div>
+  <div class="nt inf"><b>📌 N6 — Routing mới</b>TRA Puyuma 5:50→Nangang 8:04 + HSR 1509 8:36→Taichung 9:42 · Cả ngày Đài Trung 6 điểm. Bỏ Sun Moon Lake. Uber 100% trong Đài Trung (chia 3 rẻ). Ngủ sớm tối nay vì dậy 4:30.</div>
 </div>
 
 <div class="tc" id="tab-day7">
-  <div class="dh"><h2>N7 — T6 01/05 — Đài Trung → Đài Bắc</h2><p>SML option · HSR về · Beitou/Tamsui · Shilin · 🧳 Mang hành lý theo</p><span class="dh-tr">🚄 HSR Taichung→Taipei ~45p</span></div>
-  <a href="https://www.google.com/maps/dir/23.8491,120.9163/24.179,120.6463" target="_blank" class="rt-btn org">🗺️ SML option</a>
+  <div class="dh"><h2>N7 — T6 01/05 — Đài Trung → Đài Bắc</h2><p>Sáng chill Taichung · 🚄 HSR 128 13:39 · Beitou/Tamsui · Shilin</p><span class="dh-tr">🚄 HSR 128 Taichung 13:39 → Taipei 14:29</span></div>
+  <a href="https://www.google.com/maps/dir/24.1493,120.6630/24.179,120.6463" target="_blank" class="rt-btn org">🗺️ Sáng Taichung</a>
 
-  <a href="https://www.google.com/maps/dir/25.1368,121.5067/25.088,121.5242" target="_blank" class="rt-btn blu">🗺️ Beitou→Shilin</a>
+<a href="https://www.google.com/maps/dir/25.1368,121.5067/25.088,121.5242" target="_blank" class="rt-btn blu">🗺️ Beitou→Shilin</a>
 
-  <a href="https://www.google.com/maps/dir/25.1696,121.4408/25.088,121.5242" target="_blank" class="rt-btn pur">🗺️ Tamsui→Shilin</a>
+<a href="https://www.google.com/maps/dir/25.1696,121.4408/25.088,121.5242" target="_blank" class="rt-btn pur">🗺️ Tamsui→Shilin</a>
 
   <div class="cd"><div class="cd-t">📍 Lịch trình</div><div class="tl">
     <div class="ti">
-      <div class="ti-t">06:30</div>
-      <div class="ti-p">🧳 Check-out Hotel Đài Trung<br><small class="ti-sub">Mang toàn bộ hành lý theo người</small></div>
-      <div class="ti-d">Trả phòng hotel Fengjia. Mang hành lý đi SML hoặc ga HSR.</div>
+      <div class="ti-t">08:00</div>
+      <div class="ti-p">😴 Wake up — slow morning<br><small class="ti-sub">Bù lại 2 ngày dậy sớm</small></div>
+      <div class="ti-d">Ngủ đủ giấc sau N6 (dậy 4:30) + ngày dày Đài Trung. Check phòng, chuẩn bị đồ check-out.</div>
     </div>
     <div class="ti">
-      <div class="ti-t">Sáng 7:00 — Option A</div>
-      <div class="ti-p"><span class="mb">1</span><span class="rb" onclick="zoomRank(18)" title="#18">18</span>Sun Moon Lake / 日月潭<br><small class="ti-sub">Hồ Nhật Nguyệt</small></div>
-      <div class="ti-d">Bus ~1.5h từ Đài Trung. Đạp xe hoặc du thuyền. Về ga HSR 13:00. Có thể gửi hành lý tại locker bến bus SML.</div>
-      <div class="ti-c">Bus 190 | Xe đạp 200 | Thuyền 300 TWD</div>
-      <div class="ti-tip">💡 Sáng sớm hồ phẳng như gương</div>
-      <div class="il-group"><a href="https://www.google.com/maps/search/Sun+Moon+Lake+Taiwan+morning" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Mặt hồ sáng sớm phẳng như gương</span><span class="il-tip">6:30-8:00 mist đẹp</span></span></a></div>
+      <div class="ti-t">09:00</div>
+      <div class="ti-p"><span class="mb">1</span>Breakfast cafe specialty Đài Trung<br><small class="ti-sub">Calligraphy Greenway 草悟道 area</small></div>
+      <div class="ti-d">Đài Trung nổi tiếng cafe specialty. Đi bộ Calligraphy Greenway (3.6km park đi qua trung tâm) + ghé 1 cafe độc đáo. Hoặc cafe gần Audit Village mở 9:00.</div>
+      <div class="ti-c">Cafe + breakfast ~250-400 TWD</div>
+      <div class="ti-tip">💡 Cafe gợi ý: Stone Espresso Bar, Mojocoffee, Phowa Cafe</div>
+      <div class="il-group">
+        <a href="https://www.google.com/maps/search/Calligraphy+Greenway+Taichung" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Calligraphy Greenway 草悟道</span><span class="il-tip">Cây xanh + tranh tường + cafe</span></span></a>
+        <a href="https://www.google.com/maps/search/specialty+coffee+Taichung" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">☕ Specialty Coffee Đài Trung</span><span class="il-tip">Đài Trung là thủ đô cafe Đài Loan</span></span></a>
+      </div>
     </div>
     <div class="ti">
-      <div class="ti-t">Trưa 12:00</div>
-      <div class="ti-p">HSR Taichung → Taipei / 台中高鐵→台北<br><small class="ti-sub">Ga Taichung HSR (台中高鐵站)</small></div>
-      <div class="ti-d">45 phút. Taxi Fengjia→ga HSR ~200 TWD, 20p.</div>
-      <div class="ti-c">~700 TWD · App T Express</div>
-      <div class="ti-tip">💡 Ga HSR ở ngoại ô — Uber/taxi 20p từ Fengjia</div>
+      <div class="ti-t">11:30</div>
+      <div class="ti-p">Lunch nhanh + Về hotel<br><small class="ti-sub">Lấy hành lý chuẩn bị đi HSR</small></div>
+      <div class="ti-d">Ăn nhanh khu Fengjia hoặc bento mua dọc đường. Về hotel check-out + lấy hành lý ~12:00.</div>
+    </div>
+    <div class="ti">
+      <div class="ti-t">12:30</div>
+      <div class="ti-p">🚖 Uber HSR Taichung Station<br><small class="ti-sub">Fengjia → HSR Wuri ~25p</small></div>
+      <div class="ti-d">Uber/taxi từ hotel ra ga HSR Taichung (Wuri ngoại ô). 25p, ~350 TWD/3 người.</div>
+      <div class="ti-c">Uber ~350 TWD chia 3</div>
+      <div class="ti-tip">💡 Tới ga 30p trước HSR — đủ để vào cổng + tìm platform</div>
+    </div>
+    <div class="ti">
+      <div class="ti-t">13:39</div>
+      <div class="ti-p">🚄 HSR 128 Taichung → Taipei<br><small class="ti-sub">Reservation #05182728 · App T Express</small></div>
+      <div class="ti-d">HSR 128 Taichung 13:39 → Taipei 14:29 (50p). Quét QR code app T Express tại cổng.</div>
+      <div class="ti-c">~700 TWD/người ✅ Đã đặt</div>
+      <div class="ti-tip">💡 Mở app + QR sẵn trước cổng. Độ sáng max.</div>
       <div class="ti-bk" id="bkf_d7_hsr">
-        <span class="ti-bk-label">🚄 HSR Taichung→Taipei (T Express)</span>
+        <span class="ti-bk-label">🚄 HSR 128 Taichung→Taipei #05182728 ✅</span>
         <input class="ti-bk-input" data-bk="d7_hsr" data-type="transport" placeholder="Paste link booking..." onchange="saveTiBk(this)" onblur="saveTiBk(this)">
         <a class="ti-bk-open" id="bko_d7_hsr" style="display:none" target="_blank">Mở ↗</a>
       </div>
     </div>
     <div class="ti">
-      <div class="ti-t">Chiều 14:00</div>
-      <div class="ti-p">🧳 Gửi hành lý + lấy vali lớn Hotel Đài Bắc<br><small class="ti-sub">Check-in 15:00 — cùng hotel N1-3</small></div>
-      <div class="ti-d">Về hotel — gửi hành lý hiện tại + lấy vali lớn đã gửi khi đi Hoa Liên. Check-in phòng chính thức sau 15:00.</div>
+      <div class="ti-t">14:29</div>
+      <div class="ti-p">Đến Taipei Main HSR<br><small class="ti-sub">Đi MRT/taxi về hotel khu Ximending/Zhongshan</small></div>
+      <div class="ti-d">HSR Taipei = Taipei Main Station. MRT về hotel ~10p hoặc taxi ~150 TWD.</div>
+    </div>
+    <div class="ti">
+      <div class="ti-t">14:45</div>
+      <div class="ti-p">🧳 Hotel Đài Bắc — gửi hành lý + lấy vali lớn<br><small class="ti-sub">Cùng hotel N1-3 · Check-in phòng 15:00</small></div>
+      <div class="ti-d">Về hotel — lấy vali lớn đã gửi khi đi Hoa Liên (28/04). Gửi hành lý hiện tại nếu cần ra Beitou/Tamsui ngay. Check-in phòng chính thức sau 15:00.</div>
       <div class="ti-bk" id="bkf_d7_hotel">
         <span class="ti-bk-label">🏨 Hotel Đài Bắc đêm cuối</span>
         <input class="ti-bk-input" data-bk="d7_hotel" data-type="hotel" placeholder="Paste link booking..." onchange="saveTiBk(this)" onblur="saveTiBk(this)">
@@ -816,29 +922,36 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
       </div>
     </div>
     <div class="ti">
-      <div class="ti-t">Chiều 16:00 — Chọn 1</div>
+      <div class="ti-t">15:30 — Chọn 1</div>
       <div class="ti-p"><span class="mb">2</span><span class="rb" onclick="zoomRank(16)" title="#16">16</span>Beitou Onsen / 北投溫泉<br><small class="ti-sub">Suối nóng Bắc Đầu</small></div>
-      <div class="ti-d">MRT 20p. Public 40 TWD hoặc private 800-1,500 TWD/h. Ghé Beitou Library kế bên.</div>
+      <div class="ti-d">MRT 30p từ Taipei Main → MRT Xinbeitou. Public bath 40 TWD hoặc private 800-1,500 TWD/h. Ghé Beitou Library kế bên — kiến trúc gỗ xanh đẹp nhất Đài Bắc.</div>
       <div class="ti-c">Public 40 | Private 800-1,500 TWD</div>
       <div class="il-group"><a href="https://www.google.com/maps/search/Beitou+Public+Library+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Beitou Public Library 北投圖書館</span><span class="il-tip">Kiến trúc gỗ xanh đẹp nhất Đài Bắc</span></span></a></div>
     </div>
     <div class="ti">
-      <div class="ti-t">Chiều 16:00 — Hoặc</div>
-      <div class="ti-p"><span class="mb">3</span><span class="rb" onclick="zoomRank(17)" title="#17">17</span>Tamsui + Liao Tianding / 淡水+廖添丁廟<br><small class="ti-sub">Đàm Thủy + Bali (八里)</small></div>
-      <div class="ti-d">Hoàng hôn Fisherman's Wharf. Phà sang Bali → Liao Tianding Temple.</div>
-      <div class="ti-c">MRT + phà ~100 TWD</div>
-      <div class="il-group"><a href="https://www.google.com/maps/search/Fishermans+Wharf+Tamsui+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Fisherman's Wharf cầu đỏ sunset</span><span class="il-tip">18:00-18:30</span></span></a><a href="https://www.google.com/maps/search/Liao+Tianding+Temple+Bali+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Liao Tianding Temple 廖添丁廟</span><span class="il-tip">Đền đỏ cổ · Bali</span></span></a></div>
+      <div class="ti-t">15:30 — Hoặc</div>
+      <div class="ti-p"><span class="mb">3</span><span class="rb" onclick="zoomRank(17)" title="#17">17</span>Tamsui + Bali Liao Tianding / 淡水+八里廖添丁廟<br><small class="ti-sub">Đàm Thủy + Bali — Hoàng hôn + Đền cổ + Bus stop photo</small></div>
+      <div class="ti-d">MRT đến Tamsui → đi bộ Old Street → phà 10p sang Bali → bus 704/紅22 đến Liao Tianding Temple → quay lại Tamsui Fisherman's Wharf đón hoàng hôn.</div>
+      <div class="ti-c">MRT + phà + bus ~120 TWD/người</div>
+      <div class="ti-tip">💡 Trạm bus Liao Tianding 廖添丁廟站 — biển bus cổ + đền đỏ làm backdrop chụp hình IG · Hoàng hôn Wharf 18:00-18:30</div>
+      <div class="il-group">
+        <a href="https://www.google.com/maps/search/Tamsui+Old+Street+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Tamsui Old Street 淡水老街</span><span class="il-tip">Đi bộ ăn vặt</span></span></a>
+        <a href="https://www.google.com/maps/search/Liao+Tianding+Temple+Bali+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">⭐ Liao Tianding Temple 廖添丁廟</span><span class="il-tip">Đền đỏ cổ + trạm bus 廖添丁廟站 chụp hình</span></span></a>
+        <a href="https://www.google.com/maps/search/Liao+Tianding+bus+stop+Bali+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Trạm bus 廖添丁廟站</span><span class="il-tip">Bus stop cổ + biển + đền backdrop</span></span></a>
+        <a href="https://www.google.com/maps/search/Fishermans+Wharf+Tamsui+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Fisherman's Wharf 漁人碼頭</span><span class="il-tip">Cầu đỏ + sunset 18:00-18:30</span></span></a>
+      </div>
     </div>
     <div class="ti ev">
-      <div class="ti-t">Tối 20:00</div>
-      <div class="ti-p"><span class="mb">4</span>Shilin Night Market / 士林夜市 — BỮA CUỐI<br><small class="ti-sub">Shì Lín Yè Shì</small></div>
-      <div class="ti-d">Gà rán XXL, oyster vermicelli. MUA QUÀ ĐÊM NAY!</div>
+      <div class="ti-t">19:30</div>
+      <div class="ti-p"><span class="mb">4</span>Shilin Night Market / 士林夜市 — BỮA CUỐI<br><small class="ti-sub">Shì Lín Yè Shì · Mua quà</small></div>
+      <div class="ti-d">Gà rán XXL, oyster vermicelli, mango shaved ice. MUA QUÀ ĐÊM NAY! Ghé Chia Te 佳德 (gần MRT Songshan) trên đường về hotel — mở đến 22:00.</div>
       <div class="ti-c">~300-500 TWD + Quà 500-2,000 TWD</div>
-      <div class="ti-tip">💡 Chia Te 佳德 mở đến 22:00 gần MRT Songshan</div>
-      <div class="ti-note">⚠️ Cân vali ≤23kg ×3. Set alarm 6:30 sáng mai!</div>
-      <div class="il-group"><a href="https://www.google.com/maps/search/Shilin+Night+Market+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🦪 Oyster Vermicelli 蚵仔麵線</span><span class="il-tip">Classic bữa cuối</span></span></a><a href="https://www.google.com/maps/search/Chia+Te+Bakery+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🎂 Chia Te Pineapple Cake 佳德</span><span class="il-tip">Mua quà về</span></span></a></div>
+      <div class="ti-tip">💡 Chia Te mở đến 22:00 — sau Shilin có thể ghé mua pineapple cake</div>
+      <div class="ti-note">⚠️ Cân vali ≤23kg ×3 trước khi ngủ. Set alarm 6:30 sáng mai!</div>
+      <div class="il-group"><a href="https://www.google.com/maps/search/Shilin+Night+Market+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🦪 Oyster Vermicelli 蚵仔麵線</span><span class="il-tip">Classic bữa cuối</span></span></a><a href="https://www.google.com/maps/search/Chia+Te+Bakery+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🎂 Chia Te Pineapple Cake 佳德</span><span class="il-tip">Mua quà về · Mở 22:00</span></span></a></div>
     </div>
   </div></div>
+  <div class="nt inf"><b>📌 N7 — Routing mới</b>Bỏ SML option. Sáng chill Đài Trung (cafe + Calligraphy Greenway). HSR 128 13:39 đến Taipei 14:29. Chiều chọn Beitou onsen HOẶC Tamsui+Bali Liao Tianding. Tối Shilin + mua quà.</div>
 </div>
 
 <div class="tc" id="tab-day8">
@@ -892,67 +1005,73 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
     <div class="md-prog" id="mdProg">0/40 hoàn thành</div>
     <div class="md-prog-bar"><div class="md-prog-fill" id="mdBar" style="width:0%"></div></div>
 
-    <!-- TAIPEI -->
-    <div class="md-city">
-      <div class="md-city-hdr">🏙️ Đài Bắc — Taipei</div>
-      <div class="md-i"><input type="checkbox" data-md="e3" onchange="mdChk(this)"><label><span class="md-name">Taipei 101 — Chụp các góc signature 台北101</span><span class="md-addr">📍 No. 7, Section 5, Xinyi Road, Xinyi District | 信義路五段7號</span><span class="md-sub">KHÔNG lên đài quan sát · Chụp Alley 253, Songren Rd, XinYi Plaza</span></label><a href="https://www.google.com/maps/place/Alley+1,+Lane+253,+Songren+Rd,+Xinyi+District,+Taipei+City,+Taiwan+110/data=!4m2!3m1!1s0x3442abb2daa41b89:0xca44e1c338d99174" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e2" onchange="mdChk(this)"><label><span class="md-name">Leo Elephant Mountain chụp 101 象山</span><span class="md-addr">📍 Xiangshan Trail, Xinyi District, Taipei | 象山步道，信義區</span><span class="md-sub">Golden hour 16:30-18:30 · Free</span></label><a href="https://www.google.com/maps/search/Elephant+Mountain+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="c1" onchange="mdChk(this)"><label><span class="md-name">Xem đổi gác CKS Memorial 中正紀念堂</span><span class="md-addr">📍 No. 21, Zhongshan South Road, Zhongzheng District | 中山南路21號</span><span class="md-sub">Mỗi giờ chẵn · Free</span></label><a href="https://www.google.com/maps/search/CKS+Memorial+Hall+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f1" onchange="mdChk(this)"><label><span class="md-name">Xiao Long Bao — Din Tai Fung 鼎泰豐</span><span class="md-addr">📍 No. 194, Section 2, Xinyi Road, Da'an District | 信義路二段194號</span><span class="md-sub">XLB nổi tiếng nhất TG</span></label><a href="https://www.google.com/maps/search/Din+Tai+Fung+Yongkang+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f2" onchange="mdChk(this)"><label><span class="md-name">Mì bò — Yongkang Beef Noodle 永康牛肉麵</span><span class="md-addr">📍 No. 17, Lane 31, Jinhua Street, Da'an District | 金華街31巷17號</span><span class="md-sub">Huyền thoại 60 năm</span></label><a href="https://www.google.com/maps/search/Yongkang+Beef+Noodle+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f3" onchange="mdChk(this)"><label><span class="md-name">Tiger Sugar Bubble Tea 老虎堂</span><span class="md-addr">📍 No. 5, Ximending (nhiều chi nhánh) | 西門町</span><span class="md-sub">Brown sugar boba</span></label><a href="https://www.google.com/maps/search/Tiger+Sugar+Taipei+Ximending" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f4" onchange="mdChk(this)"><label><span class="md-name">Black Pepper Bun 胡椒餅 — Raohe</span><span class="md-addr">📍 Raohe Night Market, Songshan District | 饒河街夜市，松山區</span><span class="md-sub">Ngay cổng chợ · Ăn nóng tại chỗ</span></label><a href="https://www.google.com/maps/search/Fuzhou+Pepper+Bun+Raohe" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f7" onchange="mdChk(this)"><label><span class="md-name">Pineapple Cake — Chia Te 佳德鳳梨酥</span><span class="md-addr">📍 No. 1, Fuxing North Road, Songshan District | 復興北路1號</span><span class="md-sub">Quà về số 1 · Mở 7:30</span></label><a href="https://www.google.com/maps/search/Chia+Te+Bakery+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e10" onchange="mdChk(this)"><label><span class="md-name">Ngâm onsen Beitou 北投溫泉</span><span class="md-addr">📍 Beitou District, Taipei | 北投區 (MRT Xinbeitou)</span><span class="md-sub">Public 40 TWD | Private ~800 TWD/h</span></label><a href="https://www.google.com/maps/search/Beitou+Hot+Spring+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="c2" onchange="mdChk(this)"><label><span class="md-name">Beitou Public Library 北投圖書館</span><span class="md-addr">📍 No. 251, Guangming Road, Beitou District | 光明路251號</span><span class="md-sub">Kiến trúc gỗ xanh đẹp nhất Đài Bắc · Free</span></label><a href="https://www.google.com/maps/search/Beitou+Public+Library+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f14" onchange="mdChk(this)"><label><span class="md-name">Fuhang Soy Milk 阜杭豆漿</span><span class="md-addr">📍 2F, No. 108, Section 1, Zhongxiao East Road (Hangle Market) | 忠孝東路一段108號2樓</span><span class="md-sub">Ăn sáng N8 · Đến trước 7:30</span></label><a href="https://www.google.com/maps/search/Fuhang+Soy+Milk+Taipei" target="_blank" class="md-gmap">📍</a></div>
-    </div>
+```
+<!-- TAIPEI -->
+<div class="md-city">
+  <div class="md-city-hdr">🏙️ Đài Bắc — Taipei</div>
+  <div class="md-i"><input type="checkbox" data-md="e3" onchange="mdChk(this)"><label><span class="md-name">Taipei 101 — Chụp các góc signature 台北101</span><span class="md-addr">📍 No. 7, Section 5, Xinyi Road, Xinyi District | 信義路五段7號</span><span class="md-sub">KHÔNG lên đài quan sát · Chụp Alley 253, Songren Rd, XinYi Plaza</span></label><a href="https://www.google.com/maps/place/Alley+1,+Lane+253,+Songren+Rd,+Xinyi+District,+Taipei+City,+Taiwan+110/data=!4m2!3m1!1s0x3442abb2daa41b89:0xca44e1c338d99174" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e2" onchange="mdChk(this)"><label><span class="md-name">Leo Elephant Mountain chụp 101 象山</span><span class="md-addr">📍 Xiangshan Trail, Xinyi District, Taipei | 象山步道，信義區</span><span class="md-sub">Golden hour 16:30-18:30 · Free</span></label><a href="https://www.google.com/maps/search/Elephant+Mountain+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="c1" onchange="mdChk(this)"><label><span class="md-name">Xem đổi gác CKS Memorial 中正紀念堂</span><span class="md-addr">📍 No. 21, Zhongshan South Road, Zhongzheng District | 中山南路21號</span><span class="md-sub">Mỗi giờ chẵn · Free</span></label><a href="https://www.google.com/maps/search/CKS+Memorial+Hall+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f1" onchange="mdChk(this)"><label><span class="md-name">Xiao Long Bao — Din Tai Fung 鼎泰豐</span><span class="md-addr">📍 No. 194, Section 2, Xinyi Road, Da'an District | 信義路二段194號</span><span class="md-sub">XLB nổi tiếng nhất TG</span></label><a href="https://www.google.com/maps/search/Din+Tai+Fung+Yongkang+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f2" onchange="mdChk(this)"><label><span class="md-name">Mì bò — Yongkang Beef Noodle 永康牛肉麵</span><span class="md-addr">📍 No. 17, Lane 31, Jinhua Street, Da'an District | 金華街31巷17號</span><span class="md-sub">Huyền thoại 60 năm</span></label><a href="https://www.google.com/maps/search/Yongkang+Beef+Noodle+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f3" onchange="mdChk(this)"><label><span class="md-name">Tiger Sugar Bubble Tea 老虎堂</span><span class="md-addr">📍 No. 5, Ximending (nhiều chi nhánh) | 西門町</span><span class="md-sub">Brown sugar boba</span></label><a href="https://www.google.com/maps/search/Tiger+Sugar+Taipei+Ximending" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f4" onchange="mdChk(this)"><label><span class="md-name">Black Pepper Bun 胡椒餅 — Raohe</span><span class="md-addr">📍 Raohe Night Market, Songshan District | 饒河街夜市，松山區</span><span class="md-sub">Ngay cổng chợ · Ăn nóng tại chỗ</span></label><a href="https://www.google.com/maps/search/Fuzhou+Pepper+Bun+Raohe" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f7" onchange="mdChk(this)"><label><span class="md-name">Pineapple Cake — Chia Te 佳德鳳梨酥</span><span class="md-addr">📍 No. 1, Fuxing North Road, Songshan District | 復興北路1號</span><span class="md-sub">Quà về số 1 · Mở 7:30</span></label><a href="https://www.google.com/maps/search/Chia+Te+Bakery+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e10" onchange="mdChk(this)"><label><span class="md-name">Ngâm onsen Beitou 北投溫泉</span><span class="md-addr">📍 Beitou District, Taipei | 北投區 (MRT Xinbeitou)</span><span class="md-sub">Public 40 TWD | Private ~800 TWD/h</span></label><a href="https://www.google.com/maps/search/Beitou+Hot+Spring+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="c2" onchange="mdChk(this)"><label><span class="md-name">Beitou Public Library 北投圖書館</span><span class="md-addr">📍 No. 251, Guangming Road, Beitou District | 光明路251號</span><span class="md-sub">Kiến trúc gỗ xanh đẹp nhất Đài Bắc · Free</span></label><a href="https://www.google.com/maps/search/Beitou+Public+Library+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f14" onchange="mdChk(this)"><label><span class="md-name">Fuhang Soy Milk 阜杭豆漿</span><span class="md-addr">📍 2F, No. 108, Section 1, Zhongxiao East Road (Hangle Market) | 忠孝東路一段108號2樓</span><span class="md-sub">Ăn sáng N8 · Đến trước 7:30</span></label><a href="https://www.google.com/maps/search/Fuhang+Soy+Milk+Taipei" target="_blank" class="md-gmap">📍</a></div>
+</div>
 
-    <!-- TAN BAC (NEW TAIPEI) -->
-    <div class="md-city">
-      <div class="md-city-hdr" style="background:#fff3cd;border-left-color:var(--warn)">🌊 Tân Bắc — New Taipei City</div>
-      <div class="md-i"><input type="checkbox" data-md="e2b" onchange="mdChk(this)"><label><span class="md-name">Yehliu Geopark / 野柳地質公園 — Queen's Head</span><span class="md-addr">📍 No. 167-1, Gangdong Road, Wanli District, New Taipei | 萬里區港東路167-1號</span><span class="md-sub">Vé 80 TWD · Đến sớm tránh tour</span></label><a href="https://www.google.com/maps/search/Yehliu+Geopark+Taiwan" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e6" onchange="mdChk(this)"><label><span class="md-name">Jiufen Old Street / 九份老街 — Đèn lồng đỏ</span><span class="md-addr">📍 Jiufen, Ruifang District, New Taipei | 瑞芳區九份老街</span><span class="md-sub">Chiều tối 17:00+ đẹp nhất</span></label><a href="https://www.google.com/maps/search/Jiufen+Old+Street+Taiwan" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e1" onchange="mdChk(this)"><label><span class="md-name">Thả đèn trời Shifen 十分放天燈</span><span class="md-addr">📍 Shifen Old Street, Pingxi District, New Taipei | 平溪區十分老街</span><span class="md-sub">Đèn 200 TWD/4 màu · Viết ước muốn</span></label><a href="https://www.google.com/maps/search/Shifen+Sky+Lantern+Taiwan" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="c3" onchange="mdChk(this)"><label><span class="md-name">Liao Tianding Temple 廖添丁廟 — Bali</span><span class="md-addr">📍 No. 218, Zhongyang Road, Bali District, New Taipei | 八里區中央路218號</span><span class="md-sub">Phà từ Tamsui sang Bali · Robin Hood Đài Loan</span></label><a href="https://www.google.com/maps/search/Liao+Tianding+Temple+Bali+Taiwan" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e17" onchange="mdChk(this)"><label><span class="md-name">Tamsui Fisherman's Wharf 漁人碼頭 Sunset</span><span class="md-addr">📍 No. 1, Guanhai Road, Tamsui District | 淡水區觀海路1號</span><span class="md-sub">Cầu đỏ + hoàng hôn · 18:00-18:30</span></label><a href="https://www.google.com/maps/search/Fishermans+Wharf+Tamsui" target="_blank" class="md-gmap">📍</a></div>
-    </div>
+<!-- TAN BAC (NEW TAIPEI) -->
+<div class="md-city">
+  <div class="md-city-hdr" style="background:#fff3cd;border-left-color:var(--warn)">🌊 Tân Bắc — New Taipei City</div>
+  <div class="md-i"><input type="checkbox" data-md="e2b" onchange="mdChk(this)"><label><span class="md-name">Yehliu Geopark / 野柳地質公園 — Queen's Head</span><span class="md-addr">📍 No. 167-1, Gangdong Road, Wanli District, New Taipei | 萬里區港東路167-1號</span><span class="md-sub">Vé 80 TWD · Đến sớm tránh tour</span></label><a href="https://www.google.com/maps/search/Yehliu+Geopark+Taiwan" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e6" onchange="mdChk(this)"><label><span class="md-name">Jiufen Old Street / 九份老街 — Đèn lồng đỏ</span><span class="md-addr">📍 Jiufen, Ruifang District, New Taipei | 瑞芳區九份老街</span><span class="md-sub">Chiều tối 17:00+ đẹp nhất</span></label><a href="https://www.google.com/maps/search/Jiufen+Old+Street+Taiwan" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e1" onchange="mdChk(this)"><label><span class="md-name">Thả đèn trời Shifen 十分放天燈</span><span class="md-addr">📍 Shifen Old Street, Pingxi District, New Taipei | 平溪區十分老街</span><span class="md-sub">Đèn 200 TWD/4 màu · Viết ước muốn</span></label><a href="https://www.google.com/maps/search/Shifen+Sky+Lantern+Taiwan" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="c3" onchange="mdChk(this)"><label><span class="md-name">Liao Tianding Temple 廖添丁廟 — Bali</span><span class="md-addr">📍 No. 218, Zhongyang Road, Bali District, New Taipei | 八里區中央路218號</span><span class="md-sub">Phà từ Tamsui sang Bali · Robin Hood Đài Loan</span></label><a href="https://www.google.com/maps/search/Liao+Tianding+Temple+Bali+Taiwan" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e17" onchange="mdChk(this)"><label><span class="md-name">Tamsui Fisherman's Wharf 漁人碼頭 Sunset</span><span class="md-addr">📍 No. 1, Guanhai Road, Tamsui District | 淡水區觀海路1號</span><span class="md-sub">Cầu đỏ + hoàng hôn · 18:00-18:30</span></label><a href="https://www.google.com/maps/search/Fishermans+Wharf+Tamsui" target="_blank" class="md-gmap">📍</a></div>
+</div>
 
-    <!-- HUALIEN -->
-    <div class="md-city">
-      <div class="md-city-hdr" style="background:#d4edda;border-left-color:var(--ok)">🏔️ Hoa Liên — Hualien</div>
-      <div class="md-i"><input type="checkbox" data-md="e4" onchange="mdChk(this)"><label><span class="md-name">Đi tàu TRA bờ Đông view biển ✅</span><span class="md-addr">📍 Taipei Station → Hualien Station | 台北車站→花蓮車站 (Booking #6684500)</span><span class="md-sub">Tze-Chiang 472 · Ghế số chẵn bên phải</span></label><a href="https://www.google.com/maps/search/Taiwan+Railway+Hualien" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e5" onchange="mdChk(this)"><label><span class="md-name">Đi bộ Taroko Gorge 太魯閣峽谷</span><span class="md-addr">📍 Taroko National Park, Xiulin Township, Hualien | 秀林鄉太魯閣國家公園</span><span class="md-sub">Hẻm núi đá cẩm thạch #1 châu Á</span></label><a href="https://www.google.com/maps/search/Taroko+Gorge+Taiwan" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e9" onchange="mdChk(this)"><label><span class="md-name">Shakadang Trail suối ngọc lam 砂卡礑步道</span><span class="md-addr">📍 Shakadang Trailhead, Xiulin, Hualien | 秀林鄉砂卡礑步道入口</span><span class="md-sub">4.4km · Không cần permit · Dễ đi</span></label><a href="https://www.google.com/maps/search/Shakadang+Trail+Taroko" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e_moto" onchange="mdChk(this)"><label><span class="md-name">🏍️ Thuê xe máy Hoa Liên tự lái</span><span class="md-addr">📍 Khu vực ga Hualien | 花蓮車站周邊</span><span class="md-sub">Hwy 9 ven biển · Cần IDP</span></label><a href="https://www.google.com/maps/search/motorbike+rental+Hualien" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e7" onchange="mdChk(this)"><label><span class="md-name">Qixingtan Beach sáng sớm 七星潭</span><span class="md-addr">📍 Qixingtan, Xincheng Township, Hualien | 新城鄉七星潭</span><span class="md-sub">7-8h sáng ít người · Bãi đá cuội + núi</span></label><a href="https://www.google.com/maps/search/Qixingtan+Beach+Hualien" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e8" onchange="mdChk(this)"><label><span class="md-name">Tiaoshi Coast 跳石海岸 — Hidden Gem</span><span class="md-addr">📍 Provincial Highway 9, km 38-40, Hualien | 台9線38-40公里處</span><span class="md-sub">Đá đen ven biển · Ít khách Tây</span></label><a href="https://www.google.com/maps/search/Tiaoshi+coast+Hualien" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f11" onchange="mdChk(this)"><label><span class="md-name">Qingshui Cliff / 清水斷崖</span><span class="md-addr">📍 Hwy 9, Xiulin Township, Hualien | 秀林鄉台9線清水斷崖</span><span class="md-sub">Vách đá 1000m nhìn Thái Bình Dương</span></label><a href="https://www.google.com/maps/search/Qingshui+Cliff+Hualien" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f12" onchange="mdChk(this)"><label><span class="md-name">Sugar Factory Ice Cream 花蓮糖廠</span><span class="md-addr">📍 No. 676, Zhongshan Road, Guangfu Township, Hualien | 光復鄉中山路676號</span><span class="md-sub">Milk ice cream 30-50 TWD · Huyền thoại</span></label><a href="https://www.google.com/maps/search/Hualien+Sugar+Factory" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f13" onchange="mdChk(this)"><label><span class="md-name">Mochi + Nougat Hoa Liên 曾記麻糬</span><span class="md-addr">📍 No. 6, Fuguo Road, Hualien City | 富國路6號 (Zeng Yong)</span><span class="md-sub">Đặc sản mang về · Mua tại ga tàu</span></label><a href="https://www.google.com/maps/search/Zeng+Yong+mochi+Hualien" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f_abori" onchange="mdChk(this)"><label><span class="md-name">Aboriginal BBQ Dongdamen 東大門夜市</span><span class="md-addr">📍 Dongdamen Night Market, No. 423, Heping Road, Hualien | 和平路423號</span><span class="md-sub">Cơm ống tre + thịt nướng thổ dân</span></label><a href="https://www.google.com/maps/search/Dongdamen+Night+Market+Hualien" target="_blank" class="md-gmap">📍</a></div>
-    </div>
+<!-- HUALIEN -->
+<div class="md-city">
+  <div class="md-city-hdr" style="background:#d4edda;border-left-color:var(--ok)">🏔️ Hoa Liên — Hualien</div>
+  <div class="md-i"><input type="checkbox" data-md="e4" onchange="mdChk(this)"><label><span class="md-name">Đi tàu TRA bờ Đông view biển ✅</span><span class="md-addr">📍 Taipei Station → Hualien Station | 台北車站→花蓮車站 (Booking #6684500)</span><span class="md-sub">Tze-Chiang 472 · Ghế số chẵn bên phải</span></label><a href="https://www.google.com/maps/search/Taiwan+Railway+Hualien" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e5" onchange="mdChk(this)"><label><span class="md-name">Đi bộ Taroko Gorge 太魯閣峽谷</span><span class="md-addr">📍 Taroko National Park, Xiulin Township, Hualien | 秀林鄉太魯閣國家公園</span><span class="md-sub">Hẻm núi đá cẩm thạch #1 châu Á</span></label><a href="https://www.google.com/maps/search/Taroko+Gorge+Taiwan" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e9" onchange="mdChk(this)"><label><span class="md-name">Shakadang Trail suối ngọc lam 砂卡礑步道</span><span class="md-addr">📍 Shakadang Trailhead, Xiulin, Hualien | 秀林鄉砂卡礑步道入口</span><span class="md-sub">4.4km · Không cần permit · Dễ đi</span></label><a href="https://www.google.com/maps/search/Shakadang+Trail+Taroko" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e_moto" onchange="mdChk(this)"><label><span class="md-name">🏍️ Thuê xe máy Hoa Liên tự lái</span><span class="md-addr">📍 Khu vực ga Hualien | 花蓮車站周邊</span><span class="md-sub">Hwy 9 ven biển · Cần IDP</span></label><a href="https://www.google.com/maps/search/motorbike+rental+Hualien" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e7" onchange="mdChk(this)"><label><span class="md-name">Qixingtan Beach sáng sớm 七星潭</span><span class="md-addr">📍 Qixingtan, Xincheng Township, Hualien | 新城鄉七星潭</span><span class="md-sub">7-8h sáng ít người · Bãi đá cuội + núi</span></label><a href="https://www.google.com/maps/search/Qixingtan+Beach+Hualien" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e8" onchange="mdChk(this)"><label><span class="md-name">Tiaoshi Coast 跳石海岸 — Hidden Gem</span><span class="md-addr">📍 Provincial Highway 9, km 38-40, Hualien | 台9線38-40公里處</span><span class="md-sub">Đá đen ven biển · Ít khách Tây</span></label><a href="https://www.google.com/maps/search/Tiaoshi+coast+Hualien" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f11" onchange="mdChk(this)"><label><span class="md-name">Qingshui Cliff / 清水斷崖</span><span class="md-addr">📍 Hwy 9, Xiulin Township, Hualien | 秀林鄉台9線清水斷崖</span><span class="md-sub">Vách đá 1000m nhìn Thái Bình Dương</span></label><a href="https://www.google.com/maps/search/Qingshui+Cliff+Hualien" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f12" onchange="mdChk(this)"><label><span class="md-name">Sugar Factory Ice Cream 花蓮糖廠</span><span class="md-addr">📍 No. 676, Zhongshan Road, Guangfu Township, Hualien | 光復鄉中山路676號</span><span class="md-sub">Milk ice cream 30-50 TWD · Huyền thoại</span></label><a href="https://www.google.com/maps/search/Hualien+Sugar+Factory" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f13" onchange="mdChk(this)"><label><span class="md-name">Mochi + Nougat Hoa Liên 曾記麻糬</span><span class="md-addr">📍 No. 6, Fuguo Road, Hualien City | 富國路6號 (Zeng Yong)</span><span class="md-sub">Đặc sản mang về · Mua tại ga tàu</span></label><a href="https://www.google.com/maps/search/Zeng+Yong+mochi+Hualien" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f_abori" onchange="mdChk(this)"><label><span class="md-name">Aboriginal BBQ Dongdamen 東大門夜市</span><span class="md-addr">📍 Dongdamen Night Market, No. 423, Heping Road, Hualien | 和平路423號</span><span class="md-sub">Cơm ống tre + thịt nướng thổ dân</span></label><a href="https://www.google.com/maps/search/Dongdamen+Night+Market+Hualien" target="_blank" class="md-gmap">📍</a></div>
+</div>
 
-    <!-- TAICHUNG -->
-    <div class="md-city">
-      <div class="md-city-hdr" style="background:#e8f4e8;border-left-color:#27ae60">🌆 Đài Trung — Taichung</div>
-      <div class="md-i"><input type="checkbox" data-md="f_miya" onchange="mdChk(this)"><label><span class="md-name">Miyahara Ice Cream 宮原眼科</span><span class="md-addr">📍 No. 20, Zhongshan Road, Central District, Taichung | 中山路20號</span><span class="md-sub">Mái vòm sách Harry Potter · Kem multi-scoop</span></label><a href="https://www.google.com/maps/search/Miyahara+Taichung" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="c4" onchange="mdChk(this)"><label><span class="md-name">Rainbow Village 彩虹眷村</span><span class="md-addr">📍 No. 56, Chuncheng Road, Nantun District, Taichung | 南屯區春城路56號</span><span class="md-sub">Cụ ông 97 tuổi vẽ tay · Free</span></label><a href="https://www.google.com/maps/search/Rainbow+Village+Taichung" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="e11" onchange="mdChk(this)"><label><span class="md-name">Hoàng hôn Gaomei Wetlands 高美濕地</span><span class="md-addr">📍 Gaomei, Qingshui District, Taichung | 清水區高美濕地</span><span class="md-sub">Tuabin gió + sunset · Check triều trước!</span></label><a href="https://www.google.com/maps/search/Gaomei+Wetlands+Taichung" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f_fen" onchange="mdChk(this)"><label><span class="md-name">Fengjia Night Market 逢甲夜市</span><span class="md-addr">📍 Fengjia Street, Xitun District, Taichung | 西屯區逢甲路</span><span class="md-sub">Lớn nhất Đài Loan · Đi ít nhất 2h</span></label><a href="https://www.google.com/maps/search/Fengjia+Night+Market+Taichung" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="sml" onchange="mdChk(this)"><label><span class="md-name">Sun Moon Lake 日月潭 (option)</span><span class="md-addr">📍 Yuchi Township, Nantou County | 南投縣魚池鄉日月潭</span><span class="md-sub">Bus 1.5h từ Đài Trung · Hồ đẹp nhất</span></label><a href="https://www.google.com/maps/search/Sun+Moon+Lake+Taiwan" target="_blank" class="md-gmap">📍</a></div>
-    </div>
+<!-- TAICHUNG -->
+<div class="md-city">
+  <div class="md-city-hdr" style="background:#e8f4e8;border-left-color:#27ae60">🌆 Đài Trung — Taichung</div>
+  <div class="md-i"><input type="checkbox" data-md="f_miya" onchange="mdChk(this)"><label><span class="md-name">Miyahara Ice Cream 宮原眼科</span><span class="md-addr">📍 No. 20, Zhongshan Road, Central District, Taichung | 中山路20號</span><span class="md-sub">Mái vòm sách Harry Potter · Kem multi-scoop</span></label><a href="https://www.google.com/maps/search/Miyahara+Taichung" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="theater" onchange="mdChk(this)"><label><span class="md-name">National Taichung Theater 國家歌劇院 ⭐ NEW</span><span class="md-addr">📍 No. 101, Section 2, Huilai Road, Xitun District | 西屯區惠來路二段101號</span><span class="md-sub">Toyo Ito Pritzker Prize · Tường cong sound caves · Free</span></label><a href="https://www.google.com/maps/search/National+Taichung+Theater" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="audit" onchange="mdChk(this)"><label><span class="md-name">Audit Village 審計新村 ⭐ NEW</span><span class="md-addr">📍 No. 569, Section 1, Wuquan West Road, West District | 西區五權西路一段569號</span><span class="md-sub">Khu nghệ thuật trẻ + boutique + cafe · Free</span></label><a href="https://www.google.com/maps/search/Audit+Village+Taichung" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="calligraphy" onchange="mdChk(this)"><label><span class="md-name">Calligraphy Greenway 草悟道 ⭐ NEW</span><span class="md-addr">📍 West District, Taichung (3.6km strip) | 西區草悟道</span><span class="md-sub">Đường đi bộ 3.6km xanh + cafe specialty Đài Trung</span></label><a href="https://www.google.com/maps/search/Calligraphy+Greenway+Taichung" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="c4" onchange="mdChk(this)"><label><span class="md-name">Rainbow Village 彩虹眷村</span><span class="md-addr">📍 No. 56, Chuncheng Road, Nantun District, Taichung | 南屯區春城路56號</span><span class="md-sub">Cụ ông 97 tuổi vẽ tay · Free</span></label><a href="https://www.google.com/maps/search/Rainbow+Village+Taichung" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="e11" onchange="mdChk(this)"><label><span class="md-name">Hoàng hôn Gaomei Wetlands 高美濕地</span><span class="md-addr">📍 Gaomei, Qingshui District, Taichung | 清水區高美濕地</span><span class="md-sub">Tuabin gió + sunset · Check triều trước!</span></label><a href="https://www.google.com/maps/search/Gaomei+Wetlands+Taichung" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f_fen" onchange="mdChk(this)"><label><span class="md-name">Fengjia Night Market 逢甲夜市</span><span class="md-addr">📍 Fengjia Street, Xitun District, Taichung | 西屯區逢甲路</span><span class="md-sub">Lớn nhất Đài Loan · Đi ít nhất 2h</span></label><a href="https://www.google.com/maps/search/Fengjia+Night+Market+Taichung" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="sml" onchange="mdChk(this)"><label><span class="md-name">Sun Moon Lake 日月潭 (đã bỏ trip này)</span><span class="md-addr">📍 Yuchi Township, Nantou County | 南投縣魚池鄉日月潭</span><span class="md-sub">⏭️ Skipped — Bus 1.5h tốn time, value thấp tháng 5. Lần sau!</span></label><a href="https://www.google.com/maps/search/Sun+Moon+Lake+Taiwan" target="_blank" class="md-gmap">📍</a></div>
+</div>
 
-    <!-- FOOD GENERAL -->
-    <div class="md-city">
-      <div class="md-city-hdr" style="background:#fff;border-left-color:var(--acc)">🍜 Ẩm thực — Phải thử</div>
-      <div class="md-i"><input type="checkbox" data-md="f5" onchange="mdChk(this)"><label><span class="md-name">Stinky Tofu 臭豆腐</span><span class="md-addr">📍 Shilin / Raohe Night Market</span><span class="md-sub">Mùi đặc trưng · Must try once</span></label><a href="https://www.google.com/maps/search/stinky+tofu+Taipei+night+market" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f6" onchange="mdChk(this)"><label><span class="md-name">Lu Rou Fan 滷肉飯 (Braised Pork Rice)</span><span class="md-addr">📍 Khắp Đài Loan · Ningxia Night Market</span><span class="md-sub">Comfort food kinh điển</span></label><a href="https://www.google.com/maps/search/lu+rou+fan+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f8" onchange="mdChk(this)"><label><span class="md-name">Oyster Omelette 蚵仔煎</span><span class="md-addr">📍 Shilin / Ningxia / Raohe Night Market</span><span class="md-sub">Hào chiên trứng · Classic Đài Loan</span></label><a href="https://www.google.com/maps/search/oyster+omelette+Taiwan" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f9" onchange="mdChk(this)"><label><span class="md-name">Mango Shaved Ice 芒果冰</span><span class="md-addr">📍 Ice Monster: No. 15, Section 4, Zhongxiao East Road, Taipei | 忠孝東路四段15號</span><span class="md-sub">Mùa xoài tháng 4-5 đúng lúc!</span></label><a href="https://www.google.com/maps/search/Ice+Monster+mango+shaved+ice+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f10" onchange="mdChk(this)"><label><span class="md-name">Trà oolong Đài Loan 台灣烏龍茶</span><span class="md-addr">📍 Tea shops Jiufen hoặc Yongkang Street, Taipei</span><span class="md-sub">Mua về làm quà</span></label><a href="https://www.google.com/maps/search/Taiwan+oolong+tea+Taipei" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="f15" onchange="mdChk(this)"><label><span class="md-name">Trải nghiệm 7-Eleven Đài Loan</span><span class="md-addr">📍 Khắp Đài Loan — >12,000 cửa hàng</span><span class="md-sub">ATM + EasyCard + ăn sáng all-in-one</span></label><a href="https://www.google.com/maps/search/7+eleven+Taipei" target="_blank" class="md-gmap">📍</a></div>
-    </div>
+<!-- FOOD GENERAL -->
+<div class="md-city">
+  <div class="md-city-hdr" style="background:#fff;border-left-color:var(--acc)">🍜 Ẩm thực — Phải thử</div>
+  <div class="md-i"><input type="checkbox" data-md="f5" onchange="mdChk(this)"><label><span class="md-name">Stinky Tofu 臭豆腐</span><span class="md-addr">📍 Shilin / Raohe Night Market</span><span class="md-sub">Mùi đặc trưng · Must try once</span></label><a href="https://www.google.com/maps/search/stinky+tofu+Taipei+night+market" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f6" onchange="mdChk(this)"><label><span class="md-name">Lu Rou Fan 滷肉飯 (Braised Pork Rice)</span><span class="md-addr">📍 Khắp Đài Loan · Ningxia Night Market</span><span class="md-sub">Comfort food kinh điển</span></label><a href="https://www.google.com/maps/search/lu+rou+fan+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f8" onchange="mdChk(this)"><label><span class="md-name">Oyster Omelette 蚵仔煎</span><span class="md-addr">📍 Shilin / Ningxia / Raohe Night Market</span><span class="md-sub">Hào chiên trứng · Classic Đài Loan</span></label><a href="https://www.google.com/maps/search/oyster+omelette+Taiwan" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f9" onchange="mdChk(this)"><label><span class="md-name">Mango Shaved Ice 芒果冰</span><span class="md-addr">📍 Ice Monster: No. 15, Section 4, Zhongxiao East Road, Taipei | 忠孝東路四段15號</span><span class="md-sub">Mùa xoài tháng 4-5 đúng lúc!</span></label><a href="https://www.google.com/maps/search/Ice+Monster+mango+shaved+ice+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f10" onchange="mdChk(this)"><label><span class="md-name">Trà oolong Đài Loan 台灣烏龍茶</span><span class="md-addr">📍 Tea shops Jiufen hoặc Yongkang Street, Taipei</span><span class="md-sub">Mua về làm quà</span></label><a href="https://www.google.com/maps/search/Taiwan+oolong+tea+Taipei" target="_blank" class="md-gmap">📍</a></div>
+  <div class="md-i"><input type="checkbox" data-md="f15" onchange="mdChk(this)"><label><span class="md-name">Trải nghiệm 7-Eleven Đài Loan</span><span class="md-addr">📍 Khắp Đài Loan — >12,000 cửa hàng</span><span class="md-sub">ATM + EasyCard + ăn sáng all-in-one</span></label><a href="https://www.google.com/maps/search/7+eleven+Taipei" target="_blank" class="md-gmap">📍</a></div>
+</div>
+```
+
   </div>
 </div>
 
@@ -1027,445 +1146,495 @@ let sb=null,SID=null;
 const TRIP_ID='202604taiwan_trip1';
 let _sharedIdCache=null;
 
-function devId(){let id=localStorage.getItem('tw26_dev');if(!id){id='d_'+Math.random().toString(36).slice(2,11)+'_'+Date.now();localStorage.setItem('tw26_dev',id);}return id;}
-async function sbInit(){
-  try{
-    sb=window.supabase.createClient(SUPA_URL,SUPA_KEY,{db:{schema:SCHEMA}});
-    const{data,error}=await sb.from('sessions').upsert({device_id:devId()},{onConflict:'device_id'}).select().single();
-    if(error)throw error; SID=data.id;
-    await sb.from('sessions').upsert({device_id:TRIP_ID},{onConflict:'device_id'});
-    setBadge('🟢 Synced','ok'); return true;
-  }catch(e){console.error('SB:',e);setBadge('🔴 Offline','err');return false;}
+function devId(){let id=localStorage.getItem(‘tw26_dev’);if(!id){id=‘d_’+Math.random().toString(36).slice(2,11)+’_’+Date.now();localStorage.setItem(‘tw26_dev’,id);}return id;}
+let _sbLastError=’’;
+function *withTimeout(p,ms,label){
+return Promise.race([
+p,
+new Promise(function(*,rej){setTimeout(function(){rej(new Error(‘Timeout ‘+ms+‘ms: ‘+label));},ms);})
+]);
 }
-function setBadge(t,c){const b=document.getElementById('dbBadge');b.textContent=t;b.className='db-badge '+c;}
+async function sbInit(){
+try{
+setBadge(‘⏳ Syncing…’,’’);
+if(typeof window.supabase===‘undefined’||!window.supabase||!window.supabase.createClient){
+_sbLastError=‘Supabase SDK chưa load (CDN bị chặn?)’;
+console.error(‘SB:’,_sbLastError);
+setBadge(‘🔴 Offline’,‘err’);return false;
+}
+sb=window.supabase.createClient(SUPA_URL,SUPA_KEY,{db:{schema:SCHEMA}});
+const r1=await _withTimeout(
+sb.from(‘sessions’).upsert({device_id:devId()},{onConflict:‘device_id’}).select().single(),
+8000,‘sessions upsert (device)’
+);
+if(r1.error)throw r1.error;
+SID=r1.data.id;
+await _withTimeout(
+sb.from(‘sessions’).upsert({device_id:TRIP_ID},{onConflict:‘device_id’}),
+8000,‘sessions upsert (trip)’
+);
+setBadge(‘🟢 Synced’,‘ok’);
+_sbLastError=’’;
+return true;
+}catch(e){
+_sbLastError=(e&&e.message)||String(e);
+console.error(‘SB:’,e);
+setBadge(‘🔴 Offline’,‘err’);
+return false;
+}
+}
+function setBadge(t,c){const b=document.getElementById(‘dbBadge’);if(!b)return;b.textContent=t;b.className=’db-badge ’+c;b.style.cursor=‘pointer’;b.onclick=function(){
+const info=[
+‘Status: ‘+(b.textContent||’’),
+’SDK loaded: ’+(typeof window.supabase!==‘undefined’&&!!(window.supabase&&window.supabase.createClient)),
+‘Session ID: ‘+(SID||’(none)’),
+‘Last error: ‘+(_sbLastError||’(none)’),
+‘Online: ‘+(navigator.onLine?‘yes’:‘no’),
+‘’,
+‘Tap “Retry” để thử lại Supabase, “Cancel” để dùng localStorage offline.’
+].join(’\n’);
+if(confirm(info)){sbInit().then(function(){location.reload();});}
+};}
 
 async function getSharedId(){
-  if(_sharedIdCache)return _sharedIdCache;
-  if(sb){const{data}=await sb.from('sessions').select('id').eq('device_id',TRIP_ID).single();if(data)_sharedIdCache=data.id;}
-  return _sharedIdCache;
+if(*sharedIdCache)return *sharedIdCache;
+if(sb){const{data}=await sb.from(‘sessions’).select(‘id’).eq(‘device_id’,TRIP_ID).single();if(data)*sharedIdCache=data.id;}
+return *sharedIdCache;
 }
 async function getAllShared(tbl){
-  if(sb){const sid=await getSharedId();if(sid){const{data}=await sb.from(tbl).select('*').eq('session_id',sid);return data||[];}}
-  return JSON.parse(localStorage.getItem('tw26_sh_'+tbl)||'[]');
+if(sb){const sid=await getSharedId();if(sid){const{data}=await sb.from(tbl).select(’*’).eq(‘session_id’,sid);return data||[];}}
+return JSON.parse(localStorage.getItem(’tw26_sh*’+tbl)||’[]’);
 }
 async function upsertShared(tbl,row){
-  if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).upsert({...row,session_id:sid},{onConflict:'session_id,id'});return;}}
-  const arr=JSON.parse(localStorage.getItem('tw26_sh_'+tbl)||'[]');
-  const i=arr.findIndex(r=>r.id===row.id);
-  if(i>=0)arr[i]={...arr[i],...row};else arr.push(row);
-  localStorage.setItem('tw26_sh_'+tbl,JSON.stringify(arr));
+if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).upsert({…row,session_id:sid},{onConflict:‘session_id,id’});return;}}
+const arr=JSON.parse(localStorage.getItem(’tw26_sh*’+tbl)||’[]’);
+const i=arr.findIndex(r=>r.id===row.id);
+if(i>=0)arr[i]={…arr[i],…row};else arr.push(row);
+localStorage.setItem(’tw26_sh*’+tbl,JSON.stringify(arr));
 }
 async function deleteShared(tbl,id){
-  if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).delete().eq('session_id',sid).eq('id',id);return;}}
-  const arr=JSON.parse(localStorage.getItem('tw26_sh_'+tbl)||'[]').filter(r=>r.id!==id);
-  localStorage.setItem('tw26_sh_'+tbl,JSON.stringify(arr));
+if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).delete().eq(‘session_id’,sid).eq(‘id’,id);return;}}
+const arr=JSON.parse(localStorage.getItem(’tw26_sh*’+tbl)||’[]’).filter(r=>r.id!==id);
+localStorage.setItem(‘tw26_sh_’+tbl,JSON.stringify(arr));
 }
 async function getAllSharedKV(tbl){
-  if(sb){const sid=await getSharedId();if(sid){const{data}=await sb.from(tbl).select('item_key,checked').eq('session_id',sid);const r={};(data||[]).forEach(x=>r[x.item_key]=x.checked);return r;}}
-  return JSON.parse(localStorage.getItem('tw26_sh_kv_'+tbl)||'{}');
+if(sb){const sid=await getSharedId();if(sid){const{data}=await sb.from(tbl).select(‘item_key,checked’).eq(‘session_id’,sid);const r={};(data||[]).forEach(x=>r[x.item_key]=x.checked);return r;}}
+return JSON.parse(localStorage.getItem(‘tw26_sh_kv_’+tbl)||’{}’);
 }
 async function upsertSharedKV(tbl,key,checked){
-  if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).upsert({session_id:sid,item_key:key,checked,checked_at:checked?new Date().toISOString():null},{onConflict:'session_id,item_key'});return;}}
-  const d=JSON.parse(localStorage.getItem('tw26_sh_kv_'+tbl)||'{}');d[key]=checked;
-  localStorage.setItem('tw26_sh_kv_'+tbl,JSON.stringify(d));
+if(sb){const sid=await getSharedId();if(sid){await sb.from(tbl).upsert({session_id:sid,item_key:key,checked,checked_at:checked?new Date().toISOString():null},{onConflict:‘session_id,item_key’});return;}}
+const d=JSON.parse(localStorage.getItem(‘tw26_sh_kv_’+tbl)||’{}’);d[key]=checked;
+localStorage.setItem(‘tw26_sh_kv_’+tbl,JSON.stringify(d));
 }
 
 // MAP — DL updated: day4 no longer has Eternal Spring as separate marker; day3/day5 match ti-items
 const DL={
-  day1:[{n:"TPE Airport 桃園機場",lat:25.0797,lng:121.2342,r:null},{n:"Ximending 西門町",lat:25.0424,lng:121.5068,r:5}],
-  day2:[{n:"CKS Memorial 中正紀念堂",lat:25.0349,lng:121.5219,r:null},{n:"Yongkang St 永康街",lat:25.0281,lng:121.5298,r:4},{n:"Taipei 101 (photo tour)",lat:25.034,lng:121.5645,r:1},{n:"Elephant Mt 象山",lat:25.0272,lng:121.5713,r:6},{n:"Raohe Market 饒河",lat:25.0505,lng:121.5774,r:7}],
-  day3:[{n:"Yehliu 野柳",lat:25.2056,lng:121.6901,r:9},{n:"Jiufen 九份",lat:25.1097,lng:121.8452,r:3},{n:"Shifen 十分",lat:25.0425,lng:121.7764,r:8},{n:"Ningxia Market 寧夏夜市",lat:25.0558,lng:121.5153,r:null}],
-  day4:[{n:"Taroko 太魯閣",lat:24.1588,lng:121.6213,r:2},{n:"Qingshui Cliff 清水斷崖",lat:24.2288,lng:121.7144,r:19},{n:"Dongdamen 東大門",lat:23.9771,lng:121.6044,r:null}],
-  day5:[{n:"Qixingtan 七星潭",lat:23.9856,lng:121.6186,r:10},{n:"Shakadang Trail 砂卡礑",lat:24.1345,lng:121.6198,r:20},{n:"Tiaoshi Coast 跳石",lat:24.0823,lng:121.6535,r:11}],
-  day6:[{n:"Miyahara 宮原眼科",lat:24.1382,lng:120.6833,r:15},{n:"Rainbow Village 彩虹眷村",lat:24.1339,lng:120.6082,r:14},{n:"Gaomei 高美濕地",lat:24.3125,lng:120.5527,r:13},{n:"Fengjia 逢甲",lat:24.179,lng:120.6463,r:12}],
-  day7:[{n:"Sun Moon Lake 日月潭",lat:23.8491,lng:120.9163,r:18},{n:"Beitou Onsen 北投",lat:25.1368,lng:121.5067,r:16},{n:"Tamsui 淡水",lat:25.1696,lng:121.4408,r:17},{n:"Shilin Market 士林",lat:25.088,lng:121.5242,r:null}],
-  day8:[{n:"Fuhang Soy Milk 阜杭豆漿",lat:25.0447,lng:121.5264,r:null},{n:"Chia Te 佳德",lat:25.0505,lng:121.5774,r:null},{n:"TPE Airport",lat:25.0797,lng:121.2342,r:null}]
+day1:[{n:“TPE Airport 桃園機場”,lat:25.0797,lng:121.2342,r:null},{n:“Ximending 西門町”,lat:25.0424,lng:121.5068,r:5}],
+day2:[{n:“CKS Memorial 中正紀念堂”,lat:25.0349,lng:121.5219,r:null},{n:“Yongkang St 永康街”,lat:25.0281,lng:121.5298,r:4},{n:“Taipei 101 (photo tour)”,lat:25.034,lng:121.5645,r:1},{n:“Elephant Mt 象山”,lat:25.0272,lng:121.5713,r:6},{n:“Raohe Market 饒河”,lat:25.0505,lng:121.5774,r:7}],
+day3:[{n:“Yehliu 野柳”,lat:25.2056,lng:121.6901,r:9},{n:“Jiufen 九份”,lat:25.1097,lng:121.8452,r:3},{n:“Shifen 十分”,lat:25.0425,lng:121.7764,r:8},{n:“Ningxia Market 寧夏夜市”,lat:25.0558,lng:121.5153,r:null}],
+day4:[{n:“Taroko 太魯閣”,lat:24.1588,lng:121.6213,r:2},{n:“Qingshui Cliff 清水斷崖”,lat:24.2288,lng:121.7144,r:19},{n:“Dongdamen 東大門”,lat:23.9771,lng:121.6044,r:null}],
+day5:[{n:“Qixingtan 七星潭”,lat:23.9856,lng:121.6186,r:10},{n:“Shakadang Trail 砂卡礑”,lat:24.1345,lng:121.6198,r:20},{n:“Tiaoshi Coast 跳石”,lat:24.0823,lng:121.6535,r:11}],
+day6:[{n:“Miyahara 宮原眼科”,lat:24.1382,lng:120.6833,r:15},{n:“National Theater 國家歌劇院”,lat:24.1626,lng:120.6403,r:18},{n:“Audit Village 審計新村”,lat:24.1396,lng:120.6601,r:null},{n:“Rainbow Village 彩虹眷村”,lat:24.1339,lng:120.6082,r:14},{n:“Gaomei 高美濕地”,lat:24.3125,lng:120.5527,r:13},{n:“Fengjia 逢甲”,lat:24.179,lng:120.6463,r:12}],
+day7:[{n:“Calligraphy Greenway 草悟道”,lat:24.1493,lng:120.6630,r:null},{n:“Beitou Onsen 北投”,lat:25.1368,lng:121.5067,r:16},{n:“Tamsui 淡水”,lat:25.1696,lng:121.4408,r:17},{n:“Shilin Market 士林”,lat:25.088,lng:121.5242,r:null}],
+day8:[{n:“Fuhang Soy Milk 阜杭豆漿”,lat:25.0447,lng:121.5264,r:null},{n:“Chia Te 佳德”,lat:25.0505,lng:121.5774,r:null},{n:“TPE Airport”,lat:25.0797,lng:121.2342,r:null}]
 };
-const COLORS=['#667eea','#1a73e8','#1a73e8','#e67e22','#e67e22','#27ae60','#27ae60','#dc3545'];
-const DMAP={day1:'25/04',day2:'26/04',day3:'27/04',day4:'28/04',day5:'29/04',day6:'30/04',day7:'01/05',day8:'02/05'};
-const RANKS=[[1,"Taipei 101 / 台北101","Đài Bắc",2,"Chụp 4 góc iconic (no T89)"],[2,"Taroko / 太魯閣","Hoa Liên",4,"Hẻm núi #1 châu Á"],[3,"Jiufen / 九份","Tân Bắc",3,"Spirited Away vibes"],[4,"Yongkang / 永康街","Đài Bắc",2,"Mì bò, Din Tai Fung"],[5,"Ximending / 西門町","Đài Bắc",1,"Shopping & nightlife"],[6,"Elephant Mt / 象山","Đài Bắc",2,"Best city view"],[7,"Raohe / 饒河夜市","Đài Bắc",2,"Chợ đêm cổ nhất"],[8,"Shifen / 十分","Tân Bắc",3,"Thả đèn trời"],[9,"Yehliu / 野柳","Tân Bắc",3,"Queen's Head"],[10,"Qixingtan / 七星潭","Hoa Liên",5,"Bãi đá cuội"],[11,"Tiaoshi / 跳石","Hoa Liên",5,"Đá đen, hidden gem"],[12,"Fengjia / 逢甲","Đài Trung",6,"Lớn nhất Đài Loan"],[13,"Gaomei / 高美濕地","Đài Trung",6,"Hoàng hôn tuabin gió"],[14,"Rainbow / 彩虹眷村","Đài Trung",6,"Street art"],[15,"Miyahara / 宮原眼科","Đài Trung",6,"Kem, kiến trúc Nhật"],[16,"Beitou / 北投溫泉","Đài Bắc",7,"Onsen"],[17,"Tamsui / 淡水","Đài Bắc",7,"Hoàng hôn, Liao Tianding"],[18,"Sun Moon Lake / 日月潭","Nam Đầu","7*","Hồ đẹp (option)"],[19,"Qingshui / 清水斷崖","Hoa Liên",4,"Vách đá 1000m"],[20,"Shakadang / 砂卡礑","Hoa Liên",5,"Suối ngọc lam"]];
+const COLORS=[’#667eea’,’#1a73e8’,’#1a73e8’,’#e67e22’,’#e67e22’,’#27ae60’,’#27ae60’,’#dc3545’];
+const DMAP={day1:‘25/04’,day2:‘26/04’,day3:‘27/04’,day4:‘28/04’,day5:‘29/04’,day6:‘30/04’,day7:‘01/05’,day8:‘02/05’};
+const RANKS=[[1,“Taipei 101 / 台北101”,“Đài Bắc”,2,“Chụp 4 góc iconic (no T89)”],[2,“Taroko / 太魯閣”,“Hoa Liên”,4,“Hẻm núi #1 châu Á”],[3,“Jiufen / 九份”,“Tân Bắc”,3,“Spirited Away vibes”],[4,“Yongkang / 永康街”,“Đài Bắc”,2,“Mì bò, Din Tai Fung”],[5,“Ximending / 西門町”,“Đài Bắc”,1,“Shopping & nightlife”],[6,“Elephant Mt / 象山”,“Đài Bắc”,2,“Best city view”],[7,“Raohe / 饒河夜市”,“Đài Bắc”,2,“Chợ đêm cổ nhất”],[8,“Shifen / 十分”,“Tân Bắc”,3,“Thả đèn trời”],[9,“Yehliu / 野柳”,“Tân Bắc”,3,“Queen’s Head”],[10,“Qixingtan / 七星潭”,“Hoa Liên”,5,“Bãi đá cuội”],[11,“Tiaoshi / 跳石”,“Hoa Liên”,5,“Đá đen, hidden gem”],[12,“Fengjia / 逢甲”,“Đài Trung”,6,“Lớn nhất Đài Loan”],[13,“Gaomei / 高美濕地”,“Đài Trung”,6,“Hoàng hôn tuabin gió”],[14,“Rainbow / 彩虹眷村”,“Đài Trung”,6,“Street art”],[15,“Miyahara / 宮原眼科”,“Đài Trung”,6,“Kem, kiến trúc Nhật”],[16,“Beitou / 北投溫泉”,“Đài Bắc”,7,“Onsen”],[17,“Tamsui / 淡水”,“Đài Bắc”,7,“Hoàng hôn, Liao Tianding”],[18,“Theater / 國家歌劇院”,“Đài Trung”,6,“Toyo Ito Pritzker”],[19,“Qingshui / 清水斷崖”,“Hoa Liên”,4,“Vách đá 1000m”],[20,“Shakadang / 砂卡礑”,“Hoa Liên”,5,“Suối ngọc lam”]];
 
 let map=null,mks=[],poly=null;
-try{if(typeof L!=='undefined'){map=L.map('map',{zoomControl:false}).setView([23.7,121],7);L.control.zoom({position:'bottomright'}).addTo(map);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OSM'}).addTo(map);}}catch(e){console.error('Map:',e);}
+try{if(typeof L!==‘undefined’){map=L.map(‘map’,{zoomControl:false}).setView([23.7,121],7);L.control.zoom({position:‘bottomright’}).addTo(map);L.tileLayer(‘https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png’,{attribution:‘© OSM’,crossOrigin:true}).addTo(map);setTimeout(function(){try{map.invalidateSize();}catch(e){}},300);setTimeout(function(){try{map.invalidateSize();}catch(e){}},1000);}}catch(e){console.error(‘Map:’,e);}
 function clrMap(){if(!map)return;mks.forEach(m=>map.removeLayer(m));mks=[];if(poly){map.removeLayer(poly);poly=null;}}
-function showDay(dk){if(!map)return;clrMap();const locs=DL[dk];if(!locs||!locs.length)return;const b=[],pp=[];const di=parseInt(dk.replace('day',''))-1;const col=COLORS[di]||'#1a73e8';locs.forEach((l,i)=>{const ic=L.divIcon({html:'<div style="background:linear-gradient(135deg,#2d4a7c,#3b4cca);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3)">'+(i+1)+'</div>',iconSize:[26,26],iconAnchor:[13,13],className:''});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup((l.r?'#'+l.r+' ':'')+l.n).addTo(map);mks.push(m);b.push([l.lat,l.lng]);pp.push([l.lat,l.lng]);});if(pp.length>1)poly=L.polyline(pp,{color:col,weight:3,opacity:.7,dashArray:'8,8'}).addTo(map);b.length===1?map.setView(b[0],14):map.fitBounds(b,{padding:[30,30]});}
-function showAll(){if(!map)return;clrMap();const ab=[];Object.entries(DL).forEach(([dk,locs],di)=>{const col=COLORS[di]||'#1a73e8';const pp=[];locs.forEach(l=>{const ic=L.divIcon({html:'<div style="background:'+(l.r?'#ff6b35':col)+';color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.25)">'+(l.r||'·')+'</div>',iconSize:[20,20],iconAnchor:[10,10],className:''});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup('N'+(di+1)+': '+l.n).addTo(map);mks.push(m);ab.push([l.lat,l.lng]);pp.push([l.lat,l.lng]);});if(pp.length>1){const ln=L.polyline(pp,{color:col,weight:2,opacity:.5,dashArray:'6,6'}).addTo(map);mks.push(ln);}});if(ab.length)map.fitBounds(ab,{padding:[20,20]});}
-function showRanking(){if(!map)return;clrMap();const ab=[];Object.values(DL).forEach(locs=>locs.forEach(l=>{if(!l.r)return;const ic=L.divIcon({html:'<div style="background:#ff6b35;color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,.3)">'+l.r+'</div>',iconSize:[22,22],iconAnchor:[11,11],className:''});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup('#'+l.r+' '+l.n).addTo(map);mks.push(m);ab.push([l.lat,l.lng]);}));if(ab.length)map.fitBounds(ab,{padding:[20,20]});}
+function showDay(dk){if(!map)return;clrMap();const locs=DL[dk];if(!locs||!locs.length)return;const b=[],pp=[];const di=parseInt(dk.replace(‘day’,’’))-1;const col=COLORS[di]||’#1a73e8’;locs.forEach((l,i)=>{const ic=L.divIcon({html:’<div style="background:linear-gradient(135deg,#2d4a7c,#3b4cca);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3)">’+(i+1)+’</div>’,iconSize:[26,26],iconAnchor:[13,13],className:’’});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup((l.r?’#’+l.r+’ ‘:’’)+l.n).addTo(map);mks.push(m);b.push([l.lat,l.lng]);pp.push([l.lat,l.lng]);});if(pp.length>1)poly=L.polyline(pp,{color:col,weight:3,opacity:.7,dashArray:‘8,8’}).addTo(map);b.length===1?map.setView(b[0],14):map.fitBounds(b,{padding:[30,30]});}
+function showAll(){if(!map)return;clrMap();const ab=[];Object.entries(DL).forEach(([dk,locs],di)=>{const col=COLORS[di]||’#1a73e8’;const pp=[];locs.forEach(l=>{const ic=L.divIcon({html:’<div style="background:'+(l.r?'#ff6b35':col)+';color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.25)">’+(l.r||’·’)+’</div>’,iconSize:[20,20],iconAnchor:[10,10],className:’’});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup(‘N’+(di+1)+’: ‘+l.n).addTo(map);mks.push(m);ab.push([l.lat,l.lng]);pp.push([l.lat,l.lng]);});if(pp.length>1){const ln=L.polyline(pp,{color:col,weight:2,opacity:.5,dashArray:‘6,6’}).addTo(map);mks.push(ln);}});if(ab.length)map.fitBounds(ab,{padding:[20,20]});}
+function showRanking(){if(!map)return;clrMap();const ab=[];Object.values(DL).forEach(locs=>locs.forEach(l=>{if(!l.r)return;const ic=L.divIcon({html:’<div style="background:#ff6b35;color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,.3)">’+l.r+’</div>’,iconSize:[22,22],iconAnchor:[11,11],className:’’});const m=L.marker([l.lat,l.lng],{icon:ic}).bindPopup(’#’+l.r+’ ’+l.n).addTo(map);mks.push(m);ab.push([l.lat,l.lng]);}));if(ab.length)map.fitBounds(ab,{padding:[20,20]});}
 // map-legend removed — mapMode/hlLeg are no-ops kept for backward compat
-function mapMode(mode){if(mode==='all')showAll();else showDay(mode);}
+function mapMode(mode){if(mode===‘all’)showAll();else showDay(mode);}
 function hlLeg(mode){/* no-op: map-legend was removed */}
-function zoomRank(r){let found=null,fd=null;Object.entries(DL).forEach(([dk,locs])=>locs.forEach(l=>{if(l.r===r){found=l;fd=dk;}}));if(!found)return;showDay(fd);setTimeout(()=>{map.setView([found.lat,found.lng],14);mks.forEach(m=>{try{if(m.getLatLng&&Math.abs(m.getLatLng().lat-found.lat)<.001)m.openPopup();}catch(e){}});},150);if(window.innerWidth<768)document.getElementById('map').scrollIntoView({behavior:'smooth',block:'start'});}
+function zoomRank(r){let found=null,fd=null;Object.entries(DL).forEach(([dk,locs])=>locs.forEach(l=>{if(l.r===r){found=l;fd=dk;}}));if(!found)return;showDay(fd);setTimeout(()=>{map.setView([found.lat,found.lng],14);mks.forEach(m=>{try{if(m.getLatLng&&Math.abs(m.getLatLng().lat-found.lat)<.001)m.openPopup();}catch(e){}});},150);if(window.innerWidth<768)document.getElementById(‘map’).scrollIntoView({behavior:‘smooth’,block:‘start’});}
 
 // NAV
-let curDay='overview';
+let curDay=‘overview’;
 function go(id){
-  document.querySelectorAll('.tc').forEach(e=>e.classList.remove('on'));
-  document.querySelectorAll('.nb,.bnav-i').forEach(b=>b.classList.remove('on'));
-  const el=document.getElementById('tab-'+id);if(el)el.classList.add('on');
-  document.querySelectorAll('.nb').forEach(b=>{const t=b.textContent;
-    if((id==='overview'&&t.includes('Tổng quan'))||(DMAP[id]&&t.includes(DMAP[id]))||(id==='mustdo'&&t==='⭐')||(id==='budget'&&t==='💰')||(id==='ranking'&&t==='🏆'))b.classList.add('on');
-  });
-  if(['overview','mustdo','budget'].includes(id))showAll();
-  else if(id==='ranking')showRanking();
-  else if(id.startsWith('day'))showDay(id);
-  curDay=id;
-  if(id.startsWith('day')){renderDayChecklist(id);renderLeftBookings(id);}
-  else{renderDayChecklist(null);renderLeftBookings(null);}
-  if(id==='overview')renderBookingSummary();
-  if(window.innerWidth<768)document.getElementById('ca').scrollIntoView({behavior:'smooth',block:'start'});
+// Step 1: ALWAYS switch active tab+nav class — this is the minimum and must never fail
+try{
+document.querySelectorAll(’.tc’).forEach(e=>e.classList.remove(‘on’));
+document.querySelectorAll(’.nb,.bnav-i’).forEach(b=>b.classList.remove(‘on’));
+const el=document.getElementById(‘tab-’+id);if(el)el.classList.add(‘on’);
+document.querySelectorAll(’.nb’).forEach(b=>{const t=b.textContent;
+if((id===‘overview’&&t.includes(‘Tổng quan’))||(DMAP[id]&&t.includes(DMAP[id]))||(id===‘mustdo’&&t===‘⭐’)||(id===‘budget’&&t===‘💰’)||(id===‘ranking’&&t===‘🏆’))b.classList.add(‘on’);
+});
+curDay=id;
+}catch(e){console.error(‘go() tab-switch:’,e);}
+// Step 2: render side-effects (map / checklists / summary) — wrapped so failures don’t block tab switch
+try{
+if([‘overview’,‘mustdo’,‘budget’].includes(id))showAll();
+else if(id===‘ranking’)showRanking();
+else if(id.startsWith(‘day’))showDay(id);
+}catch(e){console.error(‘go() map:’,e);}
+try{if(map&&map.invalidateSize)map.invalidateSize();}catch(e){}
+try{
+if(id.startsWith(‘day’)){renderDayChecklist(id);renderLeftBookings(id);}
+else{renderDayChecklist(null);renderLeftBookings(null);}
+}catch(e){console.error(‘go() checklist:’,e);}
+try{if(id===‘overview’)renderBookingSummary();}catch(e){console.error(‘go() bkSum:’,e);}
+try{if(window.innerWidth<768){const ca=document.getElementById(‘ca’);if(ca)ca.scrollIntoView({behavior:‘smooth’,block:‘start’});}}catch(e){}
 }
 
 // GENERIC TASK SYSTEM
-const DEFAULT_TASKS={"day1":["Mua SIM Chunghwa Telecom tại TPE B1","Mua + nạp EasyCard ×3 (500 TWD/thẻ)","Đổi ≥10,000 TWD/người","Check-in hotel Ximending/Zhongshan","Ăn tối Ximending — Tiger Sugar + Hot Star"],"day2":["Đến CKS Memorial đúng giờ chẵn xem đổi gác","Ăn trưa Yongkang — DTF hoặc Beef Noodle","Taipei 101 — chụp 4 góc signature (Alley 253, Songren, Symphony, XinYi Plaza)","Leo Elephant Mountain trước 17:00","Chợ đêm Raohe tối","Nạp thêm EasyCard nếu dưới 200 TWD"],"day3":["Sáng 7:30 bus Kuo-Kuang 1815 từ Taipei West Bus Station","Check app Bus+ Taipei + Taiwan Railways để xem giờ real-time","Yehliu → bus/taxi → Jiufen → Ruifang → TRA Pingxi → Shifen","Mang áo mưa — vùng này hay mưa","Mua đèn trời tại Shifen (200 TWD/4 màu)","Ăn tối Ningxia Night Market (hoặc Shifen)","Sắp balo cho Hoa Liên tối nay!"],"day4":["⏰ Ra ga Taipei trước 08:10","Lấy vé tại quầy: Booking #6684500 + passport","🧳 Gửi hành lý tại Hotel Hoa Liên lúc 11:15","Thuê xe máy 125cc tại khu ga Hualien (IDP)","Check trail Taroko: taroko.gov.tw","Mượn mũ bảo hiểm miễn phí cổng Taroko","Quay lại hotel check-in phòng sau 15:00","Đặt vé TRA Hualien→Taichung 30/04 (nếu chưa)","Confirm hotel Hualien 2 đêm"],"day5":["Đến Qixingtan trước 8:00 — ánh sáng vàng","Dừng km 38-40 Hwy 9 — Tiaoshi rocks","Trả xe máy tối nay hoặc sáng sớm mai","Mua Mochi + Nougat Hoa Liên tại Dongdamen","Pack đồ — sáng mai 7:30 đi tàu"],"day6":["⏰ Ra ga Hualien trước 7:15","Check Gaomei thủy triều: tideschart.com","🧳 Gửi hành lý tại Hotel Đài Trung lúc 12:30","Kem Miyahara + chụp mái vòm sách","Đến Gaomei trước 16:30 cho golden hour","Chợ đêm Fengjia ít nhất 2h, rồi check-in phòng"],"day7":["Taxi Fengjia→ga HSR Taichung ~200 TWD","🧳 Gửi hành lý + lấy vali lớn tại Hotel Đài Bắc lúc 14:00","Chọn: Beitou onsen HOẶC Tamsui+Liao Tianding","MUA QUÀ tại Shilin — cơ hội cuối!","Cân vali ≤23kg ×3 trước khi ngủ","Set alarm 6:30"],"day8":["⏰ Rời hotel trước 10:30","Ăn sáng Fuhang Soy Milk (đến trước 7:30)","Chia Te mở 7:30 (MRT Songshan) — mua thêm quà","Kiểm tra passport ×3 + vé + đồ đạc","Airport MRT ga A1 lúc 10:00","Tax Refund nếu mua >2,000 TWD/shop","Refund EasyCard TRƯỚC cổng xuất cảnh"]};
-const DEFAULT_OV_TASKS=["Hộ chiếu 3 người còn hạn > 6 tháng","Visa Đài Loan / E-visa 3 người đã duyệt","Vé máy bay CI-782/783 (in confirmation)","🎫 Vé TRA Taipei→Hualien 28/04 — Booking #6684500 ✅","Vé TRA Hualien→Taichung 30/04 (đặt trước!)","HSR Taichung→Taipei 01/05 (App T Express)","Bảo hiểm du lịch 3 người","🏍️ Bằng lái quốc tế (IDP) — thuê xe máy Hoa Liên","Adapter ổ cắm 2 chấu dẹt (110V)","Pin sạc dự phòng + cáp ×3","Kem chống nắng SPF50","Áo mưa gấp gọn / ô nhỏ","Giày đi bộ thoải mái","Giày thể thao bám tốt (Shakadang + Tiaoshi)","Áo khoác nhẹ (AC tàu rất lạnh)","Thuốc say xe (đèo Taroko)","Google Maps offline map Taiwan","App T Express (vé HSR)","App Taiwan Railways (vé TRA)","App Bus+ Taipei (N3 tự túc)"];
+const DEFAULT_TASKS={“day1”:[“Mua SIM Chunghwa Telecom tại TPE B1”,“Mua + nạp EasyCard ×3 (500 TWD/thẻ)”,“Đổi ≥10,000 TWD/người”,“Check-in hotel Ximending/Zhongshan”,“Ăn tối Ximending — Tiger Sugar + Hot Star”],“day2”:[“Đến CKS Memorial đúng giờ chẵn xem đổi gác”,“Ăn trưa Yongkang — DTF hoặc Beef Noodle”,“Taipei 101 — chụp 4 góc signature (Alley 253, Songren, Symphony, XinYi Plaza)”,“Leo Elephant Mountain trước 17:00”,“Chợ đêm Raohe tối”,“Nạp thêm EasyCard nếu dưới 200 TWD”],“day3”:[“Sáng 7:30 bus Kuo-Kuang 1815 từ Taipei West Bus Station”,“Check app Bus+ Taipei + Taiwan Railways để xem giờ real-time”,“Yehliu → bus/taxi → Jiufen → Ruifang → TRA Pingxi → Shifen”,“Mang áo mưa — vùng này hay mưa”,“Mua đèn trời tại Shifen (200 TWD/4 màu)”,“Ăn tối Ningxia Night Market (hoặc Shifen)”,“Sắp balo cho Hoa Liên tối nay!”],“day4”:[“⏰ Ra ga Taipei trước 08:10”,“Lấy vé tại quầy: Booking #6684500 + passport”,“🧳 Gửi hành lý tại Hotel Hoa Liên lúc 11:15”,“Thuê xe máy 125cc tại khu ga Hualien (IDP)”,“Check trail Taroko: taroko.gov.tw”,“Mượn mũ bảo hiểm miễn phí cổng Taroko”,“Quay lại hotel check-in phòng sau 15:00”,“Confirm hotel Hualien 2 đêm”],“day5”:[“Đến Qixingtan trước 8:00 — ánh sáng vàng”,“Dừng km 38-40 Hwy 9 — Tiaoshi rocks”,“Trả xe máy tối nay hoặc sáng sớm mai”,“Mua Mochi + Nougat Hoa Liên tại Dongdamen”,“🚆 Vé Puyuma 203 #7330461 ✅ đã có”,“Pack đồ + báo lễ tân check-out 5:00 sáng mai”,“Set 3 alarms 4:30 — không được ngủ quên!”],“day6”:[“⏰ Wake 04:30 — set 3 alarms”,“🧳 Check-out hotel 05:00 (báo lễ tân từ tối hôm trước)”,“Lấy vé TRA quầy: #7330461 + passport”,“🚆 TRA Puyuma 203 5:50 → Nangang 8:04”,“Walk 5p sang HSR Nangang station”,“🚄 HSR 1509 8:36 → Taichung 9:42 (QR app T Express)”,“Uber HSR Taichung → Hotel Fengjia (~25p, 350 TWD)”,“🧳 Gửi hành lý hotel 10:30”,“Brunch Miyahara 11:00”,“Theater 國家歌劇院 + cafe Roof Garden tầng 6”,“Audit Village 審計新村 + cafe”,“Check Gaomei thủy triều: tideschart.com”,“Đến Gaomei trước 17:00 cho golden hour”,“Chợ đêm Fengjia + về hotel check-in phòng tối”],“day7”:[“Sleep in 8:00 — bù lại”,“Breakfast cafe specialty Đài Trung (Calligraphy Greenway)”,“🚖 Uber Fengjia → HSR Taichung 12:30”,“🚄 HSR 128 13:39 → Taipei 14:29 (QR app T Express, #05182728)”,“🧳 Hotel — gửi hành lý + lấy vali lớn”,“Chọn: Beitou onsen HOẶC Tamsui+Bali Liao Tianding”,“MUA QUÀ tại Shilin — cơ hội cuối!”,“Cân vali ≤23kg ×3 trước khi ngủ”,“Set alarm 6:30”],“day8”:[“⏰ Rời hotel trước 10:30”,“Ăn sáng Fuhang Soy Milk (đến trước 7:30)”,“Chia Te mở 7:30 (MRT Songshan) — mua thêm quà”,“Kiểm tra passport ×3 + vé + đồ đạc”,“Airport MRT ga A1 lúc 10:00”,“Tax Refund nếu mua >2,000 TWD/shop”,“Refund EasyCard TRƯỚC cổng xuất cảnh”]};
+const DEFAULT_OV_TASKS=[“Hộ chiếu 3 người còn hạn > 6 tháng”,“Visa Đài Loan / E-visa 3 người đã duyệt”,“Vé máy bay CI-782/783 (in confirmation)”,“🎫 TRA 472 Taipei→Hualien 28/04 #6684500 ✅ 1,749 TWD”,“🎫 TRA Puyuma 203 Hualien→Nangang 30/04 #7330461 ✅ 1,674 TWD”,“🎫 HSR 1509 Taipei→Taichung 30/04 #05266847 ✅”,“🎫 HSR 128 Taichung→Taipei 01/05 #05182728 ✅”,“Bảo hiểm du lịch 3 người”,“🏍️ Bằng lái quốc tế (IDP) — thuê xe máy Hoa Liên”,“Adapter ổ cắm 2 chấu dẹt (110V)”,“Pin sạc dự phòng + cáp ×3”,“Kem chống nắng SPF50”,“Áo mưa gấp gọn / ô nhỏ”,“Giày đi bộ thoải mái”,“Giày thể thao bám tốt (Shakadang + Tiaoshi)”,“Áo khoác nhẹ (AC tàu rất lạnh)”,“Thuốc say xe (đèo Taroko + Puyuma)”,“Google Maps offline map Taiwan”,“App T Express (vé HSR) — login + test QR trước”,“App Taiwan Railways (TRA)”,“App Bus+ Taipei (N3 tự túc)”,“App Uber (N6+N7 Đài Trung) — setup credit card từ VN”];
 let allTasks={};
 
-function genId(){return 't_'+Math.random().toString(36).slice(2,11)+'_'+Date.now();}
+function genId(){return ‘t_’+Math.random().toString(36).slice(2,11)+’_’+Date.now();}
 async function loadAllTasks(){
-  const rows=await getAllShared('day_tasks');
-  const grouped={};rows.forEach(r=>{if(!grouped[r.day_key])grouped[r.day_key]=[];grouped[r.day_key].push(r);});
-  Object.keys(grouped).forEach(dk=>grouped[dk].sort((a,b)=>(a.sort_order||0)-(b.sort_order||0)));
-  allTasks=grouped;
-  for(const dk of [...Object.keys(DEFAULT_TASKS),'overview']){
-    if(!allTasks[dk]||allTasks[dk].length===0)await seedTasks(dk);
-  }
+const rows=await getAllShared(‘day_tasks’);
+const grouped={};rows.forEach(r=>{if(!grouped[r.day_key])grouped[r.day_key]=[];grouped[r.day_key].push(r);});
+Object.keys(grouped).forEach(dk=>grouped[dk].sort((a,b)=>(a.sort_order||0)-(b.sort_order||0)));
+allTasks=grouped;
+for(const dk of […Object.keys(DEFAULT_TASKS),‘overview’]){
+if(!allTasks[dk]||allTasks[dk].length===0)await seedTasks(dk);
+}
 }
 async function seedTasks(dk){
-  const list=dk==='overview'?DEFAULT_OV_TASKS:(DEFAULT_TASKS[dk]||[]);
-  allTasks[dk]=[];
-  for(let i=0;i<list.length;i++){
-    const task={id:genId(),day_key:dk,task_text:list[i],checked:false,sort_order:i};
-    await upsertShared('day_tasks',task);allTasks[dk].push(task);
-  }
+const list=dk===‘overview’?DEFAULT_OV_TASKS:(DEFAULT_TASKS[dk]||[]);
+allTasks[dk]=[];
+for(let i=0;i<list.length;i++){
+const task={id:genId(),day_key:dk,task_text:list[i],checked:false,sort_order:i};
+await upsertShared(‘day_tasks’,task);allTasks[dk].push(task);
+}
 }
 
 function renderTaskList(tasks,panelId,dk,progId,barId){
-  const panel=document.getElementById(panelId);if(!panel)return;
-  let html='';
-  tasks.forEach(t=>{
-    html+='<div class="task-row" id="tr_'+t.id+'">'+
-      '<input type="checkbox" class="task-cb" '+(t.checked?'checked':'')+' onchange="toggleTask(\''+dk+'\',\''+t.id+'\',this.checked,\''+progId+'\',\''+barId+'\')">'+
-      '<span class="task-text'+(t.checked?' done':'')+'" onclick="startEdit(\''+t.id+'\',\''+dk+'\')" title="Click để sửa">'+escHtml(t.task_text)+'</span>'+
-      '<span class="task-actions">'+
-        '<button class="task-btn edit" onclick="startEdit(\''+t.id+'\',\''+dk+'\')">✏️</button>'+
-        '<button class="task-btn del" onclick="deleteTask(\''+dk+'\',\''+t.id+'\',\''+progId+'\',\''+barId+'\')">🗑️</button>'+
-      '</span>'+
-    '</div>';
-  });
-  html+='<div class="add-task-row">'+
-    '<input class="add-task-inp" id="newTask_'+dk+'" placeholder="+ Thêm công việc..." onkeydown="if(event.key===\'Enter\')addTask(\''+dk+'\',\''+progId+'\',\''+barId+'\')">'+
-    '<button class="add-task-btn" onclick="addTask(\''+dk+'\',\''+progId+'\',\''+barId+'\')">Thêm</button>'+
-  '</div>';
-  panel.innerHTML=html;
-  updateProgress(dk,progId,barId);
+const panel=document.getElementById(panelId);if(!panel)return;
+let html=’’;
+tasks.forEach(t=>{
+html+=’<div class="task-row" id="tr_'+t.id+'">’+
+‘<input type=“checkbox” class=“task-cb” ‘+(t.checked?‘checked’:’’)+’ onchange=“toggleTask('’+dk+’','’+t.id+’',this.checked,'’+progId+’','’+barId+’')”>’+
+‘<span class="task-text'+(t.checked?' done':'')+'" onclick="startEdit(\''+t.id+'\',\''+dk+'\')" title="Click để sửa">’+escHtml(t.task_text)+’</span>’+
+‘<span class="task-actions">’+
+‘<button class="task-btn edit" onclick="startEdit(\''+t.id+'\',\''+dk+'\')">✏️</button>’+
+‘<button class="task-btn del" onclick="deleteTask(\''+dk+'\',\''+t.id+'\',\''+progId+'\',\''+barId+'\')">🗑️</button>’+
+‘</span>’+
+‘</div>’;
+});
+html+=’<div class="add-task-row">’+
+‘<input class="add-task-inp" id="newTask_'+dk+'" placeholder="+ Thêm công việc..." onkeydown="if(event.key===\'Enter\')addTask(\''+dk+'\',\''+progId+'\',\''+barId+'\')">’+
+‘<button class="add-task-btn" onclick="addTask(\''+dk+'\',\''+progId+'\',\''+barId+'\')">Thêm</button>’+
+‘</div>’;
+panel.innerHTML=html;
+updateProgress(dk,progId,barId);
 }
 function updateProgress(dk,progId,barId){
-  const tasks=allTasks[dk]||[];const tot=tasks.length,chk=tasks.filter(t=>t.checked).length;
-  const p=document.getElementById(progId);const b=document.getElementById(barId);
-  if(p)p.textContent=tot?(chk+'/'+tot+' xong'):'';
-  if(b)b.style.width=tot?(Math.round(chk/tot*100)+'%'):'0%';
+const tasks=allTasks[dk]||[];const tot=tasks.length,chk=tasks.filter(t=>t.checked).length;
+const p=document.getElementById(progId);const b=document.getElementById(barId);
+if(p)p.textContent=tot?(chk+’/’+tot+’ xong’):’’;
+if(b)b.style.width=tot?(Math.round(chk/tot*100)+’%’):‘0%’;
 }
-function escHtml(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+function escHtml(s){return String(s||’’).replace(/&/g,’&’).replace(/</g,’<’).replace(/>/g,’>’).replace(/”/g,’"’).replace(/’/g,’'’);}
 async function toggleTask(dk,id,checked,progId,barId){
-  const t=(allTasks[dk]||[]).find(x=>x.id===id);if(!t)return;
-  t.checked=checked;
-  const el=document.querySelector('#tr_'+id+' .task-text');if(el)el.className='task-text'+(checked?' done':'');
-  await upsertShared('day_tasks',t);updateProgress(dk,progId,barId);
+const t=(allTasks[dk]||[]).find(x=>x.id===id);if(!t)return;
+t.checked=checked;
+const el=document.querySelector(’#tr_’+id+’ .task-text’);if(el)el.className=‘task-text’+(checked?’ done’:’’);
+await upsertShared(‘day_tasks’,t);updateProgress(dk,progId,barId);
 }
 function startEdit(id,dk){
-  const el=document.querySelector('#tr_'+id+' .task-text');
-  if(!el||el.contentEditable==='true')return;
-  el.contentEditable=true;el.focus();
-  const r=document.createRange();r.selectNodeContents(el);const s=window.getSelection();s.removeAllRanges();s.addRange(r);
-  el.onblur=()=>finishEdit(id,el,dk);
-  el.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();el.blur();}if(e.key==='Escape')el.contentEditable=false;};
+const el=document.querySelector(’#tr_’+id+’ .task-text’);
+if(!el||el.contentEditable===‘true’)return;
+el.contentEditable=true;el.focus();
+const r=document.createRange();r.selectNodeContents(el);const s=window.getSelection();s.removeAllRanges();s.addRange(r);
+el.onblur=()=>finishEdit(id,el,dk);
+el.onkeydown=e=>{if(e.key===‘Enter’){e.preventDefault();el.blur();}if(e.key===‘Escape’)el.contentEditable=false;};
 }
 async function finishEdit(id,el,dk){
-  el.contentEditable=false;const txt=el.textContent.trim();
-  const t=(allTasks[dk]||[]).find(x=>x.id===id);if(t&&txt){t.task_text=txt;await upsertShared('day_tasks',t);}
+el.contentEditable=false;const txt=el.textContent.trim();
+const t=(allTasks[dk]||[]).find(x=>x.id===id);if(t&&txt){t.task_text=txt;await upsertShared(‘day_tasks’,t);}
 }
 async function deleteTask(dk,id,progId,barId){
-  allTasks[dk]=(allTasks[dk]||[]).filter(t=>t.id!==id);
-  await deleteShared('day_tasks',id);
-  if(dk==='overview')renderOvChecklist();
-  else renderDayChecklist(curDay.startsWith('day')?curDay:null);
-  updateProgress(dk,progId,barId);
+allTasks[dk]=(allTasks[dk]||[]).filter(t=>t.id!==id);
+await deleteShared(‘day_tasks’,id);
+if(dk===‘overview’)renderOvChecklist();
+else renderDayChecklist(curDay.startsWith(‘day’)?curDay:null);
+updateProgress(dk,progId,barId);
 }
 async function addTask(dk,progId,barId){
-  const inp=document.getElementById('newTask_'+dk);if(!inp)return;
-  const text=inp.value.trim();if(!text)return;
-  const task={id:genId(),day_key:dk,task_text:text,checked:false,sort_order:(allTasks[dk]||[]).length};
-  if(!allTasks[dk])allTasks[dk]=[];allTasks[dk].push(task);
-  await upsertShared('day_tasks',task);inp.value='';
-  if(dk==='overview')renderOvChecklist();else renderDayChecklist(dk);
+const inp=document.getElementById(‘newTask_’+dk);if(!inp)return;
+const text=inp.value.trim();if(!text)return;
+const task={id:genId(),day_key:dk,task_text:text,checked:false,sort_order:(allTasks[dk]||[]).length};
+if(!allTasks[dk])allTasks[dk]=[];allTasks[dk].push(task);
+await upsertShared(‘day_tasks’,task);inp.value=’’;
+if(dk===‘overview’)renderOvChecklist();else renderDayChecklist(dk);
 }
 
 // DAY CHECKLIST (left panel)
-const dayNames={day1:'N1 25/04',day2:'N2 26/04',day3:'N3 27/04',day4:'N4 28/04',day5:'N5 29/04',day6:'N6 30/04',day7:'N7 01/05',day8:'N8 02/05'};
+const dayNames={day1:‘N1 25/04’,day2:‘N2 26/04’,day3:‘N3 27/04’,day4:‘N4 28/04’,day5:‘N5 29/04’,day6:‘N6 30/04’,day7:‘N7 01/05’,day8:‘N8 02/05’};
 function renderDayChecklist(dk){
-  const panel=document.getElementById('dclPanel');
-  const title=document.getElementById('dclTitle');
-  if(!dk){if(panel)panel.innerHTML='<div style="font-size:.78rem;color:var(--txt2)">Chọn một ngày để xem checklist.</div>';if(title)title.textContent='📋 Checklist Ngày';
-    const pEl=document.getElementById('dclProg');if(pEl)pEl.textContent='';
-    const bEl=document.getElementById('dclBarFill');if(bEl)bEl.style.width='0%';
-    return;}
-  if(title)title.textContent='📋 '+(dayNames[dk]||dk);
-  renderTaskList(allTasks[dk]||[],'dclPanel',dk,'dclProg','dclBarFill');
+const panel=document.getElementById(‘dclPanel’);
+const title=document.getElementById(‘dclTitle’);
+if(!dk){if(panel)panel.innerHTML=’<div style="font-size:.78rem;color:var(--txt2)">Chọn một ngày để xem checklist.</div>’;if(title)title.textContent=‘📋 Checklist Ngày’;
+const pEl=document.getElementById(‘dclProg’);if(pEl)pEl.textContent=’’;
+const bEl=document.getElementById(‘dclBarFill’);if(bEl)bEl.style.width=‘0%’;
+return;}
+if(title)title.textContent=’📋 ’+(dayNames[dk]||dk);
+renderTaskList(allTasks[dk]||[],‘dclPanel’,dk,‘dclProg’,‘dclBarFill’);
 }
 function renderOvChecklist(){
-  renderTaskList(allTasks['overview']||[],'ovTaskPanel','overview','ovProg','ovBarFill');
+renderTaskList(allTasks[‘overview’]||[],‘ovTaskPanel’,‘overview’,‘ovProg’,‘ovBarFill’);
 }
 
 // INLINE BOOKING LINKS (timeline) — updated: no more d2_101, no more d3_tour
 let tiBkData={};
 let allLeftBk={};
 const DEFAULT_BOOKINGS={
-  day1:[['flight','✈️ Vé CI-782 SGN→TPE',''],['hotel','🏨 Hotel Đài Bắc (N1-3+N7)','']],
-  day4:[['transport','🚆 TRA 472 Taipei→Hualien #6684500','https://www.railway.gov.tw'],['hotel','🏨 Hotel Hoa Liên (N4+N5)',''],['permit','📋 Taroko Trail Permit','https://taroko.gov.tw']],
-  day5:[['transport','🚆 TRA Hualien→Taichung 30/04','']],
-  day6:[['transport','🚆 TRA Hualien→Taichung',''],['hotel','🏨 Hotel Đài Trung (Fengjia)','']],
-  day7:[['transport','🚄 HSR Taichung→Taipei',''],['hotel','🏨 Hotel Đài Bắc đêm cuối','']],
-  day8:[['flight','✈️ Vé CI-783 TPE→SGN','']]
+day1:[[‘flight’,‘✈️ Vé CI-782 SGN→TPE’,’’],[‘hotel’,‘🏨 Hotel Đài Bắc (N1-3+N7)’,’’]],
+day4:[[‘transport’,‘🚆 TRA 472 Taipei→Hualien #6684500 ✅’,‘https://www.railway.gov.tw’],[‘hotel’,‘🏨 Hotel Hoa Liên (N4+N5)’,’’],[‘permit’,‘📋 Taroko Trail Permit’,‘https://taroko.gov.tw’]],
+day5:[[‘transport’,‘🚆 TRA Puyuma 203 Hualien→Nangang #7330461 ✅’,‘https://www.railway.gov.tw’]],
+day6:[[‘transport’,‘🚆 TRA Puyuma 203 #7330461 ✅’,‘https://www.railway.gov.tw’],[‘transport’,‘🚄 HSR 1509 Taipei→Taichung #05266847 ✅’,‘https://www.thsrc.com.tw’],[‘hotel’,‘🏨 Hotel Đài Trung (Fengjia)’,’’]],
+day7:[[‘transport’,‘🚄 HSR 128 Taichung→Taipei #05182728 ✅’,‘https://www.thsrc.com.tw’],[‘hotel’,‘🏨 Hotel Đài Bắc đêm cuối’,’’]],
+day8:[[‘flight’,‘✈️ Vé CI-783 TPE→SGN’,’’]]
 };
-const BK_IDS={day1:['d1_flight','d1_hotel'],day4:['d4_train','d4_hotel','d4_permit'],day5:['d5_train'],day6:['d6_train','d6_hotel'],day7:['d7_hsr','d7_hotel'],day8:['d8_flight']};
+const BK_IDS={day1:[‘d1_flight’,‘d1_hotel’],day4:[‘d4_train’,‘d4_hotel’,‘d4_permit’],day5:[‘d5_train’],day6:[‘d6_tra’,‘d6_hsr’,‘d6_hotel’],day7:[‘d7_hsr’,‘d7_hotel’],day8:[‘d8_flight’]};
 
 async function loadTiBk(){
-  const rows=await getAllShared('booking_links');
-  if(rows.length===0){
-    const seed=[];
-    Object.entries(DEFAULT_BOOKINGS).forEach(([dk,items])=>{const ids=BK_IDS[dk]||[];items.forEach(([type,label,url],i)=>{seed.push({id:ids[i]||'bk_'+dk+'_'+i,day_key:dk,link_type:type,label,url:url||''});});});
-    await Promise.all(seed.map(bk=>upsertShared('booking_links',bk)));
-    seed.forEach(bk=>{tiBkData[bk.id]=bk.url;if(bk.url)updateTiBkUI(bk.id,bk.url);});
-  }else{
-    rows.forEach(r=>{tiBkData[r.id]=r.url||'';if(r.url)updateTiBkUI(r.id,r.url);});
-  }
+const rows=await getAllShared(‘booking_links’);
+if(rows.length===0){
+const seed=[];
+Object.entries(DEFAULT_BOOKINGS).forEach(([dk,items])=>{const ids=BK_IDS[dk]||[];items.forEach(([type,label,url],i)=>{seed.push({id:ids[i]||‘bk_’+dk+’*’+i,day_key:dk,link_type:type,label,url:url||’’});});});
+await Promise.all(seed.map(bk=>upsertShared(‘booking_links’,bk)));
+seed.forEach(bk=>{tiBkData[bk.id]=bk.url;if(bk.url)updateTiBkUI(bk.id,bk.url);});
+}else{
+rows.forEach(r=>{tiBkData[r.id]=r.url||’’;if(r.url)updateTiBkUI(r.id,r.url);});
+}
 }
 async function saveTiBk(inp){
-  const id=inp.getAttribute('data-bk');const type=inp.getAttribute('data-type')||'other';
-  const url=inp.value.trim();tiBkData[id]=url;
-  const dayEl=inp.closest('.tc');const dk=dayEl?dayEl.id.replace('tab-',''):'unknown';
-  const labelEl=inp.closest('.ti-bk')?inp.closest('.ti-bk').querySelector('.ti-bk-label'):null;
-  const label=labelEl?labelEl.textContent:'Booking';
-  await upsertShared('booking_links',{id,day_key:dk,link_type:type,label,url});
-  updateTiBkUI(id,url);
-  await loadLeftBk();
-  renderBookingSummary();
-  if(curDay.startsWith('day'))renderLeftBookings(curDay);
+const id=inp.getAttribute(‘data-bk’);const type=inp.getAttribute(‘data-type’)||‘other’;
+const url=inp.value.trim();tiBkData[id]=url;
+const dayEl=inp.closest(’.tc’);const dk=dayEl?dayEl.id.replace(‘tab-’,’’):‘unknown’;
+const labelEl=inp.closest(’.ti-bk’)?inp.closest(’.ti-bk’).querySelector(’.ti-bk-label’):null;
+const label=labelEl?labelEl.textContent:‘Booking’;
+await upsertShared(‘booking_links’,{id,day_key:dk,link_type:type,label,url});
+updateTiBkUI(id,url);
+await loadLeftBk();
+renderBookingSummary();
+if(curDay.startsWith(‘day’))renderLeftBookings(curDay);
 }
 function updateTiBkUI(id,url){
-  const inp=document.querySelector('[data-bk="'+id+'"]');
-  const openBtn=document.getElementById('bko_'+id);
-  if(inp&&inp.value!==url)inp.value=url;
-  if(openBtn){openBtn.style.display=url?'inline':'none';if(url)openBtn.href=url;}
-  if(inp){const w=inp.closest('.ti-bk');if(w)w.classList.toggle('filled',!!url);}
+const inp=document.querySelector(’[data-bk=”’+id+’”]’);
+const openBtn=document.getElementById(’bko*’+id);
+if(inp&&inp.value!==url)inp.value=url;
+if(openBtn){openBtn.style.display=url?‘inline’:‘none’;if(url)openBtn.href=url;}
+if(inp){const w=inp.closest(’.ti-bk’);if(w)w.classList.toggle(‘filled’,!!url);}
 }
 async function loadLeftBk(){
-  const rows=await getAllShared('booking_links');
-  const g={};rows.forEach(r=>{if(!g[r.day_key])g[r.day_key]=[];g[r.day_key].push(r);});
-  allLeftBk=g;
+const rows=await getAllShared(‘booking_links’);
+const g={};rows.forEach(r=>{if(!g[r.day_key])g[r.day_key]=[];g[r.day_key].push(r);});
+allLeftBk=g;
 }
 function renderLeftBookings(dk){
-  const cont=document.getElementById('bkPanel');if(!cont)return;
-  if(!dk||!dk.startsWith('day')){cont.innerHTML='';return;}
-  const bks=allLeftBk[dk]||[];
-  const filled=bks.filter(b=>b.url);
-  if(!filled.length){cont.innerHTML='';return;}
-  let html='<div class="bk-section"><div class="bk-title">🔗 Bookings đã lưu</div>';
-  filled.forEach(b=>{html+='<div class="bk-row"><span class="bk-label">'+escHtml(b.label)+'</span><a href="'+escHtml(b.url)+'" target="_blank" class="bk-open">Mở ↗</a></div>';});
-  html+='</div>';cont.innerHTML=html;
+const cont=document.getElementById(‘bkPanel’);if(!cont)return;
+if(!dk||!dk.startsWith(‘day’)){cont.innerHTML=’’;return;}
+const bks=allLeftBk[dk]||[];
+const filled=bks.filter(b=>b.url);
+if(!filled.length){cont.innerHTML=’’;return;}
+let html=’<div class="bk-section"><div class="bk-title">🔗 Bookings đã lưu</div>’;
+filled.forEach(b=>{html+=’<div class="bk-row"><span class="bk-label">’+escHtml(b.label)+’</span><a href="'+escHtml(b.url)+'" target="_blank" class="bk-open">Mở ↗</a></div>’;});
+html+=’</div>’;cont.innerHTML=html;
 }
 
 // NEW: Booking Summary table on Overview tab
-const DK_LABEL={day1:'N1',day2:'N2',day3:'N3',day4:'N4',day5:'N5',day6:'N6',day7:'N7',day8:'N8',overview:'—',unknown:'—'};
+const DK_LABEL={day1:‘N1’,day2:‘N2’,day3:‘N3’,day4:‘N4’,day5:‘N5’,day6:‘N6’,day7:‘N7’,day8:‘N8’,overview:’—’,unknown:’—’};
 const DK_ORDER={day1:1,day2:2,day3:3,day4:4,day5:5,day6:6,day7:7,day8:8,overview:99,unknown:99};
 function renderBookingSummary(){
-  const tbody=document.getElementById('bkSummaryBody');if(!tbody)return;
-  const rows=[];
-  Object.entries(allLeftBk).forEach(([dk,items])=>items.forEach(b=>rows.push({...b,day_key:dk})));
-  if(!rows.length){tbody.innerHTML='<tr><td colspan="5" style="text-align:center;color:var(--txt2);font-size:.75rem;padding:16px">Chưa có booking nào. Paste link tại tab ngày.</td></tr>';return;}
-  rows.sort((a,b)=>(DK_ORDER[a.day_key]||99)-(DK_ORDER[b.day_key]||99)||String(a.id).localeCompare(String(b.id)));
-  let html='';
-  rows.forEach(b=>{
-    const done=!!(b.url&&b.url.trim());
-    const type=b.link_type||'other';
-    const typeLbl={flight:'✈️ Flight',hotel:'🏨 Hotel',transport:'🚆 Transport',tour:'🚌 Tour',ticket:'🎫 Ticket',permit:'📋 Permit'}[type]||'🔗 '+type;
-    html+='<tr class="bk-sum-row">'+
-      '<td><b>'+(DK_LABEL[b.day_key]||b.day_key)+'</b></td>'+
-      '<td><span class="bk-sum-type '+type+'">'+typeLbl+'</span></td>'+
-      '<td style="font-size:.78rem">'+escHtml(b.label||'')+'</td>'+
-      '<td><span class="bk-sum-status '+(done?'done':'pending')+'">'+(done?'✅ Đã đặt':'⏳ Chưa')+'</span></td>'+
-      '<td>'+(done?'<a href="'+escHtml(b.url)+'" target="_blank" class="bk-sum-link">Mở ↗</a>':'<span style="color:var(--txt3);font-size:.7rem">—</span>')+'</td>'+
-    '</tr>';
-  });
-  tbody.innerHTML=html;
+const tbody=document.getElementById(‘bkSummaryBody’);if(!tbody)return;
+const rows=[];
+Object.entries(allLeftBk).forEach(([dk,items])=>items.forEach(b=>rows.push({…b,day_key:dk})));
+if(!rows.length){tbody.innerHTML=’<tr><td colspan="5" style="text-align:center;color:var(--txt2);font-size:.75rem;padding:16px">Chưa có booking nào. Paste link tại tab ngày.</td></tr>’;return;}
+rows.sort((a,b)=>(DK_ORDER[a.day_key]||99)-(DK_ORDER[b.day_key]||99)||String(a.id).localeCompare(String(b.id)));
+let html=’’;
+rows.forEach(b=>{
+const done=!!(b.url&&b.url.trim());
+const type=b.link_type||‘other’;
+const typeLbl={flight:‘✈️ Flight’,hotel:‘🏨 Hotel’,transport:‘🚆 Transport’,tour:‘🚌 Tour’,ticket:‘🎫 Ticket’,permit:‘📋 Permit’}[type]||‘🔗 ‘+type;
+html+=’<tr class="bk-sum-row">’+
+‘<td><b>’+(DK_LABEL[b.day_key]||b.day_key)+’</b></td>’+
+‘<td><span class="bk-sum-type '+type+'">’+typeLbl+’</span></td>’+
+‘<td style="font-size:.78rem">’+escHtml(b.label||’’)+’</td>’+
+‘<td><span class="bk-sum-status '+(done?'done':'pending')+'">’+(done?‘✅ Đã đặt’:‘⏳ Chưa’)+’</span></td>’+
+‘<td>’+(done?’<a href="'+escHtml(b.url)+'" target="_blank" class="bk-sum-link">Mở ↗</a>’:’<span style="color:var(--txt3);font-size:.7rem">—</span>’)+’</td>’+
+‘</tr>’;
+});
+tbody.innerHTML=html;
 }
 
 // MUST DO
-async function mdChk(cb){await upsertSharedKV('mustdo_progress',cb.getAttribute('data-md'),cb.checked);cb.closest('.md-i').classList.toggle('ck',cb.checked);mdUpd();}
+async function mdChk(cb){await upsertSharedKV(‘mustdo_progress’,cb.getAttribute(‘data-md’),cb.checked);cb.closest(’.md-i’).classList.toggle(‘ck’,cb.checked);mdUpd();}
 async function mdInit(){
-  const d=await getAllSharedKV('mustdo_progress');
-  document.querySelectorAll('[data-md]').forEach(cb=>{if(d[cb.getAttribute('data-md')]){cb.checked=true;cb.closest('.md-i').classList.add('ck');}});mdUpd();
+const d=await getAllSharedKV(‘mustdo_progress’);
+document.querySelectorAll(’[data-md]’).forEach(cb=>{if(d[cb.getAttribute(‘data-md’)]){cb.checked=true;cb.closest(’.md-i’).classList.add(‘ck’);}});mdUpd();
 }
-function mdUpd(){const all=document.querySelectorAll('[data-md]');let tot=all.length,chk=0;all.forEach(cb=>{if(cb.checked)chk++;});const p=document.getElementById('mdProg');if(p)p.textContent=chk+'/'+tot+' hoàn thành';const b=document.getElementById('mdBar');if(b)b.style.width=Math.round(chk/tot*100)+'%';}
+function mdUpd(){const all=document.querySelectorAll(’[data-md]’);let tot=all.length,chk=0;all.forEach(cb=>{if(cb.checked)chk++;});const p=document.getElementById(‘mdProg’);if(p)p.textContent=chk+’/’+tot+’ hoàn thành’;const b=document.getElementById(‘mdBar’);if(b)b.style.width=Math.round(chk/tot*100)+’%’;}
 
 // BUDGET — removed: Taipei 101 ticket, Tour Yehliu/Jiufen/Shifen
 const DEFAULT_BUDGET=[
-  {label:'✈️ Vé CI-782/783 khứ hồi',category:'transport',estimate:0,actual:0,currency:'VND',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🚆 TRA Taipei→Hualien (×3) ✅',category:'transport',estimate:1749,actual:1749,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🚆 TRA Hualien→Taichung',category:'transport',estimate:680,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🚄 HSR Taichung→Taipei',category:'transport',estimate:700,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🚇 MRT Đài Bắc (Airport+ngày)',category:'transport',estimate:800,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🚌 N3 Yehliu/Jiufen/Shifen tự túc (bus+TRA)',category:'transport',estimate:350,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'📱 SIM Chunghwa 8 ngày',category:'misc',estimate:400,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'💳 EasyCard deposit+nạp',category:'misc',estimate:600,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🏨 Hotel Đài Bắc 4 đêm (N1-3+N7)',category:'hotel',estimate:0,actual:0,currency:'VND',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🏨 Hotel Hoa Liên 2 đêm (N4+N5)',category:'hotel',estimate:0,actual:0,currency:'VND',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🏨 Hotel Đài Trung 1 đêm (N6)',category:'hotel',estimate:0,actual:0,currency:'VND',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🏍️ Thuê xe máy Hoa Liên 2 ngày',category:'transport',estimate:350,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🎫 Yehliu Geopark vé',category:'activity',estimate:80,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🏮 Đèn trời Shifen (200/4 màu)',category:'activity',estimate:200,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🍜 Ăn uống (estimate/ngày×8)',category:'food',estimate:6400,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🛍️ Quà+Mua sắm',category:'shopping',estimate:2000,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🔄 Dự phòng',category:'misc',estimate:2000,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
+{label:‘✈️ Vé CI-782/783 khứ hồi’,category:‘transport’,estimate:0,actual:0,currency:‘VND’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🚆 TRA Taipei→Hualien #6684500 ✅’,category:‘transport’,estimate:1749,actual:1749,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🚆 TRA Puyuma 203 Hualien→Nangang #7330461 ✅’,category:‘transport’,estimate:1674,actual:1674,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🚄 HSR 1509 Taipei→Taichung #05266847’,category:‘transport’,estimate:2100,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🚄 HSR 128 Taichung→Taipei #05182728’,category:‘transport’,estimate:2100,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🚇 MRT Đài Bắc (Airport+ngày)’,category:‘transport’,estimate:800,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🚌 N3 Yehliu/Jiufen/Shifen tự túc (bus+TRA)’,category:‘transport’,estimate:350,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🚖 Uber Đài Trung N6+N7’,category:‘transport’,estimate:2500,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘📱 SIM Chunghwa 8 ngày’,category:‘misc’,estimate:400,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘💳 EasyCard deposit+nạp’,category:‘misc’,estimate:600,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🏨 Hotel Đài Bắc 4 đêm (N1-3+N7)’,category:‘hotel’,estimate:0,actual:0,currency:‘VND’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🏨 Hotel Hoa Liên 2 đêm (N4+N5)’,category:‘hotel’,estimate:0,actual:0,currency:‘VND’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🏨 Hotel Đài Trung 1 đêm (N6 Fengjia)’,category:‘hotel’,estimate:0,actual:0,currency:‘VND’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🏍️ Thuê xe máy Hoa Liên 2 ngày’,category:‘transport’,estimate:350,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🎫 Yehliu Geopark vé’,category:‘activity’,estimate:80,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🏮 Đèn trời Shifen (200/4 màu)’,category:‘activity’,estimate:200,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🍜 Ăn uống (estimate/ngày×8)’,category:‘food’,estimate:6400,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🛍️ Quà+Mua sắm’,category:‘shopping’,estimate:2000,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
+{label:‘🔄 Dự phòng’,category:‘misc’,estimate:2000,actual:0,currency:‘TWD’,for_sa:true,for_bi:true,for_ty:true},
 ];
-const CAT_ICON={transport:'🚆',hotel:'🏨',activity:'🎫',food:'🍜',shopping:'🛍️',misc:'🔧'};
+const CAT_ICON={transport:‘🚆’,hotel:‘🏨’,activity:‘🎫’,food:‘🍜’,shopping:‘🛍️’,misc:‘🔧’};
 let budgetItems=[],budRate=860,budFilter=null;
 function setRate(r){if(r>0){budRate=r;calcBudgetSummary();renderBudget();}}
-function toVND(n,cur){return cur==='VND'?Number(n)||0:(Number(n)||0)*budRate;}
-function fmtInt(n){return Math.round(Number(n)||0).toLocaleString('en-US');}
-function parseAmt(s){return Number(String(s).replace(/,/g,''))||0;}
-function fmtVND(n){const r=Number(n)||0;if(r>=1000000)return (r/1000000).toFixed(2).replace(/\.?0+$/,'')+'tr₫';return fmtInt(r)+'₫';}
-function fmtTWD(n){return fmtInt(Number(n)||0)+' TWD';}
-function budInpFocus(el){const raw=parseAmt(el.value)||parseAmt(el.dataset.raw)||0;el.value=raw===0?'':raw;el.select();}
-function budInpBlur(el,id,field){const val=parseAmt(el.value);el.dataset.raw=val;el.value=val===0?'':fmtInt(val);updBud(id,field,val);}
+function toVND(n,cur){return cur===‘VND’?Number(n)||0:(Number(n)||0)*budRate;}
+function fmtInt(n){return Math.round(Number(n)||0).toLocaleString(‘en-US’);}
+function parseAmt(s){return Number(String(s).replace(/,/g,’’))||0;}
+function fmtVND(n){const r=Number(n)||0;if(r>=1000000)return (r/1000000).toFixed(2).replace(/.?0+$/,’’)+‘tr₫’;return fmtInt(r)+‘₫’;}
+function fmtTWD(n){return fmtInt(Number(n)||0)+’ TWD’;}
+function budInpFocus(el){const raw=parseAmt(el.value)||parseAmt(el.dataset.raw)||0;el.value=raw===0?’’:raw;el.select();}
+function budInpBlur(el,id,field){const val=parseAmt(el.value);el.dataset.raw=val;el.value=val===0?’’:fmtInt(val);updBud(id,field,val);}
 async function loadBudget(){
-  const rows=await getAllShared('budget_items');
-  if(rows.length===0){
-    budgetItems=DEFAULT_BUDGET.map((d,i)=>({id:genId(),label:d.label,category:d.category,estimate:d.estimate,actual:d.actual,currency:d.currency,est_cur:d.currency,act_cur:d.currency,item_currency:d.currency,paid:false,for_sa:d.for_sa,for_bi:d.for_bi,for_ty:d.for_ty,sort_order:i}));
-    await Promise.all(budgetItems.map(item=>upsertShared('budget_items',item)));
-  }else{
-    budgetItems=rows.sort((a,b)=>(a.sort_order||0)-(b.sort_order||0));
-    budgetItems.forEach(item=>{if(!item.currency)item.currency=item.est_cur||'TWD';});
-  }
-  renderBudget();calcBudgetSummary();
+const rows=await getAllShared(‘budget_items’);
+if(rows.length===0){
+budgetItems=DEFAULT_BUDGET.map((d,i)=>({id:genId(),label:d.label,category:d.category,estimate:d.estimate,actual:d.actual,currency:d.currency,est_cur:d.currency,act_cur:d.currency,item_currency:d.currency,paid:false,for_sa:d.for_sa,for_bi:d.for_bi,for_ty:d.for_ty,sort_order:i}));
+await Promise.all(budgetItems.map(item=>upsertShared(‘budget_items’,item)));
+}else{
+budgetItems=rows.sort((a,b)=>(a.sort_order||0)-(b.sort_order||0));
+budgetItems.forEach(item=>{if(!item.currency)item.currency=item.est_cur||‘TWD’;});
 }
-function setBudFilter(p){budFilter=budFilter===p?null:p;['sa','bi','ty'].forEach(x=>{const el=document.getElementById('bCard_'+x);if(el)el.classList.toggle('active',x===budFilter);});renderBudget();}
+renderBudget();calcBudgetSummary();
+}
+function setBudFilter(p){budFilter=budFilter===p?null:p;[‘sa’,‘bi’,‘ty’].forEach(x=>{const el=document.getElementById(‘bCard_’+x);if(el)el.classList.toggle(‘active’,x===budFilter);});renderBudget();}
 function renderBudget(){
-  const cont=document.getElementById('budgetBody');if(!cont)return;
-  const vis=budFilter?budgetItems.filter(x=>x['for_'+budFilter]):budgetItems;
-  const lbl=document.getElementById('budFilterLabel');
-  if(lbl){lbl.style.display=budFilter?'block':'none';if(budFilter)lbl.textContent='Lọc: '+{sa:'Sa',bi:'Bi',ty:'Ty'}[budFilter]+' — '+vis.length+'/'+budgetItems.length+' khoản';}
-  let html='';
-  vis.forEach(item=>{
-    const cur=item.currency||'TWD';const pc=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0)||1;
-    const est=Number(item.estimate)||0;
-    const perPerson=est>0?fmtInt(est/pc)+' '+cur+'/ng':'—';
-    const paid=!!item.paid;
-    html+='<div class="bud-item-card" id="bic_'+item.id+'">'+
-      '<div class="bud-item-row">'+
-        '<select class="bud-cat-select" onchange="updBud(\''+item.id+'\',\'category\',this.value)">'+['transport','hotel','activity','food','shopping','misc'].map(v=>'<option value="'+v+'"'+(item.category===v?' selected':'')+'>'+CAT_ICON[v]+'</option>').join('')+'</select>'+
-        '<input class="bud-item-label" value="'+escHtml(item.label)+'" onchange="updBud(\''+item.id+'\',\'label\',this.value)" onblur="updBud(\''+item.id+'\',\'label\',this.value)">'+
-        '<select class="bud-cur-sel-inline" onchange="updBud(\''+item.id+'\',\'currency\',this.value)">'+
-          '<option value="TWD" '+(cur==='TWD'?'selected':'')+'>TWD</option>'+
-          '<option value="VND" '+(cur==='VND'?'selected':'')+'>VND</option>'+
-        '</select>'+
-        '<button class="bud-item-del" onclick="delBud(\''+item.id+'\')">✕</button>'+
-      '</div>'+
-      '<div class="bud-item-amt-row">'+
-        '<div class="bud-item-amt-block">'+
-          '<input class="bud-amount-inp" type="text" inputmode="numeric" value="'+(est>0?fmtInt(est):'')+'" data-raw="'+est+'" placeholder="0" onfocus="budInpFocus(this)" onblur="budInpBlur(this,\''+item.id+'\',\'estimate\')">'+
-          '<div class="bud-item-per">'+perPerson+(cur==='TWD'&&est>0?' · ≈ '+fmtInt(est*budRate)+' VND':'')+'</div>'+
-        '</div>'+
-        '<label class="bud-paid-label '+(paid?'paid':'')+'">'+
-          '<input type="checkbox" class="bud-paid-cb" '+(paid?'checked':'')+' onchange="togglePaid(\''+item.id+'\',this.checked)">'+
-          '<span class="bud-paid-txt">'+(paid?'✓ Đã TT':'Đã TT?')+'</span>'+
-        '</label>'+
-        '<div class="bud-person-row">'+
-          '<div class="bud-person-toggle sa '+(item.for_sa?'on':'')+'" onclick="togglePerson(\''+item.id+'\',\'for_sa\')">Sa</div>'+
-          '<div class="bud-person-toggle bi '+(item.for_bi?'on':'')+'" onclick="togglePerson(\''+item.id+'\',\'for_bi\')">Bi</div>'+
-          '<div class="bud-person-toggle ty '+(item.for_ty?'on':'')+'" onclick="togglePerson(\''+item.id+'\',\'for_ty\')">Ty</div>'+
-        '</div>'+
-      '</div>'+
-    '</div>';
-  });
-  cont.innerHTML=html;
+const cont=document.getElementById(‘budgetBody’);if(!cont)return;
+const vis=budFilter?budgetItems.filter(x=>x[‘for_’+budFilter]):budgetItems;
+const lbl=document.getElementById(‘budFilterLabel’);
+if(lbl){lbl.style.display=budFilter?‘block’:‘none’;if(budFilter)lbl.textContent=‘Lọc: ‘+{sa:‘Sa’,bi:‘Bi’,ty:‘Ty’}[budFilter]+’ — ‘+vis.length+’/’+budgetItems.length+’ khoản’;}
+let html=’’;
+vis.forEach(item=>{
+const cur=item.currency||‘TWD’;const pc=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0)||1;
+const est=Number(item.estimate)||0;
+const perPerson=est>0?fmtInt(est/pc)+’ ‘+cur+’/ng’:’—’;
+const paid=!!item.paid;
+html+=’<div class="bud-item-card" id="bic_'+item.id+'">’+
+‘<div class="bud-item-row">’+
+‘<select class="bud-cat-select" onchange="updBud(\''+item.id+'\',\'category\',this.value)">’+[‘transport’,‘hotel’,‘activity’,‘food’,‘shopping’,‘misc’].map(v=>’<option value=”’+v+’”’+(item.category===v?’ selected’:’’)+’>’+CAT_ICON[v]+’</option>’).join(’’)+’</select>’+
+‘<input class="bud-item-label" value="'+escHtml(item.label)+'" onchange="updBud(\''+item.id+'\',\'label\',this.value)" onblur="updBud(\''+item.id+'\',\'label\',this.value)">’+
+‘<select class="bud-cur-sel-inline" onchange="updBud(\''+item.id+'\',\'currency\',this.value)">’+
+‘<option value=“TWD” ‘+(cur===‘TWD’?‘selected’:’’)+’>TWD</option>’+
+‘<option value=“VND” ‘+(cur===‘VND’?‘selected’:’’)+’>VND</option>’+
+‘</select>’+
+‘<button class="bud-item-del" onclick="delBud(\''+item.id+'\')">✕</button>’+
+‘</div>’+
+‘<div class="bud-item-amt-row">’+
+‘<div class="bud-item-amt-block">’+
+‘<input class="bud-amount-inp" type="text" inputmode="numeric" value="'+(est>0?fmtInt(est):'')+'" data-raw="'+est+'" placeholder="0" onfocus="budInpFocus(this)" onblur="budInpBlur(this,\''+item.id+'\',\'estimate\')">’+
+‘<div class="bud-item-per">’+perPerson+(cur===‘TWD’&&est>0?’ · ≈ ’+fmtInt(est*budRate)+’ VND’:’’)+’</div>’+
+‘</div>’+
+‘<label class="bud-paid-label '+(paid?'paid':'')+'">’+
+‘<input type=“checkbox” class=“bud-paid-cb” ‘+(paid?‘checked’:’’)+’ onchange=“togglePaid('’+item.id+’',this.checked)”>’+
+‘<span class="bud-paid-txt">’+(paid?‘✓ Đã TT’:‘Đã TT?’)+’</span>’+
+‘</label>’+
+‘<div class="bud-person-row">’+
+‘<div class="bud-person-toggle sa '+(item.for_sa?'on':'')+'" onclick="togglePerson(\''+item.id+'\',\'for_sa\')">Sa</div>’+
+‘<div class="bud-person-toggle bi '+(item.for_bi?'on':'')+'" onclick="togglePerson(\''+item.id+'\',\'for_bi\')">Bi</div>’+
+‘<div class="bud-person-toggle ty '+(item.for_ty?'on':'')+'" onclick="togglePerson(\''+item.id+'\',\'for_ty\')">Ty</div>’+
+‘</div>’+
+‘</div>’+
+‘</div>’;
+});
+cont.innerHTML=html;
 }
 async function updBud(id,field,val){
-  const item=budgetItems.find(x=>x.id===id);if(!item)return;
-  item[field]=val;if(field==='currency'){item.est_cur=val;item.act_cur=val;item.item_currency=val;}
-  await upsertShared('budget_items',item);
-  const cur=item.currency||'TWD';const pc=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0)||1;
-  const card=document.getElementById('bic_'+id);
-  if(card){const per=card.querySelector('.bud-item-per');
-    const est=Number(item.estimate)||0;
-    if(per){let t=est>0?fmtInt(est/pc)+' '+cur+'/ng':'—';if(cur==='TWD'&&est>0)t+=' · ≈ '+fmtInt(est*budRate)+' VND';per.textContent=t;}}
-  calcBudgetSummary();
+const item=budgetItems.find(x=>x.id===id);if(!item)return;
+item[field]=val;if(field===‘currency’){item.est_cur=val;item.act_cur=val;item.item_currency=val;}
+await upsertShared(‘budget_items’,item);
+const cur=item.currency||‘TWD’;const pc=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0)||1;
+const card=document.getElementById(‘bic_’+id);
+if(card){const per=card.querySelector(’.bud-item-per’);
+const est=Number(item.estimate)||0;
+if(per){let t=est>0?fmtInt(est/pc)+’ ‘+cur+’/ng’:’—’;if(cur===‘TWD’&&est>0)t+=’ · ≈ ‘+fmtInt(est*budRate)+’ VND’;per.textContent=t;}}
+calcBudgetSummary();
 }
 async function togglePaid(id,paid){
-  const item=budgetItems.find(x=>x.id===id);if(!item)return;
-  item.paid=paid;if(paid)item.actual=item.estimate;else item.actual=0;
-  await upsertShared('budget_items',item);
-  const card=document.getElementById('bic_'+id);
-  if(card){const lbl=card.querySelector('.bud-paid-label');if(lbl){lbl.className='bud-paid-label '+(paid?'paid':'');lbl.querySelector('.bud-paid-txt').textContent=paid?'✓ Đã TT':'Đã TT?';}}
-  calcBudgetSummary();
+const item=budgetItems.find(x=>x.id===id);if(!item)return;
+item.paid=paid;if(paid)item.actual=item.estimate;else item.actual=0;
+await upsertShared(‘budget_items’,item);
+const card=document.getElementById(‘bic_’+id);
+if(card){const lbl=card.querySelector(’.bud-paid-label’);if(lbl){lbl.className=‘bud-paid-label ‘+(paid?‘paid’:’’);lbl.querySelector(’.bud-paid-txt’).textContent=paid?‘✓ Đã TT’:‘Đã TT?’;}}
+calcBudgetSummary();
 }
 async function togglePerson(id,field){
-  const item=budgetItems.find(x=>x.id===id);if(!item)return;item[field]=!item[field];
-  await upsertShared('budget_items',item);renderBudget();calcBudgetSummary();
+const item=budgetItems.find(x=>x.id===id);if(!item)return;item[field]=!item[field];
+await upsertShared(‘budget_items’,item);renderBudget();calcBudgetSummary();
 }
-async function delBud(id){budgetItems=budgetItems.filter(x=>x.id!==id);await deleteShared('budget_items',id);renderBudget();calcBudgetSummary();}
+async function delBud(id){budgetItems=budgetItems.filter(x=>x.id!==id);await deleteShared(‘budget_items’,id);renderBudget();calcBudgetSummary();}
 async function addBudgetItem(){
-  const label=document.getElementById('budNewLabel').value.trim();const cat=document.getElementById('budNewCat').value;
-  if(!label){document.getElementById('budNewLabel').focus();return;}
-  const item={id:genId(),label,category:cat,estimate:0,actual:0,currency:'VND',est_cur:'VND',act_cur:'VND',item_currency:'VND',paid:false,for_sa:true,for_bi:true,for_ty:true,sort_order:budgetItems.length};
-  budgetItems.push(item);await upsertShared('budget_items',item);
-  document.getElementById('budNewLabel').value='';renderBudget();calcBudgetSummary();
+const label=document.getElementById(‘budNewLabel’).value.trim();const cat=document.getElementById(‘budNewCat’).value;
+if(!label){document.getElementById(‘budNewLabel’).focus();return;}
+const item={id:genId(),label,category:cat,estimate:0,actual:0,currency:‘VND’,est_cur:‘VND’,act_cur:‘VND’,item_currency:‘VND’,paid:false,for_sa:true,for_bi:true,for_ty:true,sort_order:budgetItems.length};
+budgetItems.push(item);await upsertShared(‘budget_items’,item);
+document.getElementById(‘budNewLabel’).value=’’;renderBudget();calcBudgetSummary();
 }
 function calcBudgetSummary(){
-  let saE=0,biE=0,tyE=0,saA=0,biA=0,tyA=0,totE=0,totA=0;
-  budgetItems.forEach(item=>{
-    const cur=item.currency||'TWD';const eV=toVND(item.estimate,cur);const aV=item.paid?eV:toVND(item.actual||0,cur);
-    const n=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0);
-    totE+=eV;totA+=aV;if(item.for_sa)saE+=eV;if(item.for_bi)biE+=eV;if(item.for_ty)tyE+=eV;
-    if(n>0){if(item.for_sa)saA+=aV/n;if(item.for_bi)biA+=aV/n;if(item.for_ty)tyA+=aV/n;}
-  });
-  [['sa',saE,saA],['bi',biE,biA],['ty',tyE,tyA]].forEach(([p,e,a])=>{
-    const estEl=document.getElementById(p+'EstLine');const paidEl=document.getElementById(p+'PaidLine');
-    if(estEl)estEl.textContent=e>0?fmtVND(e)+' ≈ '+fmtTWD(e/budRate):'—';
-    if(paidEl)paidEl.textContent=a>0?fmtVND(a)+' ≈ '+fmtTWD(a/budRate):'0₫ ≈ 0 TWD';
-  });
-  const tEV=document.getElementById('totalEstVND');const tET=document.getElementById('totalEstTWD');
-  const tAV=document.getElementById('totalActVND');const tAT=document.getElementById('totalActTWD');
-  if(tEV)tEV.textContent=fmtVND(totE);if(tET)tET.textContent='≈ '+fmtTWD(totE/budRate);
-  if(tAV)tAV.textContent=fmtVND(totA);if(tAT)tAT.textContent='≈ '+fmtTWD(totA/budRate);
+let saE=0,biE=0,tyE=0,saA=0,biA=0,tyA=0,totE=0,totA=0;
+budgetItems.forEach(item=>{
+const cur=item.currency||‘TWD’;const eV=toVND(item.estimate,cur);const aV=item.paid?eV:toVND(item.actual||0,cur);
+const n=(item.for_sa?1:0)+(item.for_bi?1:0)+(item.for_ty?1:0);
+totE+=eV;totA+=aV;if(item.for_sa)saE+=eV;if(item.for_bi)biE+=eV;if(item.for_ty)tyE+=eV;
+if(n>0){if(item.for_sa)saA+=aV/n;if(item.for_bi)biA+=aV/n;if(item.for_ty)tyA+=aV/n;}
+});
+[[‘sa’,saE,saA],[‘bi’,biE,biA],[‘ty’,tyE,tyA]].forEach(([p,e,a])=>{
+const estEl=document.getElementById(p+‘EstLine’);const paidEl=document.getElementById(p+‘PaidLine’);
+if(estEl)estEl.textContent=e>0?fmtVND(e)+’ ≈ ‘+fmtTWD(e/budRate):’—’;
+if(paidEl)paidEl.textContent=a>0?fmtVND(a)+’ ≈ ’+fmtTWD(a/budRate):‘0₫ ≈ 0 TWD’;
+});
+const tEV=document.getElementById(‘totalEstVND’);const tET=document.getElementById(‘totalEstTWD’);
+const tAV=document.getElementById(‘totalActVND’);const tAT=document.getElementById(‘totalActTWD’);
+if(tEV)tEV.textContent=fmtVND(totE);if(tET)tET.textContent=’≈ ’+fmtTWD(totE/budRate);
+if(tAV)tAV.textContent=fmtVND(totA);if(tAT)tAT.textContent=’≈ ’+fmtTWD(totA/budRate);
 }
 
 let sCol=0,sAsc=true;
-function buildRank(){const tb=document.getElementById('rankBody');if(!tb)return;tb.innerHTML='';[...RANKS].sort((a,b)=>{let va=a[sCol],vb=b[sCol];if(typeof va==='string'){va=va.replace('*','');vb=String(vb).replace('*','');}if(!isNaN(va)&&!isNaN(vb)){va=+va;vb=+vb;}return va<vb?(sAsc?-1:1):va>vb?(sAsc?1:-1):0;}).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML='<td><span class="rb" onclick="zoomRank('+r[0]+')">'+r[0]+'</span></td><td><b>'+r[1]+'</b></td><td>'+r[2]+'</td><td>'+r[3]+'</td><td style="font-size:.75rem;color:var(--txt2)">'+r[4]+'</td>';tb.appendChild(tr);});document.querySelectorAll('#rankTbl th').forEach((th,i)=>{th.classList.toggle('sorted',i===sCol);const sa=th.querySelector('.sa');if(sa)sa.textContent=i===sCol?(sAsc?'▲':'▼'):'▲';});}
+function buildRank(){const tb=document.getElementById(‘rankBody’);if(!tb)return;tb.innerHTML=’’;[…RANKS].sort((a,b)=>{let va=a[sCol],vb=b[sCol];if(typeof va===‘string’){va=va.replace(’*’,’’);vb=String(vb).replace(’*’,’’);}if(!isNaN(va)&&!isNaN(vb)){va=+va;vb=+vb;}return va<vb?(sAsc?-1:1):va>vb?(sAsc?1:-1):0;}).forEach(r=>{const tr=document.createElement(‘tr’);tr.innerHTML=’<td><span class="rb" onclick="zoomRank('+r[0]+')">’+r[0]+’</span></td><td><b>’+r[1]+’</b></td><td>’+r[2]+’</td><td>’+r[3]+’</td><td style="font-size:.75rem;color:var(--txt2)">’+r[4]+’</td>’;tb.appendChild(tr);});document.querySelectorAll(’#rankTbl th’).forEach((th,i)=>{th.classList.toggle(‘sorted’,i===sCol);const sa=th.querySelector(’.sa’);if(sa)sa.textContent=i===sCol?(sAsc?‘▲’:‘▼’):‘▲’;});}
 function sortTbl(c){if(c===4)return;sCol===c?sAsc=!sAsc:(sCol=c,sAsc=true);buildRank();}
 
 // INIT
 async function init(){
-  try{showAll();}catch(e){console.error('showAll:',e);}
-  try{buildRank();}catch(e){console.error('buildRank:',e);}
-  try{await sbInit();}catch(e){console.error('sbInit:',e);}
-  try{await Promise.all([loadAllTasks(),loadBudget(),mdInit()]);}catch(e){console.error('loadData:',e);}
-  try{await Promise.all([loadTiBk(),loadLeftBk()]);}catch(e){console.error('loadBookings:',e);}
-  try{renderOvChecklist();}catch(e){console.error('renderOv:',e);}
-  try{renderDayChecklist(null);}catch(e){console.error('renderDay:',e);}
-  try{renderBookingSummary();}catch(e){console.error('renderBkSum:',e);}
+try{showAll();}catch(e){console.error(‘showAll:’,e);}
+try{buildRank();}catch(e){console.error(‘buildRank:’,e);}
+try{await sbInit();}catch(e){console.error(‘sbInit:’,e);}
+try{await Promise.all([loadAllTasks(),loadBudget(),mdInit()]);}catch(e){console.error(‘loadData:’,e);}
+try{await Promise.all([loadTiBk(),loadLeftBk()]);}catch(e){console.error(‘loadBookings:’,e);}
+try{renderOvChecklist();}catch(e){console.error(‘renderOv:’,e);}
+try{renderDayChecklist(null);}catch(e){console.error(‘renderDay:’,e);}
+try{renderBookingSummary();}catch(e){console.error(‘renderBkSum:’,e);}
 }
 
-document.addEventListener('click',function(e){
-  const tab=e.target.closest('[data-tab]');
-  if(tab){go(tab.getAttribute('data-tab'));return;}
-  const sort=e.target.closest('[data-sort]');
-  if(sort){sortTbl(+sort.getAttribute('data-sort'));return;}
+document.addEventListener(‘click’,function(e){
+const tab=e.target.closest(’[data-tab]’);
+if(tab){go(tab.getAttribute(‘data-tab’));return;}
+const sort=e.target.closest(’[data-sort]’);
+if(sort){sortTbl(+sort.getAttribute(‘data-sort’));return;}
 },{passive:true});
 
-['go','sortTbl','setBudFilter','setRate','addBudgetItem','mdChk','saveTiBk','zoomRank','addTask','deleteTask','startEdit','toggleTask','togglePaid','togglePerson','updBud','delBud','budInpFocus','budInpBlur','renderBudget','calcBudgetSummary','buildRank','renderDayChecklist','renderOvChecklist','renderBookingSummary'].forEach(function(n){try{window[n]=eval(n);}catch(e){}});
+[‘go’,‘sortTbl’,‘setBudFilter’,‘setRate’,‘addBudgetItem’,‘mdChk’,‘saveTiBk’,‘zoomRank’,‘addTask’,‘deleteTask’,‘startEdit’,‘toggleTask’,‘togglePaid’,‘togglePerson’,‘updBud’,‘delBud’,‘budInpFocus’,‘budInpBlur’,‘renderBudget’,‘calcBudgetSummary’,‘buildRank’,‘renderDayChecklist’,‘renderOvChecklist’,‘renderBookingSummary’].forEach(function(n){try{window[n]=eval(n);}catch(e){}});
 
 init();
 </script>
+
 </body>
 </html>
