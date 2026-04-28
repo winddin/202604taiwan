@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
 <title>🇹🇼 Taiwan Trip 2026</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -10,24 +10,28 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{font-size:112%}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:80px}
-.hdr{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:14px 16px 10px;position:sticky;top:0;z-index:1001;box-shadow:0 4px 16px rgba(0,0,0,.18)}
+@media(max-width:480px){html{font-size:100%}}
+@media(max-width:380px){html{font-size:94%}}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:80px;padding-left:env(safe-area-inset-left,0);padding-right:env(safe-area-inset-right,0);overflow-wrap:break-word;word-wrap:break-word}
+.hdr{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:14px calc(16px + env(safe-area-inset-right,0)) 10px calc(16px + env(safe-area-inset-left,0));position:sticky;top:0;z-index:1001;box-shadow:0 4px 16px rgba(0,0,0,.18)}
 .hdr h1{font-size:1.1rem;font-weight:800}
 .hdr-chips{display:flex;gap:6px;margin-top:5px;flex-wrap:wrap;align-items:center}
 .hdr-chips span{background:rgba(255,255,255,.18);padding:2px 8px;border-radius:16px;font-size:.68rem}
 .db-badge{font-size:.65rem;padding:2px 8px;border-radius:10px;font-weight:700;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3)}
 .db-badge.ok{background:rgba(52,168,83,.4)}.db-badge.err{background:rgba(220,53,69,.4)}
-.fl-ban{background:var(--pri-l);border-left:4px solid var(--pri);padding:10px 14px;margin:10px 10px 0;border-radius:0 10px 10px 0;font-size:.78rem;color:var(--txt2)}
+.fl-ban{background:var(--pri-l);border-left:4px solid var(--pri);padding:10px 14px;margin:10px 10px 0;border-radius:0 10px 10px 0;font-size:.78rem;color:var(--txt2);overflow-wrap:break-word;word-break:break-word}
 .fl-ban h3{font-size:.8rem;color:var(--pri);margin-bottom:4px;font-weight:700}
 .fl-ban hr{border:none;border-top:1px dashed #ccc;margin:6px 0}
 .fl-warn{font-size:.72rem;color:var(--acc);margin-top:4px;font-weight:600}
-.nav{display:flex;overflow-x:auto;padding:7px 10px;gap:5px;background:var(--card);border-bottom:1px solid var(--bdr);position:sticky;top:62px;z-index:1000;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.nav{display:flex;overflow-x:auto;padding:7px calc(10px + env(safe-area-inset-right,0)) 7px calc(10px + env(safe-area-inset-left,0));gap:5px;background:var(--card);border-bottom:1px solid var(--bdr);position:sticky;top:62px;z-index:1000;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
 .nb{flex-shrink:0;padding:5px 11px;border:2px solid var(--bdr);border-radius:20px;background:var(--card);cursor:pointer;font-size:.73rem;font-weight:700;transition:all .15s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
 .nb.on{background:var(--pri);color:#fff;border-color:var(--pri)}
 .nb.sp{border-color:var(--acc);color:var(--acc)}.nb.sp.on{background:var(--acc);color:#fff}
-.main{max-width:1200px;margin:0 auto;padding:10px}
-.grid{display:grid;grid-template-columns:1fr;gap:12px}
+.main{max-width:1200px;margin:0 auto;padding:10px;min-width:0}
+@media(max-width:480px){.main{padding:8px}}
+.grid{display:grid;grid-template-columns:1fr;gap:12px;min-width:0}
+.grid>*{min-width:0}
 @media(min-width:768px){.grid{grid-template-columns:1fr 1fr}}
 .map-wrap{border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);height:200px}
 @media(min-width:768px){.map-wrap{height:340px}}
@@ -67,11 +71,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .add-bk-inp{flex:1;font-size:.72rem;border:1px solid var(--bdr);border-radius:6px;padding:4px 8px;font-family:inherit;outline:none;background:var(--bg)}
 .add-bk-inp:focus{border-color:var(--pri);background:#fff}
 .add-bk-btn{font-size:.72rem;background:var(--ok);color:#fff;border:none;border-radius:6px;padding:4px 10px;cursor:pointer;font-weight:700}
-.cd{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:14px;margin-bottom:12px}
+.cd{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:14px;margin-bottom:12px;min-width:0;overflow-wrap:break-word;word-break:break-word}
 .cd-t{font-size:1rem;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:6px}
 .tl{position:relative;padding-left:20px}
 .tl::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--pri),var(--acc));border-radius:2px}
-.ti{position:relative;margin-bottom:14px;padding:10px 12px;background:var(--bg);border-radius:8px;border-left:3px solid var(--pri)}
+.ti{position:relative;margin-bottom:14px;padding:10px 12px;background:var(--bg);border-radius:8px;border-left:3px solid var(--pri);min-width:0;overflow-wrap:break-word;word-break:break-word}
 .ti::before{content:'';position:absolute;left:-17px;top:14px;width:8px;height:8px;border-radius:50%;background:var(--pri);border:2px solid #fff;box-shadow:0 0 0 2px var(--pri)}
 .ti.ev{border-left-color:var(--acc)}.ti.ev::before{background:var(--acc);box-shadow:0 0 0 2px var(--acc)}
 .ti.hotel-ti{border-left-color:#e67e22}.ti.hotel-ti::before{background:#e67e22;box-shadow:0 0 0 2px #e67e22}
@@ -185,7 +189,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .bud-footer{display:flex;align-items:center;gap:8px;margin-top:10px;padding-top:8px;border-top:2px solid var(--bdr);font-weight:800;font-size:.85rem}
 .tc{display:none}.tc.on{display:block}
 @media(max-width:767px){
-  .bnav{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--bdr);display:flex;justify-content:space-around;padding:6px 0 env(safe-area-inset-bottom,8px);z-index:1002;box-shadow:0 -2px 10px rgba(0,0,0,.08)}
+  .bnav{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--bdr);display:flex;justify-content:space-around;padding:6px env(safe-area-inset-right,0) env(safe-area-inset-bottom,8px) env(safe-area-inset-left,0);z-index:1002;box-shadow:0 -2px 10px rgba(0,0,0,.08)}
   .bnav-i{display:flex;flex-direction:column;align-items:center;font-size:.6rem;color:var(--txt2);cursor:pointer;padding:2px 6px;-webkit-tap-highlight-color:transparent}
   .bnav-i.on{color:var(--pri)}
   .bnav-i span:first-child{font-size:1.1rem}
@@ -313,13 +317,25 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
   .bud-paid-txt{font-size:.66rem;}
   .bud-person-toggle{padding:3px 7px;font-size:.66rem;}
   .bud-total-val{font-size:.88rem;} .bud-total-sub{font-size:.62rem;}
-  .tc{padding:8px!important;} .dh{padding:12px!important;}
+  .tc{padding:6px!important;} .dh{padding:10px 12px!important;}
   .dh h2{font-size:1rem;} .dh p{font-size:.75rem;}
   .ti{padding:9px 10px;margin-bottom:6px;}
   .ti h3{font-size:.88rem;} .ti p{font-size:.74rem;}
   .body-area{flex-direction:column!important;}
   .sidebar{width:100%!important;max-height:260px;}
   .main-content{padding:8px!important;}
+  .cd{padding:10px 11px;}
+  .fl-ban{margin:8px 6px 0;padding:9px 11px;font-size:.74rem;}
+  .hdr{padding:10px calc(12px + env(safe-area-inset-right,0)) 8px calc(12px + env(safe-area-inset-left,0))!important;}
+  .hdr h1{font-size:1rem;}
+  .hdr-chips span,.db-badge{font-size:.62rem;padding:2px 6px;}
+  .nav{padding:6px calc(8px + env(safe-area-inset-right,0)) 6px calc(8px + env(safe-area-inset-left,0));}
+  .nb{padding:5px 10px;font-size:.7rem;}
+  .rt-btn{padding:5px 11px;font-size:.7rem;margin:0 5px 8px 0;}
+  .tbl th,.tbl td{padding:6px 5px;font-size:.74rem;}
+  .tbl th{font-size:.64rem;}
+  .il-name{font-size:.72rem;} .il-tip{font-size:.64rem;}
+  img,video,iframe,table{max-width:100%;}
 }
 @media(max-width:380px){
   .bud-name{font-size:.7rem;} .bl-vnd{font-size:.62rem;} .bl-lbl{font-size:.5rem;}
