@@ -138,6 +138,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .md-i{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid #f3f3f3;font-size:.82rem}
 .md-i input{width:18px;height:18px;accent-color:var(--pri);cursor:pointer;flex-shrink:0;margin-top:2px}
 .md-i.ck label{text-decoration:line-through;color:var(--txt2)}
+.md-i.md-removed{opacity:.55}
+.md-i.md-removed label .md-name{text-decoration:line-through;color:var(--txt2)}
+.md-i.md-removed input{cursor:not-allowed}
 .md-i label{cursor:pointer;flex:1}
 .md-name{font-weight:700;display:block}
 .md-addr{font-size:.7rem;color:var(--txt2);margin-top:2px;display:block}
@@ -372,8 +375,8 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
     <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(9)" title="#9">9</span><span class="rb" onclick="zoomRank(3)" title="#3">3</span><span class="rb" onclick="zoomRank(8)" title="#8">8</span><b>27/04</b> Yehliu · Jiufen · Shifen (tự túc)</div>
     <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(10)" title="#10">10</span><b>28/04</b> 🚆 → Hoa Liên · Chill · Pine Garden · Qixingtan sunset</div>
     <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(2)" title="#2">2</span><span class="rb" onclick="zoomRank(20)" title="#20">20</span><span class="rb" onclick="zoomRank(11)" title="#11">11</span><span class="rb" onclick="zoomRank(19)" title="#19">19</span><b>29/04</b> Taroko full day · Shakadang · Swallow Grotto · Qingshui</div>
-    <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(15)" title="#15">15</span><span class="rb" onclick="zoomRank(14)" title="#14">14</span><span class="rb" onclick="zoomRank(13)" title="#13">13</span><span class="rb" onclick="zoomRank(12)" title="#12">12</span><b>30/04</b> 🚆 → Đài Trung · Miyahara · Rainbow · Gaomei · Fengjia</div>
-    <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(18)" title="#18">18</span><span class="rb" onclick="zoomRank(16)" title="#16">16</span><span class="rb" onclick="zoomRank(17)" title="#17">17</span><b>01/05</b> 🚄 → Đài Bắc · Beitou/Tamsui · Shilin</div>
+    <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(15)" title="#15">15</span><span class="rb" onclick="zoomRank(18)" title="#18">18</span><span class="rb" onclick="zoomRank(14)" title="#14">14</span><span class="rb" onclick="zoomRank(13)" title="#13">13</span><span class="rb" onclick="zoomRank(12)" title="#12">12</span><b>30/04</b> 🚆 Puyuma+HSR → Đài Trung · Miyahara · Theater · Audit · Rainbow · Gaomei · Fengjia</div>
+    <div style="display:flex;gap:6px;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center;flex-wrap:wrap"><span class="rb" onclick="zoomRank(16)" title="#16">16</span><span class="rb" onclick="zoomRank(17)" title="#17">17</span><b>01/05</b> Calligraphy Greenway · 🚄 → Đài Bắc · Beitou/Tamsui · Shilin · Starbucks 🌟</div>
     <div style="display:flex;gap:6px;padding:8px 0;align-items:center">🎯<b>02/05</b> Ăn sáng · Mua quà · ✈️ TPE→SGN 13:45</div>
   </div></div>
 
@@ -719,54 +722,74 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
       <div class="ti-p"><span class="mb">6</span>Dinner Hualien — Salt Lick / 鹽寮<br><small class="ti-sub">Hoặc Liu's Wonton 戴記扁食 nếu chưa ăn N4</small></div>
       <div class="ti-d">Bữa tối nhẹ — không cần chợ đêm vì đã đi N4. Thử aboriginal restaurant Salt Lick BBQ hoặc Liu's Wonton legendary.</div>
       <div class="ti-c">~250-400 TWD/người</div>
-      <div class="ti-note">⚠️ Tối nay: Pack đồ + trả xe máy. Mua thêm Mochi Zeng Yong + nougat làm quà nếu chưa đủ. Đặt vé TRA Hualien→Taichung 30/04 chưa?</div>
+      <div class="ti-note">🔴 BÁO LỄ TÂN: check-out 5:00 sáng N6 + thanh toán trước nếu cần. Pack đồ + trả xe máy. Set 2 alarms 04:30. Confirm vé Puyuma 203 #7330461 + HSR 1509 #05266847.</div>
       <div class="il-group"><a href="https://www.google.com/maps/search/Liu+wonton+Hualien" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍲 Liu's Wonton 戴記扁食</span><span class="il-tip">Wonton soup huyền thoại</span></span></a><a href="https://www.google.com/maps/search/Zeng+Yong+mochi+Hualien" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🥟 Zeng Yong Mochi 曾記麻糬</span><span class="il-tip">Mua làm quà</span></span></a></div>
-      <div class="ti-bk" id="bkf_d5_train">
-        <span class="ti-bk-label">🚆 TRA Hualien→Taichung 30/04</span>
-        <input class="ti-bk-input" data-bk="d5_train" data-type="transport" placeholder="Paste link booking..." onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-        <a class="ti-bk-open" id="bko_d5_train" style="display:none" target="_blank">Mở ↗</a>
-      </div>
     </div>
   </div></div>
   <div class="nt dng"><b>📌 N5 — Taroko Full Day</b>Mũ bảo hiểm xe máy + mũ BH cổng Taroko bắt buộc. Cần IDP. Check trail mở/đóng: taroko.gov.tw. Changchun Shrine ĐANG ĐÓNG. Trail Shakadang/Swallow Grotto/9-Turns không cần permit.</div>
 </div>
 
 <div class="tc" id="tab-day6">
-  <div class="dh"><h2>N6 — T5 30/04 — Hoa Liên → Đài Trung</h2><p>TRA xuyên đảo · Miyahara · Rainbow · Gaomei · Fengjia · 🧳 Mang hành lý theo</p><span class="dh-tr">🚆 TRA Hualien→Taichung ~3.5h</span></div>
-  <a href="https://www.google.com/maps/dir/24.1382,120.6833/24.1339,120.6082/24.3125,120.5527/24.179,120.6463" target="_blank" class="rt-btn grn">🗺️ Route N6</a>
+  <div class="dh"><h2>N6 — T5 30/04 — Hoa Liên → Đài Trung</h2><p>Puyuma+HSR · Miyahara · Theater · Audit · Rainbow · Gaomei · Fengjia · 🧳 Mang hành lý theo</p><span class="dh-tr">🚆 Puyuma 5:50 → Nangang → 🚄 HSR Taichung 9:42</span></div>
+  <a href="https://www.google.com/maps/dir/24.1382,120.6833/24.1614,120.6398/24.1450,120.6634/24.1339,120.6082/24.3125,120.5527/24.179,120.6463" target="_blank" class="rt-btn grn">🗺️ Route N6</a>
 
   <div class="cd"><div class="cd-t">📍 Lịch trình</div><div class="tl">
     <div class="ti">
-      <div class="ti-t">07:00</div>
-      <div class="ti-p">🧳 Check-out Hotel Hoa Liên<br><small class="ti-sub">Mang toàn bộ hành lý theo người</small></div>
-      <div class="ti-d">Trả phòng hotel Hoa Liên, mang hành lý đi tàu.</div>
+      <div class="ti-t">04:30</div>
+      <div class="ti-p">⏰ Wake — set 2 alarms<br><small class="ti-sub">Phone + đồng hồ dự phòng</small></div>
+      <div class="ti-d">Dậy sớm cho lịch tàu 05:50. Đã chuẩn bị đồ tối hôm trước.</div>
+      <div class="ti-note">⚠️ Tối N5 đã báo lễ tân check-out 5:00 + thanh toán trước nếu cần.</div>
     </div>
     <div class="ti">
-      <div class="ti-t">Sáng 7:30</div>
-      <div class="ti-p">TRA Hualien → Taichung / 花蓮→台中<br><small class="ti-sub">Ga Hualien → Ga Taichung TRA (台中站)</small></div>
-      <div class="ti-d">Qua đèo trung tâm đảo — cảnh núi rừng. Đến ~11:00.</div>
-      <div class="ti-c">~680 TWD</div>
-      <div class="ti-tip">💡 Ga Taichung TRA (台中站) KHÁC ga HSR!</div>
-      <div class="ti-note">Ga Taichung TRA ở trung tâm, đi taxi/bus ra HSR nếu cần.</div>
-      <div class="ti-bk" id="bkf_d6_train">
-        <span class="ti-bk-label">🚆 TRA Hualien→Taichung</span>
-        <input class="ti-bk-input" data-bk="d6_train" data-type="transport" placeholder="Paste link booking..." onchange="saveTiBk(this)" onblur="saveTiBk(this)">
-        <a class="ti-bk-open" id="bko_d6_train" style="display:none" target="_blank">Mở ↗</a>
+      <div class="ti-t">05:00</div>
+      <div class="ti-p">🧳 Check-out Hotel Hoa Liên<br><small class="ti-sub">Mang toàn bộ hành lý theo người</small></div>
+      <div class="ti-d">Trả phòng hotel Hoa Liên (đã báo trước tối N5). Ghé 7-Eleven gần ga grab onigiri + cafe (24h).</div>
+    </div>
+    <div class="ti">
+      <div class="ti-t">05:30</div>
+      <div class="ti-p">Đến ga Hualien lấy vé quầy<br><small class="ti-sub">Booking #7330461 + passport</small></div>
+      <div class="ti-d">Lấy 3 vé Puyuma tại quầy quầy hoặc kiosk. Buffer 20p.</div>
+    </div>
+    <div class="ti">
+      <div class="ti-t">05:50</div>
+      <div class="ti-p">🚆 Puyuma 203 Hualien → Nangang<br><small class="ti-sub">花蓮→南港 · ~2h14</small></div>
+      <div class="ti-d">Đến Nangang TRA 08:04. Đã thanh toán 1,674 TWD ✅ (3 vé).</div>
+      <div class="ti-c">1,674 TWD ✅ Paid</div>
+      <div class="ti-tip">💡 Ngủ thêm 2h trên tàu cho tỉnh táo</div>
+      <div class="ti-bk" id="bkf_d6_puyuma">
+        <span class="ti-bk-label">🚆 Puyuma 203 Hualien→Nangang #7330461</span>
+        <input class="ti-bk-input" data-bk="d6_puyuma" data-type="transport" placeholder="Paste link booking..." onchange="saveTiBk(this)" onblur="saveTiBk(this)">
+        <a class="ti-bk-open" id="bko_d6_puyuma" style="display:none" target="_blank">Mở ↗</a>
       </div>
     </div>
     <div class="ti">
-      <div class="ti-t">Trưa 11:30</div>
-      <div class="ti-p"><span class="mb">1</span><span class="rb" onclick="zoomRank(15)" title="#15">15</span>Miyahara / 宮原眼科<br><small class="ti-sub">Gōng Yuán Yǎn Kē</small></div>
-      <div class="ti-d">Tòa nhà thiết kế như thư viện Harry Potter. Kem nhiều tầng. Mang theo hành lý → gửi tại locker Miyahara hoặc giữ luôn.</div>
-      <div class="ti-c">Kem 90-200 TWD</div>
-      <div class="ti-tip">💡 Spot: góc dưới mái vòm nhìn lên</div>
-      <div class="il-group"><a href="https://www.google.com/maps/search/Miyahara+Taichung+interior" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Mái vòm sách tầng 2</span><span class="il-tip">Wide angle nhìn lên</span></span></a></div>
-      <div class="il-group"><a href="https://www.google.com/maps/search/Miyahara+Taichung" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍦 Multi-scoop Ice Cream</span><span class="il-tip">Ăn tầng 2 view ra phố</span></span></a></div>
+      <div class="ti-t">08:04 — 08:36</div>
+      <div class="ti-p">🔄 Transfer Nangang TRA → HSR<br><small class="ti-sub">Cùng tòa · Đi bộ ~2-3p · Buffer 32p</small></div>
+      <div class="ti-d">Nangang TRA và Nangang HSR cùng tòa nhà. Đi bộ xuống tầng HSR, scan vé QR. Có 32p buffer + nhà vệ sinh.</div>
+      <div class="ti-tip">💡 Vé HSR in "Taipei" nhưng tàu DỪNG Nangang — board luôn tại đây (đã verify)</div>
     </div>
     <div class="ti">
-      <div class="ti-t">12:30</div>
-      <div class="ti-p">🧳 Gửi hành lý Hotel Đài Trung<br><small class="ti-sub">Check-in 15:00 — chỉ gửi đồ lúc này · Khu Fengjia · 1 đêm N6</small></div>
-      <div class="ti-d">Đến hotel khu Fengjia, gửi hành lý tại lễ tân. Quay lại check-in phòng sau 15:00.</div>
+      <div class="ti-t">08:36</div>
+      <div class="ti-p">🚄 HSR 1509 Nangang → Taichung<br><small class="ti-sub">南港→台中 · 66p</small></div>
+      <div class="ti-d">Reservation #05266847 ✅. Đến Taichung HSR 09:42.</div>
+      <div class="ti-c">~2,100 TWD estimate</div>
+      <div class="ti-tip">💡 Quét QR T Express tại cổng vào</div>
+      <div class="ti-bk" id="bkf_d6_hsr">
+        <span class="ti-bk-label">🚄 HSR 1509 Nangang→Taichung #05266847</span>
+        <input class="ti-bk-input" data-bk="d6_hsr" data-type="transport" placeholder="Paste link booking..." onchange="saveTiBk(this)" onblur="saveTiBk(this)">
+        <a class="ti-bk-open" id="bko_d6_hsr" style="display:none" target="_blank">Mở ↗</a>
+      </div>
+    </div>
+    <div class="ti">
+      <div class="ti-t">10:00</div>
+      <div class="ti-p">🚖 Uber Taichung HSR → Hotel Fengjia<br><small class="ti-sub">~25-30p · ~250 TWD chia 3</small></div>
+      <div class="ti-d">Ga Taichung HSR ở ngoại ô tây nam, ~25km tới trung tâm (KHÁC ga TRA). Gọi UberXL nếu nhiều vali.</div>
+      <div class="ti-c">~250 TWD chia 3</div>
+    </div>
+    <div class="ti">
+      <div class="ti-t">10:30</div>
+      <div class="ti-p">🧳 Drop hành lý Hotel Fengjia<br><small class="ti-sub">Free · Giữ balo+camera · Check-in phòng sau Gaomei</small></div>
+      <div class="ti-d">Drop hành lý lễ tân Hotel Fengjia (free), giữ balo+camera đi tiếp. Check-in phòng tối sau Gaomei.</div>
       <div class="ti-bk" id="bkf_d6_hotel">
         <span class="ti-bk-label">🏨 Hotel Đài Trung (Fengjia)</span>
         <input class="ti-bk-input" data-bk="d6_hotel" data-type="hotel" placeholder="Paste link booking..." onchange="saveTiBk(this)" onblur="saveTiBk(this)">
@@ -774,69 +797,107 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
       </div>
     </div>
     <div class="ti">
-      <div class="ti-t">Chiều 14:30</div>
-      <div class="ti-p"><span class="mb">2</span><span class="rb" onclick="zoomRank(14)" title="#14">14</span>Rainbow Village / 彩虹眷村<br><small class="ti-sub">Làng Cầu Vồng</small></div>
+      <div class="ti-t">11:00</div>
+      <div class="ti-p"><span class="mb">1</span><span class="rb" onclick="zoomRank(15)" title="#15">15</span>Miyahara / 宮原眼科<br><small class="ti-sub">Gōng Yuán Yǎn Kē — Brunch</small></div>
+      <div class="ti-d">Brunch + multi-scoop ice cream + chụp mái vòm sách tầng 2. Tòa nhà thiết kế như thư viện Harry Potter.</div>
+      <div class="ti-c">Brunch 200 TWD · Kem 90-200 TWD</div>
+      <div class="ti-tip">💡 Spot: góc dưới mái vòm nhìn lên</div>
+      <div class="il-group"><a href="https://www.google.com/maps/search/Miyahara+Taichung+interior" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Mái vòm sách tầng 2</span><span class="il-tip">Wide angle nhìn lên</span></span></a><a href="https://www.google.com/maps/search/Miyahara+Taichung" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍦 Multi-scoop Ice Cream</span><span class="il-tip">Ăn tầng 2 view ra phố</span></span></a></div>
+    </div>
+    <div class="ti">
+      <div class="ti-t">12:30</div>
+      <div class="ti-p"><span class="mb">2</span><span class="rb" onclick="zoomRank(18)" title="#18">18</span>⭐ National Taichung Theater / 國家歌劇院<br><small class="ti-sub">Kiến trúc Toyo Ito (Pritzker) · NEW</small></div>
+      <div class="ti-d">Kiến trúc Toyo Ito (Pritzker laureate), free foyer + rooftop garden tầng tum, cafe ~150 TWD trong khuôn viên.</div>
+      <div class="ti-c">Free foyer · Cafe ~150 TWD</div>
+      <div class="ti-tip">💡 Lên rooftop garden chụp curve walls signature</div>
+      <div class="il-group"><a href="https://www.google.com/maps/search/National+Taichung+Theater+Toyo+Ito" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Curve walls foyer</span><span class="il-tip">Wide angle · Toyo Ito signature</span></span></a><a href="https://www.google.com/maps/search/National+Taichung+Theater+rooftop" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Rooftop garden tầng tum</span><span class="il-tip">View Taichung skyline</span></span></a></div>
+    </div>
+    <div class="ti">
+      <div class="ti-t">14:00 — OPTIONAL</div>
+      <div class="ti-p"><span class="mb">3</span>⭐ Audit New Village / 審計新村<br><small class="ti-sub">Hipster cluster · NEW · Linh hoạt skip</small></div>
+      <div class="ti-d">Cluster cafe + studio nghệ sĩ, cách Theater 5p đi bộ. LINH HOẠT skip nếu mệt sau Theater.</div>
+      <div class="ti-c">Free vào · Cafe 100-200 TWD</div>
+      <div class="ti-tip">💡 Skip nếu muốn tới Rainbow + Gaomei sớm hơn</div>
+      <div class="il-group"><a href="https://www.google.com/maps/search/Audit+New+Village+Taichung" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Hipster alleys + studios</span><span class="il-tip">Vibe Đài Trung trẻ</span></span></a></div>
+    </div>
+    <div class="ti">
+      <div class="ti-t">15:30</div>
+      <div class="ti-p"><span class="mb">4</span><span class="rb" onclick="zoomRank(14)" title="#14">14</span>Rainbow Village / 彩虹眷村<br><small class="ti-sub">Làng Cầu Vồng · Uber từ Audit ~150 TWD</small></div>
       <div class="ti-d">Tranh tường bởi cụ Huang Yung-Fu 97 tuổi. 30-45p.</div>
-      <div class="ti-c">Miễn phí</div>
+      <div class="ti-c">Miễn phí · Uber ~150 TWD</div>
       <div class="ti-tip">💡 14:00-16:00 ánh sáng đẹp nhất</div>
       <div class="il-group"><a href="https://www.google.com/maps/search/Rainbow+Village+Taichung+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Đứng đầu hẻm nhìn vào</span><span class="il-tip">Wide angle · Màu rực rỡ</span></span></a></div>
     </div>
     <div class="ti">
-      <div class="ti-t">Chiều 16:30</div>
-      <div class="ti-p"><span class="mb">3</span><span class="rb" onclick="zoomRank(13)" title="#13">13</span>Gaomei Wetlands / 高美濕地<br><small class="ti-sub">Bãi triều Cao Mỹ</small></div>
-      <div class="ti-d">Cầu gỗ 800m + tuabin gió + hoàng hôn. Check thủy triều!</div>
-      <div class="ti-c">Miễn phí · Taxi ~200 TWD</div>
+      <div class="ti-t">17:00</div>
+      <div class="ti-p"><span class="mb">5</span><span class="rb" onclick="zoomRank(13)" title="#13">13</span>Gaomei Wetlands / 高美濕地<br><small class="ti-sub">Bãi triều Cao Mỹ · Uber ~250 TWD</small></div>
+      <div class="ti-d">Cầu gỗ 800m + tuabin gió + hoàng hôn. ⚠️ CHECK tideschart.com triều cao trước khi đi!</div>
+      <div class="ti-c">Miễn phí · Uber ~250 TWD</div>
       <div class="ti-tip">💡 Check tideschart.com! Golden hour 17:30-18:30</div>
       <div class="il-group"><a href="https://www.google.com/maps/search/Gaomei+Wetlands+Taichung+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Tuabin gió + hoàng hôn phản chiếu</span><span class="il-tip">Cầu gỗ + bầu trời cam</span></span></a></div>
     </div>
     <div class="ti ev">
-      <div class="ti-t">Tối 19:00</div>
-      <div class="ti-p"><span class="mb">4</span><span class="rb" onclick="zoomRank(12)" title="#12">12</span>Fengjia Night Market / 逢甲夜市<br><small class="ti-sub">Lớn nhất Đài Loan · Về nhận phòng</small></div>
+      <div class="ti-t">Tối 19:30</div>
+      <div class="ti-p"><span class="mb">6</span><span class="rb" onclick="zoomRank(12)" title="#12">12</span>Fengjia Night Market / 逢甲夜市<br><small class="ti-sub">Lớn nhất Đài Loan · Check-in phòng</small></div>
       <div class="ti-d">15,000+ gian hàng. Đi ít nhất 2h. Sau đó về hotel check-in phòng chính thức.</div>
       <div class="ti-c">~300-500 TWD</div>
       <div class="il-group"><a href="https://www.google.com/maps/search/Fengjia+Night+Market+Taichung" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🐔 Salt & Pepper Chicken 鹽酥雞</span><span class="il-tip">Nổi tiếng nhất Fengjia</span></span></a><a href="https://www.google.com/maps/search/Fengjia+sweet+potato+balls" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍠 Sweet Potato Balls 地瓜球</span><span class="il-tip">Khoai lang chiên phồng</span></span></a></div>
     </div>
   </div></div>
+  <div class="nt inf"><b>📌 N6</b>Uber 100% trong Taichung (chia 3 rẻ + tiện hơn xe máy/bus, mưa tháng 5). Audit linh hoạt skip nếu mệt. Vé HSR in "Taipei" nhưng board tại Nangang OK.</div>
 </div>
 
 <div class="tc" id="tab-day7">
-  <div class="dh"><h2>N7 — T6 01/05 — Đài Trung → Đài Bắc</h2><p>SML option · HSR về · Beitou/Tamsui · Shilin · 🧳 Mang hành lý theo</p><span class="dh-tr">🚄 HSR Taichung→Taipei ~45p</span></div>
-  <a href="https://www.google.com/maps/dir/23.8491,120.9163/24.179,120.6463" target="_blank" class="rt-btn org">🗺️ SML option</a>
+  <div class="dh"><h2>N7 — T6 01/05 — Đài Trung → Đài Bắc</h2><p>Calligraphy Greenway · 🚄 HSR · Beitou/Tamsui · Shilin · Starbucks 🌟 · 🧳 Mang hành lý theo</p><span class="dh-tr">🚄 HSR 128 Taichung→Taipei 13:39</span></div>
+  <a href="https://www.google.com/maps/dir/24.1576,120.6647/24.179,120.6463" target="_blank" class="rt-btn grn">🗺️ Greenway→Hotel</a>
 
   <a href="https://www.google.com/maps/dir/25.1368,121.5067/25.088,121.5242" target="_blank" class="rt-btn blu">🗺️ Beitou→Shilin</a>
 
   <a href="https://www.google.com/maps/dir/25.1696,121.4408/25.088,121.5242" target="_blank" class="rt-btn pur">🗺️ Tamsui→Shilin</a>
 
+  <a href="https://www.google.com/maps/dir/25.088,121.5242/25.0397,121.5663" target="_blank" class="rt-btn org">🗺️ Shilin→Starbucks Dream Plaza</a>
+
   <div class="cd"><div class="cd-t">📍 Lịch trình</div><div class="tl">
     <div class="ti">
-      <div class="ti-t">06:30</div>
-      <div class="ti-p">🧳 Check-out Hotel Đài Trung<br><small class="ti-sub">Mang toàn bộ hành lý theo người</small></div>
-      <div class="ti-d">Trả phòng hotel Fengjia. Mang hành lý đi SML hoặc ga HSR.</div>
+      <div class="ti-t">08:00</div>
+      <div class="ti-p">Slow morning · Tắm nghỉ<br><small class="ti-sub">Bù N6 mệt — không vội</small></div>
+      <div class="ti-d">Dậy thoải mái, tắm rửa, kiểm tra hành lý. Không vội vì HSR đến 13:39.</div>
     </div>
     <div class="ti">
-      <div class="ti-t">Sáng 7:00 — Option A</div>
-      <div class="ti-p"><span class="mb">1</span><span class="rb" onclick="zoomRank(18)" title="#18">18</span>Sun Moon Lake / 日月潭<br><small class="ti-sub">Hồ Nhật Nguyệt</small></div>
-      <div class="ti-d">Bus ~1.5h từ Đài Trung. Đạp xe hoặc du thuyền. Về ga HSR 13:00. Có thể gửi hành lý tại locker bến bus SML.</div>
-      <div class="ti-c">Bus 190 | Xe đạp 200 | Thuyền 300 TWD</div>
-      <div class="ti-tip">💡 Sáng sớm hồ phẳng như gương</div>
-      <div class="il-group"><a href="https://www.google.com/maps/search/Sun+Moon+Lake+Taiwan+morning" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Mặt hồ sáng sớm phẳng như gương</span><span class="il-tip">6:30-8:00 mist đẹp</span></span></a></div>
+      <div class="ti-t">09:00</div>
+      <div class="ti-p"><span class="mb">1</span>⭐ Calligraphy Greenway / 草悟道<br><small class="ti-sub">Linear park 3.6km · Vibe Kyoto · Cafe specialty</small></div>
+      <div class="ti-d">Linear park 3.6km giữa Taichung, vibe Kyoto chill. Recommend Mojocoffee + Fika Fika cafe.</div>
+      <div class="ti-c">Cafe ~150 TWD/người</div>
+      <div class="ti-tip">💡 Walk path + ngồi cafe 1.5-2h thư giãn</div>
+      <div class="il-group"><a href="https://www.google.com/maps/search/Calligraphy+Greenway+Taichung" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Park path xanh giữa phố</span><span class="il-tip">Vibe Kyoto</span></span></a><a href="https://www.google.com/maps/search/Mojocoffee+Taichung" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">☕ Mojocoffee</span><span class="il-tip">Specialty cafe top Taichung</span></span></a><a href="https://www.google.com/maps/search/Fika+Fika+Cafe+Taichung" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">☕ Fika Fika Cafe</span><span class="il-tip">Nordic vibe specialty</span></span></a></div>
     </div>
     <div class="ti">
-      <div class="ti-t">Trưa 12:00</div>
-      <div class="ti-p">HSR Taichung → Taipei / 台中高鐵→台北<br><small class="ti-sub">Ga Taichung HSR (台中高鐵站)</small></div>
-      <div class="ti-d">45 phút. Taxi Fengjia→ga HSR ~200 TWD, 20p.</div>
-      <div class="ti-c">~700 TWD · App T Express</div>
-      <div class="ti-tip">💡 Ga HSR ở ngoại ô — Uber/taxi 20p từ Fengjia</div>
+      <div class="ti-t">11:30</div>
+      <div class="ti-p">🧳 Quay về hotel check-out + lấy hành lý<br><small class="ti-sub">Uber ~150 TWD</small></div>
+      <div class="ti-d">Trả phòng hotel Fengjia, lấy hành lý đã gửi sáng. Uber tới ga HSR.</div>
+    </div>
+    <div class="ti">
+      <div class="ti-t">12:30</div>
+      <div class="ti-p">🚖 Uber → Taichung HSR Station<br><small class="ti-sub">~250 TWD chia 3 · Đi sớm phòng kẹt xe trưa</small></div>
+      <div class="ti-d">Đi sớm 1h trước HSR phòng kẹt xe trưa. Ga HSR ngoại ô tây nam.</div>
+      <div class="ti-c">~250 TWD chia 3</div>
+    </div>
+    <div class="ti">
+      <div class="ti-t">13:39</div>
+      <div class="ti-p">🚄 HSR 128 Taichung → Taipei<br><small class="ti-sub">台中→台北 · 50p</small></div>
+      <div class="ti-d">Reservation #05182728 ✅. Dừng Banqiao + Taipei Main + Nangang. Xuống Taipei Main.</div>
+      <div class="ti-c">~2,100 TWD estimate</div>
+      <div class="ti-tip">💡 HSR 128 đổi giờ free đến 30p trước departure (T Express app)</div>
       <div class="ti-bk" id="bkf_d7_hsr">
-        <span class="ti-bk-label">🚄 HSR Taichung→Taipei (T Express)</span>
+        <span class="ti-bk-label">🚄 HSR 128 Taichung→Taipei #05182728</span>
         <input class="ti-bk-input" data-bk="d7_hsr" data-type="transport" placeholder="Paste link booking..." onchange="saveTiBk(this)" onblur="saveTiBk(this)">
         <a class="ti-bk-open" id="bko_d7_hsr" style="display:none" target="_blank">Mở ↗</a>
       </div>
     </div>
     <div class="ti">
-      <div class="ti-t">Chiều 14:00</div>
-      <div class="ti-p">🧳 Gửi hành lý + lấy vali lớn Hotel Đài Bắc<br><small class="ti-sub">Check-in 15:00 — cùng hotel N1-3</small></div>
-      <div class="ti-d">Về hotel — gửi hành lý hiện tại + lấy vali lớn đã gửi khi đi Hoa Liên. Check-in phòng chính thức sau 15:00.</div>
+      <div class="ti-t">14:30</div>
+      <div class="ti-p">🧳 Hotel Đài Bắc — drop balo + lấy vali lớn<br><small class="ti-sub">Cùng hotel N1-3 · Check-in phòng sau 15:00</small></div>
+      <div class="ti-d">Drop balo + lấy vali lớn đã gửi từ N4. Check-in phòng chính thức sau 15:00.</div>
       <div class="ti-bk" id="bkf_d7_hotel">
         <span class="ti-bk-label">🏨 Hotel Đài Bắc đêm cuối</span>
         <input class="ti-bk-input" data-bk="d7_hotel" data-type="hotel" placeholder="Paste link booking..." onchange="saveTiBk(this)" onblur="saveTiBk(this)">
@@ -844,27 +905,41 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
       </div>
     </div>
     <div class="ti">
-      <div class="ti-t">Chiều 16:00 — Chọn 1</div>
-      <div class="ti-p"><span class="mb">2</span><span class="rb" onclick="zoomRank(16)" title="#16">16</span>Beitou Onsen / 北投溫泉<br><small class="ti-sub">Suối nóng Bắc Đầu</small></div>
-      <div class="ti-d">MRT 20p. Public 40 TWD hoặc private 800-1,500 TWD/h. Ghé Beitou Library kế bên.</div>
+      <div class="ti-t">Chiều 16:00 — Option A (mưa)</div>
+      <div class="ti-p"><span class="mb">2</span><span class="rb" onclick="zoomRank(16)" title="#16">16</span>Beitou Onsen / 北投溫泉<br><small class="ti-sub">Suối nóng Bắc Đầu — Indoor</small></div>
+      <div class="ti-d">MRT 25-30p. Public 40 TWD hoặc private 800-1,500 TWD/h. Ghé Beitou Library kế bên (confirm trước có mở cửa không, từng đóng renovate).</div>
       <div class="ti-c">Public 40 | Private 800-1,500 TWD</div>
-      <div class="il-group"><a href="https://www.google.com/maps/search/Beitou+Public+Library+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Beitou Public Library 北投圖書館</span><span class="il-tip">Kiến trúc gỗ xanh đẹp nhất Đài Bắc</span></span></a></div>
+      <div class="il-group"><a href="https://www.google.com/maps/search/Beitou+Public+Library+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Beitou Public Library 北投圖書館</span><span class="il-tip">Kiến trúc gỗ xanh · Confirm mở</span></span></a></div>
     </div>
     <div class="ti">
-      <div class="ti-t">Chiều 16:00 — Hoặc</div>
-      <div class="ti-p"><span class="mb">3</span><span class="rb" onclick="zoomRank(17)" title="#17">17</span>Tamsui + Liao Tianding / 淡水+廖添丁廟<br><small class="ti-sub">Đàm Thủy + Bali (八里)</small></div>
-      <div class="ti-d">Hoàng hôn Fisherman's Wharf. Phà sang Bali → Liao Tianding Temple.</div>
+      <div class="ti-t">Chiều 16:00 — Option B (nắng)</div>
+      <div class="ti-p"><span class="mb">3</span><span class="rb" onclick="zoomRank(17)" title="#17">17</span>Tamsui + Bali Liao Tianding / 淡水+八里廖添丁廟<br><small class="ti-sub">Đàm Thủy + Bali · Sunset 18:00-18:30</small></div>
+      <div class="ti-d">MRT + phà. Hoàng hôn Fisherman's Wharf 18:00-18:30. BONUS photo spot trạm bus 廖添丁廟站 (biển trạm có chữ tên đền). ⚠️ Phà cuối ~21:00.</div>
       <div class="ti-c">MRT + phà ~100 TWD</div>
-      <div class="il-group"><a href="https://www.google.com/maps/search/Fishermans+Wharf+Tamsui+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Fisherman's Wharf cầu đỏ sunset</span><span class="il-tip">18:00-18:30</span></span></a><a href="https://www.google.com/maps/search/Liao+Tianding+Temple+Bali+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Liao Tianding Temple 廖添丁廟</span><span class="il-tip">Đền đỏ cổ · Bali</span></span></a></div>
+      <div class="ti-tip">💡 Mưa thì Beitou (indoor onsen), nắng thì Tamsui sunset</div>
+      <div class="il-group"><a href="https://www.google.com/maps/search/Fishermans+Wharf+Tamsui+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Fisherman's Wharf cầu đỏ sunset</span><span class="il-tip">18:00-18:30</span></span></a><a href="https://www.google.com/maps/search/Liao+Tianding+Temple+Bali+Taiwan" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Liao Tianding Temple 廖添丁廟</span><span class="il-tip">Đền đỏ cổ · Bali</span></span></a><a href="https://www.google.com/maps/search/Liao+Tianding+bus+stop+Bali" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">📸 Trạm bus 廖添丁廟站</span><span class="il-tip">Biển trạm có chữ tên đền</span></span></a></div>
     </div>
     <div class="ti ev">
       <div class="ti-t">Tối 20:00</div>
       <div class="ti-p"><span class="mb">4</span>Shilin Night Market / 士林夜市 — BỮA CUỐI<br><small class="ti-sub">Shì Lín Yè Shì</small></div>
-      <div class="ti-d">Gà rán XXL, oyster vermicelli. MUA QUÀ ĐÊM NAY!</div>
+      <div class="ti-d">Oyster vermicelli, gà rán XXL. MUA QUÀ ĐÊM NAY (Chia Te 佳德 mở đến 22:00).</div>
       <div class="ti-c">~300-500 TWD + Quà 500-2,000 TWD</div>
-      <div class="ti-tip">💡 Chia Te 佳德 mở đến 22:00 gần MRT Songshan</div>
-      <div class="ti-note">⚠️ Cân vali ≤23kg ×3. Set alarm 6:30 sáng mai!</div>
+      <div class="ti-tip">💡 Chia Te 佳德 gần MRT Songshan</div>
       <div class="il-group"><a href="https://www.google.com/maps/search/Shilin+Night+Market+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🦪 Oyster Vermicelli 蚵仔麵線</span><span class="il-tip">Classic bữa cuối</span></span></a><a href="https://www.google.com/maps/search/Chia+Te+Bakery+Taipei" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🎂 Chia Te Pineapple Cake 佳德</span><span class="il-tip">Mua quà về</span></span></a></div>
+    </div>
+    <div class="ti ev">
+      <div class="ti-t">Tối 22:30</div>
+      <div class="ti-p"><span class="mb">5</span>🌟 Starbucks Reserve Dream Plaza / 星巴克典藏<br><small class="ti-sub">Flagship lớn nhất Đài Loan & Asia Pacific · NEW</small></div>
+      <div class="ti-d">2,000m² flagship tầng 6+7 — MRT City Hall Exit 2 (Tamsui-Xinyi line, ~25p từ Shilin). Mixology Bar 24h (các zones khác đóng 22:00). Drink 150-300 TWD, mua merchandise Taiwan-exclusive làm quà. Tầng 7 rooftop garden ngắm Taipei 101 đêm — photo cuối trip.</div>
+      <div class="ti-c">Drink 150-300 TWD · Merch 500-2,000 TWD</div>
+      <div class="ti-tip">💡 Mixology Bar 24h sau Shilin = perfect ending</div>
+      <div class="ti-note">⚠️ Cân vali ≤23kg ×3. Set alarm 6:30 sáng mai!</div>
+      <div class="il-group"><a href="https://www.google.com/maps/search/Starbucks+Reserve+Dream+Plaza+Taipei" target="_blank" class="il-link il-photo"><span class="il-icon">📸</span><span><span class="il-name">Tầng 7 rooftop + Taipei 101 đêm</span><span class="il-tip">Photo cuối trip</span></span></a><a href="https://www.google.com/maps/search/Starbucks+Reserve+Dream+Plaza+mixology" target="_blank" class="il-link il-food"><span class="il-icon">🍜</span><span><span class="il-name">🍸 Mixology Bar 24h</span><span class="il-tip">Drink Taiwan-exclusive</span></span></a></div>
+      <div class="ti-bk" id="bkf_d7_starbucks">
+        <span class="ti-bk-label">🌟 Starbucks Reserve Dream Plaza</span>
+        <input class="ti-bk-input" data-bk="d7_starbucks" data-type="ticket" placeholder="Note/link..." onchange="saveTiBk(this)" onblur="saveTiBk(this)">
+        <a class="ti-bk-open" id="bko_d7_starbucks" style="display:none" target="_blank">Mở ↗</a>
+      </div>
     </div>
   </div></div>
 </div>
@@ -917,7 +992,7 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
 <div class="tc" id="tab-mustdo">
   <div class="dh" style="background:linear-gradient(135deg,#f093fb,#f5576c)"><h2>⭐ Must Do — Taiwan</h2><p>Check vào những gì đã trải nghiệm!</p></div>
   <div class="cd">
-    <div class="md-prog" id="mdProg">0/40 hoàn thành</div>
+    <div class="md-prog" id="mdProg">0/43 hoàn thành</div>
     <div class="md-prog-bar"><div class="md-prog-fill" id="mdBar" style="width:0%"></div></div>
 
     <!-- TAIPEI -->
@@ -934,6 +1009,7 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
       <div class="md-i"><input type="checkbox" data-md="e10" onchange="mdChk(this)"><label><span class="md-name">Ngâm onsen Beitou 北投溫泉</span><span class="md-addr">📍 Beitou District, Taipei | 北投區 (MRT Xinbeitou)</span><span class="md-sub">Public 40 TWD | Private ~800 TWD/h</span></label><a href="https://www.google.com/maps/search/Beitou+Hot+Spring+Taipei" target="_blank" class="md-gmap">📍</a></div>
       <div class="md-i"><input type="checkbox" data-md="c2" onchange="mdChk(this)"><label><span class="md-name">Beitou Public Library 北投圖書館</span><span class="md-addr">📍 No. 251, Guangming Road, Beitou District | 光明路251號</span><span class="md-sub">Kiến trúc gỗ xanh đẹp nhất Đài Bắc · Free</span></label><a href="https://www.google.com/maps/search/Beitou+Public+Library+Taipei" target="_blank" class="md-gmap">📍</a></div>
       <div class="md-i"><input type="checkbox" data-md="f14" onchange="mdChk(this)"><label><span class="md-name">Fuhang Soy Milk 阜杭豆漿</span><span class="md-addr">📍 2F, No. 108, Section 1, Zhongxiao East Road (Hangle Market) | 忠孝東路一段108號2樓</span><span class="md-sub">Ăn sáng N8 · Đến trước 7:30</span></label><a href="https://www.google.com/maps/search/Fuhang+Soy+Milk+Taipei" target="_blank" class="md-gmap">📍</a></div>
+      <div class="md-i"><input type="checkbox" data-md="tp_starbucks" onchange="mdChk(this)"><label><span class="md-name">🌟 Starbucks Reserve Dream Plaza 星巴克典藏 (lớn nhất Đài Loan)</span><span class="md-addr">📍 No. 11, Songgao Road, Xinyi District, Taipei (Tầng 6+7) | 信義區松高路11號6-7樓</span><span class="md-sub">MRT City Hall Exit 2 · Mixology Bar 24h · Asia Pacific flagship</span></label><a href="https://www.google.com/maps/search/Starbucks+Reserve+Dream+Plaza+Taipei" target="_blank" class="md-gmap">📍</a></div>
     </div>
 
     <!-- TAN BAC (NEW TAIPEI) -->
@@ -968,10 +1044,13 @@ body{overscroll-behavior-x:none;touch-action:pan-y;}
     <div class="md-city">
       <div class="md-city-hdr" style="background:#e8f4e8;border-left-color:#27ae60">🌆 Đài Trung — Taichung</div>
       <div class="md-i"><input type="checkbox" data-md="f_miya" onchange="mdChk(this)"><label><span class="md-name">Miyahara Ice Cream 宮原眼科</span><span class="md-addr">📍 No. 20, Zhongshan Road, Central District, Taichung | 中山路20號</span><span class="md-sub">Mái vòm sách Harry Potter · Kem multi-scoop</span></label><a href="https://www.google.com/maps/search/Miyahara+Taichung" target="_blank" class="md-gmap">📍</a></div>
+      <div class="md-i"><input type="checkbox" data-md="tc_theater" onchange="mdChk(this)"><label><span class="md-name">⭐ National Taichung Theater 國家歌劇院</span><span class="md-addr">📍 No. 101, Section 2, Huilai Road, Xitun District | 西屯區惠來路二段101號</span><span class="md-sub">Kiến trúc Toyo Ito · Pritzker laureate · Free foyer</span></label><a href="https://www.google.com/maps/search/National+Taichung+Theater+Toyo+Ito" target="_blank" class="md-gmap">📍</a></div>
+      <div class="md-i"><input type="checkbox" data-md="tc_audit" onchange="mdChk(this)"><label><span class="md-name">⭐ Audit New Village 審計新村</span><span class="md-addr">📍 No. 569, Minsheng North Road, West District, Taichung | 西區民生北路569號</span><span class="md-sub">Hipster cluster · Cafe + nhà nghệ sĩ</span></label><a href="https://www.google.com/maps/search/Audit+New+Village+Taichung" target="_blank" class="md-gmap">📍</a></div>
+      <div class="md-i"><input type="checkbox" data-md="tc_calli" onchange="mdChk(this)"><label><span class="md-name">⭐ Calligraphy Greenway 草悟道</span><span class="md-addr">📍 Park Road, West District, Taichung | 西區草悟道</span><span class="md-sub">Linear park 3.6km · Cluster cafe specialty</span></label><a href="https://www.google.com/maps/search/Calligraphy+Greenway+Taichung" target="_blank" class="md-gmap">📍</a></div>
       <div class="md-i"><input type="checkbox" data-md="c4" onchange="mdChk(this)"><label><span class="md-name">Rainbow Village 彩虹眷村</span><span class="md-addr">📍 No. 56, Chuncheng Road, Nantun District, Taichung | 南屯區春城路56號</span><span class="md-sub">Cụ ông 97 tuổi vẽ tay · Free</span></label><a href="https://www.google.com/maps/search/Rainbow+Village+Taichung" target="_blank" class="md-gmap">📍</a></div>
       <div class="md-i"><input type="checkbox" data-md="e11" onchange="mdChk(this)"><label><span class="md-name">Hoàng hôn Gaomei Wetlands 高美濕地</span><span class="md-addr">📍 Gaomei, Qingshui District, Taichung | 清水區高美濕地</span><span class="md-sub">Tuabin gió + sunset · Check triều trước!</span></label><a href="https://www.google.com/maps/search/Gaomei+Wetlands+Taichung" target="_blank" class="md-gmap">📍</a></div>
       <div class="md-i"><input type="checkbox" data-md="f_fen" onchange="mdChk(this)"><label><span class="md-name">Fengjia Night Market 逢甲夜市</span><span class="md-addr">📍 Fengjia Street, Xitun District, Taichung | 西屯區逢甲路</span><span class="md-sub">Lớn nhất Đài Loan · Đi ít nhất 2h</span></label><a href="https://www.google.com/maps/search/Fengjia+Night+Market+Taichung" target="_blank" class="md-gmap">📍</a></div>
-      <div class="md-i"><input type="checkbox" data-md="sml" onchange="mdChk(this)"><label><span class="md-name">Sun Moon Lake 日月潭 (option)</span><span class="md-addr">📍 Yuchi Township, Nantou County | 南投縣魚池鄉日月潭</span><span class="md-sub">Bus 1.5h từ Đài Trung · Hồ đẹp nhất</span></label><a href="https://www.google.com/maps/search/Sun+Moon+Lake+Taiwan" target="_blank" class="md-gmap">📍</a></div>
+      <div class="md-i md-removed"><input type="checkbox" data-md="sml" disabled><label><span class="md-name">Sun Moon Lake 日月潭 (đã bỏ trip này)</span><span class="md-addr">📍 Yuchi Township, Nantou County | 南投縣魚池鄉日月潭</span><span class="md-sub">Bỏ — không khả thi với HSR 13:39 cùng ngày N7</span></label><a href="https://www.google.com/maps/search/Sun+Moon+Lake+Taiwan" target="_blank" class="md-gmap">📍</a></div>
     </div>
 
     <!-- FOOD GENERAL -->
@@ -1108,13 +1187,13 @@ const DL={
   day3:[{n:"Yehliu 野柳",lat:25.2056,lng:121.6901,r:9},{n:"Jiufen 九份",lat:25.1097,lng:121.8452,r:3},{n:"Shifen 十分",lat:25.0425,lng:121.7764,r:8},{n:"Ningxia Market 寧夏夜市",lat:25.0558,lng:121.5153,r:null}],
   day4:[{n:"Gongzheng Baozi 公正包子",lat:23.9788,lng:121.6068,r:null},{n:"Pine Garden 松園別館",lat:23.9683,lng:121.6238,r:null},{n:"Qixingtan Sunset 七星潭",lat:24.0286,lng:121.6256,r:10},{n:"Dongdamen 東大門",lat:23.9771,lng:121.6044,r:null}],
   day5:[{n:"Shakadang Trail 砂卡礑",lat:24.1862,lng:121.5905,r:20},{n:"Swallow Grotto 燕子口",lat:24.1736,lng:121.5575,r:11},{n:"Tianxiang 天祥 (lunch)",lat:24.1839,lng:121.4933,r:2},{n:"Tunnel of 9 Turns 九曲洞",lat:24.1762,lng:121.5499,r:null},{n:"Qingshui Cliff 清水斷崖",lat:24.2288,lng:121.7144,r:19}],
-  day6:[{n:"Miyahara 宮原眼科",lat:24.1382,lng:120.6833,r:15},{n:"Rainbow Village 彩虹眷村",lat:24.1339,lng:120.6082,r:14},{n:"Gaomei 高美濕地",lat:24.3125,lng:120.5527,r:13},{n:"Fengjia 逢甲",lat:24.179,lng:120.6463,r:12}],
-  day7:[{n:"Sun Moon Lake 日月潭",lat:23.8491,lng:120.9163,r:18},{n:"Beitou Onsen 北投",lat:25.1368,lng:121.5067,r:16},{n:"Tamsui 淡水",lat:25.1696,lng:121.4408,r:17},{n:"Shilin Market 士林",lat:25.088,lng:121.5242,r:null}],
+  day6:[{n:"Miyahara 宮原眼科",lat:24.1382,lng:120.6833,r:15},{n:"National Theater 國家歌劇院",lat:24.1614,lng:120.6398,r:18},{n:"Audit Village 審計新村",lat:24.1450,lng:120.6634,r:null},{n:"Rainbow Village 彩虹眷村",lat:24.1339,lng:120.6082,r:14},{n:"Gaomei 高美濕地",lat:24.3125,lng:120.5527,r:13},{n:"Fengjia 逢甲",lat:24.179,lng:120.6463,r:12}],
+  day7:[{n:"Calligraphy Greenway 草悟道",lat:24.1576,lng:120.6647,r:null},{n:"Beitou Onsen 北投",lat:25.1368,lng:121.5067,r:16},{n:"Tamsui 淡水",lat:25.1696,lng:121.4408,r:17},{n:"Shilin Market 士林",lat:25.088,lng:121.5242,r:null},{n:"Starbucks Reserve Dream Plaza 星巴克典藏",lat:25.0397,lng:121.5663,r:null}],
   day8:[{n:"Fuhang Soy Milk 阜杭豆漿",lat:25.0447,lng:121.5264,r:null},{n:"Chia Te 佳德",lat:25.0505,lng:121.5774,r:null},{n:"TPE Airport",lat:25.0797,lng:121.2342,r:null}]
 };
 const COLORS=['#667eea','#1a73e8','#1a73e8','#e67e22','#e67e22','#27ae60','#27ae60','#dc3545'];
 const DMAP={day1:'25/04',day2:'26/04',day3:'27/04',day4:'28/04',day5:'29/04',day6:'30/04',day7:'01/05',day8:'02/05'};
-const RANKS=[[1,"Taipei 101 / 台北101","Đài Bắc",2,"Chụp 4 góc iconic (no T89)"],[2,"Taroko / 太魯閣","Hoa Liên",5,"Hẻm núi #1 châu Á"],[3,"Jiufen / 九份","Tân Bắc",3,"Spirited Away vibes"],[4,"Yongkang / 永康街","Đài Bắc",2,"Mì bò, Din Tai Fung"],[5,"Ximending / 西門町","Đài Bắc",1,"Shopping & nightlife"],[6,"Elephant Mt / 象山","Đài Bắc",2,"Best city view"],[7,"Raohe / 饒河夜市","Đài Bắc",2,"Chợ đêm cổ nhất"],[8,"Shifen / 十分","Tân Bắc",3,"Thả đèn trời"],[9,"Yehliu / 野柳","Tân Bắc",3,"Queen's Head"],[10,"Qixingtan / 七星潭","Hoa Liên",4,"Bãi đá cuội + sunset chill"],[11,"Swallow Grotto / 燕子口","Hoa Liên",5,"Vách cẩm thạch icon Taroko"],[12,"Fengjia / 逢甲","Đài Trung",6,"Lớn nhất Đài Loan"],[13,"Gaomei / 高美濕地","Đài Trung",6,"Hoàng hôn tuabin gió"],[14,"Rainbow / 彩虹眷村","Đài Trung",6,"Street art"],[15,"Miyahara / 宮原眼科","Đài Trung",6,"Kem, kiến trúc Nhật"],[16,"Beitou / 北投溫泉","Đài Bắc",7,"Onsen"],[17,"Tamsui / 淡水","Đài Bắc",7,"Hoàng hôn, Liao Tianding"],[18,"Sun Moon Lake / 日月潭","Nam Đầu","7*","Hồ đẹp (option)"],[19,"Qingshui / 清水斷崖","Hoa Liên",5,"Vách đá 1000m"],[20,"Shakadang / 砂卡礑","Hoa Liên",5,"Suối ngọc lam"]];
+const RANKS=[[1,"Taipei 101 / 台北101","Đài Bắc",2,"Chụp 4 góc iconic (no T89)"],[2,"Taroko / 太魯閣","Hoa Liên",5,"Hẻm núi #1 châu Á"],[3,"Jiufen / 九份","Tân Bắc",3,"Spirited Away vibes"],[4,"Yongkang / 永康街","Đài Bắc",2,"Mì bò, Din Tai Fung"],[5,"Ximending / 西門町","Đài Bắc",1,"Shopping & nightlife"],[6,"Elephant Mt / 象山","Đài Bắc",2,"Best city view"],[7,"Raohe / 饒河夜市","Đài Bắc",2,"Chợ đêm cổ nhất"],[8,"Shifen / 十分","Tân Bắc",3,"Thả đèn trời"],[9,"Yehliu / 野柳","Tân Bắc",3,"Queen's Head"],[10,"Qixingtan / 七星潭","Hoa Liên",4,"Bãi đá cuội + sunset chill"],[11,"Swallow Grotto / 燕子口","Hoa Liên",5,"Vách cẩm thạch icon Taroko"],[12,"Fengjia / 逢甲","Đài Trung",6,"Lớn nhất Đài Loan"],[13,"Gaomei / 高美濕地","Đài Trung",6,"Hoàng hôn tuabin gió"],[14,"Rainbow / 彩虹眷村","Đài Trung",6,"Street art"],[15,"Miyahara / 宮原眼科","Đài Trung",6,"Kem, kiến trúc Nhật"],[16,"Beitou / 北投溫泉","Đài Bắc",7,"Onsen"],[17,"Tamsui / 淡水","Đài Bắc",7,"Hoàng hôn, Liao Tianding"],[18,"National Theater / 國家歌劇院","Đài Trung",6,"Toyo Ito · Kiến trúc cong"],[19,"Qingshui / 清水斷崖","Hoa Liên",5,"Vách đá 1000m"],[20,"Shakadang / 砂卡礑","Hoa Liên",5,"Suối ngọc lam"]];
 
 let map=null,mks=[],poly=null;
 try{if(typeof L!=='undefined'){map=L.map('map',{zoomControl:false}).setView([23.7,121],7);L.control.zoom({position:'bottomright'}).addTo(map);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OSM'}).addTo(map);}}catch(e){console.error('Map:',e);}
@@ -1147,8 +1226,8 @@ function go(id){
 }
 
 // GENERIC TASK SYSTEM
-const DEFAULT_TASKS={"day1":["Mua SIM Chunghwa Telecom tại TPE B1","Mua + nạp EasyCard ×3 (500 TWD/thẻ)","Đổi ≥10,000 TWD/người","Check-in hotel Ximending/Zhongshan","Ăn tối Ximending — Tiger Sugar + Hot Star"],"day2":["Đến CKS Memorial đúng giờ chẵn xem đổi gác","Ăn trưa Yongkang — DTF hoặc Beef Noodle","Taipei 101 — chụp 4 góc signature (Alley 253, Songren, Symphony, XinYi Plaza)","Leo Elephant Mountain trước 17:00","Chợ đêm Raohe tối","Nạp thêm EasyCard nếu dưới 200 TWD"],"day3":["Sáng 7:30 bus Kuo-Kuang 1815 từ Taipei West Bus Station","Check app Bus+ Taipei + Taiwan Railways để xem giờ real-time","Yehliu → bus/taxi → Jiufen → Ruifang → TRA Pingxi → Shifen","Mang áo mưa — vùng này hay mưa","Mua đèn trời tại Shifen (200 TWD/4 màu)","Ăn tối Ningxia Night Market (hoặc Shifen)","Sắp balo cho Hoa Liên tối nay!"],"day4":["⏰ Ra ga Taipei trước 08:10","Lấy vé tại quầy: Booking #6684500 + passport","🧳 Gửi hành lý tại Hotel Hoa Liên lúc 11:15","Thuê xe máy 125cc tại khu ga Hualien (cần IDP)","Lunch Gongzheng Baozi 公正包子 (8 TWD/cái) — mua thêm cho chiều","Pine Garden 松園別館 chill cafe 1.5-2h","Chọn 1: Liyu Lake / Yunshan Shui / Cultural Park (optional)","Quay lại hotel check-in phòng sau 15:00","Hoàng hôn Qixingtan Beach 17:30-18:30","Tối Dongdamen — Aboriginal BBQ + mua Mochi Zeng Yong","Đặt vé TRA Hualien→Taichung 30/04 (nếu chưa)"],"day5":["⏰ 7:00 khởi hành xe máy đi Taroko","Check trail mở/đóng: taroko.gov.tw","Mượn mũ bảo hiểm miễn phí cổng Taroko","Shakadang Trail 砂卡礑 sáng 8:00 (4.4km, 2h)","Swallow Grotto 燕子口 — vách cẩm thạch (mũ BH)","Lunch tại Tianxiang 天祥 (7-Eleven hoặc aboriginal)","Tunnel of 9 Turns 九曲洞 (nếu mở)","Qingshui Cliff 清水斷崖 chiều về","⚠️ Changchun Shrine ĐÓNG — bỏ qua","Mua thêm Mochi Zeng Yong + nougat làm quà","Trả xe máy tối nay hoặc sáng sớm mai","Pack đồ — sáng mai 7:30 đi tàu"],"day6":["⏰ Ra ga Hualien trước 7:15","Check Gaomei thủy triều: tideschart.com","🧳 Gửi hành lý tại Hotel Đài Trung lúc 12:30","Kem Miyahara + chụp mái vòm sách","Đến Gaomei trước 16:30 cho golden hour","Chợ đêm Fengjia ít nhất 2h, rồi check-in phòng"],"day7":["Taxi Fengjia→ga HSR Taichung ~200 TWD","🧳 Gửi hành lý + lấy vali lớn tại Hotel Đài Bắc lúc 14:00","Chọn: Beitou onsen HOẶC Tamsui+Liao Tianding","MUA QUÀ tại Shilin — cơ hội cuối!","Cân vali ≤23kg ×3 trước khi ngủ","Set alarm 6:30"],"day8":["⏰ Rời hotel trước 10:30","Ăn sáng Fuhang Soy Milk (đến trước 7:30)","Chia Te mở 7:30 (MRT Songshan) — mua thêm quà","Kiểm tra passport ×3 + vé + đồ đạc","Airport MRT ga A1 lúc 10:00","Tax Refund nếu mua >2,000 TWD/shop","Refund EasyCard TRƯỚC cổng xuất cảnh"]};
-const DEFAULT_OV_TASKS=["Hộ chiếu 3 người còn hạn > 6 tháng","Visa Đài Loan / E-visa 3 người đã duyệt","Vé máy bay CI-782/783 (in confirmation)","🎫 Vé TRA Taipei→Hualien 28/04 — Booking #6684500 ✅","Vé TRA Hualien→Taichung 30/04 (đặt trước!)","HSR Taichung→Taipei 01/05 (App T Express)","Bảo hiểm du lịch 3 người","🏍️ Bằng lái quốc tế (IDP) — thuê xe máy Hoa Liên","Adapter ổ cắm 2 chấu dẹt (110V)","Pin sạc dự phòng + cáp ×3","Kem chống nắng SPF50","Áo mưa gấp gọn / ô nhỏ","Giày đi bộ thoải mái","Giày thể thao bám tốt (Taroko trails N5)","Áo khoác nhẹ (AC tàu rất lạnh)","Thuốc say xe (đèo Taroko)","Google Maps offline map Taiwan","App T Express (vé HSR)","App Taiwan Railways (vé TRA)","App Bus+ Taipei (N3 tự túc)"];
+const DEFAULT_TASKS={"day1":["Mua SIM Chunghwa Telecom tại TPE B1","Mua + nạp EasyCard ×3 (500 TWD/thẻ)","Đổi ≥10,000 TWD/người","Check-in hotel Ximending/Zhongshan","Ăn tối Ximending — Tiger Sugar + Hot Star"],"day2":["Đến CKS Memorial đúng giờ chẵn xem đổi gác","Ăn trưa Yongkang — DTF hoặc Beef Noodle","Taipei 101 — chụp 4 góc signature (Alley 253, Songren, Symphony, XinYi Plaza)","Leo Elephant Mountain trước 17:00","Chợ đêm Raohe tối","Nạp thêm EasyCard nếu dưới 200 TWD"],"day3":["Sáng 7:30 bus Kuo-Kuang 1815 từ Taipei West Bus Station","Check app Bus+ Taipei + Taiwan Railways để xem giờ real-time","Yehliu → bus/taxi → Jiufen → Ruifang → TRA Pingxi → Shifen","Mang áo mưa — vùng này hay mưa","Mua đèn trời tại Shifen (200 TWD/4 màu)","Ăn tối Ningxia Night Market (hoặc Shifen)","Sắp balo cho Hoa Liên tối nay!"],"day4":["⏰ Ra ga Taipei trước 08:10","Lấy vé tại quầy: Booking #6684500 + passport","🧳 Gửi hành lý tại Hotel Hoa Liên lúc 11:15","Thuê xe máy 125cc tại khu ga Hualien (cần IDP)","Lunch Gongzheng Baozi 公正包子 (8 TWD/cái) — mua thêm cho chiều","Pine Garden 松園別館 chill cafe 1.5-2h","Chọn 1: Liyu Lake / Yunshan Shui / Cultural Park (optional)","Quay lại hotel check-in phòng sau 15:00","Hoàng hôn Qixingtan Beach 17:30-18:30","Tối Dongdamen — Aboriginal BBQ + mua Mochi Zeng Yong","Đặt vé TRA Hualien→Taichung 30/04 (nếu chưa)"],"day5":["⏰ 7:00 khởi hành xe máy đi Taroko","Check trail mở/đóng: taroko.gov.tw","Mượn mũ bảo hiểm miễn phí cổng Taroko","Shakadang Trail 砂卡礑 sáng 8:00 (4.4km, 2h)","Swallow Grotto 燕子口 — vách cẩm thạch (mũ BH)","Lunch tại Tianxiang 天祥 (7-Eleven hoặc aboriginal)","Tunnel of 9 Turns 九曲洞 (nếu mở)","Qingshui Cliff 清水斷崖 chiều về","⚠️ Changchun Shrine ĐÓNG — bỏ qua","Mua thêm Mochi Zeng Yong + nougat làm quà","Trả xe máy tối nay hoặc sáng sớm mai","Pack đồ — sáng mai 7:30 đi tàu","🔴 BÁO LỄ TÂN: check-out 5:00 sáng N6 + thanh toán trước nếu cần","Set 2 alarms 04:30 (phone + đồng hồ dự phòng)","Confirm vé Puyuma 203 #7330461 + HSR 1509 #05266847"],"day6":["⏰ 04:30 wake — set 2 alarms","🧳 05:00 check-out Hotel Hoa Liên","Ghé 7-Eleven gần ga grab onigiri + cafe (đã mở 24h)","🚆 05:50 Puyuma 203 Hualien→Nangang #7330461","🔄 08:04 Nangang TRA → 08:36 HSR Nangang (cùng tòa, đi bộ ~3p)","🚄 HSR 1509 Nangang→Taichung #05266847","🚖 Uber Taichung HSR → Hotel Fengjia drop hành lý 10:30","Check Gaomei thủy triều: tideschart.com cho 30/04","Audit Village skip nếu mệt sau Theater","Đến Gaomei trước 17:30 cho golden hour","Check-in phòng Hotel Fengjia tối sau Gaomei"],"day7":["08:00 dậy slow morning","09:00 cafe specialty + Calligraphy Greenway","11:30 quay về hotel check-out + lấy hành lý","🚖 12:30 Uber → Taichung HSR (đi sớm phòng kẹt xe)","🚄 13:39 HSR 128 Taichung→Taipei #05182728","🧳 14:30 Hotel Đài Bắc — drop balo + lấy vali lớn từ N4","Chọn: Beitou onsen HOẶC Tamsui+Bali Liao Tianding","MUA QUÀ tại Shilin — cơ hội cuối!","🌟 Starbucks Reserve Dream Plaza tối 22:30 — mua ly limited Taiwan + chụp tầng 7 rooftop","Cân vali ≤23kg ×3 trước khi ngủ","Set alarm 6:30"],"day8":["⏰ Rời hotel trước 10:30","Ăn sáng Fuhang Soy Milk (đến trước 7:30)","Chia Te mở 7:30 (MRT Songshan) — mua thêm quà","Kiểm tra passport ×3 + vé + đồ đạc","Airport MRT ga A1 lúc 10:00","Tax Refund nếu mua >2,000 TWD/shop","Refund EasyCard TRƯỚC cổng xuất cảnh"]};
+const DEFAULT_OV_TASKS=["Hộ chiếu 3 người còn hạn > 6 tháng","Visa Đài Loan / E-visa 3 người đã duyệt","Vé máy bay CI-782/783 (in confirmation)","🎫 Vé TRA Taipei→Hualien 28/04 — Booking #6684500 ✅","🎫 Vé TRA Puyuma 203 Hualien→Nangang 30/04 — #7330461 ✅","🎫 Vé HSR 1509 Nangang→Taichung 30/04 — #05266847 ✅","🎫 Vé HSR 128 Taichung→Taipei 01/05 — #05182728 ✅","Bảo hiểm du lịch 3 người","🏍️ Bằng lái quốc tế (IDP) — thuê xe máy Hoa Liên","Adapter ổ cắm 2 chấu dẹt (110V)","Pin sạc dự phòng + cáp ×3","Kem chống nắng SPF50","Áo mưa gấp gọn / ô nhỏ","Giày đi bộ thoải mái","Giày thể thao bám tốt (Taroko trails N5)","Áo khoác nhẹ (AC tàu rất lạnh)","Thuốc say xe (đèo Taroko)","Google Maps offline map Taiwan","Tải app T Express (vé HSR — quét QR tại cổng)","App Taiwan Railways (vé TRA)","App Bus+ Taipei (N3 tự túc)","App Uber (di chuyển Đài Trung N6)"];
 let allTasks={};
 
 function genId(){return 't_'+Math.random().toString(36).slice(2,11)+'_'+Date.now();}
@@ -1254,11 +1333,11 @@ const DEFAULT_BOOKINGS={
   day1:[['flight','✈️ Vé CI-782 SGN→TPE',''],['hotel','🏨 Hotel Đài Bắc (N1-3+N7)','']],
   day4:[['transport','🚆 TRA 472 Taipei→Hualien #6684500','https://www.railway.gov.tw'],['hotel','🏨 Hotel Hoa Liên (N4+N5)','']],
   day5:[['transport','🚆 TRA Hualien→Taichung 30/04','']],
-  day6:[['transport','🚆 TRA Hualien→Taichung',''],['hotel','🏨 Hotel Đài Trung (Fengjia)','']],
-  day7:[['transport','🚄 HSR Taichung→Taipei',''],['hotel','🏨 Hotel Đài Bắc đêm cuối','']],
+  day6:[['transport','🚆 Puyuma 203 Hualien→Nangang #7330461','https://www.railway.gov.tw'],['transport','🚄 HSR 1509 Nangang→Taichung #05266847','https://www.thsrc.com.tw'],['hotel','🏨 Hotel Đài Trung (Fengjia)','']],
+  day7:[['transport','🚄 HSR 128 Taichung→Taipei #05182728','https://www.thsrc.com.tw'],['hotel','🏨 Hotel Đài Bắc đêm cuối',''],['ticket','🌟 Starbucks Reserve Dream Plaza','']],
   day8:[['flight','✈️ Vé CI-783 TPE→SGN','']]
 };
-const BK_IDS={day1:['d1_flight','d1_hotel'],day4:['d4_train','d4_hotel'],day5:['d5_train'],day6:['d6_train','d6_hotel'],day7:['d7_hsr','d7_hotel'],day8:['d8_flight']};
+const BK_IDS={day1:['d1_flight','d1_hotel'],day4:['d4_train','d4_hotel'],day6:['d6_puyuma','d6_hsr','d6_hotel'],day7:['d7_hsr','d7_hotel','d7_starbucks'],day8:['d8_flight']};
 
 async function loadTiBk(){
   const rows=await getAllShared('booking_links');
@@ -1337,14 +1416,16 @@ async function mdInit(){
   const d=await getAllSharedKV('mustdo_progress');
   document.querySelectorAll('[data-md]').forEach(cb=>{if(d[cb.getAttribute('data-md')]){cb.checked=true;cb.closest('.md-i').classList.add('ck');}});mdUpd();
 }
-function mdUpd(){const all=document.querySelectorAll('[data-md]');let tot=all.length,chk=0;all.forEach(cb=>{if(cb.checked)chk++;});const p=document.getElementById('mdProg');if(p)p.textContent=chk+'/'+tot+' hoàn thành';const b=document.getElementById('mdBar');if(b)b.style.width=Math.round(chk/tot*100)+'%';}
+function mdUpd(){const all=document.querySelectorAll('[data-md]:not([disabled])');let tot=all.length,chk=0;all.forEach(cb=>{if(cb.checked)chk++;});const p=document.getElementById('mdProg');if(p)p.textContent=chk+'/'+tot+' hoàn thành';const b=document.getElementById('mdBar');if(b)b.style.width=tot>0?Math.round(chk/tot*100)+'%':'0%';}
 
 // BUDGET — removed: Taipei 101 ticket, Tour Yehliu/Jiufen/Shifen
 const DEFAULT_BUDGET=[
   {label:'✈️ Vé CI-782/783 khứ hồi',category:'transport',estimate:0,actual:0,currency:'VND',for_sa:true,for_bi:true,for_ty:true},
   {label:'🚆 TRA Taipei→Hualien (×3) ✅',category:'transport',estimate:1749,actual:1749,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🚆 TRA Hualien→Taichung',category:'transport',estimate:680,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
-  {label:'🚄 HSR Taichung→Taipei',category:'transport',estimate:700,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
+  {label:'🚆 Puyuma 203 Hualien→Nangang ✅',category:'transport',estimate:1674,actual:1674,currency:'TWD',paid:true,for_sa:true,for_bi:true,for_ty:true},
+  {label:'🚄 HSR 1509 Nangang→Taichung ✅',category:'transport',estimate:2100,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
+  {label:'🚄 HSR 128 Taichung→Taipei ✅',category:'transport',estimate:2100,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
+  {label:'🚖 Uber Đài Trung N6 (HSR→hotel→stops)',category:'transport',estimate:2500,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
   {label:'🚇 MRT Đài Bắc (Airport+ngày)',category:'transport',estimate:800,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
   {label:'🚌 N3 Yehliu/Jiufen/Shifen tự túc (bus+TRA)',category:'transport',estimate:350,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
   {label:'📱 SIM Chunghwa 8 ngày',category:'misc',estimate:400,actual:0,currency:'TWD',for_sa:true,for_bi:true,for_ty:true},
